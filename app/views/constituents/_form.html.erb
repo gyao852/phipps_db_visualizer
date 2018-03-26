@@ -1,0 +1,67 @@
+<%= form_with(model: constituent, local: true) do |form| %>
+  <% if constituent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(constituent.errors.count, "error") %> prohibited this constituent from being saved:</h2>
+
+      <ul>
+      <% constituent.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :lookup_id %>
+    <%= form.number_field :lookup_id, id: :constituent_lookup_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :suffix %>
+    <%= form.text_area :suffix, id: :constituent_suffix %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_area :title, id: :constituent_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_area :name, id: :constituent_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_group %>
+    <%= form.text_area :last_group, id: :constituent_last_group %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email_id %>
+    <%= form.text_area :email_id, id: :constituent_email_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_area :phone, id: :constituent_phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dob %>
+    <%= form.date_select :dob, id: :constituent_dob %>
+  </div>
+
+  <div class="field">
+    <%= form.label :do_not_email %>
+    <%= form.text_field :do_not_email, id: :constituent_do_not_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duplicate %>
+    <%= form.text_field :duplicate, id: :constituent_duplicate %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

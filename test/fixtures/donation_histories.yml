@@ -2,7 +2,7 @@
 
 one:
   donation_history_id: 1
-  lookup_id: 1
+  lookup_id: MyText
   amount: 1
   date: 2018-03-27
   method: MyText
@@ -12,7 +12,7 @@ one:
 
 two:
   donation_history_id: 1
-  lookup_id: 1
+  lookup_id: MyText
   amount: 1
   date: 2018-03-27
   method: MyText

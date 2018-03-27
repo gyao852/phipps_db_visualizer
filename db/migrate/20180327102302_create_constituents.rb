@@ -1,7 +1,7 @@
 class CreateConstituents < ActiveRecord::Migration[5.1]
   def change
     create_table :constituents do |t|
-      t.integer :lookup_id
+      t.text :lookup_id
       t.text :suffix
       t.text :title
       t.text :name

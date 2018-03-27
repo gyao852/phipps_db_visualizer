@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  lookup_id: 1
+  lookup_id: MyText
   suffix: MyText
   title: MyText
   name: MyText
@@ -13,7 +13,7 @@ one:
   duplicate: false
 
 two:
-  lookup_id: 1
+  lookup_id: MyText
   suffix: MyText
   title: MyText
   name: MyText

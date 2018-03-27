@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Donation history:</strong>
+  <%= @donation_history.donation_history_id %>
+</p>
+
+<p>
+  <strong>Lookup:</strong>
+  <%= @donation_history.lookup_id %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @donation_history.amount %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @donation_history.date %>
+</p>
+
+<p>
+  <strong>Method:</strong>
+  <%= @donation_history.method %>
+</p>
+
+<p>
+  <strong>Do not acknowledge:</strong>
+  <%= @donation_history.do_not_acknowledge %>
+</p>
+
+<p>
+  <strong>Given anonymously:</strong>
+  <%= @donation_history.given_anonymously %>
+</p>
+
+<p>
+  <strong>Transaction type:</strong>
+  <%= @donation_history.transaction_type %>
+</p>
+
+<%= link_to 'Edit', edit_donation_history_path(@donation_history) %> |
+<%= link_to 'Back', donation_histories_path %>

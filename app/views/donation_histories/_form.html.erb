@@ -1,0 +1,57 @@
+<%= form_with(model: donation_history, local: true) do |form| %>
+  <% if donation_history.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(donation_history.errors.count, "error") %> prohibited this donation_history from being saved:</h2>
+
+      <ul>
+      <% donation_history.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :donation_history_id %>
+    <%= form.number_field :donation_history_id, id: :donation_history_donation_history_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lookup_id %>
+    <%= form.number_field :lookup_id, id: :donation_history_lookup_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.number_field :amount, id: :donation_history_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date, id: :donation_history_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :method %>
+    <%= form.text_area :method, id: :donation_history_method %>
+  </div>
+
+  <div class="field">
+    <%= form.label :do_not_acknowledge %>
+    <%= form.check_box :do_not_acknowledge, id: :donation_history_do_not_acknowledge %>
+  </div>
+
+  <div class="field">
+    <%= form.label :given_anonymously %>
+    <%= form.check_box :given_anonymously, id: :donation_history_given_anonymously %>
+  </div>
+
+  <div class="field">
+    <%= form.label :transaction_type %>
+    <%= form.text_area :transaction_type, id: :donation_history_transaction_type %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

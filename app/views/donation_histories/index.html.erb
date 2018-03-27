@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Donation Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Donation history</th>
+      <th>Lookup</th>
+      <th>Amount</th>
+      <th>Date</th>
+      <th>Method</th>
+      <th>Do not acknowledge</th>
+      <th>Given anonymously</th>
+      <th>Transaction type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @donation_histories.each do |donation_history| %>
+      <tr>
+        <td><%= donation_history.donation_history_id %></td>
+        <td><%= donation_history.lookup_id %></td>
+        <td><%= donation_history.amount %></td>
+        <td><%= donation_history.date %></td>
+        <td><%= donation_history.method %></td>
+        <td><%= donation_history.do_not_acknowledge %></td>
+        <td><%= donation_history.given_anonymously %></td>
+        <td><%= donation_history.transaction_type %></td>
+        <td><%= link_to 'Show', donation_history %></td>
+        <td><%= link_to 'Edit', edit_donation_history_path(donation_history) %></td>
+        <td><%= link_to 'Destroy', donation_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Donation History', new_donation_history_path %>

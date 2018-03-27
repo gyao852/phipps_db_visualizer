@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327095124) do
+ActiveRecord::Schema.define(version: 20180327102341) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.text "address_id"
+    t.text "lookup_id"
+    t.text "address_1"
+    t.text "city"
+    t.text "state"
+    t.text "zip"
+    t.text "country"
+    t.text "type"
+    t.date "start_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "constituents", force: :cascade do |t|
-    t.integer "lookup_id"
+    t.text "lookup_id"
     t.text "suffix"
     t.text "title"
     t.text "name"
@@ -29,7 +43,7 @@ ActiveRecord::Schema.define(version: 20180327095124) do
 
   create_table "donation_histories", force: :cascade do |t|
     t.integer "donation_history_id"
-    t.integer "lookup_id"
+    t.text "lookup_id"
     t.integer "amount"
     t.date "date"
     t.text "method"

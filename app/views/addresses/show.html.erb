@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @address.address_id %>
+</p>
+
+<p>
+  <strong>Lookup:</strong>
+  <%= @address.lookup_id %>
+</p>
+
+<p>
+  <strong>Address 1:</strong>
+  <%= @address.address_1 %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @address.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @address.state %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @address.zip %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @address.country %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @address.type %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @address.start_date %>
+</p>
+
+<%= link_to 'Edit', edit_address_path(@address) %> |
+<%= link_to 'Back', addresses_path %>

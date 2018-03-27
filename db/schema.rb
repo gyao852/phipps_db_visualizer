@@ -10,6 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20180327092706) do
+
+  create_table "constituents", force: :cascade do |t|
+    t.integer "lookup_id"
+    t.text "suffix"
+    t.text "title"
+    t.text "name"
+    t.text "last_group"
+    t.text "email_id"
+    t.text "phone"
+    t.date "dob"
+    t.boolean "do_not_email"
+    t.boolean "duplicate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

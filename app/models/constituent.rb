@@ -13,7 +13,6 @@ class Constituent < ApplicationRecord
 
   # Validations
   # -----------------------------
-  #compulsory fields
   validates :name, presence: true #, format: { with: , message: "Name field cannot contain special characters"}
   validates :last_group, presence: true #, format: { with: , message: "Last_group field cannot contain special characters"}
   validates_presence_of :lookup_id

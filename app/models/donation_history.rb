@@ -1,5 +1,5 @@
 class DonationHistory < ApplicationRecord
-    # Relationships
+  # Relationships
   # -----------------------------
   belongs_to :constituent
 

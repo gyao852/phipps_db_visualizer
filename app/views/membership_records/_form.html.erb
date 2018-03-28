@@ -1,0 +1,67 @@
+<%= form_with(model: membership_record, local: true) do |form| %>
+  <% if membership_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(membership_record.errors.count, "error") %> prohibited this membership_record from being saved:</h2>
+
+      <ul>
+      <% membership_record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :membership_id %>
+    <%= form.text_area :membership_id, id: :membership_record_membership_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :membership_scheme %>
+    <%= form.text_area :membership_scheme, id: :membership_record_membership_scheme %>
+  </div>
+
+  <div class="field">
+    <%= form.label :membership_level %>
+    <%= form.text_area :membership_level, id: :membership_record_membership_level %>
+  </div>
+
+  <div class="field">
+    <%= form.label :add_ons %>
+    <%= form.text_area :add_ons, id: :membership_record_add_ons %>
+  </div>
+
+  <div class="field">
+    <%= form.label :membership_level_type %>
+    <%= form.text_area :membership_level_type, id: :membership_record_membership_level_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :membership_status %>
+    <%= form.text_area :membership_status, id: :membership_record_membership_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :membership_term %>
+    <%= form.number_field :membership_term, id: :membership_record_membership_term %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date, id: :membership_record_start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date, id: :membership_record_end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_renewed %>
+    <%= form.date_select :last_renewed, id: :membership_record_last_renewed %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

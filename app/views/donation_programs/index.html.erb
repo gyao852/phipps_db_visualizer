@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Donation Programs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Donation program</th>
+      <th>Program</th>
+      <th>Active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @donation_programs.each do |donation_program| %>
+      <tr>
+        <td><%= donation_program.donation_program_id %></td>
+        <td><%= donation_program.program %></td>
+        <td><%= donation_program.active %></td>
+        <td><%= link_to 'Show', donation_program %></td>
+        <td><%= link_to 'Edit', edit_donation_program_path(donation_program) %></td>
+        <td><%= link_to 'Destroy', donation_program, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Donation Program', new_donation_program_path %>

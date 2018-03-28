@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lookup:</strong>
+  <%= @constituent_membership_record.lookup_id %>
+</p>
+
+<p>
+  <strong>Membership:</strong>
+  <%= @constituent_membership_record.membership_id %>
+</p>
+
+<%= link_to 'Edit', edit_constituent_membership_record_path(@constituent_membership_record) %> |
+<%= link_to 'Back', constituent_membership_records_path %>

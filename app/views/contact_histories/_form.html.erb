@@ -1,0 +1,37 @@
+<%= form_with(model: contact_history, local: true) do |form| %>
+  <% if contact_history.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contact_history.errors.count, "error") %> prohibited this contact_history from being saved:</h2>
+
+      <ul>
+      <% contact_history.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :contact_history_id %>
+    <%= form.text_area :contact_history_id, id: :contact_history_contact_history_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lookup_id %>
+    <%= form.text_area :lookup_id, id: :contact_history_lookup_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.text_area :type, id: :contact_history_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date, id: :contact_history_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

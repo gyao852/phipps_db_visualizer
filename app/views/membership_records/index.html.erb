@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Membership Records</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Membership</th>
+      <th>Membership scheme</th>
+      <th>Membership level</th>
+      <th>Add ons</th>
+      <th>Membership level type</th>
+      <th>Membership status</th>
+      <th>Membership term</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Last renewed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @membership_records.each do |membership_record| %>
+      <tr>
+        <td><%= membership_record.membership_id %></td>
+        <td><%= membership_record.membership_scheme %></td>
+        <td><%= membership_record.membership_level %></td>
+        <td><%= membership_record.add_ons %></td>
+        <td><%= membership_record.membership_level_type %></td>
+        <td><%= membership_record.membership_status %></td>
+        <td><%= membership_record.membership_term %></td>
+        <td><%= membership_record.start_date %></td>
+        <td><%= membership_record.end_date %></td>
+        <td><%= membership_record.last_renewed %></td>
+        <td><%= link_to 'Show', membership_record %></td>
+        <td><%= link_to 'Edit', edit_membership_record_path(membership_record) %></td>
+        <td><%= link_to 'Destroy', membership_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Membership Record', new_membership_record_path %>

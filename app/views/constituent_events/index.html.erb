@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Constituent Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lookup</th>
+      <th>Event</th>
+      <th>Status</th>
+      <th>Attend</th>
+      <th>Host name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @constituent_events.each do |constituent_event| %>
+      <tr>
+        <td><%= constituent_event.lookup_id %></td>
+        <td><%= constituent_event.event_id %></td>
+        <td><%= constituent_event.status %></td>
+        <td><%= constituent_event.attend %></td>
+        <td><%= constituent_event.host_name %></td>
+        <td><%= link_to 'Show', constituent_event %></td>
+        <td><%= link_to 'Edit', edit_constituent_event_path(constituent_event) %></td>
+        <td><%= link_to 'Destroy', constituent_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Constituent Event', new_constituent_event_path %>

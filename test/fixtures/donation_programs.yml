@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  donation_program_id: MyText
+  program: MyText
+  active: false
+
+two:
+  donation_program_id: MyText
+  program: MyText
+  active: false

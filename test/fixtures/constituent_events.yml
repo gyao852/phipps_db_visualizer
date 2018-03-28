@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lookup_id: MyText
+  event_id: MyText
+  status: MyText
+  attend: false
+  host_name: MyText
+
+two:
+  lookup_id: MyText
+  event_id: MyText
+  status: MyText
+  attend: false
+  host_name: MyText

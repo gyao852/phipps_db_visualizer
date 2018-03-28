@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Membership:</strong>
+  <%= @membership_record.membership_id %>
+</p>
+
+<p>
+  <strong>Membership scheme:</strong>
+  <%= @membership_record.membership_scheme %>
+</p>
+
+<p>
+  <strong>Membership level:</strong>
+  <%= @membership_record.membership_level %>
+</p>
+
+<p>
+  <strong>Add ons:</strong>
+  <%= @membership_record.add_ons %>
+</p>
+
+<p>
+  <strong>Membership level type:</strong>
+  <%= @membership_record.membership_level_type %>
+</p>
+
+<p>
+  <strong>Membership status:</strong>
+  <%= @membership_record.membership_status %>
+</p>
+
+<p>
+  <strong>Membership term:</strong>
+  <%= @membership_record.membership_term %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @membership_record.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @membership_record.end_date %>
+</p>
+
+<p>
+  <strong>Last renewed:</strong>
+  <%= @membership_record.last_renewed %>
+</p>
+
+<%= link_to 'Edit', edit_membership_record_path(@membership_record) %> |
+<%= link_to 'Back', membership_records_path %>

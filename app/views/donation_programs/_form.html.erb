@@ -1,0 +1,32 @@
+<%= form_with(model: donation_program, local: true) do |form| %>
+  <% if donation_program.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(donation_program.errors.count, "error") %> prohibited this donation_program from being saved:</h2>
+
+      <ul>
+      <% donation_program.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :donation_program_id %>
+    <%= form.text_area :donation_program_id, id: :donation_program_donation_program_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :program %>
+    <%= form.text_area :program, id: :donation_program_program %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active %>
+    <%= form.check_box :active, id: :donation_program_active %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<%= form_with(model: constituent_membership_record, local: true) do |form| %>
+  <% if constituent_membership_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(constituent_membership_record.errors.count, "error") %> prohibited this constituent_membership_record from being saved:</h2>
+
+      <ul>
+      <% constituent_membership_record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :lookup_id %>
+    <%= form.text_area :lookup_id, id: :constituent_membership_record_lookup_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :membership_id %>
+    <%= form.text_area :membership_id, id: :constituent_membership_record_membership_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

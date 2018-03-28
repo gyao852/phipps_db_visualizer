@@ -1,6 +1,7 @@
 class ContactHistory < ApplicationRecord
   # Relationships
   # -----------------------------
+  belongs_to :Constituent
 
 
   # Scopes

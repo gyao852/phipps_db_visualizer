@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   # Relationships
   # -----------------------------
-
+  has_many :ConstituentEvents
 
   # Scopes
   # -----------------------------

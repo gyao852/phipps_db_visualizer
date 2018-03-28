@@ -2,7 +2,7 @@ class Address < ApplicationRecord
 
   # Relationships
   # -----------------------------
-  belongs_to :constituent
+  belongs_to :Constituent
 
   # Scopes
   # -----------------------------
@@ -10,7 +10,7 @@ class Address < ApplicationRecord
 
   # Validations
   # -----------------------------
-  
+
 
 
   # Other methods

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Relationships
   # -----------------------------
-
+  # no relationships
 
   # Scopes
   # -----------------------------

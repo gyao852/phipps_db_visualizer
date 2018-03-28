@@ -1,11 +1,11 @@
 class Constituent < ApplicationRecord
   # Relationships
   # -----------------------------
-  has_many :addresses
-  has_many :donation_histories
-  # has_many :constituent_events
-  # has_many :contact_histories
-  # has_many :constituent_membership_records
+  has_many :Addresses
+  has_many :DonationHistories
+  has_many :ConstituentEvents
+  has_many :ContactHistories
+  has_many :ConstituentMembershipRecords
 
   # Scopes
   # -----------------------------

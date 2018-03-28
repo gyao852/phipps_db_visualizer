@@ -1,7 +1,8 @@
 class DonationHistory < ApplicationRecord
   # Relationships
   # -----------------------------
-  belongs_to :constituent
+  belongs_to :Constituent
+  belongs_to :DonationProgram
 
   # Scopes
   # -----------------------------

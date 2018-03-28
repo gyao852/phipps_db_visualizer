@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327102341) do
+ActiveRecord::Schema.define(version: 20180328220301) do
 
   create_table "addresses", force: :cascade do |t|
     t.text "address_id"
@@ -21,7 +21,24 @@ ActiveRecord::Schema.define(version: 20180327102341) do
     t.text "zip"
     t.text "country"
     t.text "type"
-    t.date "start_date"
+    t.date "date_added"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "constituent_events", force: :cascade do |t|
+    t.text "lookup_id"
+    t.text "event_id"
+    t.text "status"
+    t.boolean "attend"
+    t.text "host_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "constituent_membership_records", force: :cascade do |t|
+    t.text "lookup_id"
+    t.text "membership_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,6 +58,15 @@ ActiveRecord::Schema.define(version: 20180327102341) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contact_histories", force: :cascade do |t|
+    t.text "contact_history_id"
+    t.text "lookup_id"
+    t.text "type"
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "donation_histories", force: :cascade do |t|
     t.integer "donation_history_id"
     t.text "lookup_id"
@@ -50,6 +76,50 @@ ActiveRecord::Schema.define(version: 20180327102341) do
     t.boolean "do_not_acknowledge"
     t.boolean "given_anonymously"
     t.text "transaction_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "donation_programs", force: :cascade do |t|
+    t.text "donation_program_id"
+    t.text "program"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.text "event_id"
+    t.text "event_name"
+    t.text "category"
+    t.datetime "start_date_time"
+    t.datetime "end_date_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "membership_records", force: :cascade do |t|
+    t.text "membership_id"
+    t.text "membership_scheme"
+    t.text "membership_level"
+    t.text "add_ons"
+    t.text "membership_level_type"
+    t.text "membership_status"
+    t.integer "membership_term"
+    t.date "start_date"
+    t.date "end_date"
+    t.date "last_renewed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "fname"
+    t.text "lname"
+    t.text "email_id"
+    t.text "password_digest"
+    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

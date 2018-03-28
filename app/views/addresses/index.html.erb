@@ -13,7 +13,7 @@
       <th>Zip</th>
       <th>Country</th>
       <th>Type</th>
-      <th>Start date</th>
+      <th>Date added</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -29,7 +29,7 @@
         <td><%= address.zip %></td>
         <td><%= address.country %></td>
         <td><%= address.type %></td>
-        <td><%= address.start_date %></td>
+        <td><%= address.date_added %></td>
         <td><%= link_to 'Show', address %></td>
         <td><%= link_to 'Edit', edit_address_path(address) %></td>
         <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>

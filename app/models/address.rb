@@ -1,18 +1,21 @@
 class Address < ApplicationRecord
-
   # Relationships
-  # -----------------------------
-  belongs_to :Constituent
+ # -----------------------------
+ belongs_to :Constituent
 
-  # Scopes
-  # -----------------------------
-
-
-  # Validations
-  # -----------------------------
+ # Scopes
+ # -----------------------------
 
 
+ # Validations
+ # -----------------------------
 
-  # Other methods
-  # -------------
+
+
+ # Other methods
+ # -------------
+
+
+
+
 end

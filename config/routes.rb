@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :addresses
   resources :users
   resources :events
   resources :constituent_events
@@ -8,6 +9,5 @@ Rails.application.routes.draw do
   resources :constituent_membership_records
   resources :donation_histories
   resources :constituents
-  resources :addresses
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

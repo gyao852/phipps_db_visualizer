@@ -9,7 +9,7 @@ class CreateAddresses < ActiveRecord::Migration[5.1]
       t.text :zip
       t.text :country
       t.text :type
-      t.date :start_date
+      t.date :date_added
 
       t.timestamps
     end

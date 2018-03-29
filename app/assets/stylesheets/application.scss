@@ -12,4 +12,25 @@
  *
  */
  // Custom bootstrap variables must be set or imported *before* bootstrap.
-@import "bootstrap";
+
+ $green-5: #003A1D;
+ $green-4: #006B35;
+ $green-3: #009047;
+ $green-2: #00C862;
+ $green-1: #2ECE7D;
+
+ $orange-5: #521400;
+ $orange-4: #982500;
+ $orange-3: #CE3200;
+ $orange-2: #FF3D00;
+ $orange-1: #FF6838;
+
+// variable overrides
+
+$theme-colors: (
+    "primary": $green-3,
+    "primary-dark": $green-5
+);
+
+ @import "bootstrap";
+

@@ -9,5 +9,11 @@ Rails.application.routes.draw do
   resources :constituent_membership_records
   resources :donation_histories
   resources :constituents
+
+  # Semi-static page routes
+  get 'home' => 'home#home', as: :home
+
+  # Set the root url
+  root :to => 'home#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

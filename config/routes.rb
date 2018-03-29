@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   get 'home' => 'home#home', as: :home
 
   # Routes for duplicate record filtering pages
-  get 'duplicates_unresolved' => 'duplicates#unresolved', as: duplicates_unresolved
-  get 'duplicates_deleted' => 'duplicates#deleted', as: duplicates_deleted
-  get 'duplicates_merged' => 'duplicates#merged', as: duplicates_deleted
+  get 'duplicates_unresolved' => 'duplicates#unresolved', as: :duplicates_unresolved
+  get 'duplicates_deleted' => 'duplicates#deleted', as: :duplicates_deleted
+  get 'duplicates_merged' => 'duplicates#merged', as: :duplicates_merged
 
   # Set the root url
   root :to => 'home#home'

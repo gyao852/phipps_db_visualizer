@@ -1,0 +1,77 @@
+<!-- nav bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+
+    <%= link_to image_tag("phipps-logo.png", border: 0, height: 75), home_path, class: "navbar-brand"%>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+    </div>
+  
+
+
+  </nav>
+  <nav class="navbar navbar-expand-lg bg-green-4 navbar-dark">            
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Constituents
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'All', constituents_path, class: "dropdown-item" %>
+              <a class="dropdown-item" href="#">Individuals</a>
+              <a class="dropdown-item" href="#">Companies</a>
+              <a class="dropdown-item" href="#">Groups</a>
+            </div>
+            
+
+          </li>
+
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Events
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">All</a>
+                <a class="dropdown-item" href="#">Category</a>
+                <a class="dropdown-item" href="#">Donation Program</a>
+                <a class="dropdown-item" href="#">Date</a>
+              </div>
+              
+          </li>
+
+          <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Members
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">All</a>
+                  <a class="dropdown-item" href="#">Individuals</a>
+                  <a class="dropdown-item" href="#">Companies</a>
+                  <a class="dropdown-item" href="#">Groups</a>
+                </div>
+          </li>
+
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Contact
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">All</a>
+                <a class="dropdown-item" href="#">Individuals</a>
+                <a class="dropdown-item" href="#">Companies</a>
+                <a class="dropdown-item" href="#">Groups</a>
+              </div>
+          </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-primary-dark my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+</nav>

@@ -10,6 +10,37 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+ // Custom bootstrap variables must be set or imported *before* bootstrap.
+
+ $green-5: #003A1D;
+ $green-4: #006B35;
+ $green-3: #009047;
+ $green-2: #00C862;
+ $green-1: #2ECE7D;
+ $phipps-green: #78A130;
+
+ $orange-5: #521400;
+ $orange-4: #982500;
+ $orange-3: #CE3200;
+ $orange-2: #FF3D00;
+ $orange-1: #FF6838;
+
+// variable overrides
+
+$theme-colors: (
+    "primary": $green-3,
+    "primary-dark": $green-5,
+    "green-4": $green-4,
+    "phipps-green": $phipps-green
+);
+// .navbar-brand {
+  
+//     transform: translateX(-50%);
+//     left: 50%;
+//     position: relative;
+//     height: 80px;
+//   }
+
+ @import "bootstrap";
+

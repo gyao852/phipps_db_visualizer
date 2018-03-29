@@ -18,6 +18,7 @@
  $green-3: #009047;
  $green-2: #00C862;
  $green-1: #2ECE7D;
+ $phipps-green: #78A130;
 
  $orange-5: #521400;
  $orange-4: #982500;
@@ -29,8 +30,17 @@
 
 $theme-colors: (
     "primary": $green-3,
-    "primary-dark": $green-5
+    "primary-dark": $green-5,
+    "green-4": $green-4,
+    "phipps-green": $phipps-green
 );
+// .navbar-brand {
+  
+//     transform: translateX(-50%);
+//     left: 50%;
+//     position: relative;
+//     height: 80px;
+//   }
 
  @import "bootstrap";
 

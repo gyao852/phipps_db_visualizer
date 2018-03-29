@@ -1,0 +1,42 @@
+<%= form_with(model: constituent_event, local: true) do |form| %>
+  <% if constituent_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(constituent_event.errors.count, "error") %> prohibited this constituent_event from being saved:</h2>
+
+      <ul>
+      <% constituent_event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :lookup_id %>
+    <%= form.text_area :lookup_id, id: :constituent_event_lookup_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :event_id %>
+    <%= form.text_area :event_id, id: :constituent_event_event_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_area :status, id: :constituent_event_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :attend %>
+    <%= form.check_box :attend, id: :constituent_event_attend %>
+  </div>
+
+  <div class="field">
+    <%= form.label :host_name %>
+    <%= form.text_area :host_name, id: :constituent_event_host_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

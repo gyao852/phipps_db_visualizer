@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contact history:</strong>
+  <%= @contact_history.contact_history_id %>
+</p>
+
+<p>
+  <strong>Lookup:</strong>
+  <%= @contact_history.lookup_id %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @contact_history.type %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @contact_history.date %>
+</p>
+
+<%= link_to 'Edit', edit_contact_history_path(@contact_history) %> |
+<%= link_to 'Back', contact_histories_path %>

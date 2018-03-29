@@ -1,0 +1,2 @@
+module DonationHistoriesHelper
+end

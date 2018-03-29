@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Donation program:</strong>
+  <%= @donation_program.donation_program_id %>
+</p>
+
+<p>
+  <strong>Program:</strong>
+  <%= @donation_program.program %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @donation_program.active %>
+</p>
+
+<%= link_to 'Edit', edit_donation_program_path(@donation_program) %> |
+<%= link_to 'Back', donation_programs_path %>

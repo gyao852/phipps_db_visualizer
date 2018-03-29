@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  membership_id: MyText
+  membership_scheme: MyText
+  membership_level: MyText
+  add_ons: MyText
+  membership_level_type: MyText
+  membership_status: MyText
+  membership_term: 1
+  start_date: 2018-03-28
+  end_date: 2018-03-28
+  last_renewed: 2018-03-28
+
+two:
+  membership_id: MyText
+  membership_scheme: MyText
+  membership_level: MyText
+  add_ons: MyText
+  membership_level_type: MyText
+  membership_status: MyText
+  membership_term: 1
+  start_date: 2018-03-28
+  end_date: 2018-03-28
+  last_renewed: 2018-03-28

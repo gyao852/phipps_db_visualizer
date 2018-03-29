@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lookup_id: MyText
+  suffix: MyText
+  title: MyText
+  name: MyText
+  last_group: MyText
+  email_id: MyText
+  phone: MyText
+  dob: 2018-03-27
+  do_not_email: false
+  duplicate: false
+
+two:
+  lookup_id: MyText
+  suffix: MyText
+  title: MyText
+  name: MyText
+  last_group: MyText
+  email_id: MyText
+  phone: MyText
+  dob: 2018-03-27
+  do_not_email: false
+  duplicate: false

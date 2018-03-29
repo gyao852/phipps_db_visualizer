@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lookup:</strong>
+  <%= @constituent_event.lookup_id %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @constituent_event.event_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @constituent_event.status %>
+</p>
+
+<p>
+  <strong>Attend:</strong>
+  <%= @constituent_event.attend %>
+</p>
+
+<p>
+  <strong>Host name:</strong>
+  <%= @constituent_event.host_name %>
+</p>
+
+<%= link_to 'Edit', edit_constituent_event_path(@constituent_event) %> |
+<%= link_to 'Back', constituent_events_path %>

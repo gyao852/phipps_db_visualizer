@@ -1,20 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Constituents</h1>
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="#">Constituents</a></li>
+  <li class="breadcrumb-item active" aria-current="page">All</li>
+</ol>
+</nav>
 
-<table>
+<div class="container">
+  <h1>Constituents</h1>
+
+<table class="table">
   <thead>
     <tr>
-      <th>Lookup</th>
-      <th>Suffix</th>
-      <th>Title</th>
-      <th>Name</th>
-      <th>Last group</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Dob</th>
-      <th>Do not email</th>
-      <th>Duplicate</th>
+      <th scope="col">LookupID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last/Group Name</th>
+      <th scope="col">Suffix</th>
+      <th scope="col">Title</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Do not email</th>
+      <th scope="col">Duplicate</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,18 +31,15 @@
     <% @constituents.each do |constituent| %>
       <tr>
         <td><%= constituent.lookup_id %></td>
-        <td><%= constituent.suffix %></td>
-        <td><%= constituent.title %></td>
         <td><%= constituent.name %></td>
         <td><%= constituent.last_group %></td>
+        <td><%= constituent.suffix %></td>
+        <td><%= constituent.title %></td>
         <td><%= constituent.email_id %></td>
         <td><%= constituent.phone %></td>
         <td><%= constituent.dob %></td>
         <td><%= constituent.do_not_email %></td>
         <td><%= constituent.duplicate %></td>
-        <td><%= link_to 'Show', constituent %></td>
-        <td><%= link_to 'Edit', edit_constituent_path(constituent) %></td>
-        <td><%= link_to 'Destroy', constituent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +47,7 @@
 
 <br>
 
-<%= link_to 'New Constituent', new_constituent_path %>
+
+</div>
+
+

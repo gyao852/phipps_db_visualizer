@@ -10,7 +10,7 @@ class Constituent < ApplicationRecord
   # Scopes
   # -----------------------------
 
-# 
+  # 
   # Validations
   # -----------------------------
   validates :lookup_id, presence: true

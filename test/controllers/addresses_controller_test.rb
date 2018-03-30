@@ -17,7 +17,7 @@ class AddressesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create address" do
     assert_difference('Address.count') do
-      post addresses_url, params: { address: { address_1: @address.address_1, address_2: @address.address_2, address_id: @address.address_id, city: @address.city, country: @address.country, date_added: @address.date_added, lookup_id: @address.lookup_id, state: @address.state, type: @address.type, zip: @address.zip } }
+      post addresses_url, params: { address: { address_1: @address.address_1, address_id: @address.address_id, city: @address.city, country: @address.country, date_added: @address.date_added, lookup_id: @address.lookup_id, state: @address.state, type: @address.type, zip: @address.zip } }
     end
 
     assert_redirected_to address_url(Address.last)
@@ -34,7 +34,7 @@ class AddressesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update address" do
-    patch address_url(@address), params: { address: { address_1: @address.address_1, address_2: @address.address_2, address_id: @address.address_id, city: @address.city, country: @address.country, date_added: @address.date_added, lookup_id: @address.lookup_id, state: @address.state, type: @address.type, zip: @address.zip } }
+    patch address_url(@address), params: { address: { address_1: @address.address_1, address_id: @address.address_id, city: @address.city, country: @address.country, date_added: @address.date_added, lookup_id: @address.lookup_id, state: @address.state, type: @address.type, zip: @address.zip } }
     assert_redirected_to address_url(@address)
   end
 

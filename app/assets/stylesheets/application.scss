@@ -13,12 +13,23 @@
  */
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 
- $green-5: #003A1D;
- $green-4: #006B35;
- $green-3: #009047;
- $green-2: #00C862;
- $green-1: #2ECE7D;
- $phipps-green: #78A130;
+$green-5: #003A1D;
+$green-4: #006B35;
+$green-3: #009047;
+$green-2: #00C862;
+$green-1: #2ECE7D;
+
+$phipps-green: #78A130;
+$phipps-green-dark: #2E4336;
+$off-white: #F1F0E9;
+$gray-teal: #87AA92;
+$coral: #B66147;
+
+
+
+
+
+ 
 
  $orange-5: #521400;
  $orange-4: #982500;
@@ -29,11 +40,27 @@
 // variable overrides
 
 $theme-colors: (
-    "primary": $green-3,
-    "primary-dark": $green-5,
+    "primary": $phipps-green,
+    "primary-dark": $phipps-green-dark,
     "green-4": $green-4,
-    "phipps-green": $phipps-green
+    "phipps-green": $phipps-green,
+    "secondary": $gray-teal,
+    "off-white": $off-white
+
 );
+
+$body-bg: #fff;
+
+$container-bg: $off-white;
+
+//breadcrumbs
+$breadcrumb-padding-vertical:   5px !default;
+$breadcrumb-bg:  #fff !default;
+
+.breadcrumb-nav {
+    background-color: $gray-teal;
+}
+
 // .navbar-brand {
   
 //     transform: translateX(-50%);

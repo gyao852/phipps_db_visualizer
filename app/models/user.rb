@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   # Scopes
   # -----------------------------
+  scope :alphabetical, -> { order('lname,fname') }
 
 
   # Validations

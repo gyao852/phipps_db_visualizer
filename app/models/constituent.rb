@@ -9,7 +9,7 @@ class Constituent < ApplicationRecord
 
   # Scopes
   # -----------------------------
-
+    scope :alphabetical, -> { order('name') }
 
   #
   # Validations

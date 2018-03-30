@@ -4,6 +4,7 @@ class CreateAddresses < ActiveRecord::Migration[5.1]
       t.text :address_id
       t.text :lookup_id
       t.text :address_1
+      t.text :address_2
       t.text :city
       t.text :state
       t.text :zip

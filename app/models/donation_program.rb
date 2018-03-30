@@ -9,6 +9,7 @@ class DonationProgram < ApplicationRecord
 
   # Validations
   # -----------------------------
+  validates :program, presence:true
 
 
 

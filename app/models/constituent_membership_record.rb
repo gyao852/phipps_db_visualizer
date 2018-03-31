@@ -11,6 +11,8 @@ class ConstituentMembershipRecord < ApplicationRecord
 
   # Validations
   # -----------------------------
+  validates :lookup_id, presence:true
+  validates :membership_id, presence:true
 
 
 

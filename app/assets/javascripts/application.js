@@ -16,3 +16,7 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function(){
+    Console.log('hi')
+})

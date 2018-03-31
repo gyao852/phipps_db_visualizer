@@ -21,7 +21,7 @@ class MembershipRecord < ApplicationRecord
   validates_numericality_of :term, :only_integer => true, :greater_than=> 0
   # validate start date on or before today
   validates_date :start_date,
-                  :before => lambda{Today.date}
+                  :before => lambda{Date.today}
   # validate end date after start date
   validates_date :end_date,
                   :before => :start_date

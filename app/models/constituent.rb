@@ -37,9 +37,11 @@ class Constituent < ApplicationRecord
   # Other methods
   # -------------
   def current_address
+    # map all addresses that belong to the constituent
   end
 
   def current_membership
+    #
   end
 
   private

@@ -18,5 +18,5 @@
 //= require_tree .
 
 $(document).ready(function(){
-    Console.log('hi')
+    console.log('hi')
 })

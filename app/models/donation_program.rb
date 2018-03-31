@@ -5,10 +5,12 @@ class DonationProgram < ApplicationRecord
 
   # Scopes
   # -----------------------------
+    scope :alphabetical, -> { order('program') }
 
 
   # Validations
   # -----------------------------
+  validates :program, presence:true
 
 
 

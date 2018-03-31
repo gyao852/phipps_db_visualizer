@@ -10,6 +10,10 @@ class ContactHistory < ApplicationRecord
 
   # Validations
   # -----------------------------
+  validates :lookup_id, presence:true
+  validates :type, presence:true
+  validates :date, presence:true
+  validates_date :date
 
 
 

@@ -20,10 +20,16 @@ class MembershipRecord < ApplicationRecord
   validates :membership_status, presence:true
   validates_numericality_of :term, :only_integer => true, :greater_than=> 0
   # validate start date on or before today
-
-  # validate expiry date after start date
+  validates_date :start_date,
+                  :before => lambda{Today.date}
+  # validate end date after start date
+  validates_date :end_date,
+                  :before => :start_date
   # validate last renewed after start date and before end date
-
+  validates_date :last_renewed,
+                  :before => :end_date,
+                  :after => :start_date,
+                  allow_blank :true
 
   # Other methods
   # -------------

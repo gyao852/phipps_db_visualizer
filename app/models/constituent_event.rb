@@ -11,6 +11,8 @@ class ConstituentEvent < ApplicationRecord
 
   # Validations
   # -----------------------------
+  validates :looku_id, presence:true
+  validates :event_id, presence:true
 
 
 

@@ -1,55 +1,68 @@
-<div class="container bg-offwhite">
-	<br/>
-	<br/>
-	
+<div class="container bg-off-white">	
+
+
 	<h1 class="text-primary-dark">My Dashboard</h1>
-	<br/>
-	<br/>
+
+	
 	<br/>
 	<div class="row">
-		<div class="col-sm">
+		<div class="col-sm-4">
+		
+		<div class="card bg-off-white border-light">
 			
-			<div class="text-center">
+			<div class="card-body text-center">
 				<div>
-					<a href="#" class="btn btn-outline-primary-dark btn-lg">Import Data</a>
+					<a href="#" class="btn btn-outline-primary-dark btn-xl">Import Data</a>
 				</div>
 			</div>
+		</div> 
 
-			<br/>
-			<br/>
+		<br/>
+		<br/>
 
-			<div class="text-center">
+		<div class="card bg-off-white border-light">
+			<div class="card-body text-center">
 				<div>
 					<a href="#" class="btn btn-outline-primary-dark btn-lg">Reports</a>
 				</div>
 			</div>
-
-			<br/>
-			<br/>
-
-			<div class="text-center">
-				<div>
-					<%= link_to "Resolve Duplicates", duplicates_unresolved_path, class: 'btn btn-outline-primary-dark btn-lg'%>
-				</div>
-			</div>
 		</div>
+
+			<br/>
+			<br/>
+	</div>
+
 		
-		<div class="col-sm">
-			<div class='text-center'>
+	<div class="col-sm-4">
+		<div class="card border-light bg-off-white">
+			<div class='card-body text-center'>
 				<div>
 				<a href="#" class="btn btn-outline-primary-dark btn-lg">Manage My Account</a>
 				</div>
 			</div>
+		</div>
 
-			<br/>
-			<br/>
-
-			<div class='text-center'>
+		<br/>
+		<br/>
+		<div class="card border-light bg-off-white">
+			<div class='card-body text-center'>
 				<div>
 					<a href="#" class="btn btn-outline-primary-dark btn-lg ">Add User</a>
 				</div>
 			</div>
 		</div>
+		</div>
 
+		<div class="col-sm-4">
+		<div class="card border-light bg-off-white">
+			<div class='card-body text-center'>
+				<div>
+					<a href="#" class="btn btn-outline-primary-dark btn-lg">Resolve Duplicates</a>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
+
+		</div>
+	</div>
+

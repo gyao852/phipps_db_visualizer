@@ -10,6 +10,9 @@ class Constituent < ApplicationRecord
   # Scopes
   # -----------------------------
     scope :alphabetical, -> { order('name') }
+    scope :by_lookup_id, -> {order(:lookup_id)}
+    scope :alphabetical_last_group, -> {order(:last_group)}
+    scope :alphabetical_name, -> {order(:name)}
 
   #
   # Validations
@@ -18,24 +21,18 @@ class Constituent < ApplicationRecord
   # no validations for suffix
   # no validations for title
   # check
-  # validates :name, presence: true, format: { with:/\A\w+\-\w+\z/i , message: "Name field cannot contain special characters"}
+  validates :name, format: { with: /\A[A-Z]\w+\-?\w+?\z/ , message: "Name field cannot contain special characters"}, presence: true
   # check
-  # validates :last_group, presence: true , format: { with:/\A\w+\-\w+\z/i , message: "Last_group field cannot contain special characters"}
+  validates :last_group, presence: true , format: { with: /\A[A-Z]\w+\-?\w+?\z/ , message: "Last_group field cannot contain special characters"}
 
-  # validates :phone, format: { with: /\A\(([0-9]{3})\)[-]([0-9]{3})[-]([0-9]{4})\z/i , message: "format of phone number is incorrect"}
-  # validates :email_id, format: { with:/\A[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}[\w\-]{2,4}?\z/i , message: "format of email address is incorrect"}
-  # validates_date :dob, before: lambda{Date.today}
-  # validates :do_not_email, presence: true
-
-
-  # Scopes
-  scope :by_lookup_id, -> {order(:lookup_id)}
-  scope :alphabetical_last_group, -> {order(:last_group)}
-  scope :alphabetical_name, -> {order(:name)}
-
+  validates :phone, format: { with: /\A\(([0-9]{3})\)[-]([0-9]{3})[-]([0-9]{4})\z/ , message: "format of phone number is incorrect"}
+  validates :email_id, format: { with:/\A[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}\z/, message: "format of email address is incorrect"}
+  validates_date :dob, before: lambda{Today.date}
+  validates :do_not_email, presence: true
 
   # Other methods
   # -------------
+<<<<<<< HEAD
   def current_address
     # map all addresses that belong to the constituent
   end
@@ -43,11 +40,13 @@ class Constituent < ApplicationRecord
   def current_membership
     #
   end
+=======
+
+
+>>>>>>> 1f9ee5cbb443b24f91c3b5f83156c0e1913bed67
 
   private
   # address_or_email
   #   return true
   # end
-
-  # Custom validations
 end

@@ -18,7 +18,7 @@ class Constituent < ApplicationRecord
   # no validations for suffix
   # no validations for title
   # check
-  validates :name, presence: true , format: { with: /\A[A-Z]\w+\-?\w+?\z/ , message: "Name field cannot contain special characters"}
+  validates :name, format: { with: /\A[A-Z]\w+\-?\w+?\z/ , message: "Name field cannot contain special characters"}, presence: true
   # check
   validates :last_group, presence: true , format: { with: /\A[A-Z]\w+\-?\w+?\z/ , message: "Last_group field cannot contain special characters"}
 

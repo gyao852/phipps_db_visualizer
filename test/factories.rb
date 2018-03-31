@@ -4,6 +4,10 @@ FactoryBot.define do
         name "John"
         last_group "Smith"
         phone "(123) 456-7890"
+        email_id "abc@mail.com"
+        dob 20.year.ago.to_date
+        do_not_email false
+
     end
 
     factory :address do

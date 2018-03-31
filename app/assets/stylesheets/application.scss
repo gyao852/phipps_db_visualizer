@@ -45,7 +45,8 @@ $theme-colors: (
     "green-4": $green-4,
     "phipps-green": $phipps-green,
     "secondary": $gray-teal,
-    "off-white": $off-white
+    "off-white": $off-white,
+    "light": $gray-teal
 
 );
 
@@ -59,13 +60,40 @@ $breadcrumb-bg:  #fff !default;
 
 .container {
     margin-top: 15px;
+    box-shadow:2px 4px 8px 0 rgba(69,77,72,0.1), 2px 4px 8px 0 rgba(69,77,72,0.1);
+    background-color: $off-white;
+
 }
 
 .breadcrumb-nav {
     background-color: $gray-teal;
 }
 
-.card{ box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); }
+.card{ 
+    box-shadow:2px 4px 6px 0 rgba(69,77,72,0.1), 2px 4px 6px 0 rgba(69,77,72,0.1);
+}
+
+.btn-xl {
+    padding: 18px 28px;
+    font-size: 22px;
+    line-height: normal;
+}
+
+h1 {
+    padding: 8px;
+}
+
+i.md-light {
+    color: $phipps-green
+}
+
+i.md-32 {
+    font-size: 32px;
+}
+
+i.md-40 {
+    font-size: 40px;
+}
 
 // .navbar-brand {
   

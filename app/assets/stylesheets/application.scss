@@ -26,6 +26,7 @@ $gray-teal: #87AA92;
 $coral: #B66147;
 
 $mint: #8BFFC3;
+$gray: #7E8581;
 $dark-teal: #2A3024;
 
 $mint-5: #031A14;
@@ -56,7 +57,7 @@ $theme-colors: (
 
 );
 
-$body-bg: white;
+$body-bg: $gray;
 
 $container-bg: $off-white;
 
@@ -69,7 +70,7 @@ $breadcrumb-bg:  #fff !default;
 .container {
     margin-top: 15px;
     box-shadow:2px 4px 8px 0 rgba(69,77,72,0.1), 2px 4px 8px 0 rgba(69,77,72,0.1);
-    background-color: $off-white;
+    background-color: white;
 
 }
 

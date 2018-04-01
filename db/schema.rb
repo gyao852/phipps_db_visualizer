@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180401165116) do
+ActiveRecord::Schema.define(version: 20180401171739) do
 
   create_table "addresses", force: :cascade do |t|
     t.text "address_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180401165116) do
 
   create_table "constituent_events", force: :cascade do |t|
     t.text "lookup_id"
+    t.text "event_id"
     t.text "status"
     t.boolean "attend"
     t.text "host_name"
@@ -66,6 +67,8 @@ ActiveRecord::Schema.define(version: 20180401165116) do
     t.boolean "duplicate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "constituent_type"
+    t.text "phone_notes"
   end
 
   create_table "contact_histories", force: :cascade do |t|
@@ -90,10 +93,10 @@ ActiveRecord::Schema.define(version: 20180401165116) do
     t.text "transaction_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "constituents_id"
-    t.integer "donationprograms_id"
-    t.index ["constituents_id"], name: "index_donation_histories_on_constituents_id"
-    t.index ["donationprograms_id"], name: "index_donation_histories_on_donationprograms_id"
+    t.integer "constituent_id"
+    t.integer "donationprogram_id"
+    t.index ["constituent_id"], name: "index_donation_histories_on_constituents_id"
+    t.index ["donationprogram_id"], name: "index_donation_histories_on_donationprograms_id"
   end
 
   create_table "donation_programs", force: :cascade do |t|

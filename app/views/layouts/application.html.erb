@@ -6,10 +6,17 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
   </head>
 
   <body>
-    <%= render :partial => 'partials/nav' %>
-    <%= yield %>
+    <div class='d-flex container-fluid full-height'>
+      <%= render :partial => 'partials/sidenav'%>
+  
+      <div class='container-fluid'>
+        <%= yield %>
+      </div>
+    </div>
+   
   </body>
 </html>

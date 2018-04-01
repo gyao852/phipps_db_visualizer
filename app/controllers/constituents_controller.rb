@@ -67,6 +67,10 @@ class ConstituentsController < ApplicationController
     redirect_to constituents_path, notice: "csv imported"
   end
 
+  def import_page
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_constituent

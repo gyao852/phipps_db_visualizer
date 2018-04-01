@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180331133035) do
+ActiveRecord::Schema.define(version: 20180401165116) do
 
   create_table "addresses", force: :cascade do |t|
     t.text "address_id"
@@ -25,16 +25,21 @@ ActiveRecord::Schema.define(version: 20180331133035) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "address_2"
+    t.integer "Constituents_id"
+    t.index ["Constituents_id"], name: "index_Addresses_on_Constituents_id"
   end
 
   create_table "constituent_events", force: :cascade do |t|
     t.text "lookup_id"
-    t.text "event_id"
     t.text "status"
     t.boolean "attend"
     t.text "host_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "constituents_id"
+    t.integer "events_id"
+    t.index ["constituents_id"], name: "index_constituent_events_on_constituents_id"
+    t.index ["events_id"], name: "index_constituent_events_on_events_id"
   end
 
   create_table "constituent_membership_records", force: :cascade do |t|
@@ -42,6 +47,10 @@ ActiveRecord::Schema.define(version: 20180331133035) do
     t.text "membership_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "Constituents_id"
+    t.integer "memberhsip_records_id"
+    t.index ["Constituents_id"], name: "index_constituent_membership_records_on_Constituents_id"
+    t.index ["memberhsip_records_id"], name: "index_constituent_membership_records_on_memberhsip_records_id"
   end
 
   create_table "constituents", force: :cascade do |t|
@@ -66,6 +75,8 @@ ActiveRecord::Schema.define(version: 20180331133035) do
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "constituents_id"
+    t.index ["constituents_id"], name: "index_contact_histories_on_constituents_id"
   end
 
   create_table "donation_histories", force: :cascade do |t|
@@ -79,6 +90,10 @@ ActiveRecord::Schema.define(version: 20180331133035) do
     t.text "transaction_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "constituents_id"
+    t.integer "donationprograms_id"
+    t.index ["constituents_id"], name: "index_donation_histories_on_constituents_id"
+    t.index ["donationprograms_id"], name: "index_donation_histories_on_donationprograms_id"
   end
 
   create_table "donation_programs", force: :cascade do |t|

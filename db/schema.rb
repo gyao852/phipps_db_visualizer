@@ -93,10 +93,10 @@ ActiveRecord::Schema.define(version: 20180401171739) do
     t.text "transaction_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "constituents_id"
-    t.integer "donationprograms_id"
-    t.index ["constituents_id"], name: "index_donation_histories_on_constituents_id"
-    t.index ["donationprograms_id"], name: "index_donation_histories_on_donationprograms_id"
+    t.integer "constituent_id"
+    t.integer "donationprogram_id"
+    t.index ["constituent_id"], name: "index_donation_histories_on_constituents_id"
+    t.index ["donationprogram_id"], name: "index_donation_histories_on_donationprograms_id"
   end
 
   create_table "donation_programs", force: :cascade do |t|

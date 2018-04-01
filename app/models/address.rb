@@ -37,6 +37,7 @@ class Address < ApplicationRecord
 
    #
    validates :country, format: { with:/\A[a-zA-Z]+(?:[\s-][a-zA-Z]+)*\z/i , message: "Country must be capitalized"}
+   validates_date :
 
 
  # Other methods

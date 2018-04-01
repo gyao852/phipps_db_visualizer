@@ -12,7 +12,7 @@ class CreateConstituents < ActiveRecord::Migration[5.1]
       t.boolean :do_not_email
       t.boolean :duplicate
 
-      t.timestamps
+    
     end
   end
 end

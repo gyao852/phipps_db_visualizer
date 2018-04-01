@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resources :membership_records
   resources :constituent_membership_records
   resources :donation_histories
-  resources :constituents
+  resources :constituents do
+    collection {post :import}
+  end
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home

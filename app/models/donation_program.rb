@@ -1,7 +1,8 @@
 class DonationProgram < ApplicationRecord
   # Relationships
   # -----------------------------
-  has_many :DonationHistories
+  has_many :donation_histories
+  has_many :constituents, through: :donation_histories
 
   # Scopes
   # -----------------------------

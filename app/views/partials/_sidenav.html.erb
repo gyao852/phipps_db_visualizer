@@ -8,9 +8,10 @@
 
 		<!-- Sidebar Links -->
 		<ul class="navbar-nav mr-auto d-flex text-center pl-1">
-			<li class='nav-item'>
-				<%= link_to home_path, class: 'btn nav-link' do %>
-					<i class='material-icons md-32'>developer_board</i>
+			
+		<li class='nav-item'>
+				<%= link_to home_path, class: 'btn nav-link', id:'dashboard-nav-link' do %>
+					<i class='material-icons'>developer_board</i>
 					<br/>
 					Dashboard
 				<% end %>
@@ -18,7 +19,7 @@
 
 			<li class='nav-item'>
 				<a href="#" class='btn nav-link'>
-					<i class="material-icons md-32">person</i> 
+					<i class="material-icons">person</i> 
 					<br/>
 					Account 
 				</a>
@@ -26,7 +27,7 @@
 
 			<li class='nav-item'>
 				<%= link_to constituents_path, class:'btn nav-link' do %>
-					<i class="material-icons md-32">folder</i>
+					<i class="material-icons">folder</i>
 					<br/>
 					Database
 				<%end%>
@@ -34,7 +35,7 @@
 
 			<li class='nav-item'>
 				<a href="#" class='btn nav-link'>
-					<i class="material-icons md-32">input</i>
+					<i class="material-icons">input</i>
 					<br/>
 					Import
 				</a>
@@ -42,11 +43,28 @@
 
 			<li class='nav-item'>
 				<a href='#' class='btn nav-link'>
-					<i class="material-icons">report_problem</i>
+					<i class="material-icons">flag</i>
 					<br/>
 					Duplicates
 				</a>
 			</li>
+
+			<li class='nav-item'>
+				<a href='#' class='btn nav-link'>
+					<i class="material-icons">people</i>
+					<br/>
+					Users
+				</a>
+			</li>
+
+			<li class='nav-item'>
+				<a href='#' class='btn nav-link'>
+					<i class="material-icons">power_settings_new</i>
+					<br/>
+					Log Out
+				</a>
+			</li>
+
 		</ul>
 
 

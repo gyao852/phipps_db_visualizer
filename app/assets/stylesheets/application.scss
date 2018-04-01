@@ -24,19 +24,11 @@ $phipps-green-dark: #2E4336;
 $off-white: #F1F0E9;
 $gray-teal: #87AA92;
 $coral: #B66147;
-
 $mint: #8BFFC3;
 $gray: #7E8581;
 $dark-teal: #2A3024;
 
 $mint-5: #031A14;
-
-
-
-
-
-
- 
 
  $orange-5: #521400;
  $orange-4: #982500;
@@ -53,7 +45,8 @@ $theme-colors: (
     "phipps-green": $phipps-green,
     "secondary": $gray-teal,
     "off-white": $off-white,
-    "light": $gray-teal
+    "mint-black": $mint-5,
+    "dark-teal":$dark-teal
 
 );
 
@@ -130,6 +123,7 @@ i.md-40 {
     background-color: $mint-5;
     height: 100%;
 }
+
 
 
 #sidebar.active {

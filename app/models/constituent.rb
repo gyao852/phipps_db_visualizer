@@ -34,7 +34,6 @@ class Constituent < ApplicationRecord
 <<<<<<< HEAD
 =======
 
-
 >>>>>>> de57426c8d7a8384f8794769b472ae8439492adb
   # validates_date :dob, before: lambda{Today.date}
   validates :do_not_email, presence: true

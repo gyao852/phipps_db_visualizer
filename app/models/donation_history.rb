@@ -1,8 +1,8 @@
 class DonationHistory < ApplicationRecord
   # Relationships
   # -----------------------------
-  belongs_to :Constituent
-  belongs_to :DonationProgram
+  belongs_to :constituent
+  belongs_to :donation_program
 
   # Scopes
   # -----------------------------
@@ -16,7 +16,7 @@ class DonationHistory < ApplicationRecord
   validates_presence_of :amount
   validates_numericality_of :amount, :greater_than=> 0
   validates_presence_of :date
-  validates_date :date,:on_or_before => Date.today
+  validates_date :date, :on_or_before => Date.today
   validates_presence_of :method
   validates_presence_of :do_not_acknowledge
   validates_presence_of :given_anonymously

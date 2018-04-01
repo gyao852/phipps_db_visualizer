@@ -10,13 +10,13 @@
   </head>
 
   <body>
-    <div class='wrapper d-flex'>
-      <div class='wrapper'>
-        <%= render :partial => 'partials/sidenav'%>
-      </div>
-      <div>
+    <div class='d-flex container-fluid'>
+      <%= render :partial => 'partials/sidenav'%>
+  
+      <div class='container-fluid flex-3'>
         <%= yield %>
       </div>
     </div>
+   
   </body>
 </html>

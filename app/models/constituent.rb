@@ -32,6 +32,13 @@ class Constituent < ApplicationRecord
 
   # Other methods
   # -------------
+  def current_address
+   # map all addresses that belong to the constituent
+ end
+
+ def current_membership
+   #
+ end
 
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|

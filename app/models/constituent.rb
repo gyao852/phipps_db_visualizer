@@ -9,13 +9,19 @@ class Constituent < ApplicationRecord
   has_many :contact_histories
   has_many :constituent_membership_records
   has_many :membership_records, through: :constituent_membership_records
+<<<<<<< HEAD
+=======
+
+>>>>>>> gyao_edits
   # Scopes
   # -----------------------------
     scope :alphabetical, -> { order('name') }
     scope :by_lookup_id, -> {order(:lookup_id)}
     scope :alphabetical_last_group, -> {order(:last_group)}
     scope :alphabetical_name, -> {order(:name)}
-
+    scope :individual, -> {where(constituent_type: "Individual")}
+    scope :household, -> {where(constituent_type: "Household")}
+    scope :company, -> {where(constituent_type: "Organization")}
   #
   # Validations
   # -----------------------------
@@ -32,6 +38,7 @@ class Constituent < ApplicationRecord
 
   # validates_date :dob, before: lambda{Today.date}
   validates :do_not_email, presence: true
+  validates_date :dob, before: Date.today
 
   validates_date :dob, before: Date.today
 
@@ -40,11 +47,40 @@ class Constituent < ApplicationRecord
   # -------------
   def current_address
    # map all addresses that belong to the constituent
+   all_addresses = self.addresses
+   curr = all_addresses.order(date_added: :desc).first
+   if curr.nil?
+     return nil
+     #return "No address available"
+   else
+    return curr.address_1
+   end
  end
 
- def current_membership
-   #
+ def current_membership_level
+   #self.lookup_id
+   curr = self.constituent_membership_records.membership_records.current.first
+   if curr.nil?
+     return nil
+     #return "No membership available"
+   else
+    return curr.membership_level
+   end
  end
+
+ def current_membership_scheme
+   #self.lookup_id
+   curr = self.constituent_membership_records.membership_records.current.first
+   if curr.nil?
+     return nil
+     #return "No membership available"
+   else
+    return curr.membership_scheme
+   end
+ end
+
+
+
 
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|

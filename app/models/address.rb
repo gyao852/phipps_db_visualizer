@@ -36,11 +36,11 @@ class Address < ApplicationRecord
    validates_inclusion_of :state, in: STATES_LIST, message: "is not an option"
 
    validates :country, format: { with:/\A[a-zA-Z]+(?:[\s-][a-zA-Z]+)*\z/i , message: "Country must be capitalized"}
-   validates_date :
+  # validates_date :
 
 	# Scopes
-	
-	
+
+
 	# Other methods
  	# -------------
 

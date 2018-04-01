@@ -53,7 +53,8 @@ $theme-colors: (
     "phipps-green": $phipps-green,
     "secondary": $gray-teal,
     "off-white": $off-white,
-    "light": $gray-teal
+    "light": $gray-teal,
+    "mint-black": $mint-5
 
 );
 
@@ -130,6 +131,7 @@ i.md-40 {
     background-color: $mint-5;
     height: 100%;
 }
+
 
 
 #sidebar.active {

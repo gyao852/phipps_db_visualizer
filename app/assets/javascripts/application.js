@@ -18,5 +18,8 @@
 //= require_tree .
 
 $(document).ready(function(){
-    console.log('hi')
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
 })
+

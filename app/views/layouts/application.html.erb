@@ -10,7 +10,13 @@
   </head>
 
   <body>
-    <%= render :partial => 'partials/nav' %>
-    <%= yield %>
+    <div class='row wrapper'>
+      <div class='col-3 wrapper'>
+        <%= render :partial => 'partials/sidenav'%>
+      </div>
+      <div class='col-9'>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

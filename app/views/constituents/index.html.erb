@@ -49,6 +49,11 @@
 <br>
 
 
+<h3> Import constituents </h3>
+<%= form_tag import_constituents_path, multipart: true do %>
+  <%= file_field_tag :file%>
+  <%= submit_tag "upload file"%>
+<% end %>
+
+
 </div>
-
-

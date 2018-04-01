@@ -6,7 +6,7 @@ class MembershipRecord < ApplicationRecord
 
   # Scopes
   # -----------------------------
-
+    scope :current, -> { where('end_date >= ?', Date.today}
 
   # Validations
   # -----------------------------

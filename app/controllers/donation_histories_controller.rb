@@ -5,11 +5,13 @@ class DonationHistoriesController < ApplicationController
   # GET /donation_histories.json
   def index
     @donation_histories = DonationHistory.all
+    @nav_status = 'db'
   end
 
   # GET /donation_histories/1
   # GET /donation_histories/1.json
   def show
+    @nav_status = 'db'
   end
 
   # GET /donation_histories/new

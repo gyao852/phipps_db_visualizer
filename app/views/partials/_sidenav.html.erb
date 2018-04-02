@@ -9,61 +9,133 @@
 		<!-- Sidebar Links -->
 		<ul class="navbar-nav mr-auto d-flex text-center pl-1">
 			
-		<li class='nav-item'>
-				<%= link_to home_path, class: 'btn nav-link', id:'dashboard-nav-link' do %>
-					<i class='material-icons'>developer_board</i>
-					<br/>
-					Dashboard
-				<% end %>
-			</li>
+			<% if @home %>
+				<li class='nav-item'>
+					<%= link_to home_path, class: 'btn nav-link' do %>
+							<i class='material-icons'>developer_board</i>
+							<br/>
+							Dashboard
+					<% end %>
+				</li>
+			
+			<% else%>
+				<li class='nav-item'>
+					<%= link_to home_path, class: 'btn nav-link text-light' do %>
+						<i class='material-icons'>developer_board</i>
+						<br/>
+						Dashboard
+					<% end %>
+				</li>
+			<% end %>
+				
 
-			<li class='nav-item'>
-				<a href="#" class='btn nav-link'>
-					<i class="material-icons">person</i> 
-					<br/>
-					Account 
-				</a>
-			</li>
+			<% if @nav_status == 'account' %>
+				<li class='nav-item'>
+					<a href="#" class='btn nav-link'>
+						<i class="material-icons">person</i> 
+						<br/>
+						Account 
+					</a>
+				</li>
+			<% else %>
+				<li class='nav-item'>
+					<a href="#" class='btn nav-link text-light'>
+						<i class="material-icons">person</i> 
+						<br/>
+						Account 
+					</a>
+				</li>
+			<% end %>
+			
+			<% if @nav_status=='db' %>
+				<li class='nav-item'>
+					<%= link_to constituents_path, class:'btn nav-link' do %>
+						<i class="material-icons">folder</i>
+						<br/>
+						Database
+					<%end%>
+				</li>
+			<% else %>
+				<li class='nav-item'>
+					<%= link_to constituents_path, class:'btn nav-link text-light' do %>
+						<i class="material-icons">folder</i>
+						<br/>
+						Database
+					<%end%>
+				</li>
+			<% end %>
+			
+			<% if @nav_status == 'import_page' %>
+				<li class='nav-item'>
+					<%= link_to import_page_path, class:'btn nav-link' do %>
+						<i class="material-icons">input</i>
+						<br/>
+						Import
+					<% end %>
+				</li>
+			<% else %>
+				<li class='nav-item'>
+					<%= link_to import_page_path, class:'btn nav-link text-light' do %>
+						<i class="material-icons">input</i>
+						<br/>
+						Import
+					<% end %>
+				</li>
+			<% end %>
 
-			<li class='nav-item'>
-				<%= link_to constituents_path, class:'btn nav-link' do %>
-					<i class="material-icons">folder</i>
-					<br/>
-					Database
-				<%end%>
-			</li
-
-			<li class='nav-item'>
-				<a href="#" class='btn nav-link'>
-					<i class="material-icons">input</i>
-					<br/>
-					Import
-				</a>
-			</li
-
-			<li class='nav-item'>
-				<a href='#' class='btn nav-link'>
-					<i class="material-icons">flag</i>
-					<br/>
-					Duplicates
-				</a>
-			</li>
-
-			<li class='nav-item'>
-				<a href='#' class='btn nav-link'>
-					<i class="material-icons">people</i>
-					<br/>
-					Users
-				</a>
-			</li>
-
-			<li class='nav-item'>
-				<a href='#' class='btn nav-link'>
-					<i class="material-icons">power_settings_new</i>
-					<br/>
-					Log Out
-				</a>
-			</li>
+			<% if @nav_status == 'duplicates' %>
+				<li class='nav-item'>
+					<a href='#' class='btn nav-link'>
+						<i class="material-icons">flag</i>
+						<br/>
+						Duplicates
+					</a>
+				</li>
+			<% else %>
+				<li class='nav-item'>
+					<a href='#' class='btn nav-link text-light'>
+						<i class="material-icons">flag</i>
+						<br/>
+						Duplicates
+					</a>
+				</li>
+			<% end %>
+			
+			<% if @nav_status == 'users' %>
+				<li class='nav-item'>
+					<%= link_to users_path, class:'btn nav-link' do %>
+						<i class="material-icons">people</i>
+						<br/>
+						Users
+					<%end%>
+				</li>
+			<% else %>
+				<li class='nav-item'>
+					<%= link_to users_path, class:'btn nav-link text-light' do %>
+						<i class="material-icons">people</i>
+						<br/>
+						Users
+					<%end%>
+				</li>
+			<% end %>
+			
+			<% if @nav_status == 'log_out'%>
+				<li class='nav-item'>
+					<a href='#' class='btn nav-link'>
+						<i class="material-icons">power_settings_new</i>
+						<br/>
+						Log Out
+					</a>
+				</li>
+			<% else %>
+				<li class='nav-item'>
+					<a href='#' class='btn nav-link text-light'>
+						<i class="material-icons">power_settings_new</i>
+						<br/>
+						Log Out
+					</a>
+				</li>
+			<% end %>
 
 		</ul>
 

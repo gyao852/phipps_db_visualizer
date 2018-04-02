@@ -4,12 +4,14 @@ class MembershipRecordsController < ApplicationController
   # GET /membership_records
   # GET /membership_records.json
   def index
+    @nav_status = 'db'
     @membership_records = MembershipRecord.all
   end
 
   # GET /membership_records/1
   # GET /membership_records/1.json
   def show
+    @nav_status = 'db'
   end
 
   # GET /membership_records/new

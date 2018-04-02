@@ -4,12 +4,14 @@ class DonationProgramsController < ApplicationController
   # GET /donation_programs
   # GET /donation_programs.json
   def index
+    @nav_status = 'db'
     @donation_programs = DonationProgram.all
   end
 
   # GET /donation_programs/1
   # GET /donation_programs/1.json
   def show
+    @nav_status = 'db'
   end
 
   # GET /donation_programs/new

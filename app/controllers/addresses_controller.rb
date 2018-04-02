@@ -4,12 +4,14 @@ class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.json
   def index
+    @nav_status = 'db'
     @addresses = Address.all
   end
 
   # GET /addresses/1
   # GET /addresses/1.json
   def show
+    @nav_status = 'db'
   end
 
   # GET /addresses/new

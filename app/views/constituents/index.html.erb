@@ -8,9 +8,9 @@
     <li class="breadcrumb-item active" aria-current="page">All</li>
   </ol>
   </nav>
-  <h1 class="text-primary-dark">Constituents</h1>
+  <h3  class="text-primary-dark">Constituents</h3>
 
-<table class="table">
+<table class="table table-bordered table-hover">
   <thead>
     <tr>
       <th scope="col">LookupID</th>
@@ -19,7 +19,6 @@
       <th scope="col">Email</th>
       <th scope="col">Phone</th>
       <th scope="col">Do not email</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -38,13 +37,5 @@
 </table>
 
 <br>
-
-
-<h3> Import constituents </h3>
-<%= form_tag import_constituents_path, multipart: true do %>
-  <%= file_field_tag :file%>
-  <%= submit_tag "upload file"%>
-<% end %>
-
 
 </div>

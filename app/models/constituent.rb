@@ -26,7 +26,7 @@ class Constituent < ApplicationRecord
   # no validations for suffix
   # no validations for title
   # check
-  validates :name, format: { with: /\A[A-Z]\w+\-?\w+?\z/ , message: "Name field cannot contain special characters"}, presence: true
+  # validates :name, format: { with: /\A[A-Z]\w+\-?\w+?\z/ , message: "Name field cannot contain special characters"}, presence: true
   # check
   validates :last_group, presence: true , format: { with: /\A[A-Z]\w+\-?\w+?\z/ , message: "Last_group field cannot contain special characters"}
   validates :phone, format: { with: /\A\(([0-9]{3})\)[-]([0-9]{3})[-]([0-9]{4})\z/ , message: "format of phone number is incorrect"}
@@ -34,7 +34,7 @@ class Constituent < ApplicationRecord
 
 
   # validates_date :dob, before: lambda{Today.date}
-  validates :do_not_email, presence: true
+  # validates :do_not_email, presence: true
   validates_date :dob, before: Date.today
 
   validates_date :dob, before: Date.today
@@ -75,9 +75,6 @@ class Constituent < ApplicationRecord
     return curr.membership_scheme
    end
  end
-
-
-
 
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|

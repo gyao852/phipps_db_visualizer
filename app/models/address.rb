@@ -1,7 +1,7 @@
 class Address < ApplicationRecord
   # Relationships
  # -----------------------------
- belongs_to :Constituent
+ belongs_to :constituent, :foreign_key => :lookup_id, :primary_key => :lookup_id
 
  # Scopes
  # -----------------------------
@@ -10,19 +10,13 @@ class Address < ApplicationRecord
  # Validations
  # -----------------------------
  # validates address_1
-  validates_format_of :address_1, without: /Ave/i, message: "cannot contain abbriviations"
-  validates_format_of :address_1, without: /Dr/i, message: "cannot contain abbriviations"
-  validates_format_of :address_1, without: /St/i, message: "cannot contain abbriviations"
-  validates_format_of :address_1, without: /Apt/i, message: "cannot contain abbriviations"
-  validates_format_of :address_1, without: /Blvd/i, message: "cannot contain abbriviations"
-  validates_format_of :address_1, without: /Rd/i, message: "cannot contain abbriviations"
-  # validates address_2
-  validates_format_of :address_2, without: /Ave/i, message: "cannot contain abbriviations"
-  validates_format_of :address_2, without: /Dr/i, message: "cannot contain abbriviations"
-  validates_format_of :address_2, without: /St/i, message: "cannot contain abbriviations"
-  validates_format_of :address_2, without: /Apt/i, message: "cannot contain abbriviations"
-  validates_format_of :address_2, without: /Blvd/i, message: "cannot contain abbriviations"
-  validates_format_of :address_2, without: /Rd/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /Ave/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /Dr/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /St/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /Apt/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /Blvd/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /Rd/i, message: "cannot contain abbriviations"
+
   # validates city capitalization
   validates :city, format: { with:/\A[a-zA-Z]+(?:[\s-][a-zA-Z]+)*\z/i , message: "City must be capitalized"}
   # validates states

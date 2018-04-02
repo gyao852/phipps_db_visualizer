@@ -22,12 +22,15 @@ $green-1: #2ECE7D;
 $phipps-green: #78A130;
 $phipps-green-dark: #2E4336;
 $off-white: #F1F0E9;
+$cream: #FAFFFA;
 $gray-teal: #87AA92;
-$coral: #B66147;
+$coral: #EB9486;
 $mint: #8BFFC3;
 $orange: #FFBA5E;
-$gray: #7E8581;
+$gray: #515052;
+$dark-gray: #2D2C2D;
 $dark-teal: #2A3024;
+$pink: #E08DAC;
 
 $mint-5: #031A14;
 
@@ -44,11 +47,13 @@ $theme-colors: (
     "primary-dark": $phipps-green-dark,
     "green-4": $green-4,
     "phipps-green": $phipps-green,
-    "secondary": $orange,
+    "secondary": $pink,
     "off-white": $off-white,
     "mint-black": $mint-5,
-    "dark-teal":$dark-teal
-
+    "dark-teal":$dark-teal,
+    "gray": $gray,
+    "light": $cream,
+    "dark-gray": $dark-gray
 );
 
 $body-bg: $gray;

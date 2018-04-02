@@ -11,11 +11,7 @@ class AddressesController < ApplicationController
   # GET /addresses/1
   # GET /addresses/1.json
   def show
-<<<<<<< HEAD
     @nav_status = 'db'
-=======
-    
->>>>>>> 92650ce832b4d3d09bc27e8816f1c10d0905271d
   end
 
   # GET /addresses/new

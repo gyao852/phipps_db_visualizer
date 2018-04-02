@@ -1,8 +1,8 @@
 class ConstituentEvent < ApplicationRecord
   # Relationships
   # -----------------------------
-  belongs_to :Constituent
-  belongs_to :Event
+  belongs_to :Constituent,:foreign_key => :lookup_id, :primary_key => :lookup_id
+  belongs_to :Event, :foreign_key => :event_id, :primary_key => :event_id
 
 
   # Scopes

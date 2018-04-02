@@ -1,7 +1,7 @@
 class ContactHistory < ApplicationRecord
   # Relationships
   # -----------------------------
-  belongs_to :Constituent
+  belongs_to :Constituent,  :foreign_key => :lookup_id, :primary_key => :lookup_id
 
 
   # Scopes

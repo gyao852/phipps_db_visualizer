@@ -4,12 +4,14 @@ class ContactHistoriesController < ApplicationController
   # GET /contact_histories
   # GET /contact_histories.json
   def index
+    @nav_status = 'db'
     @contact_histories = ContactHistory.all
   end
 
   # GET /contact_histories/1
   # GET /contact_histories/1.json
   def show
+    @nav_status = 'db'
   end
 
   # GET /contact_histories/new

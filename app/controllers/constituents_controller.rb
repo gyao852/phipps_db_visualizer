@@ -4,26 +4,31 @@ class ConstituentsController < ApplicationController
   # GET /constituents
   # GET /constituents.json
   def index
+    @nav_status = 'db'
     @constituents = Constituent.all
   end
 
   # GET /constituents/1
   # GET /constituents/1.json
   def show
+    @nav_status = 'db'
   end
 
   # GET /constituents/new
   def new
+    @nav_status = 'db'
     @constituent = Constituent.new
   end
 
   # GET /constituents/1/edit
   def edit
+    @nav_status = 'db'
   end
 
   # POST /constituents
   # POST /constituents.json
   def create
+    @nav_status = 'db'
     @constituent = Constituent.new(constituent_params)
 
     respond_to do |format|
@@ -40,6 +45,7 @@ class ConstituentsController < ApplicationController
   # PATCH/PUT /constituents/1
   # PATCH/PUT /constituents/1.json
   def update
+    @nav_status = 'db'
     respond_to do |format|
       if @constituent.update(constituent_params)
         format.html { redirect_to @constituent, notice: 'Constituent was successfully updated.' }
@@ -68,7 +74,7 @@ class ConstituentsController < ApplicationController
   end
 
   def import_page
-    
+    @nav_status = 'import_page'
   end
 
   private

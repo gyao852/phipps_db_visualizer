@@ -4,12 +4,14 @@ class ConstituentEventsController < ApplicationController
   # GET /constituent_events
   # GET /constituent_events.json
   def index
+    @nav_status = 'db'
     @constituent_events = ConstituentEvent.all
   end
 
   # GET /constituent_events/1
   # GET /constituent_events/1.json
   def show
+    @nav_status = 'db'
   end
 
   # GET /constituent_events/new

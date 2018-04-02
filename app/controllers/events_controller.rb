@@ -4,12 +4,14 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    @nav_status = 'db'
     @events = Event.all
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @nav_status = 'db'
   end
 
   # GET /events/new

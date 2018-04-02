@@ -5,11 +5,13 @@ class ConstituentMembershipRecordsController < ApplicationController
   # GET /constituent_membership_records.json
   def index
     @constituent_membership_records = ConstituentMembershipRecord.all
+    @nav_status = 'db'
   end
 
   # GET /constituent_membership_records/1
   # GET /constituent_membership_records/1.json
   def show
+    @nav_status = 'db'
   end
 
   # GET /constituent_membership_records/new

@@ -4,12 +4,15 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @nav_status = 'users'
     @users = User.all
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    #need to add condition for if the user is looking at their own account
+    @nav_status = 'users'
   end
 
   # GET /users/new

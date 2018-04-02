@@ -22,13 +22,13 @@
     <% @addresses.each do |address| %>
       <tr>
         <td><%= address.address_id %></td>
-        <td><%= address.lookup_id %></td>
+        <td><%= link_to address.constituent.name, constituent_path(address.constituent.id) %></td>
         <td><%= address.address_1 %></td>
         <td><%= address.city %></td>
         <td><%= address.state %></td>
         <td><%= address.zip %></td>
         <td><%= address.country %></td>
-        <td><%= address.type %></td>
+        <td><%= address.address_type %></td>
         <td><%= address.date_added %></td>
         <td><%= link_to 'Show', address %></td>
         <td><%= link_to 'Edit', edit_address_path(address) %></td>

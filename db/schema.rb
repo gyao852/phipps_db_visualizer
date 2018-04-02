@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20180401171739) do
     t.date "date_added"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "address_2"
     t.integer "Constituents_id"
     t.index ["Constituents_id"], name: "index_Addresses_on_Constituents_id"
   end
@@ -64,8 +63,6 @@ ActiveRecord::Schema.define(version: 20180401171739) do
     t.date "dob"
     t.boolean "do_not_email"
     t.boolean "duplicate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.text "constituent_type"
     t.text "phone_notes"
   end

@@ -4,12 +4,12 @@ class ConstituentTest < ActiveSupport::TestCase
   # Relationship matchers...
     should have_many(:addresses)
     should have_many(:donation_histories)
-    have_many(:donation_programs).through(:donation_histories)
+    should have_many(:donation_programs).through(:donation_histories)
     should have_many(:constituent_events)
-    have_many(:events).through(:constituent_events)
+    should have_many(:events).through(:constituent_events)
     should have_many(:contact_histories)
     should have_many(:constituent_membership_records)
-    have_many(:membership_records).through(:constituent_membership_records)
+    should have_many(:membership_records).through(:constituent_membership_records)
 
   # Validation matchers...
     should validate_presence_of(:lookup_id)
@@ -20,22 +20,12 @@ class ConstituentTest < ActiveSupport::TestCase
   # Testing other methods with a context
   context "Given context" do
     setup do
-      @bruce = FactoryGirl.create(:constituent)
-      @yaoFam = FactoryGirl.create(:constituent, lookup_id: "12346",
-        name: "Yao Family", last_group: "Yao Family",
-        email_id: "GeorgeY852@gmail.com", phone: "(412)-324-4231",
-        do_not_email: true, duplicate: false, constituent_type: )
-      @pnc = FactoryGirl.create(:constituent, lookup_id: "10000",
-        name: "PNC", last_group: "PNC",
-        email_id: "qwer@pnc.com", phone: "(888)-444-3333",
-        do_not_email: false, duplicate: false, constituent_type: "Organization")
+      create_constituents
     end
 
     # and provide a teardown method as well
     teardown do
-      @bruce.destroy
-      @yaoFam.destory
-      @pnc.destory
+      destroy_constituents
     end
 
     should "show that constituent record is created properly" do
@@ -84,5 +74,8 @@ class ConstituentTest < ActiveSupport::TestCase
     should "shows that search for company works" do
       assert_equal ["PNC"], Constituent.company.map{|p| p.name}
     end
+
+  end
+end
 
 end

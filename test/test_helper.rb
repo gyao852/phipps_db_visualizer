@@ -7,11 +7,13 @@ require 'minitest/rails'
 require 'minitest/reporters'
 require 'minitest/perf'
 require 'minitest_extensions'
+require 'contexts'
+#require 'turn/autorun'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   # fixtures :all
-
+  include Contexts
   # The following code below was taken from 2017 PATS example
   # Add more helper methods to be used by all tests here...
   def deny(condition)

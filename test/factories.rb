@@ -57,7 +57,6 @@ FactoryBot.define do
       t.datetime "updated_at", null: false
       t.integer "constituents_id"
       t.index ["constituents_id"], name: "index_contact_histories_on_constituents_id"
-
     end
 
     factory :donation_history do

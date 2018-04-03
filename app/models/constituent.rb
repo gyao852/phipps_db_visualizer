@@ -89,4 +89,6 @@ class Constituent < ApplicationRecord
   # address_or_email
   #   return true
   # end
+
+  #asdfasdfasdf
 end

@@ -85,6 +85,7 @@ class Constituent < ApplicationRecord
   # Entry point A:
   # This is a test commment
   # asdfasdfasdf
+  # ttyuiotyuioghj
 
   # address_or_email
   #   return true

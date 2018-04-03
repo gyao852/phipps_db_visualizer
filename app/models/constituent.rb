@@ -82,6 +82,7 @@ class Constituent < ApplicationRecord
 
 
   private
+  # This is a test commment
   # address_or_email
   #   return true
   # end

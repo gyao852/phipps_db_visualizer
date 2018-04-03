@@ -66,7 +66,7 @@ group :test do
   gem 'minitest-rails'
   gem 'minitest-reporters'
   gem 'minitest-perf'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   #gem "factory_girl_rails", "~> 4.0"
   gem 'mocha'
   gem 'nokogiri'

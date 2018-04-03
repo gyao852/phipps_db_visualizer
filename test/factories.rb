@@ -40,7 +40,7 @@ FactoryBot.define do
         last_group "Wayne"
         email_id "abc@mail.com"
         phone "(123)-456-7890"
-        dob 20.years.ago
+        dob 20.years.ago.to_date
         do_not_email false
         duplicate false
         constituent_type "Individual"
@@ -49,14 +49,10 @@ FactoryBot.define do
 
     factory :contact_history do
       association :constituent
-      t.text "contact_history_id"
-      t.text "lookup_id"
-      t.text "type"
-      t.date "date"
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-      t.integer "constituents_id"
-      t.index ["constituents_id"], name: "index_contact_histories_on_constituents_id"
+      #contact_history_id ""
+      lookup_id "12345"
+      type "email"
+      date 2.months.ago.to_date
     end
 
     factory :donation_history do
@@ -91,7 +87,7 @@ FactoryBot.define do
       membership_level_type "Patron"
       membership_status "Active"
       membership_term "1 Year"
-      start_date 3.years.ago
+      start_date 3.years.ago.to_date
       end_date 1.year.from_now
       last_renewed Date.today
     end

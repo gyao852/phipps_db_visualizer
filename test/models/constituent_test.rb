@@ -52,13 +52,13 @@ class ConstituentTest < ActiveSupport::TestCase
     # test the scope 'by_lookup_id'
     should "shows that ordering by lookup id works" do
       assert_equal 3, Constituent.all.size # quick check of size
-      assert_equal ["10000", "12346", "12345"],
+      assert_equal ["10000", "12345", "12346"],
       Constituent.by_lookup_id.map{|p| p.lookup_id}
     end
 
     # test the scope 'alphabetical_last_group'
     should "shows that ordering by last_group works" do
-      assert_equal ["PNC", "Yao Family", "Wayne"],
+      assert_equal ["PNC", "Wayne", "Yao Family"],
       Constituent.alphabetical_last_group.map{|p| p.last_group}
     end
 
@@ -70,10 +70,10 @@ class ConstituentTest < ActiveSupport::TestCase
 
     # test the scope 'individual'
     should "shows that search for individual works" do
-      assert_equal ["Bruce Wayne"], Constituent.inidividaul.map{|p| p.name}
-
+      assert_equal ["Bruce Wayne"], Constituent.individual.map{|p| p.name}
+    end
     # test the scope 'household'
-    should "shows that search for individual works" do
+    should "shows that search for household works" do
       assert_equal ["Yao Family"], Constituent.household.map{|p| p.name}
     end
 
@@ -83,6 +83,4 @@ class ConstituentTest < ActiveSupport::TestCase
     end
 
   end
-end
-
 end

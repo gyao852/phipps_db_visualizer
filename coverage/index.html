@@ -14,26 +14,26 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-03T18:03:16-04:00">2018-04-03T18:03:16-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-04-03T18:13:41-04:00">2018-04-03T18:13:41-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">12.21%</span></span>
+    (<span class="covered_percent"><span class="red">12.34%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.12
+         0.13
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>39</b> files in total.
-    <b>688</b> relevant lines. 
-    <span class="green"><b>84</b> lines covered</span> and
+    <b>689</b> relevant lines. 
+    <span class="green"><b>85</b> lines covered</span> and
     <span class="red"><b>604</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -352,12 +352,12 @@
       
       <tr>
         <td class="strong"><a href="#90eb259414f6f1b021a37d76706b6e0b154d91f5" class="src_link" title="app/models/constituent.rb">app/models/constituent.rb</a></td>
-        <td class="red strong">65.0 %</td>
-        <td>95</td>
-        <td>40</td>
-        <td>26</td>
+        <td class="red strong">65.85 %</td>
+        <td>96</td>
+        <td>41</td>
+        <td>27</td>
         <td>14</td>
-        <td>0.7</td>
+        <td>0.8</td>
       </tr>
       
       <tr>
@@ -616,19 +616,19 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="red">65.77%</span></span>
+    (<span class="covered_percent"><span class="red">66.07%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.67
+         0.71
        </span>
     </span> hits/line)
   </h2>
   <a name="Models"></a>
   <div>
     <b>11</b> files in total.
-    <b>111</b> relevant lines. 
-    <span class="green"><b>73</b> lines covered</span> and
+    <b>112</b> relevant lines. 
+    <span class="green"><b>74</b> lines covered</span> and
     <span class="red"><b>38</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -667,12 +667,12 @@
       
       <tr>
         <td class="strong"><a href="#90eb259414f6f1b021a37d76706b6e0b154d91f5" class="src_link" title="app/models/constituent.rb">app/models/constituent.rb</a></td>
-        <td class="red strong">65.0 %</td>
-        <td>95</td>
-        <td>40</td>
-        <td>26</td>
+        <td class="red strong">65.85 %</td>
+        <td>96</td>
+        <td>41</td>
+        <td>27</td>
         <td>14</td>
-        <td>0.7</td>
+        <td>0.8</td>
       </tr>
       
       <tr>
@@ -6964,10 +6964,10 @@
         <div class="source_table" id="90eb259414f6f1b021a37d76706b6e0b154d91f5">
   <div class="header">
     <h3>app/models/constituent.rb</h3>
-    <h4><span class="red">65.0 %</span> covered</h4>
+    <h4><span class="red">65.85 %</span> covered</h4>
     <div>
-      <b>40</b> relevant lines. 
-      <span class="green"><b>26</b> lines covered</span> and
+      <b>41</b> relevant lines. 
+      <span class="green"><b>27</b> lines covered</span> and
       <span class="red"><b>14</b> lines missed.</span>
     </div>
   </div>
@@ -7083,20 +7083,20 @@
           <code class="ruby">    scope :alphabetical_name, -&gt; {order(:name)}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="19">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="19">
+          <span class="hits">2</span>
           
           <code class="ruby">    scope :individual, -&gt; {where(constituent_type: &quot;Individual&quot;)}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="20">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="20">
+          <span class="hits">2</span>
           
           <code class="ruby">    scope :household, -&gt; {where(constituent_type: &quot;Household&quot;)}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="21">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="21">
+          <span class="hits">2</span>
           
           <code class="ruby">    scope :company, -&gt; {where(constituent_type: &quot;Organization&quot;)}</code>
         </li>
@@ -7188,283 +7188,283 @@
         <li class="covered" data-hits="1" data-linenumber="36">
           <span class="hits">1</span>
           
-          <code class="ruby">  validates_date :dob, before: Date.today</code>
+          <code class="ruby">  validates :last_group, presence: true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="37">
+        <li class="covered" data-hits="1" data-linenumber="37">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">  validates_date :dob, before: Date.today</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="38">
           
           
-          <code class="ruby">  #</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="39">
           
           
-          <code class="ruby">  # Other methods</code>
+          <code class="ruby">  #</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="40">
           
           
+          <code class="ruby">  # Other methods</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
           <code class="ruby">  # -------------</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="41">
+        <li class="covered" data-hits="1" data-linenumber="42">
           <span class="hits">1</span>
           
           <code class="ruby">  def current_address</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="43">
           
           
           <code class="ruby">   # map all addresses that belong to the constituent</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="43">
+        <li class="missed" data-hits="0" data-linenumber="44">
           
           
           <code class="ruby">   all_addresses = self.addresses</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="44">
+        <li class="missed" data-hits="0" data-linenumber="45">
           
           
           <code class="ruby">   curr = all_addresses.order(date_added: :desc).first</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="45">
+        <li class="missed" data-hits="0" data-linenumber="46">
           
           
           <code class="ruby">   if curr.nil?</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="46">
-          
-          
-          <code class="ruby">     return nil</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="47">
           
           
-          <code class="ruby">     #return &quot;No address available&quot;</code>
+          <code class="ruby">     return nil</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="48">
           
           
+          <code class="ruby">     #return &quot;No address available&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="49">
+          
+          
           <code class="ruby">   else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="49">
+        <li class="missed" data-hits="0" data-linenumber="50">
           
           
           <code class="ruby">    return curr.address_1</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="50">
-          
-          
-          <code class="ruby">   end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="51">
           
           
-          <code class="ruby"> end</code>
+          <code class="ruby">   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="52">
           
           
+          <code class="ruby"> end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="53">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="53">
+        <li class="covered" data-hits="1" data-linenumber="54">
           <span class="hits">1</span>
           
           <code class="ruby"> def current_membership_level</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="54">
+        <li class="never" data-hits="" data-linenumber="55">
           
           
           <code class="ruby">   #self.lookup_id</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="55">
-          
-          
-          <code class="ruby">   curr = self.constituent_membership_records.membership_records.current.first</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="56">
           
           
-          <code class="ruby">   if curr.nil?</code>
+          <code class="ruby">   curr = self.constituent_membership_records.membership_records.current.first</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="57">
+        <li class="missed" data-hits="0" data-linenumber="57">
           
           
-          <code class="ruby">     return nil</code>
+          <code class="ruby">   if curr.nil?</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="58">
           
           
-          <code class="ruby">     #return &quot;No membership available&quot;</code>
+          <code class="ruby">     return nil</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="59">
           
           
+          <code class="ruby">     #return &quot;No membership available&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="60">
+          
+          
           <code class="ruby">   else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="60">
+        <li class="missed" data-hits="0" data-linenumber="61">
           
           
           <code class="ruby">    return curr.membership_level</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="61">
-          
-          
-          <code class="ruby">   end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="62">
           
           
-          <code class="ruby"> end</code>
+          <code class="ruby">   end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="63">
           
           
+          <code class="ruby"> end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="64">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="64">
+        <li class="covered" data-hits="1" data-linenumber="65">
           <span class="hits">1</span>
           
           <code class="ruby"> def current_membership_scheme</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="65">
+        <li class="never" data-hits="" data-linenumber="66">
           
           
           <code class="ruby">   #self.lookup_id</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="66">
+        <li class="missed" data-hits="0" data-linenumber="67">
           
           
           <code class="ruby">   curr = self.constituent_membership_records.membership_records.current.first</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="67">
+        <li class="missed" data-hits="0" data-linenumber="68">
           
           
           <code class="ruby">   if curr.nil?</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="68">
+        <li class="never" data-hits="" data-linenumber="69">
           
           
           <code class="ruby">     return nil</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="69">
+        <li class="never" data-hits="" data-linenumber="70">
           
           
           <code class="ruby">     #return &quot;No membership available&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="70">
+        <li class="never" data-hits="" data-linenumber="71">
           
           
           <code class="ruby">   else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="71">
+        <li class="missed" data-hits="0" data-linenumber="72">
           
           
           <code class="ruby">    return curr.membership_scheme</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="72">
+        <li class="never" data-hits="" data-linenumber="73">
           
           
           <code class="ruby">   end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="73">
+        <li class="never" data-hits="" data-linenumber="74">
           
           
           <code class="ruby"> end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="74">
+        <li class="never" data-hits="" data-linenumber="75">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="75">
+        <li class="covered" data-hits="1" data-linenumber="76">
           <span class="hits">1</span>
           
           <code class="ruby">  def self.import(file)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="76">
+        <li class="missed" data-hits="0" data-linenumber="77">
           
           
           <code class="ruby">    CSV.foreach(file.path, headers:true) do |row|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="77">
+        <li class="missed" data-hits="0" data-linenumber="78">
           
           
           <code class="ruby">      date_string = row[7]</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="78">
+        <li class="missed" data-hits="0" data-linenumber="79">
           
           
           <code class="ruby">      row[7] = Date.strptime(date_string, &#39;%m/%d/%Y&#39;)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="79">
+        <li class="missed" data-hits="0" data-linenumber="80">
           
           
           <code class="ruby">      Constituent.create! row.to_hash</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="80">
+        <li class="never" data-hits="" data-linenumber="81">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="81">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="82">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="83">
@@ -7473,73 +7473,79 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="84">
+        <li class="never" data-hits="" data-linenumber="84">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="85">
           <span class="hits">1</span>
           
           <code class="ruby">  private</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="85">
+        <li class="never" data-hits="" data-linenumber="86">
           
           
           <code class="ruby">  # Entry point A:</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="never" data-hits="" data-linenumber="87">
           
           
           <code class="ruby">  # This is a test commment</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="87">
+        <li class="never" data-hits="" data-linenumber="88">
           
           
           <code class="ruby">  # asdfasdfasdf</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="88">
+        <li class="never" data-hits="" data-linenumber="89">
           
           
           <code class="ruby">  # ttyuiotyuioghj</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="89">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="90">
           
           
-          <code class="ruby">  # address_or_email</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="91">
           
           
-          <code class="ruby">  #   return true</code>
+          <code class="ruby">  # address_or_email</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="92">
           
           
-          <code class="ruby">  # end</code>
+          <code class="ruby">  #   return true</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="93">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  # end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="94">
           
           
-          <code class="ruby">  #asdfasdfasdf</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="95">
+          
+          
+          <code class="ruby">  #asdfasdfasdf</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="96">
           
           
           <code class="ruby">end</code>

@@ -1,6 +1,7 @@
 class Constituent < ApplicationRecord
   # Relationships
   # -----------------------------
+  self.primary_key = 'lookup_id'
   has_many :addresses
   has_many :donation_histories
   has_many :donation_programs, through: :donation_histories

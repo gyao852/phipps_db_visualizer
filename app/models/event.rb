@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   # Relationships
   # -----------------------------
-  has_many :ConstituentEvents
+  has_many :constituent_events
 
   # Scopes
   # -----------------------------
@@ -15,7 +15,7 @@ class Event < ApplicationRecord
                   :before => :end_date_time
   validates_date :end_date_time,
                   :after => :start_date_time,
-                  allow_blank :true
+                  :allow_blank => :true
 
 
 

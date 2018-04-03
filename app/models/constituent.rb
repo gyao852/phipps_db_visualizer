@@ -35,7 +35,7 @@ class Constituent < ApplicationRecord
   # validates :do_not_email, presence: true, allow_blank: true
   validates_date :dob, before: Date.today
 
-
+  #
   # Other methods
   # -------------
   def current_address
@@ -82,6 +82,10 @@ class Constituent < ApplicationRecord
 
 
   private
+  # Entry point A:
+  # This is a test commment
+  # asdfasdfasdf
+
   # address_or_email
   #   return true
   # end

@@ -6,7 +6,7 @@ class DonationHistory < ApplicationRecord
 
   # Scopes
   # -----------------------------
-
+  # This is a test. 
 
   # Validations
   # -----------------------------

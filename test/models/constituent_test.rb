@@ -14,17 +14,34 @@ class ConstituentTest < ActiveSupport::TestCase
   # Validation matchers...
     should validate_presence_of(:lookup_id)
     should validate_presence_of(:last_group)
-    #TODO: Finish up validation tests; but check first validations are incorrect
+    should allow_value("(412)-218-4897").for(:phone)
+    should_not allow_value("4122184897").for(:phone)
+    should allow_value("gyao@andrew.cmu.edu").for(:email_id)
+    should_not allow_value("something!`@some.con").for(:phone)
+    should allow_value(true).for(:do_not_email)
+    should allow_value(false).for(:do_not_email)
+    # TODO: Figure out why this works? I think any string coerces to boolean
+    #should_not allow_value("maybe").for(:do_not_email)
+    should_not allow_value(nil).for(:do_not_email)
+    should allow_value(5.years.ago.to_date).for(:dob)
+    should_not allow_value(1.year.from_now.to_date).for(:dob)
+
+    #TODO: add more validations in constituent, then add more tests
+    # Specifically the last_group regex
 
   # ---------------------------------
   # Testing other methods with a context
   context "Creating a constituent context" do
     setup do
       @bruce = FactoryBot.create(:constituent)
-      @yaoFam = FactoryBot.create(:constituent, lookup_id: "12346", name: "Yao Family", last_group: "Yao Family", email_id: "GeorgeY852@gmail.com", phone: "(412)-324-4231", do_not_email: true, duplicate: false, constituent_type:"Household")
+      @yaoFam = FactoryBot.create(:constituent, lookup_id: "12346",
+        name: "Yao Family", last_group: "Yao Family",
+        email_id: "GeorgeY852@gmail.com", phone: "(412)-324-4231",
+        do_not_email: true, duplicate: false, constituent_type:"Household")
       @pnc = FactoryBot.create(:constituent, lookup_id: "10000",
-        name: "PNC", last_group: "PNC",email_id: "qwer@pnc.com", phone: "(888)-444-3333",do_not_email: false, duplicate: false, constituent_type: "Organization")
-
+        name: "PNC", last_group: "PNC",email_id: "qwer@pnc.com",
+        phone: "(888)-444-3333",do_not_email: false, duplicate: false,
+        constituent_type: "Organization")
     end
 
     # and provide a teardown method as well

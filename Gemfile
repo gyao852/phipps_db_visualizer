@@ -59,7 +59,17 @@ group :development do
 end
 
 group :test do
-  gem "factory_bot_rails", '~> 4.0'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
+  gem 'minitest'
+  gem 'minitest-rails'
+  gem 'minitest-reporters'
+  gem 'minitest-perf'
+  gem 'factory_girl_rails'
+  gem 'mocha'
+  gem 'nokogiri'
+  gem 'simplecov'
+  gem 'single_test'
 end
 
 

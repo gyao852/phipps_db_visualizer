@@ -1,7 +1,7 @@
 class MembershipRecord < ApplicationRecord
   # Relationships
   # -----------------------------
-  has_many :ConstituentMembershipRecords
+  has_many :constituent_membership_records
 
 
   # Scopes

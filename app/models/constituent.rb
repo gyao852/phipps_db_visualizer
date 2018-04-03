@@ -12,7 +12,6 @@ class Constituent < ApplicationRecord
 
   # Scopes
   # -----------------------------
-    scope :alphabetical, -> { order('name') }
     scope :by_lookup_id, -> {order(:lookup_id)}
     scope :alphabetical_last_group, -> {order(:last_group)}
     scope :alphabetical_name, -> {order(:name)}

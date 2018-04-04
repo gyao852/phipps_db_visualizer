@@ -17,7 +17,7 @@ class ConstituentTest < ActiveSupport::TestCase
     should allow_value("(412)-218-4897").for(:phone)
     should_not allow_value("4122184897").for(:phone)
     should allow_value("gyao@andrew.cmu.edu").for(:email_id)
-    should_not allow_value("something!`@some.con").for(:phone)
+    should_not allow_value("something!`@some.con").for(:email_id)
     should allow_value(true).for(:do_not_email)
     should allow_value(false).for(:do_not_email)
     # TODO: Figure out why this works? I think any string coerces to boolean
@@ -33,23 +33,12 @@ class ConstituentTest < ActiveSupport::TestCase
   # Testing other methods with a context
   context "Creating a constituent context" do
     setup do
-      @bruce = FactoryBot.create(:constituent)
-      @yaoFam = FactoryBot.create(:constituent, lookup_id: "12346",
-        name: "Yao Family", last_group: "Yao Family",
-        email_id: "GeorgeY852@gmail.com", phone: "(412)-324-4231",
-        do_not_email: true, duplicate: false, constituent_type:"Household")
-      @pnc = FactoryBot.create(:constituent, lookup_id: "10000",
-        name: "PNC", last_group: "PNC",email_id: "qwer@pnc.com",
-        phone: "(888)-444-3333",do_not_email: false, duplicate: false,
-        constituent_type: "Organization")
+      create_constituents
     end
 
     # and provide a teardown method as well
     teardown do
-      @bruce.destroy
-      # TODO: Figure out why this destory is not working properly
-      #@yaoFam.destory
-      #@pnc.destory
+      destroy_constituents
     end
 
     should "show that constituent record is created properly" do
@@ -97,6 +86,12 @@ class ConstituentTest < ActiveSupport::TestCase
     # test the scope 'company'
     should "shows that search for company works" do
       assert_equal ["PNC"], Constituent.company.map{|p| p.name}
+    end
+
+    should "show the current address" do
+      assert_equal "5032 Forbes Avenue", @bruce.current_address
+      assert_equal nil, @yaoFam.name
+      assert_equal nil, @pnc.name
     end
 
   end

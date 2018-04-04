@@ -1,12 +1,12 @@
 class MembershipRecord < ApplicationRecord
   # Relationships
   # -----------------------------
-  has_many :ConstituentMembershipRecords
+  has_many :constituent_membership_records
 
 
   # Scopes
   # -----------------------------
-    scope :current, -> { where('end_date >= ?', Date.today}
+    scope :current, -> { where('end_date >= ?', Date.today)}
 
   # Validations
   # -----------------------------
@@ -29,7 +29,7 @@ class MembershipRecord < ApplicationRecord
   validates_date :last_renewed,
                   :before => :end_date,
                   :after => :start_date,
-                  allow_blank :true
+                  :allow_blank => :true
 
   # Other methods
   # -------------

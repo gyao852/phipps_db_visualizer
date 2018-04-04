@@ -1,11 +1,23 @@
 class Address < ApplicationRecord
   # Relationships
- # -----------------------------
- belongs_to :constituent, :foreign_key => :lookup_id, :primary_key => :lookup_id
+  # -----------------------------
+    belongs_to :constituent, :foreign_key => :lookup_id, :primary_key => :lookup_id
 
- # Scopes
+# Scopes
  # -----------------------------
+    scope :order_address_id, -> {order(:address_id)}
+    scope :alphabetical_city, -> {order(:city)}
+    scope :alphabetical_state, -> {order(:state)}
+    scope :chronological_zip, -> {order(:zip)}
+    scope :alphabetical_country, -> {order(:country)}
 
+    scope :for_type, -> (aType){where(type: aType)}
+    scope :for_lookup_id, -> (aLookup_id){where(type: aLookup_id)}
+    scope :for_country, -> (aCountry){where(type: aCountry)}
+    scope :for_zip, -> (aZip){where(type: aZip)}
+    scope :for_city, -> (aCity){where(type: aCity)}
+    scope :for_state, -> (aState){where(type: aState)}
+    # Did not add scope to search for address yet
 
  # Validations
  # -----------------------------
@@ -28,11 +40,9 @@ class Address < ApplicationRecord
   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
   'Wisconsin', 'Wyoming']
    validates_inclusion_of :state, in: STATES_LIST, message: "is not an option"
-
+   
    validates :country, format: { with:/\A[a-zA-Z]+(?:[\s-][a-zA-Z]+)*\z/i , message: "Country must be capitalized"}
   # validates_date :
-
-	# Scopes
 
 
 	# Other methods

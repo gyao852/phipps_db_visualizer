@@ -1,8 +1,8 @@
 class ConstituentEvent < ApplicationRecord
   # Relationships
   # -----------------------------
-  belongs_to :Constituent,:foreign_key => :lookup_id, :primary_key => :lookup_id
-  belongs_to :Event, :foreign_key => :event_id, :primary_key => :event_id
+  belongs_to :constituent,:foreign_key => :lookup_id, :primary_key => :lookup_id
+  belongs_to :event, :foreign_key => :event_id, :primary_key => :event_id
 
 
   # Scopes
@@ -11,7 +11,7 @@ class ConstituentEvent < ApplicationRecord
 
   # Validations
   # -----------------------------
-  validates :looku_id, presence:true
+  validates :lookup_id, presence:true
   validates :event_id, presence:true
 
 

@@ -59,9 +59,29 @@ group :development do
 end
 
 group :test do
-  gem "factory_bot_rails", '~> 4.0'
-end
+  gem 'test-unit'
+  gem 'shoulda', '~> 3.5'
+  gem 'shoulda-matchers', '~> 2.0'
+  gem 'minitest'
+  gem 'minitest-rails'
+  gem 'minitest-reporters'
+  gem 'minitest-perf'
+  gem 'factory_bot_rails'
+  #gem "factory_girl_rails", "~> 4.0"
+  gem 'mocha'
+  gem 'nokogiri'
+  gem 'simplecov'
+  gem 'single_test'
+  #gem 'turn'
 
+
+  gem 'simplecov-console'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'email_spec'
+
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -16,9 +16,13 @@
     <div class='d-flex container-fluid full-height flex-row'>
 
       <%= render :partial => 'partials/sidenav'%>
+
   
   
       <div class='container-fluid'>
+        <% if @nav_status == 'db' %>
+          <%= render :partial => 'partials/db_nav' %>
+        <% end %>
         <%= yield %>
       </div>
     </div>

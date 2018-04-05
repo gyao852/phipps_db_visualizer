@@ -13,6 +13,7 @@ class Constituent < ApplicationRecord
 
   # Scopes
   # -----------------------------
+  # This a test 
     scope :by_lookup_id, -> {order(:lookup_id)}
     scope :alphabetical_last_group, -> {order(:last_group)}
     scope :alphabetical_name, -> {order(:name)}
@@ -37,7 +38,7 @@ class Constituent < ApplicationRecord
   def current_address
    # map all addresses that belong to the constituent
    all_addresses = self.addresses
-  
+
    curr = all_addresses.order(date_added: :desc).first
    if curr.nil?
      return nil

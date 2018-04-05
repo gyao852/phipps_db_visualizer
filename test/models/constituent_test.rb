@@ -2,13 +2,13 @@ require 'test_helper'
 
 class ConstituentTest < ActiveSupport::TestCase
   # Relationship matchers...
-    #should have_many(:addresses)
-    #should have_many(:donation_histories)
+    should have_many(:addresses)
+    should have_many(:donation_histories)
     should have_many(:donation_programs).through(:donation_histories)
-    #should have_many(:constituent_events)
+    should have_many(:constituent_events)
     should have_many(:events).through(:constituent_events)
-    #should have_many(:contact_histories)
-    #should have_many(:constituent_membership_records)
+    should have_many(:contact_histories)
+    should have_many(:constituent_membership_records)
     should have_many(:membership_records).through(:constituent_membership_records)
 
   # Validation matchers...
@@ -21,7 +21,7 @@ class ConstituentTest < ActiveSupport::TestCase
     should allow_value(true).for(:do_not_email)
     should allow_value(false).for(:do_not_email)
     # TODO: Figure out why this works? I think any string coerces to boolean
-    #should_not allow_value("maybe").for(:do_not_email)
+    should_not allow_value("maybe").for(:do_not_email)
     should_not allow_value(nil).for(:do_not_email)
     should allow_value(5.years.ago.to_date).for(:dob)
     should_not allow_value(1.year.from_now.to_date).for(:dob)
@@ -34,11 +34,15 @@ class ConstituentTest < ActiveSupport::TestCase
   context "Creating a constituent context" do
     setup do
       create_constituents
+       
+      # create_addresses
+      
     end
 
     # and provide a teardown method as well
     teardown do
       destroy_constituents
+
     end
 
     should "show that constituent record is created properly" do
@@ -89,9 +93,14 @@ class ConstituentTest < ActiveSupport::TestCase
     end
 
     should "show the current address" do
-      assert_equal "5032 Forbes Avenue", @bruce.current_address
-      assert_equal nil, @yaoFam.name
-      assert_equal nil, @pnc.name
+      @add_bruce = FactoryBot.create(:address, lookup_id: @bruce.lookup_id,
+      address_1: "5034 Forbes Avenue", city: "Pittsburgh",
+      state: "Pennsylvania", zip: "15213", address_type: "Business",
+      date_added: 2.months.ago.to_date)
+      assert_equal "5034 Forbes Avenue", @bruce.current_address
+      assert_equal nil, @yaoFam.current_address
+      assert_equal nil, @pnc.current_address
+       @add_bruce.destroy
     end
 
   end

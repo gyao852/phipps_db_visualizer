@@ -1,7 +1,7 @@
 class Address < ApplicationRecord
   # Relationships
   # -----------------------------
-    belongs_to :constituent, :foreign_key => :lookup_id, :primary_key => :lookup_id
+    belongs_to :constituent, :foreign_key => :lookup_id
 
 # Scopes
  # -----------------------------
@@ -40,7 +40,7 @@ class Address < ApplicationRecord
   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
   'Wisconsin', 'Wyoming']
    validates_inclusion_of :state, in: STATES_LIST, message: "is not an option"
-   
+
    validates :country, format: { with:/\A[a-zA-Z]+(?:[\s-][a-zA-Z]+)*\z/i , message: "Country must be capitalized"}
   # validates_date :
 

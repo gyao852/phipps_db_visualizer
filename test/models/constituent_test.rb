@@ -34,7 +34,7 @@ class ConstituentTest < ActiveSupport::TestCase
   context "Creating a constituent context" do
     setup do
       create_constituents
-      
+       
       # create_addresses
       
     end
@@ -42,6 +42,7 @@ class ConstituentTest < ActiveSupport::TestCase
     # and provide a teardown method as well
     teardown do
       destroy_constituents
+
     end
 
     should "show that constituent record is created properly" do
@@ -92,9 +93,14 @@ class ConstituentTest < ActiveSupport::TestCase
     end
 
     should "show the current address" do
-      assert_equal "5032 Forbes Avenue", @bruce.current_address
-      assert_equal nil, @yaoFam.name
-      assert_equal nil, @pnc.name
+      @add_bruce = FactoryBot.create(:address, lookup_id: @bruce.lookup_id,
+      address_1: "5034 Forbes Avenue", city: "Pittsburgh",
+      state: "Pennsylvania", zip: "15213", address_type: "Business",
+      date_added: 2.months.ago.to_date)
+      assert_equal "5034 Forbes Avenue", @bruce.current_address
+      assert_equal nil, @yaoFam.current_address
+      assert_equal nil, @pnc.current_address
+       @add_bruce.destroy
     end
 
   end

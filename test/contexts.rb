@@ -20,11 +20,11 @@ module Contexts
     @add1 = FactoryBot.create(:address)
     @add2 = FactoryBot.create(:address, lookup_id: "12346",
       address_1: "739 Bellefonte St", city: "Pittsburgh",
-      state: "Pennsylvania", zip: "15232", address_type "Home",
+      state: "Pennsylvania", zip: "15232", address_type: "Home",
       date_added: 4.months.ago.to_date)
     @add3 = FactoryBot.create(:address, lookup_id: "10000",
       address_1: "5034 Forbes Ave", city: "Pittsburgh",
-      state: "Pennsylvania", zip: "15213", address_type "Business",
+      state: "Pennsylvania", zip: "15213", address_type: "Business",
       date_added: 2.months.ago.to_date)
   end
 

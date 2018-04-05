@@ -2,13 +2,13 @@ require 'test_helper'
 
 class ConstituentTest < ActiveSupport::TestCase
   # Relationship matchers...
-    #should have_many(:addresses)
-    #should have_many(:donation_histories)
+    should have_many(:addresses)
+    should have_many(:donation_histories)
     should have_many(:donation_programs).through(:donation_histories)
-    #should have_many(:constituent_events)
+    should have_many(:constituent_events)
     should have_many(:events).through(:constituent_events)
-    #should have_many(:contact_histories)
-    #should have_many(:constituent_membership_records)
+    should have_many(:contact_histories)
+    should have_many(:constituent_membership_records)
     should have_many(:membership_records).through(:constituent_membership_records)
 
   # Validation matchers...
@@ -21,7 +21,7 @@ class ConstituentTest < ActiveSupport::TestCase
     should allow_value(true).for(:do_not_email)
     should allow_value(false).for(:do_not_email)
     # TODO: Figure out why this works? I think any string coerces to boolean
-    #should_not allow_value("maybe").for(:do_not_email)
+    should_not allow_value("maybe").for(:do_not_email)
     should_not allow_value(nil).for(:do_not_email)
     should allow_value(5.years.ago.to_date).for(:dob)
     should_not allow_value(1.year.from_now.to_date).for(:dob)

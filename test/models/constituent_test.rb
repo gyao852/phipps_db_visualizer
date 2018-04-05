@@ -34,6 +34,9 @@ class ConstituentTest < ActiveSupport::TestCase
   context "Creating a constituent context" do
     setup do
       create_constituents
+      
+      # create_addresses
+      
     end
 
     # and provide a teardown method as well

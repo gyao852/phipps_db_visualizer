@@ -2,13 +2,13 @@ class Constituent < ApplicationRecord
   # Relationships
   # -----------------------------
   self.primary_key = 'lookup_id'
-  has_many :addresses
-  has_many :donation_histories
+  has_many :addresses, foreign_key: "lookup_id"
+  has_many :donation_histories, foreign_key: "lookup_id"
   has_many :donation_programs, through: :donation_histories
-  has_many :constituent_events
+  has_many :constituent_events, foreign_key: "lookup_id"
   has_many :events, through: :constituent_events
-  has_many :contact_histories
-  has_many :constituent_membership_records
+  has_many :contact_histories, foreign_key: "lookup_id"
+  has_many :constituent_membership_records, foreign_key: "lookup_id"
   has_many :membership_records, through: :constituent_membership_records
 
   # Scopes
@@ -40,6 +40,8 @@ class Constituent < ApplicationRecord
   def current_address
    # map all addresses that belong to the constituent
    all_addresses = self.addresses
+   puts "testtdsgfdesgds"
+   puts all_addresses
    curr = all_addresses.order(date_added: :desc).first
    if curr.nil?
      return nil

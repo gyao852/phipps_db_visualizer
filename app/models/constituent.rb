@@ -1,4 +1,4 @@
-# class Constituent < ApplicationRecord
+class Constituent < ApplicationRecord
   # Relationships
   # -----------------------------
   # self.primary_key = 'lookup_id'
@@ -40,13 +40,13 @@
    all_addresses = self.addresses
 
    curr = all_addresses.order(date_added: :desc).first
-   if curr.nil?
-     return nil
-     #return "No address available"
-   else
-    return curr.address_1
-   end
- end
+    if curr.nil?
+      return nil
+      #return "No address available"
+    else
+      return curr.address_1
+    end
+  end
 
  def current_membership_level
    #self.lookup_id
@@ -77,6 +77,7 @@
       Constituent.create! row.to_hash
     end
   end
+  
 
 
   private

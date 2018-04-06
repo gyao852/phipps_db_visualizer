@@ -1,7 +1,7 @@
 class DonationProgram < ApplicationRecord
   # Relationships
   # -----------------------------
-  has_many :donation_histories
+  has_many :donation_histories, foreign_key: 'donation_program_id'
   has_many :constituents, through: :donation_histories
 
   # Scopes

@@ -76,7 +76,7 @@
       row[7] = Date.strptime(date_string, '%m/%d/%Y')
       Constituent.create! row.to_hash
     end
-  end
+  
 
 
   private

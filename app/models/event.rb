@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
   # Relationships
   # -----------------------------
-  has_many :constituent_events
+  has_many :constituent_events, foreign_key: 'event_id'
+  has_many :constituents, through: :constituent_events
 
   # Scopes
   # -----------------------------

@@ -2,7 +2,7 @@ class DonationHistory < ApplicationRecord
   # Relationships
   # -----------------------------
   belongs_to :constituent, :foreign_key => :lookup_id, :primary_key => :lookup_id
-  belongs_to :donation_program
+  belongs_to :donation_program, :foreign_key => :donation_program_id, :primary_key => :donation_program_id
   # test
 
   # Scopes

@@ -73,13 +73,18 @@ html, body {
 }
 
 
+.container-fluid {
+    padding: 0px;
+}
 
 
 .container {
     margin-top: 15px;
-    
+}
 
-
+.right-container {
+    padding: 0px !important;
+   
 }
 
 .breadcrumb-nav {

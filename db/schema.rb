@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 20180401171739) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "Constituents_id"
-    t.integer "memberhsip_records_id"
+    t.integer "membership_records_id"
     t.index ["Constituents_id"], name: "index_constituent_membership_records_on_Constituents_id"
-    t.index ["memberhsip_records_id"], name: "index_constituent_membership_records_on_memberhsip_records_id"
+    t.index ["membership_records_id"], name: "index_constituent_membership_records_on_membership_records_id"
   end
 
   create_table "constituents", force: :cascade do |t|
@@ -79,7 +79,8 @@ ActiveRecord::Schema.define(version: 20180401171739) do
   end
 
   create_table "donation_histories", force: :cascade do |t|
-    t.integer "donation_history_id"
+    t.text "donation_history_id"
+    t.text "donation_program_id"
     t.text "lookup_id"
     t.integer "amount"
     t.date "date"
@@ -90,9 +91,9 @@ ActiveRecord::Schema.define(version: 20180401171739) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "constituents_id"
-    t.integer "donationprograms_id"
+    t.integer "donation_programs_id"
     t.index ["constituents_id"], name: "index_donation_histories_on_constituents_id"
-    t.index ["donationprograms_id"], name: "index_donation_histories_on_donationprograms_id"
+    t.index ["donation_programs_id"], name: "index_donation_histories_on_donation_programs_id"
   end
 
   create_table "donation_programs", force: :cascade do |t|

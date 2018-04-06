@@ -15,12 +15,12 @@ class DonationHistory < ApplicationRecord
   validates_presence_of :donation_history_id
   # validates_presence_of :lookup_id
   validates_presence_of :amount
-  validates_numericality_of :amount, :greater_than=> 0
+  validates_numericality_of :amount, :greater_than => 0
   validates_presence_of :date
   validates_date :date, :on_or_before => Date.today
-  validates_presence_of :method
-  validates_presence_of :do_not_acknowledge
-  validates_presence_of :given_anonymously
+  validates_presence_of :payment_method
+  validates_inclusion_of :do_not_acknowledge, :in => [true,false]
+  validates_inclusion_of :given_anonymously, :in => [true,false]
   validates_presence_of :transaction_type
 
 

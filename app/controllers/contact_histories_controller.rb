@@ -63,6 +63,12 @@ class ContactHistoriesController < ApplicationController
     end
   end
 
+
+  def import
+    ContactHistory.import(params[:file])
+    redirect_to contact_histories_path, notice: "csv imported"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_contact_history

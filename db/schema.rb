@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20180401171739) do
     t.text "lookup_id"
     t.integer "amount"
     t.date "date"
-    t.text "method"
+    t.text "payment_method"
     t.boolean "do_not_acknowledge"
     t.boolean "given_anonymously"
     t.text "transaction_type"

@@ -18,4 +18,9 @@ class ConstituentEvent < ApplicationRecord
 
   # Other methods
   # -------------
+  def self.import(file)
+    CSV.foreach(file.path, headers:true) do |row|
+      ConstituentEvent.create! row.to_hash
+    end
+  end
 end

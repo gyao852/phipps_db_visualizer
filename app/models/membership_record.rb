@@ -33,5 +33,11 @@ class MembershipRecord < ApplicationRecord
 
   # Other methods
   # -------------
+  def self.import(file)
+    CSV.foreach(file.path, headers:true) do |row|
+      MembershipRecord.create! row.to_hash
+    end
+  end 
+
 
 end

@@ -47,6 +47,11 @@ class Address < ApplicationRecord
 
 	# Other methods
  	# -------------
+  def self.import(file)
+    CSV.foreach(file.path, headers:true) do |row|
+      address.create! row.to_hash
+    end
+  end
 
 
 

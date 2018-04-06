@@ -1,0 +1,10 @@
+<div class='card'>
+    
+    <div class='card-body'>
+        <h3 class='card-title text-black-mint'> Import CSV Data </h3>
+        <%= form_tag import_membership_records_path, multipart: true do %>
+        <%= file_field_tag :file, class: 'btn'%>
+        <%= submit_tag "Import", class: 'btn btn-outline-secondary'%>
+        <% end %>
+    </div>
+</div>

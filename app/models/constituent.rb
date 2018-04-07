@@ -1,7 +1,7 @@
 class Constituent < ApplicationRecord
   # Relationships
   # -----------------------------
-  # self.primary_key = 'lookup_id'
+  self.primary_key = 'lookup_id'
   has_many :addresses, foreign_key: "lookup_id"
   has_many :donation_histories, foreign_key: "lookup_id"
   has_many :donation_programs, through: :donation_histories
@@ -24,11 +24,11 @@ class Constituent < ApplicationRecord
   # Validations
   # -----------------------------
   validates :lookup_id, presence: true
-  validates :phone, format: { with: /\A\([0-9]{3}\)-[0-9]{3}-[0-9]{4}\z/i , message: "format of phone number is incorrect"}
-  validates :email_id, format: { with:/\A[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}\z/i, message: "format of email address is incorrect"}
-  validates_inclusion_of :do_not_email, :in => [true,false]
-  validates :name, presence: true
-  validates :last_group, presence: true
+  # validates :phone, format: { with: /\A\([0-9]{3}\)-[0-9]{3}-[0-9]{4}\z/i , message: "format of phone number is incorrect"}
+  # validates :email_id, format: { with:/\A[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}\z/i, message: "format of email address is incorrect"}
+  # validates_inclusion_of :do_not_email, :in => [true,false]
+  # validates :name, presence: true
+  # validates :last_group, presence: true
   validates_date :dob, before: Date.today, :allow_blank => true
 
 

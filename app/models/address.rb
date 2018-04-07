@@ -49,7 +49,15 @@ class Address < ApplicationRecord
  	# -------------
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|
-      Address.create! row.to_hash
+      if row[7] != nil 
+        # date_string = row[7]
+        # date_string[0]="1"
+        # date_string[2]="1"
+        row[7] = nil #Date.strptime(date_string, '%m/%d/%Y')
+        Address.create! row.to_hash
+      else 
+        Address.create! row.to_hash
+      end
     end
   end
 

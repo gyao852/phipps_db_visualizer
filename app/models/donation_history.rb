@@ -23,11 +23,22 @@ class DonationHistory < ApplicationRecord
   validates_inclusion_of :given_anonymously, :in => [true,false]
   validates_presence_of :transaction_type
 
+  # Scopes
+  scope :on_or_before, -> (date) {where("date <= ?", date)}
+  scope :on_or_after,  -> (date) {where("date >= ?", date)}
 
+  # Class Method
+ 
+  
   # Other methods
   # -------------
 
 
+ 
+  
+
+
 
   private
+
 end

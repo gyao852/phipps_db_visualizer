@@ -206,26 +206,18 @@ i.md-40 {
 //     height: 80px;
 //   }
 
-
-#pieChart {    
-	top:10px;
-	left:10px;
-	width:400px;
-	height: 400px; 
+.donationChartWrapper {
+    width: 39rem;
+}
+#donationChart svg{
+    padding: 2px;
 }
 
-
-
 #lineChart {    
-	top:10px;
-	left:410px;
-	height: 150px;
 }
 
 #barChart {
-	top:160px;
-	left:410px;
-	height: 250px;
+
 }
 
 .slice {

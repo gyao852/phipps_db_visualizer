@@ -1,5 +1,5 @@
 class ConstituentsController < ApplicationController
-  before_action :set_constituent, only: [:show, :edit, :update, :destroy]
+  before_action :set_constituent, only: [:show]
 
   # GET /constituents
   # GET /constituents.json

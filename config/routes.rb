@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
   get 'import_page' => 'constituents#import_page', as: :import_page
+  get 'address_import_page' => 'addresses#addresses_import_page', as: :address_import_page
 
   # Routes for duplicate record filtering pages
   get 'duplicates_unresolved' => 'duplicates#unresolved', as: :duplicates_unresolved

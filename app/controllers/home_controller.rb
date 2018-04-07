@@ -10,25 +10,25 @@ class HomeController < ApplicationController
         # initialize variables by program
         @cp = {"sum" => 0, "program" => "Childrens' Programs", "<100" => 0, "100-249"=> 0, 
             "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            "10000+" => 0}
+            ">10000" => 0}
         @cc = {"sum" => 0, "program" => "Commemorative Certificates", "<100" => 0, "100-249"=> 0, 
             "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            "10000+" => 0}
+            ">10000" => 0}
         @dgb = {"sum" => 0, "program" => "Discovery Garden Bricks", "<100" => 0, "100-249"=> 0, 
             "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            "10000+" => 0}
+            ">10000" => 0}
         @mh = {"sum" => 0, "program" => "Memorials & Honoraria", "<100" => 0, "100-249"=> 0, 
             "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            "10000+" => 0}
+            ">10000" => 0}
         @sg = {"sum" => 0, "program" => "Sustained Giving", "<100" => 0, "100-249"=> 0, 
             "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            "10000+" => 0}
+            ">10000" => 0}
         @aa = {"sum" => 0, "program" => "Annual Appeal", "<100" => 0, "100-249"=> 0, 
             "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            "10000+" => 0}
+            ">10000" => 0}
         @other = {"sum" => 0, "program" => "Other", "<100" => 0, "100-249"=> 0, 
         "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-        "10000+" => 0}
+        ">10000" => 0}
 
         @donations_by_program = [@cp, @cc, @dgb, @mh, @sg, @other]
 
@@ -36,7 +36,7 @@ class HomeController < ApplicationController
             p["sum"] += a
             if a < 100
                 p["<100"] += 1
-            elsif a >= 101 && a < 249
+            elsif a >= 100 && a < 249
                 p["100-249"] += 1
             elsif a >= 250 && a <= 499
                 p["250-499"] += 1
@@ -44,6 +44,12 @@ class HomeController < ApplicationController
                 p["500-999"] += 1
             elsif a >=1000 && a <= 2499
                 p["1000-2499"] += 1
+            elsif a >=2500 && a <= 4999
+                p["2500-4999"] += 1
+            elsif a >=2500 && a <= 4999
+                p["5000-9999"] += 1
+            else
+                p[">10000"] += 1
             end
 
         end
@@ -70,13 +76,34 @@ class HomeController < ApplicationController
         end
 
         @pie_chart_data_set = []
+        @bar_chart_data_set = []
         
         @donations_by_program.each do |p|
             m = p['sum']/ @donation_sum_fYear.to_f
             obj = {category:p['program'], measure: m}
             @pie_chart_data_set.append(obj)
-        end
 
+            #for each giving level
+            lv1 = { category: "<100", group: p['program'], measure: p["<100" ]}
+            lv2 = { category: "100-249", group: p['program'], measure: p["100-249"]}
+            lv3 = { category: "250-499", group: p['program'], measure: p["250-499"]}
+            lv4 = { category: "500-999", group: p['program'], measure: p["500-999"]}
+            lv5 = { category: "1000-2499", group: p['program'], measure: p["1000-2499"] }
+            lv6 = { category: "2500-4999", group: p['program'], measure: p["2500-4999"] }
+            lv7 = { category: "5000-9999", group: p['program'], measure: p["5000-9999"] }
+            lv8 = { category: ">10000", group: p['program'], measure: p[">10000"] } 
+
+            @bar_chart_data_set.append(lv1)
+            @bar_chart_data_set.append(lv2)
+            @bar_chart_data_set.append(lv3)
+            @bar_chart_data_set.append(lv4)
+            @bar_chart_data_set.append(lv5)
+            @bar_chart_data_set.append(lv6)
+            @bar_chart_data_set.append(lv7)
+            @bar_chart_data_set.append(lv8)
+        end
+    
+    
 
     end
 end

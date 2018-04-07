@@ -33,21 +33,8 @@ var 	formatAsPercentage = d3.format("%"),
 function dsPieChart(){
   // need to calculate number of programs and percentage there are
 
-  	var dataset = [
-	{category: "Sam", measure: 0.30},
-	{category: "Peter", measure: 0.25},
-	{category: "John", measure: 0.15},
-	{category: "Rick", measure: 0.05},
-	{category: "Lenny", measure: 0.18},
-	{category: "Paul", measure:0.04},
-	{category: "Steve", measure: 0.03}
-	  ]
-	  ;
 
-
-	var dataset2 = <%= raw @pie_chart_data_set.to_json %>
-	
-	console.log(dataset2)
+	var pieChartDataSet = <%= raw @pie_chart_data_set.to_json %>
 
 	var  width = 300,
 		   height = 300,
@@ -61,7 +48,7 @@ function dsPieChart(){
 	    
 	var vis = d3.select("#donationChart")
 	     .append("svg:svg")              //create the SVG element inside the <body>
-	     .data([dataset2])                   //associate our data with the document
+	     .data([pieChartDataSet])                   //associate our data with the document
 	         .attr("width", width)           //set the width and height of our visualization (these will be attributes of the <svg> tag
 	         .attr("height", height)
 	     		.append("svg:g")                //make a group to hold our pie chart
@@ -149,7 +136,7 @@ function dsPieChart(){
 	function up(d, i) {
 	
 				/* update bar chart when user selects piece of the pie chart */
-				updateBarChart(dataset[i].category);
+				updateBarChart(pieChartDataSet[i].category);
 				updateBarChart(d.data.category, color(i));
 			
 			 
@@ -163,10 +150,10 @@ dsPieChart();
 -------------------------------------------
 */
 
-var dataset2BarChart = []
+var datasetBarChart = <%= raw @bar_chart_data_set.to_json %>
 ;
 
-var datasetBarChart = [
+var barChartDataSet = [
 { group: "All", category: "Oranges", measure: 63850.4963 }, 
 { group: "All", category: "Apples", measure: 78258.0845 }, 
 { group: "All", category: "Grapes", measure: 60610.2355 }, 
@@ -211,7 +198,7 @@ var datasetBarChart = [
 ;
 
 // set initial group value
-var group = "All";
+var group = "Other";
 
 function datasetBarChosen(group) {
 	var ds = [];
@@ -220,6 +207,7 @@ function datasetBarChosen(group) {
 		 	ds.push(datasetBarChart[x]);
 		 } 
 		}
+	console.log(ds)
 	return ds;
 }
 
@@ -443,8 +431,9 @@ function updateBarChart(group, colorChosen) {
 			.attr("text-anchor", "middle")
 			.text(group + "'s Sales Breakdown 2012")
 		;
-}
+}		
 
+		console.log(barChartDataSet)
 
 
 

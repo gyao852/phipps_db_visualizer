@@ -1,18 +1,18 @@
-<div class='container-fluid bg-white'>
+<div class='card bg-white'>
 
+<div class='card-body'>
 <h3>Donation Histories</h3>
 
 <table class='table-bordered table-hover table'>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Constituent</th>
-      <th>Amount</th>
-      <th>Date</th>
-      <th>Method</th>
-      <th>Do not acknowledge</th>
-      <th>Given anonymously</th>
-      <th>Transaction type</th>
+      <th scope="col">ID</th>
+      <th scope="col">Constituent</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Date</th>
+      <th scope="col">Method</th>
+      <th scope="col">Program</th>
+
     </tr>
   </thead>
 
@@ -24,9 +24,7 @@
         <td><%= donation_history.amount %></td>
         <td><%= donation_history.date.strftime('%m/%d/%y') %></td>
         <td><%= donation_history.payment_method %></td>
-        <td><%= donation_history.do_not_acknowledge %></td>
-        <td><%= donation_history.given_anonymously %></td>
-        <td><%= donation_history.transaction_type %></td>
+        <td><%= donation_history.donation_program.program %> </td>
       </tr>
     <% end %>
   </tbody>
@@ -34,5 +32,5 @@
 
 <br>
 
-
+</div>
 </div>

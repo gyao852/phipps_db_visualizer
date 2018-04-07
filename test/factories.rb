@@ -58,12 +58,14 @@ FactoryBot.define do
     factory :donation_history do
         association :constituent
         association :donation_program
-        lookup_id "12345"
+        donation_history_id '15213'
         amount 500
         date 3.months.ago.to_date
         do_not_acknowledge false
         given_anonymously false
-        transaction_type 'cash'
+        transaction_type 'donation'
+        payment_method 'cash'
+
     end
 
     factory :donation_program do

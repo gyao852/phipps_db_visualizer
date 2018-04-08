@@ -77,8 +77,8 @@ FactoryBot.define do
       event_id "1"
       event_name "Member's Only Night"
       category "Members"
-      start_date_time 1.week.ago.to_date
-      end_date_time 5.months.from_now
+      start_date_time Time.zone.local(2018,2,3,11)
+      end_date_time Time.zone.local(2018,2,3,17)
     end
 
     factory :membership_record do

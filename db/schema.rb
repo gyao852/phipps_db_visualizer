@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20180401171739) do
   end
 
   create_table "constituent_events", force: :cascade do |t|
+    t.text "event_id"
     t.text "lookup_id"
     t.text "status"
     t.boolean "attend"

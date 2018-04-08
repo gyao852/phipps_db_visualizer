@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   get 'duplicates_unresolved' => 'duplicates#unresolved', as: :duplicates_unresolved
   get 'duplicates_deleted' => 'duplicates#deleted', as: :duplicates_deleted
   get 'duplicates_merged' => 'duplicates#merged', as: :duplicates_merged
+  get 'login', to: 'sessions#new', as: :login
+  get 'logout', to: 'session#destroy', as: :logout
 
   # Set the root url
   root :to => 'home#home'

@@ -20,29 +20,26 @@ class ConstituentTest < ActiveSupport::TestCase
     should_not allow_value("something!`@some.con").for(:email_id)
     should allow_value(true).for(:do_not_email)
     should allow_value(false).for(:do_not_email)
-    # TODO: Figure out why this works? I think any string coerces to boolean
-    should_not allow_value("maybe").for(:do_not_email)
     should_not allow_value(nil).for(:do_not_email)
     should allow_value(5.years.ago.to_date).for(:dob)
     should_not allow_value(1.year.from_now.to_date).for(:dob)
-
-    #TODO: add more validations in constituent, then add more tests
-    # Specifically the last_group regex
 
   # ---------------------------------
   # Testing other methods with a context
   context "Creating a constituent context" do
     setup do
       create_constituents
-       
-      # create_addresses
-      
+      create_addresses
+      #create_constituent_membership
+      #create_membership_records
     end
 
     # and provide a teardown method as well
     teardown do
       destroy_constituents
-
+      destroy_addresses
+      #destroy_constituent_membership
+      #destroy_membership_records
     end
 
     should "show that constituent record is created properly" do
@@ -92,16 +89,45 @@ class ConstituentTest < ActiveSupport::TestCase
       assert_equal ["PNC"], Constituent.company.map{|p| p.name}
     end
 
-    should "show the current address" do
-      @add_bruce = FactoryBot.create(:address, lookup_id: @bruce.lookup_id,
-      address_1: "5034 Forbes Avenue", city: "Pittsburgh",
-      state: "Pennsylvania", zip: "15213", address_type: "Business",
-      date_added: 2.months.ago.to_date)
-      assert_equal "5034 Forbes Avenue", @bruce.current_address
-      assert_equal nil, @yaoFam.current_address
-      assert_equal nil, @pnc.current_address
-       @add_bruce.destroy
+    # test the method 'full_name'
+    should "shows the full name" do
+      assert_equal "Bruce Wayne", @bruce.full_name
+      assert_equal "Yao Family", @yaoFam.full_name
+      assert_equal "PNC", @pnc.full_name
     end
 
+    # test the method 'current_address'
+    should "show the current address" do
+      assert_equal "5032 Forbes Avenue", @bruce.current_address
+      assert_equal "739 Bellefonte St", @yaoFam.current_address
+      assert_equal "5034 Forbes Ave", @pnc.current_address
+    end
+
+    # test the method 'current_membership_level'
+    should "shows the current membership level" do
+      create_membership_records
+      create_constituent_membership
+      assert_equal "Student/Senior", @bruce.current_membership_level
+      assert_nil @yaoFam.current_membership_level
+      # Because yao family's membership expired
+      assert_nil @pnc.current_membership_level
+      # Because pnc doesn't have a membership record
+      destroy_membership_records
+      destroy_constituent_membership
+
+    end
+
+    # test the method 'current_membership_scheme'
+    should "shows the current membership scheme" do
+      create_membership_records
+      create_constituent_membership
+      assert_equal "Phipps General Membership", @bruce.current_membership_scheme
+      assert_nil @yaoFam.current_membership_scheme
+      # Because yao family's membership expired
+      assert_nil @pnc.current_membership_scheme
+      # Because pnc doesn't have a membership record
+      destroy_membership_records
+      destroy_constituent_membership
+    end
   end
 end

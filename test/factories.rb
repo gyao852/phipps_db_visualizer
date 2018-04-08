@@ -1,35 +1,34 @@
 FactoryBot.define do
 
     factory :address do
-        association :constituent
+        constituent { Constituent.first || association(:constituent) }
         lookup_id "12345"
         address_1 "5032 Forbes Avenue"
         city "Pittsburgh"
-        state "PA"
+        state "Pennsylvania"
         zip "15213"
-        country "USA"
+        country "United States"
         address_type "Household"
         date_added 1.year.ago.to_date
     end
 
     factory :constituent_event do
-      association :event
-      association :constituent
+      event { Event.first || association(:event) }
+      constituent { Constituent.first || association(:constituent) }
       lookup_id "12345"
       status "Registered"
       attend "Yes"
       host_name "Bruce Wayne"
       event_id "1"
-      # TODO: Ask ash why we need constituent_id in schema.rb
     end
 
     factory :constituent_membership_record do
-      association :constituent
-      association :membership_records
+      constituent { Constituent.first || association(:constituent) }
+      membership_record { MembershipRecord.first ||
+        association(:membership_record) }
       lookup_id "12345"
       membership_id "l33t h4x0r"
-      # TODO: Again, ask Ash about Constituents_id??
-      constituents_id "12345"
+      #constituents_id "12345"
     end
 
     factory :constituent do
@@ -48,16 +47,16 @@ FactoryBot.define do
     end
 
     factory :contact_history do
-      association :constituent
-      #contact_history_id ""
+      constituent { Constituent.first || association(:constituent) }
       lookup_id "12345"
       type "email"
       date 2.months.ago.to_date
     end
 
     factory :donation_history do
-        association :constituent
-        association :donation_program
+        constituent { Constituent.first || association(:constituent) }
+        donation_program { Donation_program.first ||
+          association(:donation_program) }
         donation_history_id '15213'
         amount 500
         date 3.months.ago.to_date
@@ -88,7 +87,7 @@ FactoryBot.define do
       add_ons ""
       membership_level_type "Patron"
       membership_status "Active"
-      membership_term "1 Year"
+      membership_term 1 # Remove this later
       start_date 3.years.ago.to_date
       end_date 1.year.from_now
       last_renewed Date.today

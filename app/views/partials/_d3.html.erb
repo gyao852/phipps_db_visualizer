@@ -1,12 +1,15 @@
 
 <div class= 'card bg-white donationChartWrapper'>
   <div id="donationChart"></div>
-  <%= @donation_sum_fYear %>
 </div>
 
 
 <script type="text/javascript">
 /*
+
+// Code Referenced:
+https://bl.ocks.org/mbostock/4403522
+http://bl.ocks.org/diethardsteiner/3287802
 ################ FORMATS ##################
 -------------------------------------------
 */
@@ -33,23 +36,10 @@ var 	formatAsPercentage = d3.format("%"),
 function dsPieChart(){
   // need to calculate number of programs and percentage there are
 
-  	var dataset = [
-	{category: "Sam", measure: 0.30},
-	{category: "Peter", measure: 0.25},
-	{category: "John", measure: 0.15},
-	{category: "Rick", measure: 0.05},
-	{category: "Lenny", measure: 0.18},
-	{category: "Paul", measure:0.04},
-	{category: "Steve", measure: 0.03}
-	  ]
-	  ;
 
+	var pieChartDataSet = <%= raw @pie_chart_data_set.to_json %>
 
-	var dataset2 = <%= raw @pie_chart_data_set.to_json %>
-	
-	console.log(dataset2)
-
-	var  width = 300,
+	var  width = 300
 		   height = 300,
 		   outerRadius = Math.min(width, height) / 2,
 		   innerRadius = outerRadius * .999,   
@@ -61,7 +51,7 @@ function dsPieChart(){
 	    
 	var vis = d3.select("#donationChart")
 	     .append("svg:svg")              //create the SVG element inside the <body>
-	     .data([dataset2])                   //associate our data with the document
+	     .data([pieChartDataSet])                   //associate our data with the document
 	         .attr("width", width)           //set the width and height of our visualization (these will be attributes of the <svg> tag
 	         .attr("height", height)
 	     		.append("svg:g")                //make a group to hold our pie chart
@@ -108,7 +98,16 @@ function dsPieChart(){
 	      .attr("text-anchor", "middle")
 	      .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
 	      //.text(function(d) { return formatAsPercentage(d.value); })
-	      .text(function(d) { return d.data.category; })
+	      .text(function(d) { 
+			if (d.data.category=="Childrens' Programs") {return "CP";}
+			else if (d.data.category == "Commemorative Certificates") {return "CC";}
+			else if(d.data.category=="Annual Appeal"){return "AA";}
+			else if(d.data.category=="Memorials & Honoraria"){return "M&H";}
+			else if(d.data.category == "Sustainable Giving") { return "SG";}
+			else { return "Other"}
+
+			})
+			//return d.data.category; })
 	      ;
 	   
 	   // Computes the label angle of an arc, converting from radians to degrees.
@@ -149,7 +148,7 @@ function dsPieChart(){
 	function up(d, i) {
 	
 				/* update bar chart when user selects piece of the pie chart */
-				updateBarChart(dataset[i].category);
+				updateBarChart(pieChartDataSet[i].category);
 				updateBarChart(d.data.category, color(i));
 			
 			 
@@ -163,55 +162,14 @@ dsPieChart();
 -------------------------------------------
 */
 
-var dataset2BarChart = []
+var datasetBarChart = <%= raw @bar_chart_data_set.to_json %>
 ;
 
-var datasetBarChart = [
-{ group: "All", category: "Oranges", measure: 63850.4963 }, 
-{ group: "All", category: "Apples", measure: 78258.0845 }, 
-{ group: "All", category: "Grapes", measure: 60610.2355 }, 
-{ group: "All", category: "Figs", measure: 30493.1686 }, 
-{ group: "All", category: "Mangos", measure: 56097.0151 }, 
-{ group: "Sam", category: "Oranges", measure: 19441.5648 }, 
-{ group: "Sam", category: "Apples", measure: 25922.0864 }, 
-{ group: "Sam", category: "Grapes", measure: 9720.7824 }, 
-{ group: "Sam", category: "Figs", measure: 6480.5216 }, 
-{ group: "Sam", category: "Mangos", measure: 19441.5648 }, 
-{ group: "Peter", category: "Oranges", measure: 22913.2728 }, 
-{ group: "Peter", category: "Apples", measure: 7637.7576 }, 
-{ group: "Peter", category: "Grapes", measure: 23549.7526 }, 
-{ group: "Peter", category: "Figs", measure: 1909.4394 }, 
-{ group: "Peter", category: "Mangos", measure: 7637.7576 }, 
-{ group: "John", category: "Oranges", measure: 1041.5124 }, 
-{ group: "John", category: "Apples", measure: 2430.1956 }, 
-{ group: "John", category: "Grapes", measure: 15275.5152 }, 
-{ group: "John", category: "Figs", measure: 4166.0496 }, 
-{ group: "John", category: "Mangos", measure: 11803.8072 }, 
-{ group: "Rick", category: "Oranges", measure: 7406.3104 }, 
-{ group: "Rick", category: "Apples", measure: 2545.9192 }, 
-{ group: "Rick", category: "Grapes", measure: 1620.1304 }, 
-{ group: "Rick", category: "Figs", measure: 8563.5464 }, 
-{ group: "Rick", category: "Mangos", measure: 3008.8136 }, 
-{ group: "Lenny", category: "Oranges", measure: 7637.7576 }, 
-{ group: "Lenny", category: "Apples", measure: 35411.4216 }, 
-{ group: "Lenny", category: "Grapes", measure: 8332.0992 }, 
-{ group: "Lenny", category: "Figs", measure: 6249.0744 }, 
-{ group: "Lenny", category: "Mangos", measure: 11803.8072 }, 
-{ group: "Paul", category: "Oranges", measure: 3182.399 }, 
-{ group: "Paul", category: "Apples", measure: 867.927 }, 
-{ group: "Paul", category: "Grapes", measure: 1808.18125 }, 
-{ group: "Paul", category: "Figs", measure: 795.59975 }, 
-{ group: "Paul", category: "Mangos", measure: 578.618 }, 
-{ group: "Steve", category: "Oranges", measure: 2227.6793 }, 
-{ group: "Steve", category: "Apples", measure: 3442.7771 }, 
-{ group: "Steve", category: "Grapes", measure: 303.77445 }, 
-{ group: "Steve", category: "Figs", measure: 2328.93745 }, 
-{ group: "Steve", category: "Mangos", measure: 1822.6467 }, 
-]
-;
+
+
 
 // set initial group value
-var group = "All";
+var group = "Other";
 
 function datasetBarChosen(group) {
 	var ds = [];
@@ -220,6 +178,7 @@ function datasetBarChosen(group) {
 		 	ds.push(datasetBarChart[x]);
 		 } 
 		}
+	console.log(ds)
 	return ds;
 }
 
@@ -228,7 +187,7 @@ function dsBarChartBasics() {
 
 		var margin = {top: 30, right: 5, bottom: 20, left: 50},
 		width = 300 - margin.left - margin.right,
-	   height = 250 - margin.top - margin.bottom,
+	    height = 250 - margin.top - margin.bottom,
 		colorBar = d3.scale.category20(),
 		barPadding = 1
 		;
@@ -279,7 +238,7 @@ function dsBarChart() {
 	var svg = d3.select("#donationChart")
 			.append("svg")
 		    .attr("width", width + margin.left + margin.right)
-		    .attr("height", height + margin.top + margin.bottom)
+		    .attr("height", height + margin.top + margin.bottom + 50)
 		    .attr("id","barChartPlot")
 		    ;
 	
@@ -333,25 +292,23 @@ function dsBarChart() {
 	
 	// Add x labels to chart	
 	
-	var xLabels = svg
-		    .append("g")
-		    .attr("transform", "translate(" + margin.left + "," + (margin.top + height)  + ")")
-		    ;
-	
-	xLabels.selectAll("text.xAxis")
-		  .data(firstDatasetBarChart)
-		  .enter()
-		  .append("text")
-		  .text(function(d) { return d.category;})
-		  .attr("text-anchor", "middle")
-			// Set x position to the left edge of each bar plus half the bar width
-						   .attr("x", function(d, i) {
-						   		return (i * (width / firstDatasetBarChart.length)) + ((width / firstDatasetBarChart.length - barPadding) / 2);
-						   })
-		  .attr("y", 15)
-		  .attr("class", "xAxis")
-		  //.attr("style", "font-size: 12; font-family: Helvetica, sans-serif")
-		  ;			
+	var workflow_actions = ["0", "100", "250", "500", "1000", "2500","5000","10000","+"]
+
+	var xAxis = d3.svg.axis().scale(xScale)
+		.tickFormat((d,i) => workflow_actions[i]);
+
+		svg.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(" + margin.left + "," + (margin.top + height)  + ")")
+			.call(xAxis)
+			.selectAll("text")
+			.attr("y",0)
+			.attr("x",5)
+			.attr("dy",".5rem")
+			.attr("transform", "rotate(65)")
+			.style("text-anchor", "start")
+		
+
 	 
 	// Title
 	
@@ -383,7 +340,7 @@ function updateBarChart(group, colorChosen) {
 			barPadding = basics.barPadding
 			;
 		
-		var 	xScale = d3.scale.linear()
+		var xScale = d3.scale.linear()
 			.domain([0, currentDatasetBarChart.length])
 			.range([0, width])
 			;
@@ -443,9 +400,7 @@ function updateBarChart(group, colorChosen) {
 			.attr("text-anchor", "middle")
 			.text(group + "'s Sales Breakdown 2012")
 		;
-}
-
-
+}		
 
 
     </script>

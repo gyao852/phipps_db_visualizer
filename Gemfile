@@ -30,6 +30,14 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 gem 'bootstrap', '~> 4.0.0'
 
+# Use a gem for handling pagination
+gem 'will_paginate'
+
+# Use ActiveModel has_secure_password
+gem 'bcrypt-ruby', '~>3.1.2'
+
+
+
 gem 'jquery-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

@@ -48,6 +48,10 @@ class Constituent < ApplicationRecord
     end
   end
 
+  def full_name
+    "#{name} #{last_group}"
+  end
+
  def current_membership_level
    #self.lookup_id
    curr = self.constituent_membership_records.membership_records.current.first

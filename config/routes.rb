@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     collection {post :import}
   end
 
+  resources :sessions
+
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
   get 'constituents_import_page' => 'constituents#import_page', as: :import_page
@@ -39,7 +41,7 @@ Rails.application.routes.draw do
   get 'duplicates_deleted' => 'duplicates#deleted', as: :duplicates_deleted
   get 'duplicates_merged' => 'duplicates#merged', as: :duplicates_merged
   get 'login', to: 'sessions#new', as: :login
-  get 'logout', to: 'session#destroy', as: :logout
+  get 'logout', to: 'sessions#destroy', as: :logout
 
   # Set the root url
   root :to => 'home#home'

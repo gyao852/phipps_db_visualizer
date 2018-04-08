@@ -26,6 +26,7 @@ class DonationHistoriesController < ApplicationController
   # POST /donation_histories
   # POST /donation_histories.json
   def create
+    puts params
     @donation_history = DonationHistory.new(donation_history_params)
 
     respond_to do |format|
@@ -77,6 +78,6 @@ class DonationHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_history_params
-      params.require(:donation_history).permit(:donation_history_id, :lookup_id, :amount, :date, :method, :do_not_acknowledge, :given_anonymously, :transaction_type)
+      params.require(:donation_history).permit(:donation_history_id, :donation_program_id, :lookup_id, :amount, :date, :payment_method, :do_not_acknowledge, :given_anonymously, :transaction_type)
     end
 end

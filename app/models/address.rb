@@ -41,12 +41,25 @@ class Address < ApplicationRecord
   'Wisconsin', 'Wyoming']
    validates_inclusion_of :state, in: STATES_LIST, message: "is not an option"
 
-   validates :country, format: { with:/\A[a-zA-Z]+(?:[\s-][a-zA-Z]+)*\z/i , message: "Country must be capitalized"}
-  # validates_date :
+  validates :country, :allow_blank => true, format: { with:/\A[a-zA-Z]+(?:[\s-][a-zA-Z]+)*\z/i , message: "Country must be capitalized"}
+  # validates_date :date_added, on_or_before: Date.today, allow_blank:true
 
 
 	# Other methods
  	# -------------
+  def self.import(file)
+    CSV.foreach(file.path, headers:true) do |row|
+      if row[7] != nil 
+        # date_string = row[7]
+        # date_string[0]="1"
+        # date_string[2]="1"
+        row[7] = nil #Date.strptime(date_string, '%m/%d/%Y')
+        Address.create! row.to_hash
+      else 
+        Address.create! row.to_hash
+      end
+    end
+  end
 
 
 

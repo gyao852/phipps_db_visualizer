@@ -63,6 +63,12 @@ class AddressesController < ApplicationController
     end
   end
 
+
+  def import
+    Address.import(params[:file])
+    redirect_to addresses_path, notice: "csv imported"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_address

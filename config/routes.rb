@@ -1,21 +1,39 @@
 Rails.application.routes.draw do
-  resources :addresses
+  resources :addresses do
+    collection {post :import}
+  end
   resources :users
-  resources :events
-  resources :constituent_events
-  resources :donation_programs
-  resources :contact_histories
-  resources :membership_records
-  resources :constituent_membership_records
-  resources :donation_histories
+  resources :events do
+    collection {post :import}
+  end
+  resources :constituent_events do
+    collection {post :import}
+  end
+  resources :donation_programs do
+    collection {post :import}
+  end
+  resources :contact_histories do
+    collection {post :import}
+  end
+  resources :membership_records do
+    collection {post :import}
+  end
+  resources :constituent_membership_records do
+    collection {post :import}
+  end
+  resources :donation_histories do
+    collection {post :import}
+  end
   resources :constituents do
     collection {post :import}
   end
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
-  get 'import_page' => 'constituents#import_page', as: :import_page
-
+  get 'constituents_import_page' => 'constituents#import_page', as: :import_page
+  get 'address_import_page' => 'addresses#addresses_import_page', as: :address_import_page
+  get 'membership_record_import_page' => 'membership_records#membership_record_import_page', as: :membership_record_import_page
+  get 'constituent_membership_record_import_page' => 'constituent_membership_records#constituent_membership_record_import_page', as: :constituent_membership_record_import_page
   # Routes for duplicate record filtering pages
   get 'duplicates_unresolved' => 'duplicates#unresolved', as: :duplicates_unresolved
   get 'duplicates_deleted' => 'duplicates#deleted', as: :duplicates_deleted

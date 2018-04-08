@@ -63,6 +63,12 @@ class DonationHistoriesController < ApplicationController
     end
   end
 
+
+  def import
+    DonationHistory.import(params[:file])
+    redirect_to donation_histories_path, notice: "csv imported"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_donation_history

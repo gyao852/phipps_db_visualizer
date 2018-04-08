@@ -32,6 +32,11 @@ class DonationHistory < ApplicationRecord
   
   # Other methods
   # -------------
+  def self.import(file)
+    CSV.foreach(file.path, headers:true) do |row|
+      DonationHistory.create! row.to_hash
+    end 
+  end 
 
 
  
@@ -40,5 +45,4 @@ class DonationHistory < ApplicationRecord
 
 
   private
-
 end

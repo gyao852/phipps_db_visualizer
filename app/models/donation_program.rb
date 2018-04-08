@@ -17,5 +17,11 @@ class DonationProgram < ApplicationRecord
 
   # Other methods
   # -------------
+  def self.import(file)
+    CSV.foreach(file.path, headers:true) do |row|
+      DonationProgram.create! row.to_hash 
+    end
+  end 
+
 
 end

@@ -18,5 +18,12 @@ class ConstituentMembershipRecord < ApplicationRecord
 
   # Other methods
   # -------------
+  def self.import(file)
+    CSV.foreach(file.path, headers:true) do |row|
+      if row[1] != nil
+        ConstituentMembershipRecord.create! row.to_hash
+      end
+    end
+  end
 
 end

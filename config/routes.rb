@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get 'constituents_import_page' => 'constituents#import_page', as: :import_page
   get 'address_import_page' => 'addresses#addresses_import_page', as: :address_import_page
   get 'membership_record_import_page' => 'membership_records#membership_record_import_page', as: :membership_record_import_page
-
+  get 'constituent_membership_record_import_page' => 'constituent_membership_records#constituent_membership_record_import_page', as: :constituent_membership_record_import_page
   # Routes for duplicate record filtering pages
   get 'duplicates_unresolved' => 'duplicates#unresolved', as: :duplicates_unresolved
   get 'duplicates_deleted' => 'duplicates#deleted', as: :duplicates_deleted

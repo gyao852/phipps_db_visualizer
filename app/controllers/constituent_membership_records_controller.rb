@@ -65,7 +65,7 @@ class ConstituentMembershipRecordsController < ApplicationController
 
 
   def import
-    ConstituentMembershipRecords.import(params[:file])
+    ConstituentMembershipRecord.import(params[:file])
     redirect_to constituent_membership_records_path, notice: "csv imported"
   end
 

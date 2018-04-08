@@ -7,6 +7,8 @@ class ConstituentMembershipRecord < ApplicationRecord
 
   # Scopes
   # -----------------------------
+  scope :current, -> {joins(:membership_record).where('end_date >= ?', Date.today)}
+
 
 
   # Validations

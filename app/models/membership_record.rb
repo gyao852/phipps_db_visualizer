@@ -1,7 +1,8 @@
 class MembershipRecord < ApplicationRecord
   # Relationships
   # -----------------------------
-  has_many :constituent_membership_records
+  has_many :constituent_membership_records, foreign_key: "membership_id"
+  has_many :constituents, through: :constituent_membership_records
 
 
   # Scopes

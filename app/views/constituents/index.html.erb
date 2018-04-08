@@ -13,11 +13,15 @@
   <thead>
     <tr>
       <th scope="col">LookupID</th>
-      <th scope="col">First Name</th>
+      <th scope="col">Name</th>
       <th scope="col">Last/Group Name</th>
       <th scope="col">Email</th>
       <th scope="col">Phone</th>
-      <th scope="col">Do not email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Membership</th>
+      <th scope="col">Membership Level</th>
+
+     
     </tr>
   </thead>
 
@@ -29,7 +33,10 @@
         <td><%= constituent.last_group %></td>
         <td><%= constituent.email_id %></td>
         <td><%= constituent.phone %></td>
-        <td><%= constituent.do_not_email %></td>
+        <td><%= constituent.current_address %> </td>
+        <td><%= constituent.current_membership_scheme%> </td>
+        <td><%= constituent.current_membership_level %></td>
+        
       </tr>
     <% end %>
   </tbody>

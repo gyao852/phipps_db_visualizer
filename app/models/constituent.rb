@@ -52,27 +52,28 @@ class Constituent < ApplicationRecord
     "#{name} #{last_group}"
   end
 
- def current_membership_level
+  def current_membership_level
    #self.lookup_id
-   curr = self.constituent_membership_records.membership_records.current.first
-   if curr.nil?
-     return nil
-     #return "No membership available"
-   else
-    return curr.membership_level
-   end
- end
+    if self.constituent_membership_records.current.blank?
+      return nil
+    else
+      curr = self.constituent_membership_records.current.first.membership_record
+      return curr.membership_level
+    end
+  end
 
- def current_membership_scheme
+  def current_membership_scheme
    #self.lookup_id
-   curr = self.constituent_membership_records.membership_records.current.first
-   if curr.nil?
-     return nil
+    if self.constituent_membership_records.current.blank?
+      return nil
+    else
+      curr = self.constituent_membership_records.current.first.membership_record
+  #  if curr.nil?
+  #    return nil
      #return "No membership available"
-   else
-    return curr.membership_scheme
-   end
- end
+      return curr.membership_scheme
+    end
+  end
 
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|

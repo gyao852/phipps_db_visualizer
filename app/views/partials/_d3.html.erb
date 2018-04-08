@@ -1,12 +1,15 @@
 
 <div class= 'card bg-white donationChartWrapper'>
   <div id="donationChart"></div>
-  <%= @donation_sum_fYear %>
 </div>
 
 
 <script type="text/javascript">
 /*
+
+// Code Referenced:
+https://bl.ocks.org/mbostock/4403522
+http://bl.ocks.org/diethardsteiner/3287802
 ################ FORMATS ##################
 -------------------------------------------
 */
@@ -36,7 +39,7 @@ function dsPieChart(){
 
 	var pieChartDataSet = <%= raw @pie_chart_data_set.to_json %>
 
-	var  width = 300,
+	var  width = 300
 		   height = 300,
 		   outerRadius = Math.min(width, height) / 2,
 		   innerRadius = outerRadius * .999,   

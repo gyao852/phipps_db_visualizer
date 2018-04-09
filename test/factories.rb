@@ -8,7 +8,7 @@ FactoryBot.define do
         state "Pennsylvania"
         zip "15213"
         country "United States"
-        address_type "Household"
+        address_type "Seasonal"
         date_added 1.year.ago.to_date
     end
 

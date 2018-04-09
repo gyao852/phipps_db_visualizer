@@ -11,16 +11,10 @@ class Address < ApplicationRecord
     scope :chronological_zip, -> {order(:zip)}
     scope :alphabetical_country, -> {order(:country)}
 
-    scope :home, -> {where(address_type: "Home")}
-    scope :business, -> {where(address_type: "Business")}
-    scope :billing, -> {where(address_type: "Billing")}
-    scope :work, -> {where(address_type: "Work")}
-    scope :previous_address, -> {where(address_type: "Previous Address")}
-    scope :seasonal, -> {where(address_type: "Seasonal")}
-    scope :for_type, -> (aType){where(type: aType)}
-    scope :for_lookup_id, -> (aLookup_id){where(type: aLookup_id)}
-    scope :for_zip, -> (aZip){where(type: aZip)}
-    scope :for_city, -> (aCity){where(type: aCity)}
+    scope :for_lookup_id, -> (aLookup_id){where(lookup_id: aLookup_id)}
+    scope :for_zip, -> (aZip){where(zip: aZip)}
+    scope :for_city, -> (aCity){where("city LIKE ?", "%#{aCity}%")}
+    scope :for_type, -> (aType){where("address_type LIKE ?", "%#{aType}%")}
     scope :for_address, -> (aAddress){where("address_1 LIKE ?", "%#{aAddress}%")}
     scope :for_state, -> (aState){where("state LIKE ?", "%#{aState}%")}
     scope :for_country, -> (aCountry){where("country LIKE ?", "%#{aCountry}%")}

@@ -20,12 +20,12 @@ module Contexts
   def create_addresses
     @add1 = FactoryBot.create(:address)
     @add2 = FactoryBot.create(:address, lookup_id: "12346",
-      address_1: "739 Bellefonte St", city: "Pittsburgh",
-      state: "Pennsylvania", zip: "15232", country: "United States",
-      address_type: "Home", date_added: 4.months.ago.to_date)
+      address_1: "739 Bellefonte Street", city: "New York City",
+      state: "New York", zip: "15232", country: "Germany",
+      address_type: "Household", date_added: 4.months.ago.to_date)
     @add3 = FactoryBot.create(:address, lookup_id: "10000",
-      address_1: "5034 Forbes Ave", city: "Pittsburgh",
-      state: "Pennsylvania", zip: "15213", country: "United States",
+      address_1: "5034 Forbes Avenue", city: "Los Angeles",
+      state: "California", zip: "15212", country: "Hong Kong",
       address_type: "Business", date_added: 2.months.ago.to_date)
   end
 

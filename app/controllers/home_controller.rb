@@ -6,6 +6,10 @@ class HomeController < ApplicationController
         @donation_histories = DonationHistory.all
         @donation_histories_fYear = DonationHistory.on_or_after(Date.new(Date.today.year-1,10,1)).on_or_before(Date.new(Date.today.year,9,30))
         @donation_sum_fYear = 0
+
+        @cp_histories = DonationProgram.for_program("Childrens' Programs").each do |p|
+            p.donation_histories
+        end
         
         # initialize variables by program
         @cp = {"sum" => 0, "program" => "Childrens' Programs", "<100" => 0, "100-249"=> 0, 

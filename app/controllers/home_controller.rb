@@ -7,32 +7,38 @@ class HomeController < ApplicationController
         @donation_histories_fYear = DonationHistory.on_or_after(Date.new(Date.today.year-1,10,1)).on_or_before(Date.new(Date.today.year,9,30))
         @donation_sum_fYear = 0
 
-        @cp_histories = DonationProgram.for_program("Childrens' Programs").each do |p|
-            p.donation_histories
-        end
+        @cp = DonationHistory.sum_and_count_level("Childrens' Programs")
+        @aa = DonationHistory.sum_and_count_level("Annual Appeal")
+        @cc = DonationHistory.sum_and_count_level("Commemorative Certificates")
+        @dgb =DonationHistory.sum_and_count_level("Discovery Garden")
+        @mh = DonationHistory.sum_and_count_level("Memorials & Honoraria")
+        @sg = DonationHistory.sum_and_count_level("Sustained Giving")
+        @other = DonationHistory.sum_and_count_level("Other")
+
+    
         
         # initialize variables by program
-        @cp = {"sum" => 0, "program" => "Childrens' Programs", "<100" => 0, "100-249"=> 0, 
-            "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            ">10000" => 0}
-        @cc = {"sum" => 0, "program" => "Commemorative Certificates", "<100" => 0, "100-249"=> 0, 
-            "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            ">10000" => 0}
-        @dgb = {"sum" => 0, "program" => "Discovery Garden Bricks", "<100" => 0, "100-249"=> 0, 
-            "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            ">10000" => 0}
-        @mh = {"sum" => 0, "program" => "Memorials & Honoraria", "<100" => 0, "100-249"=> 0, 
-            "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            ">10000" => 0}
-        @sg = {"sum" => 0, "program" => "Sustained Giving", "<100" => 0, "100-249"=> 0, 
-            "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            ">10000" => 0}
-        @aa = {"sum" => 0, "program" => "Annual Appeal", "<100" => 0, "100-249"=> 0, 
-            "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-            ">10000" => 0}
-        @other = {"sum" => 0, "program" => "Other", "<100" => 0, "100-249"=> 0, 
-        "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-        ">10000" => 0}
+        # @cp = {"sum" => 0, "program" => "Childrens' Programs", "<100" => 0, "100-249"=> 0, 
+        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
+        #     ">10000" => 0}
+        # @cc = {"sum" => 0, "program" => "Commemorative Certificates", "<100" => 0, "100-249"=> 0, 
+        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
+        #     ">10000" => 0}
+        # @dgb = {"sum" => 0, "program" => "Discovery Garden Bricks", "<100" => 0, "100-249"=> 0, 
+        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
+        #     ">10000" => 0}
+        # @mh = {"sum" => 0, "program" => "Memorials & Honoraria", "<100" => 0, "100-249"=> 0, 
+        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
+        #     ">10000" => 0}
+        # @sg = {"sum" => 0, "program" => "Sustained Giving", "<100" => 0, "100-249"=> 0, 
+        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
+        #     ">10000" => 0}
+        # @aa = {"sum" => 0, "program" => "Annual Appeal", "<100" => 0, "100-249"=> 0, 
+        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
+        #     ">10000" => 0}
+        # @other = {"sum" => 0, "program" => "Other", "<100" => 0, "100-249"=> 0, 
+        # "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
+        # ">10000" => 0}
 
         @donations_by_program = [@cp, @cc, @dgb, @mh, @sg, @other]
 

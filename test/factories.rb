@@ -68,7 +68,7 @@ FactoryBot.define do
     end
 
     factory :donation_program do
-        program 'Green Initiative'
+        program 'Total Contributions \ Operating \ Discovery Garden Bricks'
         active 'true'
     end
 

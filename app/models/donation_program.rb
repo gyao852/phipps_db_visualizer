@@ -7,7 +7,7 @@ class DonationProgram < ApplicationRecord
   # Scopes
   # -----------------------------
     scope :alphabetical, -> { order('program') }
-
+    scope :for_program, -> (aProgram){where("program LIKE ?", "%#{aProgram}%")}
 
   # Validations
   # -----------------------------
@@ -19,9 +19,9 @@ class DonationProgram < ApplicationRecord
   # -------------
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|
-      DonationProgram.create! row.to_hash 
+      DonationProgram.create! row.to_hash
     end
-  end 
+  end
 
 
 end

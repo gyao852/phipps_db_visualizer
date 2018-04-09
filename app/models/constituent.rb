@@ -23,21 +23,21 @@ class Constituent < ApplicationRecord
   #
   # Validations
   # -----------------------------
-  # validates :lookup_id, presence: true
-  # validates :last_group, presence: true
-  # validates :phone, format: {with: /\A\(?\d{3}\)[-]\d{3}[-]\d{4}\z/i,
-  #   message: "phone number is not valid"}
-  # validates :email_id, format: {with:
-  #   /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
-  #   message: "e-mail format is not valid."}
-  # validates :do_not_email, :inclusion => {:in => [true, false]}
-  # validates :name, presence: true
-  # validates :phone, format: { with: /\A\([0-9]{3}\)-[0-9]{3}-[0-9]{4}\z/i , message: "format of phone number is incorrect"}
-  # validates :email_id, format: { with:/\A[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}\z/i, message: "format of email address is incorrect"}
-  # validates_inclusion_of :do_not_email, :in => [true,false]
+  validates :lookup_id, presence: true
+  validates :last_group, presence: true
+  validates :phone, format: {with: /\A\(?\d{3}\)[-]\d{3}[-]\d{4}\z/i,
+    message: "phone number is not valid"}
+  validates :email_id, format: {with:
+    /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
+    message: "e-mail format is not valid."}
+  validates :do_not_email, :inclusion => {:in => [true, false]}
+  validates :name, presence: true
+  validates :phone, format: { with: /\A\([0-9]{3}\)-[0-9]{3}-[0-9]{4}\z/i , message: "format of phone number is incorrect"}
+  validates :email_id, format: { with:/\A[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}\z/i, message: "format of email address is incorrect"}
+  validates_inclusion_of :do_not_email, :in => [true,false]
 
-  # validates :last_group, presence: true
-  # validates_date :dob, before: Date.today, :allow_blank => true
+  validates :last_group, presence: true
+  validates_date :dob, before: Date.today, :allow_blank => true
 
 
   #
@@ -67,15 +67,6 @@ class Constituent < ApplicationRecord
       return curr
     end
   end
-  
-  # def current_membership_level
-  #    if self.constituent_membership_records.current.blank?
-  #      return nil
-  #    else
-  #      curr = self.constituent_membership_records.current.first.membership_record
-  #      return curr.membership_level
-  #    end
-  #  end
 
   def current_membership_scheme
     if self.membership_records.current.blank?
@@ -86,14 +77,6 @@ class Constituent < ApplicationRecord
     end
   end
 
-  # def current_membership_scheme
-  #  if self.constituent_membership_records.current.blank?
-  #    return nil
-  #  else
-  #    curr = self.constituent_membership_records.current.first.membership_record
-  #    return curr.membership_scheme
-  #  end
-  # end
 
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|

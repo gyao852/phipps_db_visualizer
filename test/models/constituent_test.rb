@@ -30,16 +30,16 @@ class ConstituentTest < ActiveSupport::TestCase
     setup do
       create_constituents
       create_addresses
-      #create_constituent_membership
-      #create_membership_records
+      create_membership_records
+      create_constituent_membership
     end
 
     # and provide a teardown method as well
     teardown do
       destroy_constituents
       destroy_addresses
-      #destroy_constituent_membership
-      #destroy_membership_records
+      destroy_membership_records
+      destroy_constituent_membership
     end
 
     should "show that constituent record is created properly" do
@@ -105,29 +105,20 @@ class ConstituentTest < ActiveSupport::TestCase
 
     # test the method 'current_membership_level'
     should "shows the current membership level" do
-      create_membership_records
-      create_constituent_membership
       assert_equal "Student/Senior", @bruce.current_membership_level
       assert_nil @yaoFam.current_membership_level
       # Because yao family's membership expired
       assert_nil @pnc.current_membership_level
       # Because pnc doesn't have a membership record
-      destroy_membership_records
-      destroy_constituent_membership
-
     end
 
     # test the method 'current_membership_scheme'
     should "shows the current membership scheme" do
-      create_membership_records
-      create_constituent_membership
       assert_equal "Phipps General Membership", @bruce.current_membership_scheme
       assert_nil @yaoFam.current_membership_scheme
       # Because yao family's membership expired
       assert_nil @pnc.current_membership_scheme
       # Because pnc doesn't have a membership record
-      destroy_membership_records
-      destroy_constituent_membership
     end
   end
 end

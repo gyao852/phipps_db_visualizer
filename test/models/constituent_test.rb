@@ -99,8 +99,8 @@ class ConstituentTest < ActiveSupport::TestCase
     # test the method 'current_address'
     should "show the current address" do
       assert_equal "5032 Forbes Avenue", @bruce.current_address
-      assert_equal "739 Bellefonte St", @yaoFam.current_address
-      assert_equal "5034 Forbes Ave", @pnc.current_address
+      assert_equal "739 Bellefonte Street", @yaoFam.current_address
+      assert_equal "5034 Forbes Avenue", @pnc.current_address
     end
 
     # test the method 'current_membership_level'

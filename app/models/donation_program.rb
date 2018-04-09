@@ -49,8 +49,8 @@ class DonationProgram < ApplicationRecord
 
   # Levels is a hash of giving levels and their counts
   # EG: {}
-  # returns hash with sum of donation amount and count of donations per giving level
-  def self.sum_and_count_level(program)
+  # returns hash with sum of donation amount and count of donations per giving level, defaults to current fiscal year
+  def self.sum_and_count_level(program, startDate=Date.new(Date.today.year-1,10,1), endDate=Date.new(Date.today.year,9,30) )
 
     hash = {"program"=>program, "sum"=> 0, "<100"=>0,"100-249"=>0,"250-499"=>0,"500-999"=>0, 
           "1000-2499"=>0, "2500-4999"=>0, "5000-9999"=>0,">10000"=>0}
@@ -61,7 +61,7 @@ class DonationProgram < ApplicationRecord
     end
     # need this outer loop because more than one program might be returned by the scope
     relevant_programs.each do |p|
-      histories = p.donation_histories
+      histories = p.donation_histories.on_or_after(startDate).on_or_before(endDate)
         histories.each do |h|
           hash["sum"] += h.amount
           lv = check_giving_level(h.amount)

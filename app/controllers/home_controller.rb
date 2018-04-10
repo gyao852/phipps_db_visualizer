@@ -26,8 +26,8 @@ class HomeController < ApplicationController
         @bar_chart_data_set = []
         
         @donations_by_program.each do |p|
-            m = p['sum']/ @donation_sum_fYear.to_f
-            obj = {category:p['program'], measure: m}
+            m = p['sum'].to_f/ @donation_sum_fYear.to_f
+            obj = {category:p['program'], measure: m, sum: p['sum']}
             @pie_chart_data_set.append(obj)
 
             #for each giving level

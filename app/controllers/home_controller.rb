@@ -20,74 +20,7 @@ class HomeController < ApplicationController
         @other = DonationProgram.sum_and_count_level("Other")
 
 
-        
-        # initialize variables by program
-        # @cp = {"sum" => 0, "program" => "Childrens' Programs", "<100" => 0, "100-249"=> 0, 
-        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-        #     ">10000" => 0}
-        # @cc = {"sum" => 0, "program" => "Commemorative Certificates", "<100" => 0, "100-249"=> 0, 
-        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-        #     ">10000" => 0}
-        # @dgb = {"sum" => 0, "program" => "Discovery Garden Bricks", "<100" => 0, "100-249"=> 0, 
-        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-        #     ">10000" => 0}
-        # @mh = {"sum" => 0, "program" => "Memorials & Honoraria", "<100" => 0, "100-249"=> 0, 
-        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-        #     ">10000" => 0}
-        # @sg = {"sum" => 0, "program" => "Sustained Giving", "<100" => 0, "100-249"=> 0, 
-        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-        #     ">10000" => 0}
-        # @aa = {"sum" => 0, "program" => "Annual Appeal", "<100" => 0, "100-249"=> 0, 
-        #     "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-        #     ">10000" => 0}
-        # @other = {"sum" => 0, "program" => "Other", "<100" => 0, "100-249"=> 0, 
-        # "250-499" => 0, "500-999" => 0, "1000-2499" => 0, "2500-4999" => 0, "5000-9999" => 0,
-        # ">10000" => 0}
-
         @donations_by_program = [@cp, @cc, @dgb, @mh, @sg, @aa, @other]
-
-        # def setDonationLevelandProgram(a,p)
-        #     p["sum"] += a
-        #     if a < 100
-        #         p["<100"] += 1
-        #     elsif a >= 100 && a < 249
-        #         p["100-249"] += 1
-        #     elsif a >= 250 && a <= 499
-        #         p["250-499"] += 1
-        #     elsif a >= 500 && a<= 999
-        #         p["500-999"] += 1
-        #     elsif a >=1000 && a <= 2499
-        #         p["1000-2499"] += 1
-        #     elsif a >=2500 && a <= 4999
-        #         p["2500-4999"] += 1
-        #     elsif a >=2500 && a <= 4999
-        #         p["5000-9999"] += 1
-        #     else
-        #         p[">10000"] += 1
-        #     end
-
-        # end
-        # @donation_histories_fYear.each do |h|
-        #     @donation_sum_fYear += h.amount
-        #     calculate fiscal year donation sums from each donation program for pie chart
-            
-        #     if h.donation_program.program == @cp["program"]
-        #         setDonationLevelandProgram(h.amount, @cp)
-        #     elsif h.donation_program.program == @cc["program"]
-        #         setDonationLevelandProgram(h.amount, @cc)
-        #     elsif h.donation_program.program == @dgb["program"]
-        #         setDonationLevelandProgram(h.amount, @dgb)
-        #     elsif h.donation_program.program == @mh["program"]
-        #         setDonationLevelandProgram(h.amount, @mh)
-        #     elsif h.donation_program.program == @sg["program"]
-        #         setDonationLevelandProgram(h.amount, @sg)
-        #     elsif h.donation_program.program == @other["program"]
-        #         setDonationLevelandProgram(h.amount, @aa)
-        #     else
-        #         setDonationLevelandProgram(h.amount, @other)
-        #     end
-
-        # end
 
         @pie_chart_data_set = []
         @bar_chart_data_set = []

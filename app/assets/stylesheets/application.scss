@@ -166,6 +166,7 @@ i.md-40 {
     text-align: center;
 }
 
+
 #sidebar.active ul li a {
     padding: 20px 10px;
     text-align: center;
@@ -210,8 +211,12 @@ i.md-40 {
     width: 20rem;
 }
 
+.progress {
+    height: 2rem !important;
+}
+
 .donationChartWrapper {
-    width: 39rem;
+    width: 50rem;
     
 }
 #donationChart svg{

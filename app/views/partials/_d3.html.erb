@@ -1,7 +1,28 @@
-
+<div class="d-flex">
 <div class= 'card bg-white donationChartWrapper'>
   <div id="donationChart"></div>
 </div>
+
+<div class = 'card bg-white progressBarWrapper'>
+	<select class="progressSelector" onchange="moveProgressBar(value)">
+	<option value="started" selected>Started</option>
+	<option value="inProgress">In Progress</option>
+	<option value="completed">Completed</option>
+	</select>
+
+	<div class="progress"></div>
+
+	<div class="progress"></div>
+
+	<div class="progress"></div>
+
+	<div class="progress"></div>
+
+	<div class="progress"></div>
+</div>
+
+<div>
+
 
 
 <script type="text/javascript">
@@ -13,7 +34,6 @@ http://bl.ocks.org/diethardsteiner/3287802
 ################ FORMATS ##################
 -------------------------------------------
 */
-
 
 var 	formatAsPercentage = d3.format("%"),
 		formatAsPercentage1Dec = d3.format(".1%"),
@@ -30,7 +50,6 @@ var 	formatAsPercentage = d3.format("%"),
 ############# PIE CHART ###################
 -------------------------------------------
 */
-
 
 
 function dsPieChart(){
@@ -402,6 +421,63 @@ function updateBarChart(group, colorChosen) {
 			.text(group + "'s Sales Breakdown 2012")
 		;
 }		
+
+
+	// Progress bars
+	var svg = d3.select('.progress')
+		.append('svg')
+		.attr('height', 100)
+		.attr('width', 500);
+
+	var states = ['started', 'inProgress', 'completed'],
+	    segmentWidth = 100,
+		currentState = 'started';
+
+	var colorScale = d3.scale.ordinal()
+		.domain(states)
+		.range(['yellow', 'orange', 'green']);
+
+	svg.append('rect')
+		.attr('class', 'bg-rect')
+		.attr('rx', 10)
+		.attr('ry', 10)
+		.attr('fill', 'gray')
+		.attr('height', 15)
+		.attr('width', function(){
+			return segmentWidth * states.length;
+		})
+		.attr('x', 0);
+
+	var progress = svg.append('rect')
+					.attr('class', 'progress-rect')
+					.attr('fill', function(){
+						return colorScale(currentState);
+					})
+					.attr('height', 15)
+					.attr('width', 0)
+					.attr('rx', 10)
+					.attr('ry', 10)
+					.attr('x', 0);
+
+	progress.transition()
+		.duration(1000)
+		.attr('width', function(){
+			var index = states.indexOf(currentState);
+			return (index + 1) * segmentWidth;
+		});
+
+	function moveProgressBar(state){
+		progress.transition()
+			.duration(1000)
+			.attr('fill', function(){
+				return colorScale(state);
+			})
+			.attr('width', function(){
+				var index = states.indexOf(state);
+				return (index + 1) * segmentWidth;
+			});
+	}
+
 
 
     </script>

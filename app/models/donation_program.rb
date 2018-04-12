@@ -23,7 +23,7 @@ class DonationProgram < ApplicationRecord
   def self.for_other_programs
     return DonationProgram.all - DonationProgram.for_program("Annual Appeal") - 
       DonationProgram.for_program("Commemorative Certificates") -
-      DonationProgram.for_program("Dicovery Garden") -
+      DonationProgram.for_program("Discovery Garden") -
       DonationProgram.for_program("Sustained Giving") -
       DonationProgram.for_program("Childrens' Programs")
   end

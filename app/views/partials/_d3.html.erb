@@ -4,6 +4,7 @@
 	<h4>Donation Revenue By Program and Giving Level</h4>
 	<br/>
 	<div id="donationChart"></div>
+	<%= raw @donation_sum_fYear %>
 	</div>
 </div>
 
@@ -108,6 +109,7 @@ function dsPieChart(){
 			else if(d.data.category=="Annual Appeal"){return "AA";}
 			else if(d.data.category=="Memorials & Honoraria"){return "M&H";}
 			else if(d.data.category == "Sustained Giving") { return "SG";}
+		    else if (d.data.category =="Discovery Garden") {return "DG";}
 			else { return "Other"}
 
 			})

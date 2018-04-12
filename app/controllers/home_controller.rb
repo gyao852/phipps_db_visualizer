@@ -3,11 +3,6 @@ class HomeController < ApplicationController
         @home = true
         
         # donation goals from setting cache
-        @aa_goal = Setting.aa_goal
-        @cc_goal = Setting.cc_goal
-        @cp_goal = Setting.cp_goal
-        @sg_goal = Setting.sg_goal
-        @dg_goal = Setting.dg_goal
 
         # get donation histories
         @donation_histories = DonationHistory.all
@@ -16,6 +11,8 @@ class HomeController < ApplicationController
         @donation_histories_fYear.each do |h|
             @donation_sum_fYear += h.amount
         end
+
+
 
 
         @cp = DonationProgram.sum_and_count_level("Childrens' Programs")
@@ -34,9 +31,26 @@ class HomeController < ApplicationController
         
         @donations_by_program.each do |p|
             m = p['sum'].to_f/ @donation_sum_fYear.to_f
-            obj = {category:p['program'], measure: m, sum: p['sum']}
+            if p['program']=="Annual Appeal"
+                @aa_progress = {sum: p['sum'], goal: Setting.aa_goal, progress:  p['sum'].to_f/ Setting.aa_goal}
+            elsif p['program']=="Commemorative Certificates"
+                @cc_progress = {sum: p['sum'], goal: Setting.cc_goal, progress:  p['sum'].to_f/ Setting.cc_goal}
+            elsif p['program']=="Childrens' Programs"
+                @cp_progress = {sum: p['sum'], goal: Setting.cp_goal, progress:  p['sum'].to_f/ Setting.cp_goal}
+            elsif p['program']=="Discovery Garden"
+                @dg_progress = {sum: p['sum'], goal: Setting.dg_goal, progress:  p['sum'].to_f/ Setting.dg_goal}
+            elsif p['program']=="Memorials & Honoraria"
+                @mh_progress = {sum: p['sum'], goal: Setting.mh_goal, progress:  p['sum'].to_f/ Setting.mh_goal}
+            elsif p['program']=="Sustained Giving"
+                @sg_progress = {sum: p['sum'], goal: Setting.sg_goal, progress:  p['sum'].to_f/ Setting.sg_goal}
+            else
+                goal = nil
+            end
+            
+            obj = {category:p['program'],sum: p['sum'], measure: m}
+            
             @pie_chart_data_set.append(obj)
-
+       
             #for each giving level
             lv1 = { category: "<100", group: p['program'], measure: p["<100" ]}
             lv2 = { category: "100-249", group: p['program'], measure: p["100-249"]}

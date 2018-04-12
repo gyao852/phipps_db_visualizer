@@ -3,44 +3,60 @@
     <div class="card-body">
         <h4>Donation Progress</h4>
         <br/>
+            <label>Annual Appeal</label>
+            <div class="aa-progress"></div>
+            <br/>
 
-        <label>Annual Appeal</label>
-        <div class="progress"></div>
-        <br/>
-        
-        <label>Childrens' Programs</label>
-        <div class="progress"></div>
-        <br/>
-        
-        <label>Commemorative Certificates</label>
-        <div class="progress"></div>
-        <br/>
-        
-        <label>Discovery Gardens</label>
-        <div class="progress"></div>
-        <br/>
+            <label>Commemorative Certificates</label>
+            <div class="cc-progress"></div>
+            <br/>
+            
+            <label>Childrens' Programs</label>
+            <div class="cp-progress"></div>
+            <br/>
+                       
+            <label>Discovery Gardens</label>
+            <div class="dg-progress"></div>
+            <br/>
 
-        <label>Sustained Giving</label>
-        <div class="progress"></div>   
+            <label>Memorials & Honoraria</label>
+            <div class="mh-progress"></div>
+            <br/>
+
+            <label>Sustained Giving</label>
+            <div class="sg-progress"></div>   
+
     </div> 
 </div>
+
 
 <script type="text/javascript">
 // Progress bars
 
-var pbar_dataset = <%= raw @pbar_dataset.to_json %>
-var svg = d3.select('.progress')
+var aaProgress =  <%= raw @aa_progress.to_json %>,
+    ccProgress = <%= raw @cc_progress.to_json %>,
+    cpProgress = <%= raw @cp_progress.to_json %>,
+    dgProgress = <%= raw @dg_progress.to_json %>,
+    mhProgress = <%= raw @mh_progress.to_json %>,
+    sgProgress = <%= raw @sg_progress.to_json %>
+    
+console.log(aaProgress, ccProgress, cpProgress, dgProgress, mhProgress, sgProgress)
+
+// have to call the class later for each of the progress bars
+
+function progressBar(c){
+    var svg = d3.select(c)
     .append('svg')
     .attr('height', "2rem")
     .attr('width', 500);
 
-var states = ['started', 'inProgress', 'completed'],
-    segmentWidth = 0;
+    var states = ['started', 'inProgress', 'completed'],
+    segmentWidth = 100,
     currentState = 'started';
 
-var colorScale = d3.scale.ordinal()
-    .domain(states)
-    .range(['yellow', 'orange', 'green']);
+    var colorScale = d3.scale.ordinal()
+        .domain(states)
+        .range(['yellow', 'orange', 'green']);
 
 svg.append('rect')
     .attr('class', 'bg-rect')
@@ -53,10 +69,11 @@ svg.append('rect')
     })
     .attr('x', 0);
 
-var progress = svg.append('rect')
+    var progress = svg.append('rect')
                 .attr('class', 'progress-rect')
+                // color everything blue for now, add color thresholds later
                 .attr('fill', function(){
-                    return colorScale(currentState);
+                    return colorScale(c);
                 })
                 .attr('height', "2.5rem")
                 .attr('width', 0)
@@ -72,25 +89,31 @@ var progressText = svg.append("svg:text")
                       
                     })
 
+                    progress.transition()
+                    .duration(1000)
+                    .attr('width', function(){
+                        var index = states.indexOf(currentState);
+                        return (index + 1) * segmentWidth;
+                    });
+                
+                function moveProgressBar(state){
+                    progress.transition()
+                        .duration(1000)
+                        .attr('fill', function(){
+                            return colorScale();
+                        })
+                        .attr('width', function(){
+                            var index = states.indexOf(state);
+                            return (index + 1) * segmentWidth;
+                        });
+                }
 
-
-progress.transition()
-    .duration(1000)
-    .attr('width', function(){
-        var index = states.indexOf(currentState);
-        return (index + 1) * segmentWidth;
-    });
-
-function moveProgressBar(state){
-    progress.transition()
-        .duration(1000)
-        .attr('fill', function(){
-            return colorScale(state);
-        })
-        .attr('width', function(){
-            var index = states.indexOf(state);
-            return (index + 1) * segmentWidth;
-        });
 }
+
+progressBar('.aa-progress')
+
+
+
+
 
 </script>

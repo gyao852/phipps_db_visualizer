@@ -9,6 +9,7 @@ defaults: &defaults
   cp_goal: 200000
   dg_goal: 100000
   sg_goal: 200000
+  mh_goal: 5000
 
 
 

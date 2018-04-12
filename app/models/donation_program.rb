@@ -4,6 +4,7 @@ class DonationProgram < ApplicationRecord
   self.primary_key = 'donation_program_id'
   has_many :donation_histories, foreign_key: 'donation_program_id'
   has_many :constituents, through: :donation_histories
+  attr_accessor :goal
 
   # Scopes
   # -----------------------------
@@ -22,7 +23,7 @@ class DonationProgram < ApplicationRecord
   def self.for_other_programs
     return DonationProgram.all - DonationProgram.for_program("Annual Appeal") - 
       DonationProgram.for_program("Commemorative Certificates") -
-      DonationProgram.for_program("Dicovery Garden") -
+      DonationProgram.for_program("Discovery Garden") -
       DonationProgram.for_program("Sustained Giving") -
       DonationProgram.for_program("Childrens' Programs")
   end

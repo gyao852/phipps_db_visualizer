@@ -1,7 +1,13 @@
 
-<div class= 'card bg-white donationChartWrapper'>
-  <div id="donationChart"></div>
+<div class= 'card bg-white donationChartWrapper mr-auto'>
+	<div class='card-body'>
+	<h4>Donation Revenue By Program and Giving Level</h4>
+	<br/>
+	<div id="donationChart"></div>
+	<%= raw @donation_sum_fYear %>
+	</div>
 </div>
+
 
 
 <script type="text/javascript">
@@ -13,7 +19,6 @@ http://bl.ocks.org/diethardsteiner/3287802
 ################ FORMATS ##################
 -------------------------------------------
 */
-
 
 var 	formatAsPercentage = d3.format("%"),
 		formatAsPercentage1Dec = d3.format(".1%"),
@@ -32,15 +37,15 @@ var 	formatAsPercentage = d3.format("%"),
 */
 
 
-
 function dsPieChart(){
   // need to calculate number of programs and percentage there are
 
 
 	var pieChartDataSet = <%= raw @pie_chart_data_set.to_json %>
+	console.log("pchart",pieChartDataSet)
 
-	var  width = 300
-		   height = 300,
+	var  width = 400
+		   height = 400,
 		   outerRadius = Math.min(width, height) / 2,
 		   innerRadius = outerRadius * .999,   
 		   // for animation
@@ -82,7 +87,7 @@ function dsPieChart(){
                .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
                .attr("d", arc)     //this creates the actual SVG path using the associated data (pie) with the arc drawing function
 					.append("svg:title") //mouseover title showing the figures
-				   .text(function(d) { return d.data.category + ": " + formatAsPercentage(d.data.measure); });			
+				   .text(function(d) { return d.data.category + ": " + "$" + d.data.sum + " (" + formatAsPercentage(d.data.measure) + ")"; });			
 
         d3.selectAll("g.slice").selectAll("path").transition()
 			    .duration(750)
@@ -103,7 +108,8 @@ function dsPieChart(){
 			else if (d.data.category == "Commemorative Certificates") {return "CC";}
 			else if(d.data.category=="Annual Appeal"){return "AA";}
 			else if(d.data.category=="Memorials & Honoraria"){return "M&H";}
-			else if(d.data.category == "Sustainable Giving") { return "SG";}
+			else if(d.data.category == "Sustained Giving") { return "SG";}
+		    else if (d.data.category =="Discovery Garden") {return "DG";}
 			else { return "Other"}
 
 			})
@@ -215,7 +221,7 @@ function dsBarChart() {
 		barPadding = basics.barPadding
 		;
 					
-	var 	xScale = d3.scale.linear()
+	var xScale = d3.scale.linear()
 						.domain([0, firstDatasetBarChart.length])
 						.range([0, width])
 						;
@@ -401,7 +407,6 @@ function updateBarChart(group, colorChosen) {
 			.text(group + "'s Sales Breakdown 2012")
 		;
 }		
-
 
     </script>
 

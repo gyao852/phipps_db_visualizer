@@ -34,7 +34,7 @@ var svg = d3.select('.progress')
     .attr('width', 500);
 
 var states = ['started', 'inProgress', 'completed'],
-    segmentWidth = 100,
+    segmentWidth = 0;
     currentState = 'started';
 
 var colorScale = d3.scale.ordinal()

@@ -2,6 +2,13 @@ class HomeController < ApplicationController
     def home
         @home = true
         
+        # donation goals from setting cache
+        @aa_goal = Setting.aa_goal
+        @cc_goal = Setting.cc_goal
+        @cp_goal = Setting.cp_goal
+        @sg_goal = Setting.sg_goal
+        @dg_goal = Setting.dg_goal
+
         # get donation histories
         @donation_histories = DonationHistory.all
         @donation_histories_fYear = DonationHistory.on_or_after(Date.new(Date.today.year-1,10,1)).on_or_before(Date.new(Date.today.year,9,30))

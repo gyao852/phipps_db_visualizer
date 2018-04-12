@@ -2,7 +2,6 @@
 
     <div class="card-body">
         <h4>Donation Progress</h4>
-
         <br/>
 
         <label>Annual Appeal</label>
@@ -28,6 +27,8 @@
 
 <script type="text/javascript">
 // Progress bars
+
+var pbar_dataset = <%= raw @pbar_dataset.to_json %>
 var svg = d3.select('.progress')
     .append('svg')
     .attr('height', "2rem")
@@ -62,6 +63,16 @@ var progress = svg.append('rect')
                 .attr('rx', 10)
                 .attr('ry', 10)
                 .attr('x', 0);
+
+var progressText = svg.append("svg:text")
+                    .attr("text-anchor","end")
+                    .attr('x',2)
+                    .attr('y',10)
+                    .text(function(d){
+                      
+                    })
+
+
 
 progress.transition()
     .duration(1000)

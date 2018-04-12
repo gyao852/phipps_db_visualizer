@@ -1,0 +1,22 @@
+# config/app.yml for rails-settings-cached
+defaults: &defaults
+  foo: "Foo"
+  bar: 123
+
+  # Donation Goals. To change values in default, web application needs to be restarted.
+  aa_goal: 200000
+  cc_goal: 200000
+  cp_goal: 200000
+  dg_goal: 100000
+  sg_goal: 200000
+
+
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

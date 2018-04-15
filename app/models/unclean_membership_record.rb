@@ -1,0 +1,2 @@
+class UncleanMembershipRecord < ApplicationRecord
+end

@@ -29,6 +29,51 @@ Rails.application.routes.draw do
     collection {post :importfile}
   end
 
+  resources :unclean_constituent do
+    # collection {post :import}
+    collection {post :importfile}
+  end
+
+  resources :unclean_address do
+    # collection {post :import}
+    collection {post :importfile}
+  end
+
+  resources :unclean_membership_record do
+    # collection {post :import}
+    collection {post :importfile}
+  end
+
+  resources :unclean_constituent_membership_record do
+    # collection {post :import}
+    collection {post :importfile}
+  end
+
+  resources :unclean_contact_history do
+    # collection {post :import}
+    collection {post :importfile}
+  end
+
+  resources :unclean_constituent_event do
+    # collection {post :import}
+    collection {post :importfile}
+  end
+
+  resources :unclean_event do
+    # collection {post :import}
+    collection {post :importfile}
+  end
+
+  resources :unclean_donation_history do
+    # collection {post :import}
+    collection {post :importfile}
+  end
+
+  resources :unclean_donation_program do
+    # collection {post :import}
+    collection {post :importfile}
+  end
+
   resources :sessions
 
   # Semi-static page routes

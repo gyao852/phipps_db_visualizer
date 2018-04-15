@@ -1,0 +1,2 @@
+class UncleanAddressController < ApplicationController
+end

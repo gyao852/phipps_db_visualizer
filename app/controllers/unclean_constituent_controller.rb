@@ -1,0 +1,2 @@
+class UncleanConstituentController < ApplicationController
+end

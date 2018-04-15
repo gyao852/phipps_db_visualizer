@@ -1,0 +1,2 @@
+class UncleanConstituentEvent < ApplicationRecord
+end

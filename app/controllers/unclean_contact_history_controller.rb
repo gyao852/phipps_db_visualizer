@@ -1,0 +1,2 @@
+class UncleanContactHistoryController < ApplicationController
+end

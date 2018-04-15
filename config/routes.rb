@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     collection {post :import}
   end
   resources :constituents do
+    # collection {post :import}
     collection {post :importfile}
   end
 

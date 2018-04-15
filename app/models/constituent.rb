@@ -107,6 +107,16 @@ class Constituent < ApplicationRecord
 
   end
 
+  # def self.import(file)
+  #   CSV.foreach(file.path, headers:true) do |row|
+  #     if row[7] != nil
+  #       Constituent.create! row.to_hash
+  #     else
+  #       Constituent.create! row.to_hash
+  #     end
+  #   end
+  # end
+
 
 
   private

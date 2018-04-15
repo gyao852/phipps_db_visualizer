@@ -74,4 +74,8 @@ class HomeController < ApplicationController
     
 
     end
+
+    def reports
+        @nav_status = 'reports'
+    end
 end

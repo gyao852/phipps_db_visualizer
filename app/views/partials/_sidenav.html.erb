@@ -100,6 +100,24 @@
 					</a>
 				</li>
 			<% end %>
+
+			<% if @nav_status == 'reports' %>
+				<li class='nav-item'>
+					<%= link_to reports_path, class:'btn nav-link' do %>
+						<i class="material-icons">description</i>
+						<br/>
+						Reports
+					<% end %>
+				</li>
+			<% else %>
+				<li class='nav-item'>
+					<%= link_to reports_path, class:'btn nav-link text-light' do %>
+						<i class="material-icons">description</i>
+						<br/>
+						Reports
+					<% end %>
+			<% end %>
+
 			
 			<% if @nav_status == 'users' %>
 				<li class='nav-item'>
@@ -136,6 +154,8 @@
 					</a>
 				</li>
 			<% end %>
+
+
 
 		</ul>
 

@@ -67,10 +67,14 @@ class ConstituentsController < ApplicationController
     end
   end
 
+  # def import
+  #   Constituent.import(params[:file])
+  #   redirect_to constituents_path, notice: "csv imported"
+  # end
 
-  def import
-    Constituent.import(params[:file])
-    redirect_to constituents_path, notice: "csv imported"
+  def importfile
+    Constituent.import_file(params[:file])
+    redirect_to import_page_path, notice: "csv imported"
   end
 
   def import_page

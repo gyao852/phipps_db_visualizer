@@ -8,7 +8,7 @@ FactoryBot.define do
         state "Pennsylvania"
         zip "15213"
         country "United States"
-        address_type "Household"
+        address_type "Seasonal"
         date_added 1.year.ago.to_date
     end
 
@@ -38,7 +38,7 @@ FactoryBot.define do
         name "Bruce Wayne"
         last_group "Wayne"
         email_id "abc@mail.com"
-        phone "(123)-456-7890"
+        phone "(123) 456-7890"
         dob 20.years.ago.to_date
         do_not_email false
         duplicate false

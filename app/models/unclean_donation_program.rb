@@ -1,0 +1,2 @@
+class UncleanDonationProgram < ApplicationRecord
+end

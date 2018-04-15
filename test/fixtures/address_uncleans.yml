@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address_id: MyText
+  lookup_id: MyText
+  address_1: MyText
+  city: MyText
+  state: MyText
+  zip: MyText
+  country: MyText
+  address_type: MyText
+  date_added: 2018-04-15
+
+two:
+  address_id: MyText
+  lookup_id: MyText
+  address_1: MyText
+  city: MyText
+  state: MyText
+  zip: MyText
+  country: MyText
+  address_type: MyText
+  date_added: 2018-04-15

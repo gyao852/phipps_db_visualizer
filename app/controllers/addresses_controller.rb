@@ -64,10 +64,15 @@ class AddressesController < ApplicationController
   end
 
 
-  def import
-    Address.import(params[:file])
-    redirect_to addresses_path, notice: "csv imported"
+  def importfile
+    Address.import_file(params[:file])
+    redirect_to address_import_page_path, notice: "csv imported"
   end
+
+  # def import
+  #   Address.import(params[:file])
+  #   redirect_to addresses_path, notice: "csv imported"
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

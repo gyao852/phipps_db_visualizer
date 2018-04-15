@@ -1,0 +1,2 @@
+class UncleanDonationHistoryController < ApplicationController
+end

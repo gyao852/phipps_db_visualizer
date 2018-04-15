@@ -28,13 +28,10 @@ class Constituent < ApplicationRecord
   validates :name, presence: true
   validates :phone, format: {with: /\A\(?\d{3}\)[\s]\d{3}[-]\d{4}\z/i,
     message: "phone number is not valid"}, :allow_blank => true
-  #validates :email_id, format: {with:
-  #  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
-  #  message: "e-mail format is not valid."}
   validates :do_not_email, :inclusion => {:in => [true, false]}
   validates_inclusion_of :do_not_email, :in => [true,false]
   validates_date :dob, before: Date.today, :allow_blank => true
-  validates :email_id, format: { with:/\A^$|^[^@]+@[^@]+\.[^@]+/i,
+  validates :email_id, format: { with:/.+@.+\..+/i,
   message: "format of email address is incorrect"}, :allow_blank => true
 
 

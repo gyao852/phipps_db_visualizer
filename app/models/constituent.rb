@@ -75,17 +75,17 @@ class Constituent < ApplicationRecord
     end
   end
 
-
-  def self.import(file)
-    CSV.foreach(file.path, headers:true) do |row|
-      if row[7] != nil
-        Constituent.create! row.to_hash
-      else
-        Constituent.create! row.to_hash
-      end
+  def self.import_file(file)
+    constituents_array = []
+    CSV.foreach(file.path.to_s, headers:true) do |row|
+      constituents_array << Constituent.new(row.to_h)
     end
+    puts "array is"
+    puts constituents_array
+    puts "array is"
+    Constituent.import constituents_array, on_duplicate_key_ignore: true
   end
-
+  
   private
 
 end

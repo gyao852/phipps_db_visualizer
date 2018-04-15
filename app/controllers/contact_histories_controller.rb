@@ -77,6 +77,6 @@ class ContactHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_history_params
-      params.require(:contact_history).permit(:contact_history_id, :lookup_id, :type, :date)
+      params.require(:contact_history).permit(:lookup_id, :contact_type, :date)
     end
 end

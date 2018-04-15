@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Contact history</th>
+      
       <th>Lookup</th>
       <th>Type</th>
       <th>Date</th>
@@ -16,9 +16,9 @@
   <tbody>
     <% @contact_histories.each do |contact_history| %>
       <tr>
-        <td><%= contact_history.contact_history_id %></td>
+        
         <td><%= contact_history.lookup_id %></td>
-        <td><%= contact_history.type %></td>
+        <td><%= contact_history.contact_type %></td>
         <td><%= contact_history.date %></td>
         <td><%= link_to 'Show', contact_history %></td>
         <td><%= link_to 'Edit', edit_contact_history_path(contact_history) %></td>

@@ -1,0 +1,2 @@
+class UncleanConstituentMembershipRecordController < ApplicationController
+end

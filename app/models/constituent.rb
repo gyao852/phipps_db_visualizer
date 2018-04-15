@@ -28,8 +28,8 @@ class Constituent < ApplicationRecord
   validates :name, presence: true
   validates :phone, format: {with: /\A\(?\d{3}\)[\s]\d{3}[-]\d{4}\z/i,
     message: "phone number is not valid"}, :allow_blank => true
-  validates :do_not_email, :inclusion => {:in => [true, false]}
-  validates_inclusion_of :do_not_email, :in => [true,false]
+  # validates :do_not_email, :inclusion => {:in => [true, false]}
+  # validates_inclusion_of :do_not_email, :in => [true,false]
   validates_date :dob, before: Date.today, :allow_blank => true
   validates :email_id, format: { with:/.+@.+\..+/i,
   message: "format of email address is incorrect"}, :allow_blank => true
@@ -75,25 +75,25 @@ class Constituent < ApplicationRecord
     end
   end
 
-  def self.import_file(file)
-    constituents_array = []
-    CSV.foreach(file.path.to_s, headers:true) do |row|
-      constituents_array << Constituent.new(row.to_h)
-    end
-    puts "array is"
-    puts constituents_array
-    puts "array is"
-    Constituent.import constituents_array, on_duplicate_key_ignore: true
-  end
-    # def self.import(file)
-  #   CSV.foreach(file.path, headers:true) do |row|
-  #     if row[7] != nil
-  #       Constituent.create! row.to_hash
-  #     else
-  #       Constituent.create! row.to_hash
-  #     end
+  # def self.import_file(file)
+  #   constituents_array = []
+  #   CSV.foreach(file.path.to_s, headers:true) do |row|
+  #     constituents_array << Constituent.new(row.to_h)
   #   end
+  #   puts "array is"
+  #   puts constituents_array
+  #   puts "array is"
+  #   Constituent.import constituents_array, on_duplicate_key_ignore: true
   # end
+  def self.import_file(file)
+    CSV.foreach(file.path, headers:true) do |row|
+      if row[7] != nil
+        Constituent.create! row.to_hash
+      else
+        Constituent.create! row.to_hash
+      end
+    end
+  end
   
   private
 

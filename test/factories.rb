@@ -38,7 +38,7 @@ FactoryBot.define do
         name "Bruce Wayne"
         last_group "Wayne"
         email_id "abc@mail.com"
-        phone "(123)-456-7890"
+        phone "(123) 456-7890"
         dob 20.years.ago.to_date
         do_not_email false
         duplicate false

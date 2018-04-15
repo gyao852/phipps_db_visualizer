@@ -26,7 +26,7 @@ class DonationHistory < ApplicationRecord
   # Scopes
   scope :on_or_before, -> (date) {where("date <= ?", date)}
   scope :on_or_after,  -> (date) {where("date >= ?", date)}
-
+  scope :chronological, -> {order 'date DESC'}
   # Class Method
 
 

@@ -20,6 +20,7 @@ class Constituent < ApplicationRecord
     scope :individual, -> {where(constituent_type: "Individual")}
     scope :household, -> {where(constituent_type: "Household")}
     scope :company, -> {where(constituent_type: "Organization")}
+
   #
   # Validations
   # -----------------------------
@@ -41,6 +42,67 @@ class Constituent < ApplicationRecord
   #
   # Other methods
   # -------------
+  def most_recent_donation
+    return self.donation_histories.chronological.first
+  end
+
+  def self.last_donation_before(date)
+    donations = []
+    Constituent.all.each do |c|
+      unless c.donation_histories.nil? || c.donation_histories.empty?
+        append = []
+        if c.most_recent_donation.date < date
+          append = [c.name, c.email_id, c.most_recent_donation.date, c.most_recent_donation.amount]
+          donations.append(append)
+        end
+      end
+    end
+    return donations
+  end
+
+  
+  # generates report of constituents who have not donated after a certain date and most recent doantions they made
+  def self.generate_donations_report(date)
+    filename = 'reports/donation-history-report-before-'+date.strftime("%m-%d-%Y")+".csv"
+    puts filename
+    donations = Constituent.last_donation_before(date)
+    CSV.open(filename,'wb') do |csv|
+      csv << ["Constituent", "Email", "Last Donation Date", "Last Donation Amount"]
+      donations.each do |row|
+        csv << row
+      end
+    end
+  end
+
+  def most_recently_contacted_date
+    return self.contact_histories.chronological.first.date
+  end
+
+  def self.last_contacted_before(date)
+    to_contact = []
+    Constituent.all.each do |c|
+      unless c.contact_histories.nil? || c.contact_histories.empty?
+        append = []
+        if c.most_recently_contacted_date < date
+          append = [c.name, c.email_id, c.do_not_email]
+          to_contact.append(append)
+        end
+      end    
+    end
+    return to_contact
+  end
+
+  def self.generate_contact_history_report(date)
+    filename = 'reports/contact-history-report-before-'+date.strftime("%m-%d-%Y")+".csv"
+    to_contact = Constituent.last_contacted_before(date)
+    CSV.open(filename,'wb') do |csv|
+      csv << ["Constituent", "Email", "Do Not Email"]
+      to_contact.each do |row|
+        csv << row
+      end
+    end
+  end
+  
   def current_address
    # map all addresses that belong to the constituent
    all_addresses = self.addresses

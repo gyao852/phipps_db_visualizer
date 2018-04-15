@@ -10,6 +10,7 @@ defaults: &defaults
   dg_goal: 100000
   sg_goal: 200000
   mh_goal: 5000
+  total_goal: 905000
 
 
 

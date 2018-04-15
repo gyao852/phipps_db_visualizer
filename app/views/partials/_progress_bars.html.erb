@@ -1,31 +1,13 @@
-<div class = 'card bg-white progressBarWrapper mr-auto'>
+<div class = 'card bg-white progressBarWrapper mr-auto align-self-start'>
 
     <div class="card-body">
         <h4>Donation Progress</h4>
-        <br/>
-            <label>Annual Appeal</label>
-            <div class="aa-progress"></div>
-            <br/>
 
-            <label>Commemorative Certificates</label>
-            <div class="cc-progress"></div>
-            <br/>
-            
-            <label>Childrens' Programs</label>
-            <div class="cp-progress"></div>
-            <br/>
-                       
-            <label>Discovery Gardens</label>
-            <div class="dg-progress"></div>
-            <br/>
-
-            <label>Memorials & Honoraria</label>
-            <div class="mh-progress"></div>
-            <br/>
-
-            <label>Sustained Giving</label>
-            <div class="sg-progress"></div>   
-
+            <div class="progress-element">
+                <label>Total</label>
+                <div class="total-progress progress"></div>
+            </div>
+ 
     </div> 
 </div>
 
@@ -47,7 +29,7 @@ console.log(aaProgress, ccProgress, cpProgress, dgProgress, mhProgress, sgProgre
 function progressBar(c){
     var svg = d3.select(c)
     .append('svg')
-    .attr('height', "2rem")
+    .attr('height', "1.5rem")
     .attr('width', 500);
 
     var states = ['started', 'inProgress', 'completed'],
@@ -63,7 +45,7 @@ svg.append('rect')
     .attr('rx', 10)
     .attr('ry', 10)
     .attr('fill', 'gray')
-    .attr('height', "2rem")
+    .attr('height', "1.5rem")
     .attr('width', function(){
         return segmentWidth * states.length;
     })
@@ -75,7 +57,7 @@ svg.append('rect')
                 .attr('fill', function(){
                     return colorScale(c);
                 })
-                .attr('height', "2.5rem")
+                .attr('height', "1.5rem")
                 .attr('width', 0)
                 .attr('rx', 10)
                 .attr('ry', 10)
@@ -110,7 +92,9 @@ var progressText = svg.append("svg:text")
 
 }
 
-progressBar('.aa-progress')
+
+progressBar(".total-progress")
+
 
 
 

@@ -211,9 +211,13 @@ i.md-40 {
     width: 20rem;
 }
 
-.progress {
-    height: 2rem !important;
+.progress-element {
+    padding: 5px;
 }
+.progress {
+    height: 1.5rem !important;
+}
+
 
 .donationChartWrapper {
     width: 50rem;

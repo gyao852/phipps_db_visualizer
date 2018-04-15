@@ -7,7 +7,7 @@ class DonationHistory < ApplicationRecord
 
   # Scopes
   # -----------------------------
-  # This is a test. 
+  # This is a test.
 
   # Validations
   # -----------------------------
@@ -28,8 +28,8 @@ class DonationHistory < ApplicationRecord
   scope :on_or_after,  -> (date) {where("date >= ?", date)}
 
   # Class Method
- 
-  
+
+
   # Other methods
   # -------------
 
@@ -42,7 +42,7 @@ class DonationHistory < ApplicationRecord
       if row[1] != nil
         DonationHistory.create! row.to_hash
       end
-    end 
+    end
   end 
 
   private

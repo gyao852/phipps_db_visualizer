@@ -1,0 +1,119 @@
+<div class = 'card bg-white progressBarWrapper mr-auto'>
+
+    <div class="card-body">
+        <h4>Donation Progress</h4>
+        <br/>
+            <label>Annual Appeal</label>
+            <div class="aa-progress"></div>
+            <br/>
+
+            <label>Commemorative Certificates</label>
+            <div class="cc-progress"></div>
+            <br/>
+            
+            <label>Childrens' Programs</label>
+            <div class="cp-progress"></div>
+            <br/>
+                       
+            <label>Discovery Gardens</label>
+            <div class="dg-progress"></div>
+            <br/>
+
+            <label>Memorials & Honoraria</label>
+            <div class="mh-progress"></div>
+            <br/>
+
+            <label>Sustained Giving</label>
+            <div class="sg-progress"></div>   
+
+    </div> 
+</div>
+
+
+<script type="text/javascript">
+// Progress bars
+
+var aaProgress =  <%= raw @aa_progress.to_json %>,
+    ccProgress = <%= raw @cc_progress.to_json %>,
+    cpProgress = <%= raw @cp_progress.to_json %>,
+    dgProgress = <%= raw @dg_progress.to_json %>,
+    mhProgress = <%= raw @mh_progress.to_json %>,
+    sgProgress = <%= raw @sg_progress.to_json %>
+    
+console.log(aaProgress, ccProgress, cpProgress, dgProgress, mhProgress, sgProgress)
+
+// have to call the class later for each of the progress bars
+
+function progressBar(c){
+    var svg = d3.select(c)
+    .append('svg')
+    .attr('height', "2rem")
+    .attr('width', 500);
+
+    var states = ['started', 'inProgress', 'completed'],
+    segmentWidth = 100,
+    currentState = 'started';
+
+    var colorScale = d3.scale.ordinal()
+        .domain(states)
+        .range(['yellow', 'orange', 'green']);
+
+svg.append('rect')
+    .attr('class', 'bg-rect')
+    .attr('rx', 10)
+    .attr('ry', 10)
+    .attr('fill', 'gray')
+    .attr('height', "2rem")
+    .attr('width', function(){
+        return segmentWidth * states.length;
+    })
+    .attr('x', 0);
+
+    var progress = svg.append('rect')
+                .attr('class', 'progress-rect')
+                // color everything blue for now, add color thresholds later
+                .attr('fill', function(){
+                    return colorScale(c);
+                })
+                .attr('height', "2.5rem")
+                .attr('width', 0)
+                .attr('rx', 10)
+                .attr('ry', 10)
+                .attr('x', 0);
+
+var progressText = svg.append("svg:text")
+                    .attr("text-anchor","end")
+                    .attr('x',2)
+                    .attr('y',10)
+                    .text(function(d){
+                      
+                    })
+
+                    progress.transition()
+                    .duration(1000)
+                    .attr('width', function(){
+                        var index = states.indexOf(currentState);
+                        return (index + 1) * segmentWidth;
+                    });
+                
+                function moveProgressBar(state){
+                    progress.transition()
+                        .duration(1000)
+                        .attr('fill', function(){
+                            return colorScale();
+                        })
+                        .attr('width', function(){
+                            var index = states.indexOf(state);
+                            return (index + 1) * segmentWidth;
+                        });
+                }
+
+}
+
+progressBar('.aa-progress')
+
+
+
+
+
+</script>

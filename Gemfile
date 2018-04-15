@@ -38,7 +38,7 @@ gem 'bcrypt-ruby', '~>3.1.2'
 
 gem "rails-settings-cached"
 
-
+gem 'activerecord-import'
 gem 'jquery-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

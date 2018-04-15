@@ -2,9 +2,9 @@
     
     <div class='card-body'>
         <h3 class='card-title text-black-mint'> Import Constituents CSV Data </h3>
-        <%= form_tag import_constituents_path, multipart: true do %>
+        <%= form_tag importfile_constituents_path, multipart: true do %>
         <%= file_field_tag :file, class: 'btn'%>
-        <%= submit_tag "Import", class: 'btn btn-outline-secondary'%>
+        <%= submit_tag "ImportFile", class: 'btn btn-outline-secondary'%>
         <% end %>
     </div>
 </div>

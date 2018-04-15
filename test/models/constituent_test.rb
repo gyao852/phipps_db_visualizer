@@ -14,10 +14,12 @@ class ConstituentTest < ActiveSupport::TestCase
   # Validation matchers...
     should validate_presence_of(:lookup_id)
     should validate_presence_of(:last_group)
-    should allow_value("(412)-218-4897").for(:phone)
+    should allow_value("(412) 218-4897").for(:phone)
     should_not allow_value("4122184897").for(:phone)
+    should allow_value("").for(:phone)
     should allow_value("gyao@andrew.cmu.edu").for(:email_id)
-    should_not allow_value("something!`@some.con").for(:email_id)
+    #should_not allow_value("something!`@some.con").for(:email_id)
+    should allow_value("").for(:email_id)
     should allow_value(true).for(:do_not_email)
     should allow_value(false).for(:do_not_email)
     should_not allow_value(nil).for(:do_not_email)
@@ -30,16 +32,16 @@ class ConstituentTest < ActiveSupport::TestCase
     setup do
       create_constituents
       create_addresses
-      #create_constituent_membership
-      #create_membership_records
+      create_membership_records
+      create_constituent_membership
     end
 
     # and provide a teardown method as well
     teardown do
-      destroy_constituents
-      destroy_addresses
-      #destroy_constituent_membership
+      #destroy_constituents
+      #destroy_addresses
       #destroy_membership_records
+      #destroy_constituent_membership
     end
 
     should "show that constituent record is created properly" do
@@ -48,7 +50,7 @@ class ConstituentTest < ActiveSupport::TestCase
       assert_equal "Bruce Wayne", @bruce.name
       assert_equal "Wayne", @bruce.last_group
       assert_equal "abc@mail.com", @bruce.email_id
-      assert_equal "(123)-456-7890", @bruce.phone
+      assert_equal "(123) 456-7890", @bruce.phone
       assert_equal 20.years.ago.to_date, @bruce.dob
       assert_equal false, @bruce.do_not_email
       assert_equal false, @bruce.duplicate
@@ -99,35 +101,26 @@ class ConstituentTest < ActiveSupport::TestCase
     # test the method 'current_address'
     should "show the current address" do
       assert_equal "5032 Forbes Avenue", @bruce.current_address
-      assert_equal "739 Bellefonte St", @yaoFam.current_address
-      assert_equal "5034 Forbes Ave", @pnc.current_address
+      assert_equal "739 Bellefonte Street", @yaoFam.current_address
+      assert_equal "5034 Forbes Avenue", @pnc.current_address
     end
 
     # test the method 'current_membership_level'
     should "shows the current membership level" do
-      create_membership_records
-      create_constituent_membership
       assert_equal "Student/Senior", @bruce.current_membership_level
       assert_nil @yaoFam.current_membership_level
       # Because yao family's membership expired
       assert_nil @pnc.current_membership_level
       # Because pnc doesn't have a membership record
-      destroy_membership_records
-      destroy_constituent_membership
-
     end
 
     # test the method 'current_membership_scheme'
     should "shows the current membership scheme" do
-      create_membership_records
-      create_constituent_membership
       assert_equal "Phipps General Membership", @bruce.current_membership_scheme
       assert_nil @yaoFam.current_membership_scheme
       # Because yao family's membership expired
       assert_nil @pnc.current_membership_scheme
       # Because pnc doesn't have a membership record
-      destroy_membership_records
-      destroy_constituent_membership
     end
   end
 end

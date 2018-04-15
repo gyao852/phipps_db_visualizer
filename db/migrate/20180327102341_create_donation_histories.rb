@@ -7,8 +7,8 @@ class CreateDonationHistories < ActiveRecord::Migration[5.1]
       t.integer :amount
       t.date :date
       t.text :payment_method
-      t.boolean :do_not_acknowledge
       t.boolean :given_anonymously
+      t.boolean :do_not_acknowledge
       t.text :transaction_type
 
       t.timestamps

@@ -5,8 +5,6 @@ class CreateConstituentEvents < ActiveRecord::Migration[5.1]
       t.text :lookup_id
       t.text :status
       t.boolean :attend
-      t.text :host_name
-
       t.timestamps
     end
   end

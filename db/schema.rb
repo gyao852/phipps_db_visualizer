@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20180412023122) do
     t.text "lookup_id"
     t.text "status"
     t.boolean "attend"
-    t.text "host_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -61,7 +60,7 @@ ActiveRecord::Schema.define(version: 20180412023122) do
   create_table "contact_histories", force: :cascade do |t|
     t.text "contact_history_id"
     t.text "lookup_id"
-    t.text "type"
+    t.text "contact_type"
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,8 +73,8 @@ ActiveRecord::Schema.define(version: 20180412023122) do
     t.integer "amount"
     t.date "date"
     t.text "payment_method"
-    t.boolean "do_not_acknowledge"
     t.boolean "given_anonymously"
+    t.boolean "do_not_acknowledge"
     t.text "transaction_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -84,7 +83,6 @@ ActiveRecord::Schema.define(version: 20180412023122) do
   create_table "donation_programs", force: :cascade do |t|
     t.text "donation_program_id"
     t.text "program"
-    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -105,7 +103,6 @@ ActiveRecord::Schema.define(version: 20180412023122) do
     t.text "add_ons"
     t.text "membership_level_type"
     t.text "membership_status"
-    t.integer "membership_term"
     t.date "start_date"
     t.date "end_date"
     t.date "last_renewed"

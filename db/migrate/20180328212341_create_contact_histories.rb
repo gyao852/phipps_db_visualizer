@@ -3,7 +3,7 @@ class CreateContactHistories < ActiveRecord::Migration[5.1]
     create_table :contact_histories do |t|
       t.text :contact_history_id
       t.text :lookup_id
-      t.text :type
+      t.text :contact_type
       t.date :date
 
       t.timestamps

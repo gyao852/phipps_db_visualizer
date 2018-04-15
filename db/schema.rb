@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 20180415141308) do
   end
 
   create_table "contact_histories", force: :cascade do |t|
-    t.text "contact_history_id"
     t.text "lookup_id"
     t.text "contact_type"
     t.date "date"

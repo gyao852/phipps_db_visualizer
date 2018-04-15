@@ -47,18 +47,29 @@ class Address < ApplicationRecord
 
 	# Other methods
  	# -------------
-  def self.import(file)
-    CSV.foreach(file.path, headers:true) do |row|
-      if row[7] != nil 
-        # date_string = row[7]
-        # date_string[0]="1"
-        # date_string[2]="1"
-        row[7] = nil #Date.strptime(date_string, '%m/%d/%Y')
-        Address.create! row.to_hash
-      else 
-        Address.create! row.to_hash
-      end
+  # def self.import(file)
+  #   CSV.foreach(file.path, headers:true) do |row|
+  #     if row[7] != nil 
+  #       # date_string = row[7]
+  #       # date_string[0]="1"
+  #       # date_string[2]="1"
+  #       row[7] = nil #Date.strptime(date_string, '%m/%d/%Y')
+  #       Address.create! row.to_hash
+  #     else 
+  #       Address.create! row.to_hash
+  #     end
+  #   end
+  # end
+  def self.import_file(file)
+    addresses_array = []
+    CSV.foreach(file.path.to_s, headers:true) do |row|
+      addresses_array << Address.new(row.to_h)
     end
+    puts "array is"
+    puts addresses_array
+    puts "array is"
+    Address.import addresses_array, on_duplicate_key_ignore: true
+
   end
 
 

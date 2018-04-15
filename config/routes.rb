@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :addresses do
-    collection {post :import}
+    collection {post :importfile}
   end
   resources :users
   resources :events do
@@ -79,6 +79,7 @@ Rails.application.routes.draw do
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
   get 'constituents_import_page' => 'constituents#import_page', as: :import_page
+  get 'unclean_constituents_import_page' => 'unclean_constituents#unclean_import_page', as: :unclean_import_page
   get 'address_import_page' => 'addresses#addresses_import_page', as: :address_import_page
   get 'membership_record_import_page' => 'membership_records#membership_record_import_page', as: :membership_record_import_page
   get 'constituent_membership_record_import_page' => 'constituent_membership_records#constituent_membership_record_import_page', as: :constituent_membership_record_import_page
@@ -86,6 +87,7 @@ Rails.application.routes.draw do
   get 'donation_programs_import_page' => 'donation_programs#donation_programs_import_page', as: :donation_programs_import_page
   get 'events_import_page' => 'events#events_import_page', as: :events_import_page
   get 'constituents_events_import_page' => 'constituent_events#constituents_events_import_page', as: :constituents_events_import_page
+  get 'contact_histories_import_page' => 'contact_histories#contact_history_import_page', as: :contact_histories_import_page
   # Routes for duplicate record filtering pages
   get 'duplicates_unresolved' => 'duplicates#unresolved', as: :duplicates_unresolved
   get 'duplicates_deleted' => 'duplicates#deleted', as: :duplicates_deleted

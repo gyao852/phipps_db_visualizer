@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  donation_history_id: MyText
+  donation_program_id: MyText
+  lookup_id: MyText
+  amount: 1
+  date: 2018-04-15
+  payment_method: MyText
+  given_anonymously: false
+  do_not_acknowledge: false
+  transaction_type: MyText
+  error: MyText
+
+two:
+  donation_history_id: MyText
+  donation_program_id: MyText
+  lookup_id: MyText
+  amount: 1
+  date: 2018-04-15
+  payment_method: MyText
+  given_anonymously: false
+  do_not_acknowledge: false
+  transaction_type: MyText
+  error: MyText

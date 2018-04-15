@@ -1,0 +1,2 @@
+class UncleanConstituentMembershipRecord < ApplicationRecord
+end

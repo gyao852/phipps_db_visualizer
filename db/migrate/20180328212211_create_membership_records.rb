@@ -7,7 +7,6 @@ class CreateMembershipRecords < ActiveRecord::Migration[5.1]
       t.text :add_ons
       t.text :membership_level_type
       t.text :membership_status
-      t.integer :membership_term
       t.date :start_date
       t.date :end_date
       t.date :last_renewed

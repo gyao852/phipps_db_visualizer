@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lookup_id: MyText
+  membership_id: MyText
+  error: MyText
+
+two:
+  lookup_id: MyText
+  membership_id: MyText
+  error: MyText

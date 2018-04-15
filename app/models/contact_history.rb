@@ -23,12 +23,6 @@ class ContactHistory < ApplicationRecord
   # -------------
 
   # generate report of constituents who have not been contacted since a certain date
-  def self.generate_contact_history_report(date)
-
-    CSV.open("reports/contact-history-report", wb) do |csv|
-      csv << ["Date", "Event", "Constituent", "Email"]
-    end
-  end
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|
       ContactHistory.create! row.to_hash 

@@ -1,5 +1,7 @@
 {
   "name": "phipps_db_visualizer",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "flatpickr": "^4.4.4"
+  }
 }

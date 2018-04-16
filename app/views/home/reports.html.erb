@@ -1,0 +1,29 @@
+<div class="d-flex">
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-body'>
+            <div class='card-title'>
+                <h4>Donation History Report</h4>
+            </div>
+            <p>Generate email list of constituents who have not donated since the selected date</p>
+            <%= form_tag generate_donation_report_path, remote:true, method: "get" do %>
+                <%= date_field_tag 'date', id:"donation-report-datepicker"%>
+                <%= submit_tag 'Generate', class:'btn btn-primary'%>
+            <% end %>
+
+        
+        </div>
+    </div> 
+
+    <div class="card bg-white donation-history report-form-wrapper mr-auto">
+        <div class='card-body'>
+            <div class='card-title'>
+                <h4>Contact History Report</h4>
+            </div>
+            <p>Generate email list of constituents who have not been contacted since the selected date</p>
+            <%= form_tag generate_contact_history_report_path, remote:true, method: "get" do %>
+                <%= date_field_tag 'date', id:"contact-history-report-datepicker"%>
+                <%= submit_tag 'Generate', class: 'btn btn-primary' %>
+            <% end %>
+        </div>
+    </div> 
+</div>

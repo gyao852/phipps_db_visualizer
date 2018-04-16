@@ -5,24 +5,13 @@
                 <h4>Donation History Report</h4>
             </div>
             <p>Generate email list of constituents who have not donated since the selected date</p>
-            <%= date_field_tag 'date', id:"donation-report-datepicker"%>
-            <%= form_tag('/reports', remote: true) do -%>
+            <%= form_tag generate_donation_report_path, remote:true, method: "get" do %>
+                <%= date_field_tag 'date', id:"donation-report-datepicker"%>
+                
                 <%= submit_tag 'Generate' %>
-            <% end -%>
+            <% end %>
 
-            
-            
-            
-            <script>
-                $('#generate-donation-report').click(function(event){
-                    console.log()
-                })
-
-            
-
-
-  
-            </script>
+        
         </div>
     </div> 
 

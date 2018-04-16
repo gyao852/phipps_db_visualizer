@@ -63,9 +63,10 @@ class Constituent < ApplicationRecord
   
   # generates report of constituents who have not donated after a certain date and most recent doantions they made
   def self.generate_donations_report(date)
-    filename = 'reports/donation-history-report-before-'+date.strftime("%m-%d-%Y")+".csv"
+    d = Date.parse(date)
+    filename = 'reports/donation-history-report-before-'+date+".csv"
     puts filename
-    donations = Constituent.last_donation_before(date)
+    donations = Constituent.last_donation_before(d)
     CSV.open(filename,'wb') do |csv|
       csv << ["Constituent", "Email", "Last Donation Date", "Last Donation Amount"]
       donations.each do |row|

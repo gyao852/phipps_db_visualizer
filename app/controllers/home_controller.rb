@@ -77,5 +77,7 @@ class HomeController < ApplicationController
 
     def reports
         @nav_status = 'reports'
+        
+        #Constituent.generate_donations_report(2.days.ago.to_date)
     end
 end

@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap-datepicker-rails'
 
 # Use a gem for handling pagination
 gem 'will_paginate'

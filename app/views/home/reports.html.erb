@@ -1,1 +1,43 @@
-<h1>hi</h1>
+<div class="d-flex">
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-body'>
+            <div class='card-title'>
+                <h4>Donation History Report</h4>
+            </div>
+            <p>Generate email list of constituents who have not donated since the selected date</p>
+            <%= date_field_tag 'date', id:"donation-report-datepicker"%>
+            <%= form_tag('/reports', remote: true) do -%>
+                <%= submit_tag 'Generate' %>
+            <% end -%>
+
+            
+            
+            
+            <script>
+                $('#generate-donation-report').click(function(event){
+                    console.log()
+                })
+
+            
+
+
+  
+            </script>
+        </div>
+    </div> 
+
+    <div class="card bg-white donation-history report-form-wrapper mr-auto">
+        <div class='card-body'>
+            <div class='card-title'>
+                <h4>Contact History Report</h4>
+            </div>
+            <p>Generate email list of constituents who have not been contacted since the selected date</p>
+            <form>
+            <div class="form-group">
+            <label for="exampleFormControlFile1">Example file input</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+            </form>
+        </div>
+    </div> 
+</div>

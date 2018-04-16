@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   get 'home' => 'home#home', as: :home
   get 'reports' => 'home#reports', as: :reports
   get 'generate_donation_report' => 'home#generate_donation_report', as: :generate_donation_report
+  get 'generate_contact_history_report' => 'home#generate_contact_history_report', as: :generate_contact_history_report
   get 'constituents_import_page' => 'constituents#import_page', as: :import_page
   get 'unclean_constituents_import_page' => 'unclean_constituents#unclean_import_page', as: :unclean_import_page
   get 'address_import_page' => 'addresses#addresses_import_page', as: :address_import_page

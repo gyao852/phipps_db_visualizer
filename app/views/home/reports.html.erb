@@ -7,8 +7,7 @@
             <p>Generate email list of constituents who have not donated since the selected date</p>
             <%= form_tag generate_donation_report_path, remote:true, method: "get" do %>
                 <%= date_field_tag 'date', id:"donation-report-datepicker"%>
-                
-                <%= submit_tag 'Generate' %>
+                <%= submit_tag 'Generate', class:'btn btn-primary'%>
             <% end %>
 
         
@@ -21,12 +20,10 @@
                 <h4>Contact History Report</h4>
             </div>
             <p>Generate email list of constituents who have not been contacted since the selected date</p>
-            <form>
-            <div class="form-group">
-            <label for="exampleFormControlFile1">Example file input</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-            </div>
-            </form>
+            <%= form_tag generate_contact_history_report_path, remote:true, method: "get" do %>
+                <%= date_field_tag 'date', id:"contact-history-report-datepicker"%>
+                <%= submit_tag 'Generate', class: 'btn btn-primary' %>
+            <% end %>
         </div>
     </div> 
 </div>

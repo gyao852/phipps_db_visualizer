@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :imports do
+    collection {post :importfile}
+  end
   resources :addresses do
     collection {post :importfile}
   end

@@ -1,0 +1,13 @@
+<div class='card'>
+    
+    <div class='card-body'>
+        <h3 class='card-title text-black-mint'> Import Altru Data </h3>
+        
+        <%# form_tag import_constituents_path, multipart: true do %>
+        
+        <%= form_tag import_file_path, multipart: true do %>
+        <%= file_field_tag :file, class: 'btn'%>
+        <%= submit_tag "ImportFile", class: 'btn btn-outline-secondary'%>
+        <% end %>
+    </div>
+</div>

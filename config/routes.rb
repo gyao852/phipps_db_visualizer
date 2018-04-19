@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :imports do
     collection {post :importfile}
   end
@@ -81,7 +82,10 @@ Rails.application.routes.draw do
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
-  get 'constituents_import_page' => 'constituents#import_page', as: :import_page
+
+  get 'import_page' => 'imports#import_page', as: :import_page
+
+  get 'constituents_import_page' => 'constituents#constituents_import_page', as: :constituents_import_page
   get 'unclean_constituents_import_page' => 'unclean_constituents#unclean_import_page', as: :unclean_import_page
   get 'address_import_page' => 'addresses#addresses_import_page', as: :address_import_page
   get 'membership_record_import_page' => 'membership_records#membership_record_import_page', as: :membership_record_import_page

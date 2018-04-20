@@ -10,7 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+  *= require bootstrap-datepicker
  */
+ 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 
 $green-5: #003A1D;
@@ -211,9 +213,13 @@ i.md-40 {
     width: 20rem;
 }
 
-.progress {
-    height: 2rem !important;
+.progress-element {
+    padding: 5px;
 }
+.progress {
+    height: 1.5rem !important;
+}
+
 
 .donationChartWrapper {
     width: 50rem;
@@ -278,6 +284,10 @@ i.md-40 {
     font-family: verdana;
     font-size: 11px;
     fill: white;
+}
+
+.report-form-wrapper {
+    width: 45%;
 }
 
   

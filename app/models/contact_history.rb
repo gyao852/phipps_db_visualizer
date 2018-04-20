@@ -6,6 +6,9 @@ class ContactHistory < ApplicationRecord
 
   # Scopes
   # -----------------------------
+  scope :on_or_before, -> (date) {where("date <= ?", date)}
+  scope :on_or_after, -> (date) {where("date >= >>", date)}
+  scope :chronological, -> {order ('date DESC')}
 
 
   # Validations
@@ -18,6 +21,8 @@ class ContactHistory < ApplicationRecord
 
   # Other methods
   # -------------
+
+  # generate report of constituents who have not been contacted since a certain date
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|
       ContactHistory.create! row.to_hash 

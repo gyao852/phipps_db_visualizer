@@ -14,9 +14,9 @@ class User < ApplicationRecord
 
   # Validations
   # -----------------------------
-  validates: user_id, presence :true
-  validates: fname, presence :true
-  validates: lname, presence :true
+  validates: user_id, presenc: true
+  validates: fname, presence: true
+  validates: lname, presence: true
   validates_presence_of :password, on: :create
   validates_confirmation_of :password, message: "doesn't match fonrimation"
   validates: email_id, presence :true

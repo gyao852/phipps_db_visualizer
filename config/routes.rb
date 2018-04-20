@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   
   resources :imports do
-    collection {post :importfile}
+    collection do 
+      post 'importfile'
+      post 'importdata'
+    end
+    
   end
   resources :addresses do
     collection {post :importfile}
@@ -84,6 +88,18 @@ Rails.application.routes.draw do
   get 'home' => 'home#home', as: :home
 
   get 'import_page' => 'imports#import_page', as: :import_page
+  get 'imports_importdata' => 'imports#importdata', :as => :importdata
+
+
+
+
+
+
+
+
+
+
+
 
   get 'constituents_import_page' => 'constituents#constituents_import_page', as: :constituents_import_page
   get 'unclean_constituents_import_page' => 'unclean_constituents#unclean_import_page', as: :unclean_import_page

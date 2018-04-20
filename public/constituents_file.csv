@@ -1,3 +1,4 @@
+id,lookup_id,suffix,title,name,last_group,email_id,phone,dob,do_not_email,duplicate,constituent_type,phone_notes
 1,1,,Mrs.,Mary C. McCormick,Mccormick,wmbillmary@aol.com,(412) 781-9306,8/1/1940,FALSE,,Individual,
 2,100000,,Mr.,John Ludden,Ludden,anca0404@msn.com,(703) 349-3723,,FALSE,,Individual,
 3,100001,,Ms.,Laurie Cybulski,Cybulski,contraryone@hotmail.com,(412) 441-4125,,FALSE,,Individual,

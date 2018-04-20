@@ -3,17 +3,20 @@ class ImportsController < ApplicationController
     	if params[:file].nil?
       		redirect_to import_page_path, notice: "Please upload a csv file."
     	else
-      		importer = Import.new(params[:file])
+      		importer = Import.new(params[:constituents_file])
       		if File.exist?("#{Rails.root}/public/constituents_file.csv") 
       			File.delete("#{Rails.root}/public/constituents_file.csv")
       		end
       		importer.save_constituents_csv_file
+          redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
     	end
   	end
 
 	def importdata
   		Constituent.delete_all
-  		importer = Import.new(params[])
+      file = File.new(open("#{Rails.root}/public/constituents_file.csv"))
+      puts file
+  		importer = Import.new(file)
   		importer.import_constituent_csv_data
   		redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
 	end

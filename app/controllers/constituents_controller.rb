@@ -74,7 +74,7 @@ class ConstituentsController < ApplicationController
 
   def importfile
     Constituent.import_file(params[:file])
-    redirect_to import_page_path, notice: "csv imported"
+    redirect_to constituents_import_page_path, notice: "csv imported"
   end
 
   def import_page

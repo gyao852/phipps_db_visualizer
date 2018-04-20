@@ -40,26 +40,7 @@ class UncleanConstituent < ApplicationRecord
 		end
 	end
 
-	def self.import_file(file)
-		unclean_constituents_array = []
-		CSV.foreach(file.path.to_s, headers:true) do |row|
-			unclean_constituents_array << Constituent.new(row.to_h)
-		end
-    	puts "array is"
-    	puts unclean_constituents_array
-    	puts "array is"
-    	UncleanConstituent.import unclean_constituents_array, on_duplicate_key_ignore: true
-    end
-
-  # def self.import(file)
-  #   CSV.foreach(file.path, headers:true) do |row|
-  #     if row[7] != nil
-  #       Constituent.create! row.to_hash
-  #     else
-  #       Constituent.create! row.to_hash
-  #     end
-  #   end
-  # end
+	
 
 
 end

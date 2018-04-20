@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415141308) do
+ActiveRecord::Schema.define(version: 20180419184845) do
 
   create_table "addresses", force: :cascade do |t|
     t.text "address_id"
@@ -91,6 +91,11 @@ ActiveRecord::Schema.define(version: 20180415141308) do
     t.text "event_name"
     t.date "start_date_time"
     t.date "end_date_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "imports", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

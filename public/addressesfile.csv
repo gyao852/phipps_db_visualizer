@@ -1,0 +1,20 @@
+address_id,lookup_id,address_1,city,state,zip,country,address_type,date_added
+1,1,127 Westchester Drive,Pittsburgh,Pennsylvania,15215,,Home,3/16/1999
+2,100000,Post Office Box 1256,Middleburg,Virginia,20118,,Business,3/16/1999
+3,100001,6315 Forbes Avenue Apartment 1202,Pittsburgh,Pennsylvania,15217,,Home,5/16/2012
+4,100003,1135 Jancey Street,Pittsburgh,Pennsylvania,15206,,Home,5/16/2012
+5,100004,1120 Chatham Park Drive Apartment J,Pittsburgh,Pennsylvania,15216,,Home,5/17/2012
+6,100005,513 11Th Street,Oakmont,Pennsylvania,15139,,Home,5/17/2012
+7,100006,980 Ridge Road,Bridgeville,Pennsylvania,15017,,Home,5/17/2012
+8,100007,580 Imel Road,Normalville,Pennsylvania,15469,,Home,5/17/2012
+9,100008,154 Morgan Street,Oberlin,Ohio,44071,,Home,5/17/2012
+10,100008,6337 Monitor Street,Pittsburgh,Pennsylvania,15217,,Home,5/17/2012
+11,100008,4301 Saline Street,Pittsburgh,Pennsylvania,15217,,Home,5/17/2012
+12,100009,728 North Avenue,Wilkinsburg,Pennsylvania,15221,,Home,5/17/2012
+13,100009,2513 Manzano Loop,Rio Rancho,New Mexico,87144,,Home,5/17/2012
+14,100010,102 Millstone Drive,Pittsburgh,Pennsylvania,15238,,Home,1/31/2018
+15,100013,148 Chickasaw Avenue,Pittsburgh,Pennsylvania,15237,,Home,5/17/2012
+16,100014,1221 Etola Street,Pittsburgh,Pennsylvania,15212,,Home,5/17/2012
+17,100015,1221 Etola Street,Pittsburgh,Pennsylvania,15212,,Home,5/17/2012
+18,100016,5701 Centre Avenue Apartment 1210 Not Deliverable As Addressed.,Pittsburgh,Pennsylvania,15206,,Home,5/17/2012
+19,100017,116 Bayard Place,Pittsburgh,Pennsylvania,15213,,Home,5/17/2012

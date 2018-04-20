@@ -29,7 +29,7 @@ class UncleanConstituentController < ApplicationController
   # POST /constituents.json
   def create
     @nav_status = 'db'
-    @unclean_constituents = UncleanConstituent.new(constituent_params)
+    @unclean_constituents = UncleanConstituent.new(unclean_constituent_params)
 
     respond_to do |format|
       if @unclean_constituents.save
@@ -72,10 +72,7 @@ class UncleanConstituentController < ApplicationController
   #   redirect_to constituents_path, notice: "csv imported"
   # end
 
-  def importfile
-    UncleanConstituent.import_file(params[:file])
-    redirect_to unclean_constituents_import_page_path, notice: "csv imported"
-  end
+
 
   def import_page
     @nav_status = 'import_page'
@@ -88,7 +85,7 @@ class UncleanConstituentController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def constituent_params
-      params.require(:constituent).permit(:lookup_id, :suffix, :title, :name, :last_group, :email_id, :phone, :dob, :do_not_email, :duplicate,:error)
+    def unclean_constituent_params
+      params.require(:unclean_constituent).permit(:lookup_id, :suffix, :title, :name, :last_group, :email_id, :phone, :dob, :do_not_email, :duplicate,:error)
     end
 end

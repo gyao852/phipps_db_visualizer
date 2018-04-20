@@ -7,7 +7,7 @@ class Import < ApplicationRecord
 	end
 
 	def save_constituents_csv_file
-		CSV.open("#{Rails.root}/public/constituents_file.csv", "wb") do |csv|
+		CSV.open("#{Rails.root}/public/constituentsfile.csv", "wb") do |csv|
 			CSV.foreach(file.path, headers:false) do |row|
       			csv << row
     		end

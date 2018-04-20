@@ -3,8 +3,7 @@
     <div class='card-body'>
         <h3 class='card-title text-black-mint'> Import Altru Data </h3>
         <%= form_tag importfile_imports_path, multipart: true do %>
-        <%= file_field_tag :constituents_file, class: 'btn'%>
-        <%# file_field_tag :address_file, class: 'btn'%>
+        <%= file_field_tag :file, class: 'btn'%>
         <%= submit_tag "ImportFiles", class: 'btn btn-outline-secondary'%>
         <% end %>
     </div>

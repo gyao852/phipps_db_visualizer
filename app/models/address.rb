@@ -24,12 +24,12 @@ class Address < ApplicationRecord
  # validates address_1
   validates :lookup_id, presence: true
   validates :address_1, presence: true, allow_blank:false
-  validates_format_of :address_1, without: /\A(.*[A a]ve[.]).*\z/i, message: "cannot contain abbriviations"
-  validates_format_of :address_1, without: /\A(.*[D d]r[.]).*\z/i, message: "cannot contain abbriviations"
-  validates_format_of :address_1, without: /\A(.*[S s]t[.]).*\z/i, message: "cannot contain abbriviations"
-  validates_format_of :address_1, without: /\A(.*[A a]pt[.]?).*\z/i, message: "cannot contain abbriviations"
-  validates_format_of :address_1, without: /\A(.*[B b]lvd[.]?).*\z/i, message: "cannot contain abbriviations"
-  validates_format_of :address_1, without: /\A(.*[R r]d[.]?).*\z/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /\A(.*[A a]ve[.]).*\z/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /\A(.*[D d]r[.]).*\z/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /\A(.*[S s]t[.]).*\z/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /\A(.*[A a]pt[.]?).*\z/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /\A(.*[B b]lvd[.]?).*\z/i, message: "cannot contain abbriviations"
+  # validates_format_of :address_1, without: /\A(.*[R r]d[.]?).*\z/i, message: "cannot contain abbriviations"
 
   # # validates city capitalization
   validates :city, format: { with: /[A-Z]{1}[a-z A-Z]+(?:[\s-][A-Z]+)*/i , message: "City must be capitalized"}
@@ -46,7 +46,7 @@ class Address < ApplicationRecord
   { with: /\A[A-Z][a-z A-Z]+(?:[\s-][A-Z]+)*\z/i ,
     message: "Country must be capitalized"}
 
-  validates_date :date_added, :before => lambda {Date.today}, allow_blank:true
+  # validates_date :date_added,timeliness: { on_or_before: lambda { Date.current }, type: :date },allow_blank:true
 
   validates :zip, :allow_blank => true, format:
   {with:/\A\d{5}(?:[-]\w{4})?|[A-Z][0-9][A-Z][0-9][A-Z][0-9]\z/i,

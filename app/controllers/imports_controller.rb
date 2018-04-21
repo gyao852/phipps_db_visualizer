@@ -1,7 +1,8 @@
 class ImportsController < ApplicationController
 	def importfile
-    
+      
     	if params[:constituentsfile].nil? || params[:addressesfile].nil?
+        `python public/test.py`
       	redirect_to import_page_path, notice: "Please upload a csv file."
     	else
       		importer = Import.new(params[:constituentsfile],params[:addressesfile])
@@ -20,6 +21,7 @@ class ImportsController < ApplicationController
 	def importdata
   		Constituent.delete_all
       Address.delete_all
+
       constituentsfile = File.new(open("#{Rails.root}/public/constituentsfile.csv"))
       addressesfile = File.new(open("#{Rails.root}/public/addressesfile.csv"))
   		importer = Import.new(constituentsfile,addressesfile)

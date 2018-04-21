@@ -32,6 +32,12 @@ class ImportsController < ApplicationController
           end
       		importer.save_constituents_csv_file
           importer.save_addresses_csv_file
+          # importer.save_CMUTeamconstituentsExport_csv_file
+          # importer.save_CMUTeamDonationsExport_csv_file
+          # importer.save_CMUTeamEventAttendanceExport_csv_file
+          # importer.save_CMUTeamContactHistoryExport_csv_file
+          # importer.save_CMUTeamEventExport_csv_file
+          # importer.save_CMUTeamDonationProgramExport_csv_file
           redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
     	end
   	end
@@ -60,7 +66,7 @@ class ImportsController < ApplicationController
       # uncleandonationhistoryfile = File.new(open("#{Rails.root}/public/uncleandonationhistoryfile.csv"))
       # uncleandonationprogramfile = File.new(open("#{Rails.root}/public/uncleandonationprogramfile.csv"))
     
-  		importer = Import.new(constituentsfile,addressesfile)
+  		importer = Import.new()
   		importer.import_constituent_csv_data
       importer.import_address_csv_data
   		redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"

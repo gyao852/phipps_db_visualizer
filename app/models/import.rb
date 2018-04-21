@@ -2,22 +2,22 @@ class Import < ApplicationRecord
 
 	attr_accessor :constituents_file
 	attr_accessor :addresses_file
-	# attr_accessor :CMUTeamconstituentsExport
-	# attr_accessor :CMUTeamEventAttendanceExport
-	# attr_accessor :CMUTeamContactHistoryExport
-	# attr_accessor :CMUTeamDonationProgramExport
-	# attr_accessor :CMUTeamDonationsExport
-	# attr_accessor :CMUTeamEventExport
+	# attr_accessor :cmuTeamconstituentsExport
+	# attr_accessor :cmuTeamEventAttendanceExport
+	# attr_accessor :cmuTeamContactHistoryExport
+	# attr_accessor :cmuTeamDonationProgramExport
+	# attr_accessor :cmuTeamDonationsExport
+	# attr_accessor :cmuTeamEventExport
 
-	def initialize(constituents_file,addresses_file)
+	def initialize(constituents_file=nil,addresses_file=nil)
 		@constituents_file = constituents_file
 		@addresses_file = addresses_file
-		# @CMUTeamconstituentsExport = CMUTeamconstituentsExport
-		# @CMUTeamEventAttendanceExport = CMUTeamEventAttendanceExport
-		# @CMUTeamContactHistoryExport = CMUTeamContactHistoryExport
-		# @CMUTeamDonationProgramExport = CMUTeamDonationProgramExport
-		# @CMUTeamDonationsExport = CMUTeamDonationsExport
-		# @CMUTeamEventExport = CMUTeamEventExport
+		# @cmuTeamconstituentsExport = cmuTeamconstituentsExport
+		# @cmuTeamEventAttendanceExport = cmuTeamEventAttendanceExport
+		# @cmuTeamContactHistoryExport = cmuTeamContactHistoryExport
+		# @cmuTeamDonationProgramExport = cmuTeamDonationProgramExport
+		# @cmuTeamDonationsExport = cmuTeamDonationsExport
+		# @cmuTeamEventExport = cmuTeamEventExport
 	end
 
 #############################################################
@@ -41,48 +41,48 @@ class Import < ApplicationRecord
 	end
 
 	def save_CMUTeamconstituentsExport_csv_file
-		CSV.open("#{Rails.root}/public/CMUTeamconstituentsExport.csv", "wb") do |csv|
-			CSV.foreach(addresses_file.path, headers:false) do |row|
+		CSV.open("#{Rails.root}/public/cmuTeamconstituentsExport.csv", "wb") do |csv|
+			CSV.foreach(cmuTeamconstituentsExport.path, headers:false) do |row|
       			csv << row
     		end
 		end
 	end
 
 	def save_CMUTeamDonationsExport_csv_file
-		CSV.open("#{Rails.root}/public/CMUTeamDonationsExport.csv", "wb") do |csv|
-			CSV.foreach(addresses_file.path, headers:false) do |row|
+		CSV.open("#{Rails.root}/public/cmuTeamDonationsExport.csv", "wb") do |csv|
+			CSV.foreach(cmuTeamDonationsExport.path, headers:false) do |row|
       			csv << row
     		end
 		end
 	end
 
 	def save_CMUTeamEventAttendanceExport_csv_file
-		CSV.open("#{Rails.root}/public/CMUTeamEventAttendanceExport.csv", "wb") do |csv|
-			CSV.foreach(addresses_file.path, headers:false) do |row|
+		CSV.open("#{Rails.root}/public/cmuTeamEventAttendanceExport.csv", "wb") do |csv|
+			CSV.foreach(cmuTeamEventAttendanceExport.path, headers:false) do |row|
       			csv << row
     		end
 		end
 	end
 
 	def save_CMUTeamContactHistoryExport_csv_file
-		CSV.open("#{Rails.root}/public/CMUTeamContactHistoryExport.csv", "wb") do |csv|
-			CSV.foreach(addresses_file.path, headers:false) do |row|
+		CSV.open("#{Rails.root}/public/cmuTeamContactHistoryExport.csv", "wb") do |csv|
+			CSV.foreach(cmuTeamContactHistoryExport.path, headers:false) do |row|
       			csv << row
     		end
 		end
 	end
 
 	def save_CMUTeamEventExport_csv_file
-		CSV.open("#{Rails.root}/public/CMUTeamEventExport.csv", "wb") do |csv|
-			CSV.foreach(addresses_file.path, headers:false) do |row|
+		CSV.open("#{Rails.root}/public/cmuTeamEventExport.csv", "wb") do |csv|
+			CSV.foreach(cmuTeamEventExport.path, headers:false) do |row|
       			csv << row
     		end
 		end
 	end
 
 	def save_CMUTeamDonationProgramExport_csv_file
-		CSV.open("#{Rails.root}/public/CMUTeamDonationProgramExport.csv", "wb") do |csv|
-			CSV.foreach(addresses_file.path, headers:false) do |row|
+		CSV.open("#{Rails.root}/public/cmuTeamDonationProgramExport.csv", "wb") do |csv|
+			CSV.foreach(cmuTeamDonationProgramExport.path, headers:false) do |row|
       			csv << row
     		end
 		end

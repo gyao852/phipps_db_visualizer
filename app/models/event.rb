@@ -8,6 +8,7 @@ class Event < ApplicationRecord
   # ---------------------------
   scope :on_or_before, -> (date) {where("start_date_time <= ?", date)}
   scope :on_or_after, -> (date) {where("start_date_time >= ?", date)}
+  scope :chronological, -> {order 'start_date_time DESC'}
 
   # Validations
   # -----------------------------
@@ -23,6 +24,17 @@ class Event < ApplicationRecord
 
   # Other methods
   # -------------
+  def generate_attendance_report
+    CSV.open("reports/attendance-report.csv", 'wb') do |csv|
+      csv << ["Date, Event"]
+      csv << [self.start_date_time, self.event_name]
+      csv << ["Constituent", "Email", "RSVP", "Attendance"]
+      self.constituent_events.each do |ce|
+        csv << [ce.constituent.name, ce.constituent.email_id, ce.status, ce.attend]
+      end
+    end
+  end
+
   def self.generate_event_report(start_date, end_date)
     relevant_events = Event.on_or_after(start_date).on_or_before(end_date)
     relevant_events.each do |e|

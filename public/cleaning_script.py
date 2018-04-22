@@ -7,7 +7,7 @@
 
 # ### Libraries
 
-# In[1246]:
+# In[815]:
 
 
 import csv
@@ -23,16 +23,58 @@ from pandas_schema.validation import *
 
 # ### Read CSV files
 
+# In[816]:
+
 
 # Read csv files and place into dataframes
 # Constituent Records + Membership Records
-cdf = pd.read_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/cmuTeamConstituentsExport.csv',dtype="str",na_filter=False)
+cdf = pd.read_csv('public/CMU Team Constituents Export.csv',dtype="str",na_filter=False)
 # Donation Records
-ddf = pd.read_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/cmuTeamDonationsExport.csv',dtype="str",na_filter=False)
+ddf = pd.read_csv('public/CMU Team Donations Export.csv',dtype="str",na_filter=False)
 # Event + Event Attendance Records
-edf = pd.read_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/cmuTeamEventAttendanceExport.csv',dtype="str",na_filter=False)
+edf = pd.read_csv('public/CMU Team Event Attendance Export.csv',dtype="str",na_filter=False)
 # Contact History Records
-chdf = pd.read_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/cmuTeamContactHistoryExport.csv',dtype="str",na_filter=False)
+chdf = pd.read_csv('public/CMU Team Contact History Export.csv',dtype="str",na_filter=False)
+
+
+# In[817]:
+
+# ### Quick look at Database downloads
+
+# #### Constituent/membership Database
+
+# In[818]:
+
+
+cdf.head(1)
+
+
+# #### Donation Database
+
+# In[819]:
+
+
+ddf.head(1)
+
+
+# #### Event Database
+
+# In[820]:
+
+
+edf.head(1)
+
+
+# In[821]:
+
+
+chdf.head(1)
+
+
+# ### Additional Dataframes (Global variables)
+
+# In[822]:
+
 
 # Dataframes for each membership scheme/type
 # NOTE: There are some records that are not a member, or have more than one type/scheme of membership
@@ -54,7 +96,8 @@ duplicate_records = pd.DataFrame() # ZIP code not abiding to US/Canadian format
 
 # ## 1) Setting up initial database for constituent, address, and membership
 
-# In[1254]:
+# In[823]:
+
 
 # ccdf will be the copy used to create future dataframes
 ccdf = cdf.copy()
@@ -81,7 +124,7 @@ ccdf.columns = columns
 
 # ## 2) Flag and remove records with no names, or name but no mailing and email address
 
-# In[1255]:
+# In[824]:
 
 
 no_contact = ccdf[
@@ -98,7 +141,7 @@ ccdf = ccdf[((ccdf["email_id"] != '') | (ccdf["address_1"] != '')
 #
 # Clean the name by capitalizing each part of the name, and remove common invalid characters or phrases
 
-# In[1256]:
+# In[825]:
 
 
 # Cleans up Name
@@ -123,7 +166,7 @@ ccdf['cname'] = ccdf['name'].apply(clean_name)
 #
 # Clean the last name, or the organization's name by capitalizing each part of the name, and removing common special characters
 
-# In[1257]:
+# In[826]:
 
 
 # Cleans up Last name/organization
@@ -141,7 +184,7 @@ ccdf['clname'] = ccdf['last_group'].apply(clean_last_Name)
 #
 # Clean up the address of a record by replacing any address abbreviations with it's respective full word, getting rid of any special characters or double spaces.
 
-# In[1258]:
+# In[827]:
 
 
 # Cleans up address
@@ -170,17 +213,24 @@ def clean_address(v):
 ccdf['address_1'] = ccdf['address_1'].apply(clean_address)
 
 
+# In[828]:
+
+
+''.title()
+
+
 # #### Clean City
 #
 # Clean up the city name by simply capitalizing the name.
 
-# In[1259]:
+# In[829]:
 
 
 # Capitalize City name
 def clean_city(v):
+    v = v.title()
     if v != '':
-        return v.title().replace('`','')
+        return v.replace('`','')
     if v.isdigit():
         return 'INVALID'
     return v
@@ -191,7 +241,7 @@ ccdf['ccity'] = ccdf['city'].apply(clean_city)
 #
 # Cleans up state by replacing any abreviations for US states with the full name.
 
-# In[1260]:
+# In[830]:
 
 
 # Convert state abreviation to full name
@@ -228,7 +278,7 @@ ccdf['state'] = ccdf['state'].apply(clean_state)
 #
 # Clean up the country name by simply capitalizing the name.
 
-# In[1261]:
+# In[831]:
 
 
 # Capitalize Country name
@@ -244,7 +294,7 @@ ccdf['country'] = ccdf['country'].apply(clean_country)
 #
 # Clean up the zip code by replacing common special characters with their counterpart, and then reporting any invalid zip codes (US and Canadian).
 
-# In[1262]:
+# In[832]:
 
 
 def clean_zip(v):
@@ -265,7 +315,7 @@ ccdf['czip'] = ccdf['zip'].apply(clean_zip)
 #
 # Clean up the phone number by ensuring it is a 10 digit number in the format of (xxx) xxx-xxxx
 
-# In[1263]:
+# In[833]:
 
 
 # Retrieves any extra phone number notes
@@ -327,7 +377,7 @@ ccdf['phone_notes'] = ccdf[r'phone'].apply(get_phone_notes)
 #
 # Clean up the email be replacing common special characters. The regex for e-mail format is relativewly loose, as we could not account for all edge cases of emails.
 
-# In[1264]:
+# In[834]:
 
 
 def clean_email(v):
@@ -346,7 +396,7 @@ ccdf['cemail'] = ccdf['email_id'].apply(clean_email)
 # #### Dates
 # Clean the expiration date by removing the 11:59 PM on certain records
 
-# In[1265]:
+# In[835]:
 
 
 # Cleans up dates
@@ -362,13 +412,16 @@ def clean_Date(v):
             date[1] = "01"
         if len(date[1]) == 1:
             date[1] = "0" + date[1]
-        if len(date[2])==3:
-            v = None
-        v = str(date[2]+"/"+date[0]+"/"+date[1])
-        return v
+        if len(date[2])==2:
+            if int(date[2])>20: # assuming you are not born prior to 1920
+                date[2] = "19"+str(date[2])
+            else:
+                date[2] = "20"+str(date[2])
+        if len(date[2])==1 or len(date[2])==3:
+            return ''
+        return str(date[2]+"/"+date[0]+"/"+date[1])
     else:
-        v = ''
-    return v
+        return ''
 def clean_dob(v):
     if (v!="" and v is not None):
         v = v.split()[0]
@@ -382,20 +435,17 @@ def clean_dob(v):
             date[1] = "01"
         if len(date[1]) == 1:
             date[1] = "0" + date[1]
-
         if len(date[2])==2:
-            if int(date[2])<20: # assuming you are not born prior to 1920
+            if int(date[2])>20: # assuming you are not born prior to 1920
                 date[2] = "19"+str(date[2])
             else:
                 date[2] = "20"+str(date[2])
         if len(date[2])==1 or len(date[2])==3: # bith year is 0 wtf?
-            v = ''
-            return v
-        v = str(date[2]+"/"+date[0]+"/"+date[1])
-        return v
+            return ''
+        return str(date[2]+"/"+date[0]+"/"+date[1])
     else:
-        v = ''
-    return v
+        return ''
+
 ccdf['end_date'] = ccdf['end_date'].apply(clean_Date)
 ccdf['start_date'] = ccdf['start_date'].apply(clean_Date)
 ccdf['general_last_renewed'] = ccdf['general_last_renewed'].apply(clean_Date)
@@ -404,11 +454,9 @@ ccdf['corporate_last_renewed'] = ccdf['corporate_last_renewed'].apply(clean_Date
 ccdf['garden_last_renewed'] = ccdf['garden_last_renewed'].apply(clean_Date)
 ccdf['date_added'] = ccdf['date_added'].apply(clean_Date)
 ccdf['dob'] = ccdf['dob'].apply(clean_dob)
-
-
 # #### Do Not Email
 
-# In[1266]:
+# In[836]:
 
 
 # Cleans up dates
@@ -421,7 +469,7 @@ ccdf['email_id'] = ccdf['email_id'].apply(clean_dne)
 
 # #### Amount
 
-# In[1267]:
+# In[837]:
 
 
 def clean_amount(v):
@@ -432,7 +480,7 @@ def clean_amount(v):
 
 # ### 4) Applying the above cleaning modules to the databases
 
-# In[1268]:
+# In[838]:
 
 
 # Dataframe containing incomplete names
@@ -441,10 +489,11 @@ incomplete_names = ccdf[(ccdf['cname']=="ONE WORD") & (ccdf['constituent_type']=
 invalid_zips = ccdf[(ccdf['czip']=="INVALID")]
 invalid_phones = ccdf[(ccdf['cphone']=="INVALID")]
 invalid_emails = ccdf[(ccdf['cemail']=="INVALID")]
+ccdf['city'] = ccdf['ccity']
+
 
 # Removing any incomplete names from the final export
 filterNames = incomplete_names['lookup_id'].tolist()
-
 ccdf['x'] = ccdf['lookup_id'].apply(lambda v: v not in filterNames)
 ccdf = ccdf[ccdf['x']]
 ccdf['name'] = ccdf['cname']
@@ -473,7 +522,7 @@ ccdf[r'email_id'] = ccdf['cemail']
 
 # ### 5) Reporting potential dupliates
 
-# In[1269]:
+# In[839]:
 
 
 # a = ccdf[ccdf['email_id'] != '']
@@ -493,7 +542,7 @@ ccdf[r'email_id'] = ccdf['cemail']
 # dup_address = c['address_1'].tolist()
 
 
-# In[1270]:
+# In[840]:
 
 
 # potential_duplicates = ccdf.copy()
@@ -501,7 +550,7 @@ ccdf[r'email_id'] = ccdf['cemail']
 # potential_duplicates = potential_duplicates[potential_duplicates['dup_email']]
 
 
-# In[1271]:
+# In[841]:
 
 
 # a = ccdf[ccdf['email_id'] != '']
@@ -535,15 +584,7 @@ ccdf[r'email_id'] = ccdf['cemail']
 # potential_duplicates.drop(potential_duplicates.iloc[:, 6:7], axis=1,inplace=True)
 
 
-# In[1272]:
-
-
-#potential_duplicates[potential_duplicates['address_1']=='3719 Parkview Avenue']
-potential_duplicates[potential_duplicates['phone']=='(412) 681-3719']
-#potential_duplicates[potential_duplicates['email_id']=='3719 Parkview Avenue']
-
-
-# In[1273]:
+# In[842]:
 
 
 # Needed imports:
@@ -578,7 +619,7 @@ def LevRatioMerge(df1,fun):
             duplicate_names.append(result[0])
 
 
-# In[1274]:
+# In[843]:
 
 
 # # Constituent has 92866 potential duplicate records
@@ -598,7 +639,7 @@ def LevRatioMerge(df1,fun):
 
 # #### Creating constituent
 
-# In[1275]:
+# In[844]:
 
 
 constituent = ccdf.copy()
@@ -628,7 +669,7 @@ constituent['phone_notes'] = constituent['phone_notes'].str.strip().str.lstrip()
 
 # #### Creating address
 
-# In[1276]:
+# In[845]:
 
 
 address = ccdf.copy()
@@ -650,7 +691,7 @@ address['date_added'] = address['date_added'].str.strip().str.lstrip()
 
 # #### Creating membership_record
 
-# In[1277]:
+# In[846]:
 
 
 # Copy cdf and make some modifications based on ERD
@@ -721,7 +762,7 @@ membership_record['last_renewed'] = membership_record['last_renewed'].str.strip(
 
 # #### Creating constituent_membership_record
 
-# In[1278]:
+# In[847]:
 
 
 constituent_membership_record = membership_record_all.drop(membership_record_all.iloc[:, 2:10],axis=1)
@@ -732,7 +773,7 @@ constituent_membership_record['membership_id'] = constituent_membership_record['
 
 # #### Creating constituent_event
 
-# In[1279]:
+# In[848]:
 
 
 edf.drop(edf.iloc[:, 7:8], axis=1,inplace=True)
@@ -751,13 +792,16 @@ constituent_event['attend'] = constituent_event['attend'].str.strip().str.lstrip
 
 # #### Creating event
 
-# In[1280]:
+# In[849]:
 
 
 event = edf.iloc[:,3:5].join(edf.iloc[:,5:7])
 event = event[['event_id','event_name','start_date_time','end_date_time']]
 event = event[event['event_id']!=""]
 event = event.drop_duplicates()
+event['start_date_time'] = event['end_date_time'].apply(clean_Date)
+event['end_date_time'] = event['end_date_time'].apply(clean_Date)
+
 
 event['event_id'] = event['event_id'].str.strip().str.lstrip()
 event['event_name'] = event['event_name'].str.strip().str.lstrip()
@@ -767,7 +811,7 @@ event['end_date_time'] = event['end_date_time'].str.strip().str.lstrip()
 
 # #### Creating contact_history
 
-# In[1281]:
+# In[850]:
 
 
 contact_history = chdf.iloc[:,1:].copy()
@@ -786,16 +830,16 @@ contact_history['date'] = contact_history['date'].str.strip().str.lstrip()
 
 # #### Creating donation_history
 
-# In[1282]:
+# In[852]:
 
 
 dddf = ddf.iloc[:,1:].copy()
-dddf = dddf[(dddf["Constituent\Lookup ID"] != "")
-                                    & (dddf["Constituent\Lookup ID"] != "anonymous")]
 columns =  ['donation_history_id', 'lookup_id','amount','date','payment_method',
             'given_anonymously', 'do_not_acknowledge', 'donation_program_id','program',
             'donation_method','transaction_type']
 dddf.columns = columns
+dddf = dddf[(dddf["lookup_id"] != "")
+                                    & (dddf["lookup_id"] != "anonymous")]
 dddf = dddf[dddf['program']!=""]
 columns =  ['donation_history_id', 'donation_program_id','lookup_id','amount','date','payment_method',
             'given_anonymously', 'do_not_acknowledge', 'transaction_type','program',
@@ -819,7 +863,7 @@ donation_history['transaction_type'] = donation_history['transaction_type'].str.
 
 # #### Creating donation_program
 
-# In[1283]:
+# In[853]:
 
 
 donation_program = dddf.iloc[:,1:2].join(dddf.iloc[:,9:10])
@@ -827,13 +871,17 @@ donation_program = dddf.iloc[:,1:2].join(dddf.iloc[:,9:10])
 donation_program = donation_program[donation_program['program']!=""]
 donation_program = donation_program.drop_duplicates()
 
+def clean_program_name(v):
+    full_name = v.split(" \ ")
+    return full_name[len(full_name)-1]
+donation_program['program'] = donation_program['program'].apply(clean_program_name)
+
 donation_program['donation_program_id'] = donation_program['donation_program_id'].str.strip().str.lstrip()
 donation_program['program'] = donation_program['program'].str.strip().str.lstrip()
 
-
 # #### Creating incomplete_records, incomplete_names, invalid_zips, invalid_phones, invalid_emails, and dupliate records
 
-# In[1284]:
+# In[854]:
 
 
 no_contact.drop(no_contact.iloc[:,-13:], axis=1,inplace=True)
@@ -848,46 +896,61 @@ invalid_phones['invalid_phones'] = True
 invalid_emails.drop(invalid_emails.iloc[:,-19:], axis=1,inplace=True)
 invalid_emails['invalid_emails'] = True
 incomplete_invalid = no_contact.append([incomplete_names,invalid_zips,invalid_phones,invalid_emails])
-incomplete_invalid.drop(incomplete_invalid.iloc[:,-1:], axis=1,inplace=True)
-incomplete_invalid.drop(incomplete_invalid.iloc[:,19:20], axis=1,inplace=True)
-incomplete_invalid.drop(incomplete_invalid.iloc[:,4:6], axis=1,inplace=True)
-incomplete_invalid.drop(incomplete_invalid.iloc[:,0:3], axis=1,inplace=True)
+incomplete_invalid_address = invalid_zips.copy()
+columns = ['lookup_id','address_1','city','state','zip','country',
+         'address_type', 'date_added', 'constituent_type','do_not_email',
+          'dob','email_id','last_group','name', 'phone','suffix','title','invalid_zips']
+
+incomplete_invalid_address = incomplete_invalid_address[columns]
+incomplete_invalid_address.drop(incomplete_invalid_address.iloc[:, 8:], axis=1,inplace=True)
+
+
+
+incomplete_invalid_constituent = incomplete_invalid.drop(incomplete_invalid.iloc[:,-1:], axis=1,inplace=False)
+incomplete_invalid_constituent.drop(incomplete_invalid_constituent.iloc[:,19:20], axis=1,inplace=True)
+incomplete_invalid_constituent.drop(incomplete_invalid_constituent.iloc[:,4:6], axis=1,inplace=True)
+incomplete_invalid_constituent.drop(incomplete_invalid_constituent.iloc[:,0:3], axis=1,inplace=True)
 columns = [ 'lookup_id', 'suffix', 'title', 'name', 'last_group', 'email_id', 'phone',
            'dob', 'do_not_email', 'constituent_type', 'phone_notes',
            'incomplete_names','invalid_emails','invalid_phones','invalid_zips','no_contact']
-incomplete_invalid = incomplete_invalid[columns]
-incomplete_invalid['incomplete_names'] = incomplete_invalid['incomplete_names'].fillna(value=False)
-incomplete_invalid['invalid_emails'] = incomplete_invalid['invalid_emails'].fillna(value=False)
-incomplete_invalid['invalid_phones'] = incomplete_invalid['invalid_phones'].fillna(value=False)
-incomplete_invalid['invalid_zips'] = incomplete_invalid['invalid_zips'].fillna(value=False)
-incomplete_invalid['no_contact'] = incomplete_invalid['no_contact'].fillna(value=False)
+incomplete_invalid_constituent = incomplete_invalid_constituent[columns]
+incomplete_invalid_constituent['incomplete_names'] = incomplete_invalid_constituent['incomplete_names'].fillna(value=False)
+incomplete_invalid_constituent['invalid_emails'] = incomplete_invalid_constituent['invalid_emails'].fillna(value=False)
+incomplete_invalid_constituent['invalid_phones'] = incomplete_invalid_constituent['invalid_phones'].fillna(value=False)
+incomplete_invalid_constituent['invalid_zips'] = incomplete_invalid_constituent['invalid_zips'].fillna(value=False)
+incomplete_invalid_constituent['no_contact'] = incomplete_invalid_constituent['no_contact'].fillna(value=False)
+incomplete_invalid_constituent['duplicate'] = False # Temporary
+incomplete_invalid_constituent['duplicate_lookup_ids'] = np.array('')
+
+
 
 
 # ### 5) Exporting into final databases for ERD
 
-# In[1285]:
+# In[855]:
 
 
-constituent_membership_record.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'constituent_membership_record.csv', index=False)
-constituent.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'constituent.csv', index=False)
-address.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'address.csv', index=False, date_format='%Y/%m/%d')
-membership_record.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'membership_record.csv', index=False)
-contact_history.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'contact_history.csv', index=False)
-donation_history.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'donation_history.csv', index=False)
-donation_program.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'donation_program.csv', index=False)
-constituent_event.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'constituent_event.csv', index=False)
-event.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'event.csv', index=False)
-incomplete_invalid.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'incomplete_invalid.csv', index=False)
+constituent_membership_record.to_csv('public/'+'constituent_membership_record.csv', index=False)
+constituent.to_csv('public/'+'constituent.csv', index=False)
+address.to_csv('public/'+'address.csv', index=False, date_format='%Y/%m/%d')
+membership_record.to_csv('public/'+'membership_record.csv', index=False)
+contact_history.to_csv('public/'+'contact_history.csv', index=False)
+donation_history.to_csv('public/'+'donation_history.csv', index=False)
+donation_program.to_csv('public/'+'donation_program.csv', index=False)
+constituent_event.to_csv('public/'+'constituent_event.csv', index=False)
+event.to_csv('public/'+'event.csv', index=False)
+incomplete_invalid_address.to_csv('public/'+'incomplete_invalid_address.csv', index=False)
+incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.csv', index=False)
 
 
-# #  ### 6) Validations
-# #
+#  ### 6) Validations
 #
-# # #### constituent validations
-#
-# # In[1286]:
-#
-#
+
+# #### constituent validations
+
+# In[856]:
+
+
 # # Edit this more later, but this has the basic regex formulas for the fields for now
 # # as a means to validate the values.
 # schema = Schema([
@@ -904,7 +967,6 @@ incomplete_invalid.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'
 #     Column('dob',[LeadingWhitespaceValidation(), TrailingWhitespaceValidation(),
 #                   MatchesPatternValidation(r'^$|[\d]{4}/[\d]{2}/[\d]{2}')]),
 #     Column('do_not_email',[LeadingWhitespaceValidation(), TrailingWhitespaceValidation()]), # make custom validation for boolean?
-#     Column('duplicate',[LeadingWhitespaceValidation(), TrailingWhitespaceValidation()]), # make custom validation for boolean?
 #     Column('constituent_type',[LeadingWhitespaceValidation(), TrailingWhitespaceValidation(), InListValidation(["Individual", "Organization", "Household"])]),
 #     Column('phone_notes',[LeadingWhitespaceValidation(), TrailingWhitespaceValidation()])
 # ])
@@ -917,7 +979,7 @@ incomplete_invalid.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'
 #
 # # #### constituent_membership_record validations
 #
-# # In[1287]:
+# # In[857]:
 #
 #
 # schema = Schema([
@@ -925,7 +987,7 @@ incomplete_invalid.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'
 #                          MatchesPatternValidation('^(?!\s*$).+')]),
 #     Column('membership_id',[LeadingWhitespaceValidation(), TrailingWhitespaceValidation(),
 #                          MatchesPatternValidation('^(?!\s*$).+')])
-#     ])
+#     ])2
 # errors = schema.validate(constituent_membership_record)
 # if len(errors) == 0:
 #     print("Validations passed!")
@@ -935,7 +997,7 @@ incomplete_invalid.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'
 #
 # # #### membership_record validations
 #
-# # In[1288]:
+# # In[858]:
 #
 #
 # # Need to find a way to validate the time values
@@ -963,7 +1025,7 @@ incomplete_invalid.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'
 #
 # # #### address validations
 #
-# # In[1289]:
+# # In[859]:
 #
 #
 # # Added common state names for Canada, and DC
@@ -977,7 +1039,7 @@ incomplete_invalid.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'
 #   'American Samoa','Armed Forces Europe/Canada/Middle East/Africa',"Armed Forces Pacific",""]
 #
 #
-# # In[1290]:
+# # In[860]:
 #
 #
 # schema = Schema([
@@ -1005,7 +1067,7 @@ incomplete_invalid.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'
 #
 # # #### contact_history validations
 #
-# # In[1291]:
+# # In[862]:
 #
 #
 # # Need to find a way to validate the time values

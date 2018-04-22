@@ -1,5 +1,34 @@
-<div class='container'>
-    <table class="table">
-        <th>hi</th>
+
+<div class='container-fliud bg-white'>
+    <h3>Unresolved Constituent Duplicates</h3>
+    <table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+        <th scope="col">LookupID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last/Group Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">Membership</th>
+        <th scope="col">Membership Level</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @duplicate_constituents.each do |dc| %>
+        <tr>
+            <td><%= dc.lookup_id %></td>
+            <td><%= dc.name %></td>
+            <td><%= dc.last_group %></td>
+            <td><%= dc.email_id %></td>
+            <td><%= dc.phone %></td>
+            <td><%= dc.current_address %> </td>
+            <td><%= dc.current_membership_scheme%> </td>
+            <td><%= dc.current_membership_level %></td>
+            
+        </tr>
+        <% end %>
+    </tbody>
     </table>
 </div>

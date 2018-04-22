@@ -2,6 +2,7 @@ class DuplicatesController < ApplicationController
     def unresolved
         @nav_status = 'duplicate'
         @unresolved = true
+        @duplicate_constituents = UncleanConstituent.duplicates
     end
 
     def deleted

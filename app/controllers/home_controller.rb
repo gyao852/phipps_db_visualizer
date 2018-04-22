@@ -82,10 +82,16 @@ class HomeController < ApplicationController
     def generate_contact_history_report
         Constituent.generate_contact_history_report(params[:date])
     end
+
+    def generate_attendance_report
+        @event = Event.where(event_id: params[:events][:ids])   
+        @event.generate_attendance_report
+    end
         
 
     def reports
         @nav_status = 'reports'
+        @events = Event.all.chronological
         #Constituent.generate_donations_report(2.days.ago.to_date)
     end
 end

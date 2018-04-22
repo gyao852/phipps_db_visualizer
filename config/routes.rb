@@ -95,6 +95,7 @@ Rails.application.routes.draw do
   get 'reports' => 'home#reports', as: :reports
   get 'generate_donation_report' => 'home#generate_donation_report', as: :generate_donation_report
   get 'generate_contact_history_report' => 'home#generate_contact_history_report', as: :generate_contact_history_report
+  get 'generate_attendance_report' => 'home#generate_attendance_report', as: :generate_attendance_report
   get 'goals_import_page' => 'goals#goals_import_page', as: :goals_import_page
   get 'constituents_import_page' => 'constituents#constituents_import_page', as: :constituents_import_page
   get 'unclean_constituents_import_page' => 'unclean_constituents#unclean_import_page', as: :unclean_import_page

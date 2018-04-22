@@ -6,7 +6,10 @@ class UncleanConstituent < ApplicationRecord
   	has_many :events, through: :constituent_events
   	has_many :contact_histories, foreign_key: "lookup_id"
   	has_many :constituent_membership_records, foreign_key: "lookup_id"
-  	has_many :membership_records, through: :constituent_membership_records
+	has_many :membership_records, through: :constituent_membership_records
+	
+
+ 	scope :duplicates, -> {where(duplicate: true)}
 
 	def current_address
 		all_addresses = self.unclean_addresses

@@ -9,7 +9,6 @@
       <th>Event</th>
       <th>Status</th>
       <th>Attend</th>
-      <th>Host name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +20,6 @@
         <td><%= constituent_event.event_id %></td>
         <td><%= constituent_event.status %></td>
         <td><%= constituent_event.attend %></td>
-        <td><%= constituent_event.host_name %></td>
         <td><%= link_to 'Show', constituent_event %></td>
         <td><%= link_to 'Edit', edit_constituent_event_path(constituent_event) %></td>
         <td><%= link_to 'Destroy', constituent_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

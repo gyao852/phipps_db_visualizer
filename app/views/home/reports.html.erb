@@ -10,7 +10,7 @@
                 <%= submit_tag 'Generate', class:'btn btn-primary'%>
             <% end %>
 
-        
+             
         </div>
     </div> 
 
@@ -26,4 +26,18 @@
             <% end %>
         </div>
     </div> 
+
+    <div class="card bg-white report-form-wrapper mr-auto">
+		<div class='card-body'>
+			<div class='card-title'>
+				<h4>Attendance Report</h4>
+			</div>
+			<p> Generate atttendance list for a specific event </p>
+			<%= form_tag generate_attendance_report_path, remote: true, method: 'get' do %>
+				<%= collection_select :events, :ids, Event.all.chronological, :event_id, 'event_name'%>
+				<%= submit_tag 'Generate', class: 'btn btn-primary' %>
+			<% end %>
+	
+		</div>
+    </div>
 </div>

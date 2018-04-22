@@ -33,6 +33,7 @@ gem 'bootstrap-datepicker-rails'
 
 # Use a gem for handling pagination
 gem 'will_paginate'
+gem 'simple_form'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~>3.1.2'

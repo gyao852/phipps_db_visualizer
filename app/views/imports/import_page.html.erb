@@ -3,12 +3,14 @@
     <div class='card-body'>
         <h3 class='card-title text-black-mint'> Import Altru Data </h3>
         <%= form_tag importfile_imports_path, multipart: true do %>
-        <%= file_field_tag :constituentsfile, class: 'btn'%>
-        <%= file_field_tag :addressesfile, class: 'btn'%>
-        <%# file_field_tag :cmu_team_constituent_membership, class: 'btn'%>
-        <%# file_field_tag :cmu_team_donation, class: 'btn'%>
-        <%# file_field_tag :cmu_team_event_attendance, class: 'btn'%>
-        <%# file_field_tag :cmu_team_communication_history, class: 'btn'%>
+        <h2>constituentsExport</h2>
+        <%= file_field_tag :cmuteamconstituentsexport, class: 'btn'%>
+        <h2>Donation</h2>
+        <%= file_field_tag :cmuteamdonationexport, class: 'btn'%>
+        <h2>event attendance</h2>
+        <%= file_field_tag :cmuteameventattendanceexport, class: 'btn'%>
+        <h2>communication</h2>
+        <%= file_field_tag :cmuteamcommunicationhistoryexport, class: 'btn'%>
 
         <%= submit_tag "ImportFiles", class: 'btn btn-outline-secondary'%>
         <% end %>

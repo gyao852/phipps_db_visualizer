@@ -26,13 +26,13 @@ from pandas_schema.validation import *
 
 # Read csv files and place into dataframes
 # Constituent Records + Membership Records
-cdf = pd.read_csv('./public/CMU Team Constituents Export.csv',dtype="str",na_filter=False)
+cdf = pd.read_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/cmuTeamConstituentsExport.csv',dtype="str",na_filter=False)
 # Donation Records
-ddf = pd.read_csv('./public/CMU Team Donations Export.csv',dtype="str",na_filter=False)
+ddf = pd.read_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/cmuTeamDonationsExport.csv',dtype="str",na_filter=False)
 # Event + Event Attendance Records
-edf = pd.read_csv('./public/CMU Team Event Attendance Export.csv',dtype="str",na_filter=False)
+edf = pd.read_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/cmuTeamEventAttendanceExport.csv',dtype="str",na_filter=False)
 # Contact History Records
-chdf = pd.read_csv('./public/CMU Team Contact History Export.csv',dtype="str",na_filter=False)
+chdf = pd.read_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/cmuTeamContactHistoryExport.csv',dtype="str",na_filter=False)
 
 # Dataframes for each membership scheme/type
 # NOTE: There are some records that are not a member, or have more than one type/scheme of membership
@@ -868,16 +868,16 @@ incomplete_invalid['no_contact'] = incomplete_invalid['no_contact'].fillna(value
 # In[1285]:
 
 
-constituent_membership_record.to_csv('~/Desktop/databases for ERD/'+'constituent_membership_record.csv', index=False)
-constituent.to_csv('~/Desktop/databases for ERD/'+'constituent.csv', index=False)
-address.to_csv('~/Desktop/databases for ERD/'+'address.csv', index=False, date_format='%Y/%m/%d')
-membership_record.to_csv('~/Desktop/databases for ERD/'+'membership_record.csv', index=False)
-contact_history.to_csv('~/Desktop/databases for ERD/'+'contact_history.csv', index=False)
-donation_history.to_csv('~/Desktop/databases for ERD/'+'donation_history.csv', index=False)
-donation_program.to_csv('~/Desktop/databases for ERD/'+'donation_program.csv', index=False)
-constituent_event.to_csv('~/Desktop/databases for ERD/'+'constituent_event.csv', index=False)
-event.to_csv('~/Desktop/databases for ERD/'+'event.csv', index=False)
-incomplete_invalid.to_csv('~/Desktop/databases for ERD/'+'incomplete_invalid.csv', index=False)
+constituent_membership_record.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'constituent_membership_record.csv', index=False)
+constituent.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'constituent.csv', index=False)
+address.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'address.csv', index=False, date_format='%Y/%m/%d')
+membership_record.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'membership_record.csv', index=False)
+contact_history.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'contact_history.csv', index=False)
+donation_history.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'donation_history.csv', index=False)
+donation_program.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'donation_program.csv', index=False)
+constituent_event.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'constituent_event.csv', index=False)
+event.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'event.csv', index=False)
+incomplete_invalid.to_csv('/Users/Ashvin/Desktop/phipps_db_visualizer/public/'+'incomplete_invalid.csv', index=False)
 
 
 # #  ### 6) Validations

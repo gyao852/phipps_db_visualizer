@@ -1,55 +1,91 @@
-<div class='container-fluid bg-white'>
-<p>
-  <strong>Lookup:</strong>
-  <%= @constituent.lookup_id %>
-</p>
+<div class='container-fluid d-flex'>
 
-<p>
-  <strong>Suffix:</strong>
-  <%= @constituent.suffix %>
-</p>
+<div class='card bg-white show-constituent-information mr-auto'>
+  <h4 class="card-header">Constituent Information</h4>
+  <div class='card-body'>
+    <ul class='list-group list-group-fl'>
+      <li class="list-group-item">    
+        <strong>Name:</strong>
+        <%= @constituent.name %>
+      </li>
 
-<p>
-  <strong>Title:</strong>
-  <%= @constituent.title %>
-</p>
+      <li class="list-group-item">
+        <strong>Last / Group Name:</strong>
+        <%= @constituent.last_group %>
+      </li>
 
-<p>
-  <strong>Name:</strong>
-  <%= @constituent.name %>
-</p>
+      <li class="list-group-item">
+        <strong>Lookup ID:</strong>
+        <%= @constituent.lookup_id %>
+      </li>
 
-<p>
-  <strong>Last group:</strong>
-  <%= @constituent.last_group %>
-</p>
+      <li class="list-group-item">
+        <strong>Title:</strong>
+        <% if @constituent.title.nil? %>
+          N/A
+        <% else %>
+          <%= @constituent.title %>
+        <% end %>
+      </li>
 
-<p>
-  <strong>Email:</strong>
-  <%= @constituent.email_id %>
-</p>
+      <li class="list-group-item">
+        <strong>Suffix:</strong>
+        <% if @constituent.suffix.nil? %>
+          N/A
+        <% else %>
+          <%= @constituent.suffix %>
+        <% end %>
+      </li>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @constituent.phone %>
-</p>
+      <li class="list-group-item">
+        <strong>Email:</strong>
+        <% if @constituent.email_id.nil? %>
+          N/A
+        <% else %>
+          <%= @constituent.email_id %>
+        <% end %>
+      </li>
 
-<p>
-  <strong>Dob:</strong>
-  <%= @constituent.dob %>
-</p>
+      <li class="list-group-item">
+        <strong>Phone:</strong>
+        <% if @constituent.phone.nil? %>
+          N/A
+        <% else %>
+          <%= @constituent.phone %>
+        <% end %>
+      </li>
 
-<p>
-  <strong>Do not email:</strong>
-  <%= @constituent.do_not_email %>
-</p>
+      <li class="list-group-item">
+        <strong>Dob:</strong>
+        <% if @constituent.dob.nil? %>
+          N/A
+        <% else %>
+          <%= @constituent.dob %>
+        <% end %>
+      </li>
 
-<p>
-  <strong>Duplicate:</strong>
-  <%= @constituent.duplicate %>
-</p>
+      <li class="list-group-item">
+        <strong>Do not email:</strong>
+        <%= @constituent.do_not_email %>
+      </li>
 
-<%= link_to 'Back', constituents_path %>
+      <li class="list-group-item">
+        <strong>Duplicate:</strong>
+        <%= @constituent.duplicate %>
+      </li>
+
+    </ul>
+
+
+    <%= link_to 'Back', constituents_path %>
+    </div>
+  </div>
+
+  <div class='card bg-white show-constituent-membership-record'>
+  </div>
+
 
 </div>
+
+
 

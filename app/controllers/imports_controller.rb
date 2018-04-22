@@ -1,11 +1,11 @@
 class ImportsController < ApplicationController
 	def importfile
 
-    	if params[:constituentsfile].nil? || params[:addressesfile].nil?
+    	if params[:cmuteameventattendanceexport].nil? || params[:cmuteamdonationexport].nil? || params[:cmuteamconstituentsexport].nil?|| params[:cmuteamcommunicationhistoryexport].nil?
         `python public/cleaning_script.py`
       	redirect_to import_page_path, notice: "Please upload a csv file."
     	else
-      		importer = Import.new(params[:constituentsfile],params[:addressesfile])
+      		importer = Import.new(params[:cmuteamconstituentsexport],params[:cmuteameventattendanceexport],params[:cmuteamcommunicationhistoryexport],params[:cmuteamdonationexport])
       		if File.exist?("#{Rails.root}/public/cmuTeamconstituentsExport.csv")
             File.delete("#{Rails.root}/public/cmuTeamconstituentsExport.csv")
           end
@@ -30,12 +30,10 @@ class ImportsController < ApplicationController
           if File.exist?("#{Rails.root}/public/addressesfile.csv")
             File.delete("#{Rails.root}/public/addressesfile.csv")
           end
-      		importer.save_constituents_csv_file
-          importer.save_addresses_csv_file
-          # importer.save_cmuTeamconstituentsExport_csv_file
-          # importer.save_cmuTeamDonationsExport_csv_file
-          # importer.save_cmuTeamEventAttendanceExport_csv_file
-          # importer.save_cmuTeamContactHistoryExport_csv_file
+          importer.save_cmuteamconstituentsexport_csv_file
+          importer.save_cmuteamdonationsexport_csv_file
+          importer.save_cmuteamcontacthistoryexport_csv_file
+          importer.save_cmuteameventattendanceexport_csv_file
           # importer.save_cmuTeamEventExport_csv_file
           # importer.save_cmuTeamDonationProgramExport_csv_file
           redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"

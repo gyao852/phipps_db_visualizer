@@ -17,7 +17,7 @@ class Import < ApplicationRecord
 	end
 
 #############################################################
-# upload files 
+# upload files
 #############################################################
 
 	def save_constituents_csv_file
@@ -37,7 +37,7 @@ class Import < ApplicationRecord
 	end
 
 	def save_cmuteamconstituentsexport_csv_file
-		CSV.open("#{Rails.root}/public/cmuTeamconstituentsExport.csv", "wb") do |csv|
+		CSV.open("#{Rails.root}/public/CMU Team Constituents Export.csv", "wb") do |csv|
 			CSV.foreach(cmuteamconstituentsexport_file.path, headers:false) do |row|
       			csv << row
     		end
@@ -45,7 +45,7 @@ class Import < ApplicationRecord
 	end
 
 	def save_cmuteameventattendanceexport_csv_file
-		CSV.open("#{Rails.root}/public/cmuTeamEventAttendanceExport.csv", "wb") do |csv|
+		CSV.open("#{Rails.root}/public/CMU Team Event Attendance Export.csv", "wb") do |csv|
 			CSV.foreach(cmuteameventattendanceexport_file.path, headers:false) do |row|
       			csv << row
     		end
@@ -53,7 +53,7 @@ class Import < ApplicationRecord
 	end
 
 	def save_cmuteamdonationsexport_csv_file
-		CSV.open("#{Rails.root}/public/cmuTeamDonationsExport.csv", "wb") do |csv|
+		CSV.open("#{Rails.root}/public/CMU Team Donations Export.csv", "wb") do |csv|
 			CSV.foreach(cmuteamdonationsexport_file.path, headers:false) do |row|
       			csv << row
     		end
@@ -61,7 +61,7 @@ class Import < ApplicationRecord
 	end
 
 	def save_CMUTeamEventAttendanceExport_csv_file
-		CSV.open("#{Rails.root}/public/cmuTeamEventAttendanceExport.csv", "wb") do |csv|
+		CSV.open("#{Rails.root}/public/CMU Team Event Attendance Export.csv", "wb") do |csv|
 			CSV.foreach(cmuTeamEventAttendanceExport.path, headers:false) do |row|
       			csv << row
     		end
@@ -69,7 +69,7 @@ class Import < ApplicationRecord
 	end
 
 	def save_cmuteamcontacthistoryexport_csv_file
-		CSV.open("#{Rails.root}/public/cmuTeamContactHistoryExport.csv", "wb") do |csv|
+		CSV.open("#{Rails.root}/public/CMU Team Contact History Export.csv", "wb") do |csv|
 			CSV.foreach(cmuteamcontacthistoryexport_file.path, headers:false) do |row|
       			csv << row
     		end
@@ -206,7 +206,7 @@ class Import < ApplicationRecord
 
 	private
 #############################################################
-# create record 
+# create record
 #############################################################
 	def create_constituent(data)
 		Constituent.create! data.to_hash

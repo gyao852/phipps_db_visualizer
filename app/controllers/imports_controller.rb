@@ -6,17 +6,17 @@ class ImportsController < ApplicationController
       	redirect_to import_page_path, notice: "Please upload a csv file."
     	else
       		importer = Import.new(params[:cmuteamconstituentsexport],params[:cmuteameventattendanceexport],params[:cmuteamcommunicationhistoryexport],params[:cmuteamdonationexport])
-      		if File.exist?("#{Rails.root}/public/cmuTeamconstituentsExport.csv")
-            File.delete("#{Rails.root}/public/cmuTeamconstituentsExport.csv")
+      		if File.exist?("#{Rails.root}/public/CMU Team Constituents Export.csv")
+            File.delete("#{Rails.root}/public/CMU Team Constituents Export.csv")
           end
-          if File.exist?("#{Rails.root}/public/cmuTeamDonationsExport.csv")
-            File.delete("#{Rails.root}/public/cmuTeamDonationsExport.csv")
+          if File.exist?("#{Rails.root}/public/CMU Team Donations Export.csv")
+            File.delete("#{Rails.root}/public/CMU Team Donations Export.csv")
           end
-          if File.exist?("#{Rails.root}/public/cmuTeamEventAttendanceExport.csv")
-            File.delete("#{Rails.root}/public/cmuTeamEventAttendanceExport.csv")
+          if File.exist?("#{Rails.root}/public/CMU Team Event Attendance Export.csv")
+            File.delete("#{Rails.root}/public/CMU Team Event Attendance Export.csv")
           end
-          if File.exist?("#{Rails.root}/public/cmuTeamContactHistoryExport.csv")
-            File.delete("#{Rails.root}/public/cmuTeamContactHistoryExport.csv")
+          if File.exist?("#{Rails.root}/public/CMU Team Contact History Export.csv")
+            File.delete("#{Rails.root}/public/CMU Team Contact History Export.csv")
           end
           if File.exist?("#{Rails.root}/public/cmuTeamEventExport.csv")
             File.delete("#{Rails.root}/public/cmuTeamEventExport.csv")

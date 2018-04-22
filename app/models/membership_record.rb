@@ -19,7 +19,6 @@ class MembershipRecord < ApplicationRecord
   # no validations for add-ons as it is a feature the client will start to use in the future
   # validations on membership level type??
   validates :membership_status, presence:true
-  validates_numericality_of :membership_term, :only_integer => true, :greater_than=> 0
   # validate start date on or before today
   validates_date :start_date,
                   :before => lambda{Date.today}
@@ -36,7 +35,7 @@ class MembershipRecord < ApplicationRecord
   # -------------
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|
-      if row[9] != nil 
+      if row[9] != nil
         date_string = row[7]
         row[7] = Date.strptime(date_string, '%m/%d/%Y')
         date_string_2 = row[8]
@@ -44,7 +43,7 @@ class MembershipRecord < ApplicationRecord
         date_string_3 = row[9]
         row[9] = Date.strptime(date_string_3, '%m/%d/%Y')
         MembershipRecord.create! row.to_hash
-      else  
+      else
         date_string = row[7]
         row[7] = Date.strptime(date_string, '%m/%d/%Y')
         date_string_2 = row[8]
@@ -52,7 +51,7 @@ class MembershipRecord < ApplicationRecord
         MembershipRecord.create! row.to_hash
       end
     end
-  end 
+  end
 
 
 end

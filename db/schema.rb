@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420190400) do
+ActiveRecord::Schema.define(version: 20180422211513) do
 
   create_table "addresses", force: :cascade do |t|
     t.text "address_id"
@@ -242,7 +242,6 @@ ActiveRecord::Schema.define(version: 20180420190400) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "user_id"
     t.text "fname"
     t.text "lname"
     t.text "email_id"

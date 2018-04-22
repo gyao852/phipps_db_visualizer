@@ -77,6 +77,6 @@ class MembershipRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def membership_record_params
-      params.require(:membership_record).permit(:membership_id, :membership_scheme, :membership_level, :add_ons, :membership_level_type, :membership_status, :membership_term, :start_date, :end_date, :last_renewed)
+      params.require(:membership_record).permit(:membership_id, :membership_scheme, :membership_level, :add_ons, :membership_level_type, :membership_status, :start_date, :end_date, :last_renewed)
     end
 end

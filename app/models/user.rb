@@ -1,8 +1,6 @@
 class User < ApplicationRecord
-  require 'bcrypt'
+  has_secure_password
 
-  attr_accessor :password
-  before_save :prepare_password
   # Relationships
   # -----------------------------
   # no relationships
@@ -14,11 +12,10 @@ class User < ApplicationRecord
 
   # Validations
   # -----------------------------
-  validates_presence_of :user_id
   validates_presence_of :fname
   validates_presence_of :lname
   validates_presence_of :password, on: :create
-  validates_confirmation_of :password, message: "doesn't match fonrimation"
+  #validates_confirmation_of :password, message: "doesn't match fonrimation"
   validates :email_id, presence: true
   validates :email_id, format: { with:/.+@.+\..+/i, message: "format of email address is incorrect"}
   validates_inclusion_of :active, :in => [true,false]

@@ -1,6 +1,34 @@
+
+
 <div class='card bg-white'>
   <h4 class="card-header">Add a New User</h4>
-  <%= simple_form_for @user, html: {class: 'form-group', multipart: true} do |f| %>
-    <%= f.input :fname, label: "First Name", error: 'First name field cannot be left blank', input_html: {class: 'form-control'}, wrapper_html: {class: 'form-control'}  %>
+  <%= simple_form_for @user, html: { multipart: true} do |f| %>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= f.input :fname, label: "First Name", error: 'First name field cannot be left blank', input_html: {class: 'form-control'}, wrapper_html: {class: 'input-field'} %>
+      </div>
+    
+      <div class="form-group col-md-6">
+        <%= f.input :lname, label: "Last Name", error: 'Last name field cannot be left blank', input_html: {class: 'form-control'}, wrapper_html: {class: 'input-field'} %>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <%= f.input :email_id, label: "Email", input_html: {class:'form-control'}, wrapper_html: {class:'input-field'}%>
+    </div>
+
+    <div class='form-group'>
+      <%= f.input :password, label: "Password", error: 'Password field cannot be left blank', input_html: {class: 'form-control'}, wrapper_html: {class: 'input-field'} %>
+    </div>
+
+    <div class='form-group'>
+      <%= f.input :password_confirmation, label: "Password Confirmation", input_html: {class: 'form-control'}, wrapper_html: {class: 'input-field'} %>
+    </div>
+  
+
+   
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary', :type => 'submit', :name => 'action'%>
+    </div>
   <%end%>
 </div>

@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-
+<div class='container-fluid bg-white'>
 <p>
   <strong>Lookup:</strong>
   <%= @constituent.lookup_id %>
@@ -50,5 +49,7 @@
   <%= @constituent.duplicate %>
 </p>
 
-<%= link_to 'Edit', edit_constituent_path(@constituent) %> |
 <%= link_to 'Back', constituents_path %>
+
+</div>
+

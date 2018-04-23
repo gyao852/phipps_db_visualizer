@@ -3,7 +3,7 @@
 <div class='card bg-white show-constituent-information mr-auto'>
   <h4 class="card-header">Constituent Information</h4>
   <div class='card-body'>
-    <ul class='list-group list-group-fl'>
+    <ul class='list-group list-group-flush'>
       <li class="list-group-item">    
         <strong>Name:</strong>
         <%= @constituent.name %>
@@ -77,35 +77,125 @@
     </ul>
 
 
-    <%= link_to 'Back', constituents_path %>
+    
     </div>
   </div>
 
   <div class='card bg-white show-constituent-membership-record'>
     <h4 class="card-header">Membership History</h4>
     <div class="card-body">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th scope='col'>Scheme</th>
+            <th scope='col'>Level</th>
+            <th scope='col'>Type</th>
+            <th scope='col'>Status</th>
+            <th scope='col'>Start Date</th>
+            <th scope='col'>End Date</th>
+            <th scope='col'>Last Renewed Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%= @constituent.constituent_membership_records.each do |cmr| %>
+            <tr>
+              <td><%= cmr.membership_record.membership_scheme %></td>
+              <td><%= cmr.membership_record.membership_level %></td>
+              <td><%= cmr.membership_record.membership_level_type %></td>
+              <td><%= cmr.membership_reocord.membership_status %></td>
+              <td><%= cmr.membership_record.start_date %></td>
+              <td><%= cmr.membership_record.end_date %></td>
+              <td><%= cmr.membership_record.last_renewed %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 
   <div class='card bg-white show-constituent-donation-history'>
     <h4 class='card-header'>Donation History</h4>
     <div class="card-body">
+        <table class="table">
+            <thead>
+            <tr>
+              <th scope='col'>Program</th>
+              <th scope='col'>Amount</th>
+              <th scope='col'>Date</th>
+              <th scope='col'>Payment Method</th>
+              <th scope='col'>Transaction Type</th>
+              <th scope='col'>Anonymous</th>
+              <th scope='col'>Do Not Acknowledge</th>              
+            </tr>
+            </thead>
+
+            <tbody>
+              <%= @constituent.donation_histories.each do |dh| %>
+                <tr>
+                  <td><%= dh.donation_program.program %></td>
+                  <td><%= dh.amount %></td>
+                  <td><%= dh.date %></td>
+                  <td><%= dh.payment_method %></td>
+                  <td><%= dh.transaction_type %></td>
+                  <td><%= dh.given_anonymously %></td>
+                  <td><%= dh.do_not_acknowledge %></td>
+                </tr>              
+              <%end %>
+            </tbody>
+        </table>
     </div>
   </div>
 
   <div class='card bg-white show-constituent-attendance-history'>
     <h4 class='card-header'>Attendance History</h4>
     <div class='card-body'>
+        <table class='table'>
+            <thead>
+                <th scope="col">Event Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">RSVP</th>
+                <th scope="col">Attended</th>
+            </thead>
+            
+            <tbody>
+                <%= @constituent.constituent_events.each do |ce| %>
+                  <tr>
+                    <td><%= ce.event.event_name %></td>
+                    <td><%= ce.start_date %></td>
+                    <td><%= ce.end_date %></td>
+                    <td><%= ce.status %></td>
+                    <td><%= ce.attend %></td>
+                  </tr>
+                <% end %>
+            </tbody>
+        </table>
     </div>
   </div>
 
   <div class='card bg-white show-constituent-contact-history'>
     <h4 class='card-header'>Contact History</h4>
     <div class='card-body'>
+        <table>
+            <thead>
+              <th scope="col">Contact Type</th>
+              <th scope="col">Date</th>
+            </thead>
+
+            <tbody>
+              <%= @constituent.contact_histories.each do |ch| %>
+                <tr>
+                  <td><%= ch.contact_type %></td>
+                  <td><%= ch.date %></td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
     </div>
   </div>
 
-
+  <%= link_to 'Back', constituents_path %>
 </div>
 
 

@@ -31,7 +31,7 @@ class Constituent < ApplicationRecord
     message: "phone number is not valid"}, :allow_blank => true
   # validates :do_not_email, :inclusion => {:in => [true, false]}
   # validates_inclusion_of :do_not_email, :in => [true,false]
-  validates_date :dob, before: Date.today, :allow_blank => true
+  # validates_date :dob, before: Date.today, :allow_blank => true
   validates :email_id, format: { with:/.+@.+\..+/i,
   message: "format of email address is incorrect"}, :allow_blank => true
 

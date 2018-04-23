@@ -13,7 +13,13 @@ class CreateUncleanConstituents < ActiveRecord::Migration[5.1]
       t.boolean :duplicate
       t.text :constituent_type
       t.text :phone_notes
-      t.text :error
+      t.boolean :incomplete_names
+      t.boolean :invalid_emails
+      t.boolean :invalid_phones
+      t.boolean :invalid_zips
+      t.boolean :no_contact
+      t.boolean :duplicate
+      t.text    :duplicate_records
 
       t.timestamps
     end

@@ -50,10 +50,10 @@ class Event < ApplicationRecord
 
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|
-      date_string_1=row[2]
-      row[2]=Date.strptime(date_string_1, '%m/%d/%Y')
-      date_string_2=row[3]
-      row[3]=Date.strptime(date_string_2, '%m/%d/%Y')
+      # date_string_1=row[2]
+      # row[2]=Date.strptime(date_string_1, '%m/%d/%Y')
+      # date_string_2=row[3]
+      # row[3]=Date.strptime(date_string_2, '%m/%d/%Y')
       Event.create! row.to_hash 
     end
   end 

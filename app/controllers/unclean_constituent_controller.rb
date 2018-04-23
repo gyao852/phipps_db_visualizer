@@ -86,6 +86,7 @@ class UncleanConstituentController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def unclean_constituent_params
-      params.require(:unclean_constituent).permit(:lookup_id, :suffix, :title, :name, :last_group, :email_id, :phone, :dob, :do_not_email, :duplicate,:error)
+      params.require(:unclean_constituent).permit(:lookup_id, :suffix, :title, :name, :last_group, :email_id, :phone, :dob, :do_not_email, :duplicate,
+        :incomplete_names,:invalid_emails,:invalid_phones,:invalid_zips,:no_contact,:duplicate,:duplicate_lookup_ids)
     end
 end

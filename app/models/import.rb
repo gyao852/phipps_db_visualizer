@@ -95,8 +95,22 @@ class Import < ApplicationRecord
 # import data
 #############################################################
 	def import_constituent_csv_data
-		CSV.foreach("#{Rails.root}/public/constituentsfile.csv", headers:true) do |row|
+		CSV.foreach("#{Rails.root}/public/constituent.csv", headers:true) do |row|
       		create_constituent(row)
+    	end
+	end
+
+	def import_uncleanconstituent_csv_data
+		CSV.foreach("#{Rails.root}/public/incomplete_invalid_constituents.csv", headers:true) do |row|
+      		create_uncleanconstituent(row)
+    	end
+	end
+
+	def import_contacthistory_csv_data
+		CSV.foreach("#{Rails.root}/public/contacthistoryfile.csv", headers:true) do |row|
+			# if look up ID in constituents then place in constituents table
+			# else plance in unclean contact history table 
+      		create_contacthistory(row)
     	end
 	end
 
@@ -148,11 +162,7 @@ class Import < ApplicationRecord
     	end
 	end
 
-	def import_uncleanconstituent_csv_data
-		CSV.foreach("#{Rails.root}/public/uncleanconstituentsfile.csv", headers:true) do |row|
-      		create_uncleanconstituentconstituent(row)
-    	end
-	end
+	
 
 	def import_uncleanaddress_csv_data
 		CSV.foreach("#{Rails.root}/public/uncleanaddressesfile.csv", headers:true) do |row|
@@ -160,47 +170,7 @@ class Import < ApplicationRecord
     	end
 	end
 
-	def import_uncleanmembershiprecord_csv_data
-		CSV.foreach("#{Rails.root}/public/uncleanmembershiprecordfile.csv", headers:true) do |row|
-      		create_uncleanmembershiprecord(row)
-    	end
-	end
-
-	def import_uncleanconstituentmembership_csv_data
-		CSV.foreach("#{Rails.root}/public/uncleanconstituentmembershipfile.csv", headers:true) do |row|
-      		create_uncleanconstituentmembership(row)
-    	end
-	end
-
-	def import_uncleancontacthistory_csv_data
-		CSV.foreach("#{Rails.root}/public/uncleancontacthistoryfile.csv", headers:true) do |row|
-      		create_uncleancontacthistory(row)
-    	end
-	end
-
-	def import_uncleanevent_csv_data
-		CSV.foreach("#{Rails.root}/public/uncleaneventfile.csv", headers:true) do |row|
-      		create_uncleanevent(row)
-    	end
-	end
-
-	def import_uncleanconstituentevent_csv_data
-		CSV.foreach("#{Rails.root}/public/uncleanconstituenteventfile.csv", headers:true) do |row|
-      		create_uncleanconstituentevent(row)
-    	end
-	end
-
-	def import_uncleandonationprogram_csv_data
-		CSV.foreach("#{Rails.root}/public/uncleandonationprogramfile.csv", headers:true) do |row|
-      		create_uncleandonationprogram(row)
-    	end
-	end
-
-	def import_uncleandonationhistory_csv_data
-		CSV.foreach("#{Rails.root}/public/uncleandonationhistoryfile.csv", headers:true) do |row|
-      		create_uncleandonationhistory(row)
-    	end
-	end
+	
 
 
 

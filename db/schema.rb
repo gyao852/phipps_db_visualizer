@@ -183,11 +183,7 @@ ActiveRecord::Schema.define(version: 20180422211513) do
     t.boolean "invalid_phones"
     t.boolean "invalid_zips"
     t.boolean "no_contact"
-<<<<<<< HEAD
-    t.text "duplicate_records"
-=======
     t.text "duplicate_lookup_ids"
->>>>>>> master
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

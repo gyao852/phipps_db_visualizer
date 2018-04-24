@@ -26,11 +26,13 @@ class Event < ApplicationRecord
   # Other methods
   # -------------
   def generate_attendance_report
-    CSV.open("reports/attendance-report.csv", 'wb') do |csv|
-      csv << ["Date, Event"]
+    filename = 'reports/attendance-report' + self.event_id + '.csv'
+    CSV.open(filename, 'wb') do |csv|
+      csv << ["Date", "Event"]
       csv << [self.start_date_time, self.event_name]
       csv << ["Constituent", "Email", "RSVP", "Attendance"]
-      self.constituent_events.each do |ce|
+      relevant_ce = ConstituentEvent.where(event_id:self.event_id)
+      relevant_ce.each do |ce|
         csv << [ce.constituent.name, ce.constituent.email_id, ce.status, ce.attend]
       end
     end

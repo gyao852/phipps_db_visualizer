@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   # Relationships
   # -----------------------------
+  self.primary_key = 'event_id'
   has_many :constituent_events, foreign_key: 'event_id'
   has_many :constituents, through: :constituent_events
 
@@ -50,10 +51,6 @@ class Event < ApplicationRecord
 
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|
-      # date_string_1=row[2]
-      # row[2]=Date.strptime(date_string_1, '%m/%d/%Y')
-      # date_string_2=row[3]
-      # row[3]=Date.strptime(date_string_2, '%m/%d/%Y')
       Event.create! row.to_hash 
     end
   end 

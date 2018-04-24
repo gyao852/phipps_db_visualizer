@@ -51,6 +51,6 @@ class UncleanMembershipRecordController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def unclean_membership_record_params
-      params.require(:unclean_membership_record).permit(:membership_id, :membership_scheme, :membership_level, :add_ons, :membership_level_type, :membership_status, :membership_term, :start_date, :end_date, :last_renewed,:errors)
+      params.require(:unclean_membership_record).permit(:membership_id,:lookup_id, :membership_scheme, :membership_level, :add_ons, :membership_level_type, :membership_status, :membership_term, :start_date, :end_date, :last_renewed,:errors)
     end
 end

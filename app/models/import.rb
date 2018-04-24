@@ -107,10 +107,13 @@ class Import < ApplicationRecord
 	end
 
 	def import_contacthistory_csv_data
-		CSV.foreach("#{Rails.root}/public/contacthistoryfile.csv", headers:true) do |row|
-			# if look up ID in constituents then place in constituents table
-			# else plance in unclean contact history table 
-      		create_contacthistory(row)
+		CSV.foreach("#{Rails.root}/public/contact_history.csv", headers:true) do |row|
+			lookup_check = row[0]
+			if Constituent.where(:lookup_id => lookup_check).empty?
+				create_uncleancontacthistory(row)
+			else
+				create_contacthistory(row)
+			end
     	end
 	end
 
@@ -132,11 +135,6 @@ class Import < ApplicationRecord
     	end
 	end
 
-	def import_contacthistory_csv_data
-		CSV.foreach("#{Rails.root}/public/contacthistoryfile.csv", headers:true) do |row|
-      		create_contacthistory(row)
-    	end
-	end
 
 	def import_event_csv_data
 		CSV.foreach("#{Rails.root}/public/eventfile.csv", headers:true) do |row|

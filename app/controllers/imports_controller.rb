@@ -75,7 +75,7 @@ class ImportsController < ApplicationController
   		importer = Import.new()
   		importer.import_constituent_csv_data
       importer.import_uncleanconstituent_csv_data
-      # importer.import_address_csv_data
+      importer.import_contacthistory_csv_data
   		redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
 	end
 end

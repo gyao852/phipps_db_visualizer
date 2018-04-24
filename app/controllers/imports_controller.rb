@@ -51,30 +51,40 @@ class ImportsController < ApplicationController
       Event.delete_all
       Constituent.delete_all
 
-      constituentsfile = File.new(open("#{Rails.root}/public/CMU Team Constituents Export.csv"))
-			# TO ASH: There is no address file, address is in the constituents export
-			addressesfile = File.new(open("#{Rails.root}/public/addressesfile.csv"))
-      # membershiprecordfile = File.new(open("#{Rails.root}/public/membershiprecordfile.csv"))
-      # constituentmembershipfile = File.new(open("#{Rails.root}/public/constituentmembershipfile.csv"))
-      # contacthistoryfile = File.new(open("#{Rails.root}/public/contacthistoryfile.csv"))
-      # eventfile = File.new(open("#{Rails.root}/public/eventfile.csv"))
-      # constituenteventfile = File.new(open("#{Rails.root}/public/constituenteventfile.csv"))
-      # donationhistoryfile = File.new(open("#{Rails.root}/public/donationhistoryfile.csv"))
-      # donationprogramfile = File.new(open("#{Rails.root}/public/donationprogramfile.csv"))
+   #    constituentsfile = File.new(open("#{Rails.root}/public/CMU Team Constituents Export.csv"))
+			# # TO ASH: There is no address file, address is in the constituents export
+			# # addressesfile = File.new(open("#{Rails.root}/public/addressesfile.csv"))
+   #    # membershiprecordfile = File.new(open("#{Rails.root}/public/membershiprecordfile.csv"))
+   #    # constituentmembershipfile = File.new(open("#{Rails.root}/public/constituentmembershipfile.csv"))
+   #    # contacthistoryfile = File.new(open("#{Rails.root}/public/contacthistoryfile.csv"))
+   #    # eventfile = File.new(open("#{Rails.root}/public/eventfile.csv"))
+   #    # constituenteventfile = File.new(open("#{Rails.root}/public/constituenteventfile.csv"))
+   #    # donationhistoryfile = File.new(open("#{Rails.root}/public/donationhistoryfile.csv"))
+   #    # donationprogramfile = File.new(open("#{Rails.root}/public/donationprogramfile.csv"))
 
-      # uncleanconstituentsfile = File.new(open("#{Rails.root}/public/uncleanconstituentsfile.csv"))
-      # uncleanaddressesfile = File.new(open("#{Rails.root}/public/uncleanaddressesfile.csv"))
-      # uncleanmembershiprecordfile = File.new(open("#{Rails.root}/public/uncleanmembershiprecordfile.csv"))
-      # uncleanconstituentmembershipfile = File.new(open("#{Rails.root}/public/uncleanconstituentmembershipfile.csv"))
-      # uncleancontacthistoryfile = File.new(open("#{Rails.root}/public/uncleancontacthistoryfile.csv"))
-      # uncleaneventfile = File.new(open("#{Rails.root}/public/uncleaneventfile.csv"))
-      # uncleanconstituenteventfile = File.new(open("#{Rails.root}/public/uncleanconstituenteventfile.csv"))
-      # uncleandonationhistoryfile = File.new(open("#{Rails.root}/public/uncleandonationhistoryfile.csv"))
-      # uncleandonationprogramfile = File.new(open("#{Rails.root}/public/uncleandonationprogramfile.csv"))
+   #    # uncleanconstituentsfile = File.new(open("#{Rails.root}/public/uncleanconstituentsfile.csv"))
+   #    # uncleanaddressesfile = File.new(open("#{Rails.root}/public/uncleanaddressesfile.csv"))
+   #    # uncleanmembershiprecordfile = File.new(open("#{Rails.root}/public/uncleanmembershiprecordfile.csv"))
+   #    # uncleanconstituentmembershipfile = File.new(open("#{Rails.root}/public/uncleanconstituentmembershipfile.csv"))
+   #    # uncleancontacthistoryfile = File.new(open("#{Rails.root}/public/uncleancontacthistoryfile.csv"))
+   #    # uncleaneventfile = File.new(open("#{Rails.root}/public/uncleaneventfile.csv"))
+   #    # uncleanconstituenteventfile = File.new(open("#{Rails.root}/public/uncleanconstituenteventfile.csv"))
+   #    # uncleandonationhistoryfile = File.new(open("#{Rails.root}/public/uncleandonationhistoryfile.csv"))
+   #    # uncleandonationprogramfile = File.new(open("#{Rails.root}/public/uncleandonationprogramfile.csv"))
 
   		importer = Import.new()
   		importer.import_constituent_csv_data
+      importer.import_uncleanconstituent_csv_data
+      # importer.import_membershiprecord_csv_data
+      # importer.import_constituentmembershiprecord_csv_data
+      importer.import_uncleanaddress_csv_data
+      importer.import_event_csv_data
+      importer.import_donationprogram_csv_data
+      importer.import_contacthistory_csv_data
       importer.import_address_csv_data
+      importer.import_constituentevent_csv_data
+      importer.import_constituentevent_csv_data
+      importer.import_donationhistory_csv_data
   		redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
 	end
 end

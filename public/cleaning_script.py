@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 # # Phipps Conservatory Membership Database Cleaning Script

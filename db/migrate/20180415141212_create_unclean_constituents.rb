@@ -19,7 +19,7 @@ class CreateUncleanConstituents < ActiveRecord::Migration[5.1]
       t.boolean :invalid_zips
       t.boolean :no_contact
       t.boolean :duplicate
-      t.text    :duplicate_records
+      t.text    :duplicate_lookup_ids
 
       t.timestamps
     end

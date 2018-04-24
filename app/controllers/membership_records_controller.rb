@@ -26,6 +26,7 @@ class MembershipRecordsController < ApplicationController
   # POST /membership_records
   # POST /membership_records.json
   def create
+    
     @membership_record = MembershipRecord.new(membership_record_params)
 
     respond_to do |format|

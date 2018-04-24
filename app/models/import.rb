@@ -138,7 +138,6 @@ class Import < ApplicationRecord
 			else
 				create_membershiprecord(row)
 			end
-      		create_membershiprecord(row)
     	end
 	end
 

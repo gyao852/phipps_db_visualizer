@@ -37,7 +37,6 @@ class MembershipRecord < ApplicationRecord
   # validates_date :end_date,
   #                 :after => :start_date
   # validate last renewed after start date and before end date
-
   # validates_date :last_renewed,
   #                 :on_or_before => :end_date,
   #                 :on_or_after => :start_date,

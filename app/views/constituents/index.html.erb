@@ -1,3 +1,4 @@
+
 <div class="container-fluid bg-white">
 
   <nav aria-label="breadcrumb" class="breadcrumb-nav">
@@ -27,7 +28,7 @@
 
   <tbody>
     <% @constituents.each do |constituent| %>
-      <tr>
+      <tr data-link="<%= constituent_path(constituent)%>">
         <td><%= constituent.lookup_id %></td>
         <td><%= constituent.name %></td>
         <td><%= constituent.last_group %></td>

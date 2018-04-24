@@ -93,9 +93,9 @@ html, body {
     background-color: $gray-teal;
 }
 
-.show-constituent-information {
-    width: 45%;
-}
+
+
+
 
 .card{ 
     box-shadow:2px 4px 6px 0 rgba(69,77,72,0.1), 2px 4px 6px 0 rgba(69,77,72,0.1);
@@ -199,6 +199,9 @@ i.md-40 {
     bottom: 5px;
     right: 50%;
     transform: translateX(50%);
+}
+.import-card {
+    width: 48%;
 }
 
 .user-table {

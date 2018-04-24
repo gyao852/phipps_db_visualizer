@@ -1,24 +1,58 @@
-<div class='card'>
+<div class='bg-dark-gray'>
+    <h3 class='text-primary'>Import Altru Data</h3>
+</div>
+
+<%= form_tag importfile_imports_path, multipart: true do %>
+<div class='d-flex card-group'>
     
-    <div class='card-body'>
-        <h3 class='card-title text-black-mint'> Import Altru Data </h3>
-        <%= form_tag importfile_imports_path, multipart: true do %>
-        <h2>constituentsExport</h2>
-        <%= file_field_tag :cmuteamconstituentsexport, class: 'btn'%>
-        <h2>Donation</h2>
-        <%= file_field_tag :cmuteamdonationexport, class: 'btn'%>
-        <h2>event attendance</h2>
-        <%= file_field_tag :cmuteameventattendanceexport, class: 'btn'%>
-        <h2>communication</h2>
-        <%= file_field_tag :cmuteamcommunicationhistoryexport, class: 'btn'%>
 
-        <%= submit_tag "ImportFiles", class: 'btn btn-outline-secondary'%>
-        <% end %>
-    </div>
+        <div class='card bg-white import-card mr-auto'>
+            <div class='card-header'>
+                <h4>Constituents</h4>
+            </div>
+            <div class='card-body'>
+                <%= file_field_tag :cmuteamconstituentsexport, class: 'btn'%>
+             </div>
+         </div>
 
+         <div class= 'card bg-white import-card mr-auto'>
+            <div class='card-header'>
+                <h4>Donations</h4>
+            </div>
+            <div class='card-body'>
+                <%= file_field_tag :cmuteamdonationexport, class: 'btn'%>
+            </div>
+        </div>
+</div>
+
+<div class='d-flex card-group'>
+        
+        <div class= 'card bg-white import-card mr-auto'>
+            <div class='card-header'>
+                <h4>Commmunication</h4>
+            </div>
+            <div class='card-body'>
+                <%= file_field_tag :cmuteamcommunicationhistoryexport, class: 'btn'%>
+            </div>
+        </div>
+
+        <div class= 'card bg-white import-card mr-auto'>
+            <div class='card-header'>
+                <h4>Attendance</h4>
+            </div>
+            
+            <div class='card-body'>
+                <%= file_field_tag :cmuteameventattendanceexport%>
+            </div>
+        </div>
+</div>
+
+<div class='d-flex'>      
+        <%= submit_tag "ImportFiles", class: 'btn btn-primary'%>
+    <% end %>
     <div>
-    	<%= form_tag importdata_imports_path, method: :post do %>
-  			<%= submit_tag 'Update Data' %>
+        <%= form_tag importdata_imports_path, method: :post do %>
+  			<%= submit_tag 'Update Data', class: 'btn btn-primary' %>
 		<% end %>
     </div>
 

@@ -84,7 +84,7 @@ class HomeController < ApplicationController
     end
 
     def generate_attendance_report
-        @event = Event.where(event_id: params[:events][:ids])   
+        @event = Event.find_by(event_id: params[:events][:ids])   
         @event.generate_attendance_report
     end
         

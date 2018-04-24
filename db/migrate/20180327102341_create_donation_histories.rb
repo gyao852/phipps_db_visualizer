@@ -4,7 +4,7 @@ class CreateDonationHistories < ActiveRecord::Migration[5.1]
       t.text :donation_history_id
       t.text :donation_program_id
       t.text :lookup_id
-      t.integer :amount
+      t.float :amount
       t.date :date
       t.text :payment_method
       t.boolean :given_anonymously

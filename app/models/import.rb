@@ -108,65 +108,88 @@ class Import < ApplicationRecord
 
 	def import_contacthistory_csv_data
 		CSV.foreach("#{Rails.root}/public/contact_history.csv", headers:true) do |row|
-			lookup_check = row[0]
-			if Constituent.where(:lookup_id => lookup_check).empty?
-				create_uncleancontacthistory(row)
-			else
+			lookup_check = row[0].to_s
+			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
 				create_contacthistory(row)
+			else
+				create_uncleancontacthistory(row)
+				
 			end
     	end
 	end
 
+	def import_uncleanaddress_csv_data
+		CSV.foreach("#{Rails.root}/public/incomplete_invalid_address.csv", headers:true) do |row|
+      		create_uncleanaddress(row)
+    	end
+	end
+
 	def import_address_csv_data
-		CSV.foreach("#{Rails.root}/public/addressesfile.csv", headers:true) do |row|
+		CSV.foreach("#{Rails.root}/public/address.csv", headers:true) do |row|
       		create_address(row)
     	end
 	end
 
 	def import_membershiprecord_csv_data
-		CSV.foreach("#{Rails.root}/public/membershiprecordfile.csv", headers:true) do |row|
+		CSV.foreach("#{Rails.root}/public/membership_records.csv", headers:true) do |row|
+      		lookup_check = row[0].to_s
+			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
+				create_uncleanmembershiprecord(row)
+			else
+				create_membershiprecord(row)
+			end
       		create_membershiprecord(row)
     	end
 	end
 
 	def import_constituentmembershiprecord_csv_data
-		CSV.foreach("#{Rails.root}/public/constituentmembershipfile.csv", headers:true) do |row|
-      		create_constituentmembershiprecord(row)
+		CSV.foreach("#{Rails.root}/public/constituent_membership_records.csv", headers:true) do |row|
+      		lookup_check = row[0].to_s
+			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
+				create_constituentmembershiprecord(row)
+			else
+				create_uncleanconstituentmembershiprecord(row)
+			end
+
     	end
 	end
 
 
 	def import_event_csv_data
-		CSV.foreach("#{Rails.root}/public/eventfile.csv", headers:true) do |row|
+		CSV.foreach("#{Rails.root}/public/events.csv", headers:true) do |row|
       		create_event(row)
     	end
 	end
 
 	def import_constituentevent_csv_data
-		CSV.foreach("#{Rails.root}/public/constituenteventfile.csv", headers:true) do |row|
-      		create_constituentevent(row)
+		CSV.foreach("#{Rails.root}/public/constituent_events.csv", headers:true) do |row|
+      		lookup_check = row[0].to_s
+			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
+				create_constituentevent(row)
+			else
+				create_uncleanconstituentevent(row)
+			end
     	end
 	end
 
 	def import_donationprogram_csv_data
-		CSV.foreach("#{Rails.root}/public/donationprogramfile.csv", headers:true) do |row|
+		CSV.foreach("#{Rails.root}/public/donation_program.csv", headers:true) do |row|
       		create_donationprogram(row)
     	end
 	end
 
 	def import_donationhistory_csv_data
-		CSV.foreach("#{Rails.root}/public/donationhistoryfile.csv", headers:true) do |row|
-      		create_donationhistory(row)
+		CSV.foreach("#{Rails.root}/public/donation_history.csv", headers:true) do |row|
+      		lookup_check = row[2].to_s
+			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
+				create_donationhistory(row)
+			else
+				create_uncleandonationhistory(row)
+			end
     	end
 	end
 
 	
-
-	def import_uncleanaddress_csv_data
-		CSV.foreach("#{Rails.root}/public/uncleanaddressesfile.csv", headers:true) do |row|
-      		create_uncleanaddress(row)
-    	end
-	end
 
 	
 
@@ -209,6 +232,7 @@ class Import < ApplicationRecord
 	end
 
 	def create_donationhistory(data)
+		data[3]=data[3].to_f
 		DonationHistory.create! data.to_hash
 	end
 

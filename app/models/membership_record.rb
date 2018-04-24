@@ -16,18 +16,6 @@ class MembershipRecord < ApplicationRecord
   # validates :membership_id, presence: true
   # validates :membership_scheme, presence:true
   # validates :membership_level, presence:true
-<<<<<<< HEAD
-  # # no validations for add-ons as it is a feature the client will start to use in the future
-  # # validations on membership level type??
-  # validates :membership_status, presence:true
-  # # validate start date on or before today
-  # validates_date :start_date,
-  #                 :before => lambda{Date.today}
-  # # validate end date after start date
-  # validates_date :end_date,
-  #                 :after => :start_date
-  # # validate last renewed after start date and before end date
-=======
   # no validations for add-ons as it is a feature the client will start to use in the future
   # validations on membership level type??
   # validates :membership_status, presence:true
@@ -38,7 +26,6 @@ class MembershipRecord < ApplicationRecord
   # validates_date :end_date,
   #                 :after => :start_date
   # validate last renewed after start date and before end date
->>>>>>> minnie
   # validates_date :last_renewed,
   #                 :on_or_before => :end_date,
   #                 :on_or_after => :start_date,

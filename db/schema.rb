@@ -178,7 +178,12 @@ ActiveRecord::Schema.define(version: 20180422211513) do
     t.boolean "duplicate"
     t.text "constituent_type"
     t.text "phone_notes"
-    t.text "error"
+    t.boolean "incomplete_names"
+    t.boolean "invalid_emails"
+    t.boolean "invalid_phones"
+    t.boolean "invalid_zips"
+    t.boolean "no_contact"
+    t.text "duplicate_records"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

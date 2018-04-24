@@ -20,22 +20,6 @@ class Import < ApplicationRecord
 # upload files
 #############################################################
 
-	def save_constituents_csv_file
-		CSV.open("#{Rails.root}/public/constituentsfile.csv", "wb") do |csv|
-			CSV.foreach(constituents_file.path, headers:false) do |row|
-      			csv << row
-    		end
-		end
-	end
-
-	def save_addresses_csv_file
-		CSV.open("#{Rails.root}/public/addressesfile.csv", "wb") do |csv|
-			CSV.foreach(addresses_file.path, headers:false) do |row|
-      			csv << row
-    		end
-		end
-	end
-
 	def save_cmuteamconstituentsexport_csv_file
 		CSV.open("#{Rails.root}/public/CMU Team Constituents Export.csv", "wb") do |csv|
 			CSV.foreach(cmuteamconstituentsexport_file.path, headers:false) do |row|
@@ -76,21 +60,7 @@ class Import < ApplicationRecord
 		end
 	end
 
-	def save_CMUTeamEventExport_csv_file
-		CSV.open("#{Rails.root}/public/cmuTeamEventExport.csv", "wb") do |csv|
-			CSV.foreach(cmuTeamEventExport.path, headers:false) do |row|
-      			csv << row
-    		end
-		end
-	end
 
-	def save_CMUTeamDonationProgramExport_csv_file
-		CSV.open("#{Rails.root}/public/cmuTeamDonationProgramExport.csv", "wb") do |csv|
-			CSV.foreach(cmuTeamDonationProgramExport.path, headers:false) do |row|
-      			csv << row
-    		end
-		end
-	end
 #############################################################
 # import data
 #############################################################
@@ -132,11 +102,12 @@ class Import < ApplicationRecord
 
 	def import_membershiprecord_csv_data
 		CSV.foreach("#{Rails.root}/public/membership_records.csv", headers:true) do |row|
-      		lookup_check = row[0].to_s
+      		lookup_check = row[1].to_s
 			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
-				create_uncleanmembershiprecord(row)
-			else
 				create_membershiprecord(row)
+
+			else
+				create_uncleanmembershiprecord(row)
 			end
     	end
 	end
@@ -147,6 +118,7 @@ class Import < ApplicationRecord
 			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
 				create_constituentmembershiprecord(row)
 			else
+				# move membership record to unclean
 				create_uncleanconstituentmembershiprecord(row)
 			end
 

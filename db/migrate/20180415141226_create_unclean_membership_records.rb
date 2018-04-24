@@ -2,6 +2,7 @@ class CreateUncleanMembershipRecords < ActiveRecord::Migration[5.1]
   def change
     create_table :unclean_membership_records do |t|
       t.text :membership_id
+      t.text :lookup_id
       t.text :membership_scheme
       t.text :membership_level
       t.text :add_ons

@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20180422211513) do
 
   create_table "membership_records", force: :cascade do |t|
     t.text "membership_id"
+    t.text "lookup_id"
     t.text "membership_scheme"
     t.text "membership_level"
     t.text "add_ons"
@@ -233,6 +234,7 @@ ActiveRecord::Schema.define(version: 20180422211513) do
 
   create_table "unclean_membership_records", force: :cascade do |t|
     t.text "membership_id"
+    t.text "lookup_id"
     t.text "membership_scheme"
     t.text "membership_level"
     t.text "add_ons"

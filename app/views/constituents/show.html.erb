@@ -1,4 +1,4 @@
-<div class='container-fluid'>
+<div class='container-fluid d-flex flex-column'>
   <div class='d-flex'>
     <div class='card bg-white show-constituent-information mr-auto'>
       <h4 class="card-header">Constituent Information</h4>
@@ -109,7 +109,7 @@
                   <td><%= cmr.membership_record.membership_scheme %></td>
                   <td><%= cmr.membership_record.membership_level %></td>
                   <td><%= cmr.membership_record.membership_level_type %></td>
-                  <td><%= cmr.membership_reocord.membership_status %></td>
+                  <td><%= cmr.membership_record.membership_status %></td>
                   <td><%= cmr.membership_record.start_date %></td>
                   <td><%= cmr.membership_record.end_date %></td>
                   <td><%= cmr.membership_record.last_renewed %></td>
@@ -128,7 +128,7 @@
         <% if @constituent.contact_histories.empty? %>
           <p> No records </p>
         <% else %>
-          <table>
+          <table class='table'>
               <thead>
                 <th scope="col">Contact Type</th>
                 <th scope="col">Date</th>
@@ -148,6 +148,7 @@
     </div>
   </div>
 
+<br/>
   <div class='d-flex'>
 
     <div class='card bg-white show-constituent-donation-history'>
@@ -223,6 +224,7 @@
   </div>
 
   <%= link_to 'Back', constituents_path %>
+  
 </div>
 
 

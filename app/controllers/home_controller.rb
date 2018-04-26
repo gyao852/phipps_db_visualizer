@@ -18,7 +18,7 @@ class HomeController < ApplicationController
         @cp = DonationProgram.sum_and_count_level("Childrens' Programs")
         @aa = DonationProgram.sum_and_count_level("Annual Appeal")
         @cc = DonationProgram.sum_and_count_level("Commemorative Certificates")
-        @dgb=DonationProgram.sum_and_count_level("Discovery Garden")
+        @dgb= DonationProgram.sum_and_count_level("Discovery Garden")
         @mh = DonationProgram.sum_and_count_level("Memorials & Honoraria")
         @sg = DonationProgram.sum_and_count_level("Sustained Giving")
         @other = DonationProgram.sum_and_count_level("Other")
@@ -69,6 +69,9 @@ class HomeController < ApplicationController
             @bar_chart_data_set.append(lv6)
             @bar_chart_data_set.append(lv7)
             @bar_chart_data_set.append(lv8)
+
+
+            @upcoming_events = Event.on_or_after(Date.current)
         end
     
     

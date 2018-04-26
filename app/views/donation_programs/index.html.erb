@@ -1,25 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class='container-fluiid bg-white'>
 
-<h1>Donation Programs</h1>
+  <h3  class="text-primary-dark">Donation Programs</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th>Donation program</th>
-      <th>Program</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @donation_programs.each do |donation_program| %>
+  <table class="table table-bordered table-hover">
+    <thead>
       <tr>
-        <td><%= donation_program.donation_program_id %></td>
-        <td><%= donation_program.program %></td>
+        <th scope='col'>Program ID</th>
+        <th scope='col'>Program Name</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @donation_programs.each do |donation_program| %>
+        <tr>
+          <td><%= donation_program.donation_program_id %></td>
+          <td><%= donation_program.program %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
+
+
+</div>

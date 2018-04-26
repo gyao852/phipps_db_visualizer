@@ -1,0 +1,26 @@
+<div class='card bg-white'>
+    <% if @upcoming_events.empty? %>
+        <p>No upcoming events</p>
+    <% else %>
+        <table class='table'>
+
+            <thead>
+                <tr>
+                    <th scope='col'>Event</th>
+                    <th scope='col'>Start Date</th>
+                    <th scope='col'>RSVPed></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @upcoming_events.each do |e| %>
+                    <tr>
+                        <td> <%= e.event_name%> </td>
+                        <td> <%= e.start_date_time%> </td>
+                        <td> <%= e.count_rsvp %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    <% end %>
+</div>

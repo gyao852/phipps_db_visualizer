@@ -25,6 +25,12 @@ class Event < ApplicationRecord
 
   # Other methods
   # -------------
+  def count_rsvp
+    count = 0
+    self.constituent_events.each do |ce|
+      
+    end
+  end
   def generate_attendance_report
     filename = 'reports/attendance-report' + self.event_id + '.csv'
     CSV.open(filename, 'wb') do |csv|

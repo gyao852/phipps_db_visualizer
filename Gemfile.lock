@@ -303,7 +303,7 @@ DEPENDENCIES
   minitest-reporters
   mocha
   nokogiri
-  pg
+  pg (~> 1.0.0)
   puma (~> 3.7)
   rails (~> 5.1.5)
   rails-settings-cached

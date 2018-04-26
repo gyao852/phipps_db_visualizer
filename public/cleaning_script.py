@@ -2,12 +2,9 @@
 
 # # Phipps Conservatory Membership Database Cleaning Script
 # ### Team members: Ashvin Niruttan, George Yao, Minnie Wu
-# ### Last updated: April 12th, 2018
+# ### Last updated: April 26th, 2018
 
 # ### Libraries
-
-# In[815]:
-
 
 import csv
 import pandas as pd
@@ -22,7 +19,7 @@ from pandas_schema.validation import *
 
 # ### Read CSV files
 
-# In[816]:
+# In[546]:
 
 
 # Read csv files and place into dataframes
@@ -35,44 +32,6 @@ edf = pd.read_csv('public/CMU Team Event Attendance Export.csv',dtype="str",na_f
 # Contact History Records
 chdf = pd.read_csv('public/CMU Team Contact History Export.csv',dtype="str",na_filter=False)
 
-
-# In[817]:
-
-# ### Quick look at Database downloads
-
-# #### Constituent/membership Database
-
-# In[818]:
-
-
-cdf.head(1)
-
-
-# #### Donation Database
-
-# In[819]:
-
-
-ddf.head(1)
-
-
-# #### Event Database
-
-# In[820]:
-
-
-edf.head(1)
-
-
-# In[821]:
-
-
-chdf.head(1)
-
-
-# ### Additional Dataframes (Global variables)
-
-# In[822]:
 
 
 # Dataframes for each membership scheme/type
@@ -94,9 +53,6 @@ duplicate_records = pd.DataFrame() # ZIP code not abiding to US/Canadian format
 
 
 # ## 1) Setting up initial database for constituent, address, and membership
-
-# In[823]:
-
 
 # ccdf will be the copy used to create future dataframes
 ccdf = cdf.copy()
@@ -123,7 +79,7 @@ ccdf.columns = columns
 
 # ## 2) Flag and remove records with no names, or name but no mailing and email address
 
-# In[824]:
+# In[554]:
 
 
 no_contact = ccdf[
@@ -140,7 +96,7 @@ ccdf = ccdf[((ccdf["email_id"] != '') | (ccdf["address_1"] != '')
 #
 # Clean the name by capitalizing each part of the name, and remove common invalid characters or phrases
 
-# In[825]:
+# In[555]:
 
 
 # Cleans up Name
@@ -165,7 +121,7 @@ ccdf['cname'] = ccdf['name'].apply(clean_name)
 #
 # Clean the last name, or the organization's name by capitalizing each part of the name, and removing common special characters
 
-# In[826]:
+# In[556]:
 
 
 # Cleans up Last name/organization
@@ -183,7 +139,7 @@ ccdf['clname'] = ccdf['last_group'].apply(clean_last_Name)
 #
 # Clean up the address of a record by replacing any address abbreviations with it's respective full word, getting rid of any special characters or double spaces.
 
-# In[827]:
+# In[557]:
 
 
 # Cleans up address
@@ -212,7 +168,7 @@ def clean_address(v):
 ccdf['address_1'] = ccdf['address_1'].apply(clean_address)
 
 
-# In[828]:
+# In[558]:
 
 
 ''.title()
@@ -222,7 +178,7 @@ ccdf['address_1'] = ccdf['address_1'].apply(clean_address)
 #
 # Clean up the city name by simply capitalizing the name.
 
-# In[829]:
+# In[559]:
 
 
 # Capitalize City name
@@ -240,7 +196,7 @@ ccdf['ccity'] = ccdf['city'].apply(clean_city)
 #
 # Cleans up state by replacing any abreviations for US states with the full name.
 
-# In[830]:
+# In[560]:
 
 
 # Convert state abreviation to full name
@@ -277,7 +233,7 @@ ccdf['state'] = ccdf['state'].apply(clean_state)
 #
 # Clean up the country name by simply capitalizing the name.
 
-# In[831]:
+# In[561]:
 
 
 # Capitalize Country name
@@ -293,7 +249,7 @@ ccdf['country'] = ccdf['country'].apply(clean_country)
 #
 # Clean up the zip code by replacing common special characters with their counterpart, and then reporting any invalid zip codes (US and Canadian).
 
-# In[832]:
+# In[562]:
 
 
 def clean_zip(v):
@@ -314,7 +270,7 @@ ccdf['czip'] = ccdf['zip'].apply(clean_zip)
 #
 # Clean up the phone number by ensuring it is a 10 digit number in the format of (xxx) xxx-xxxx
 
-# In[833]:
+# In[563]:
 
 
 # Retrieves any extra phone number notes
@@ -376,7 +332,7 @@ ccdf['phone_notes'] = ccdf[r'phone'].apply(get_phone_notes)
 #
 # Clean up the email be replacing common special characters. The regex for e-mail format is relativewly loose, as we could not account for all edge cases of emails.
 
-# In[834]:
+# In[564]:
 
 
 def clean_email(v):
@@ -395,7 +351,7 @@ ccdf['cemail'] = ccdf['email_id'].apply(clean_email)
 # #### Dates
 # Clean the expiration date by removing the 11:59 PM on certain records
 
-# In[835]:
+# In[565]:
 
 
 # Cleans up dates
@@ -453,9 +409,11 @@ ccdf['corporate_last_renewed'] = ccdf['corporate_last_renewed'].apply(clean_Date
 ccdf['garden_last_renewed'] = ccdf['garden_last_renewed'].apply(clean_Date)
 ccdf['date_added'] = ccdf['date_added'].apply(clean_Date)
 ccdf['dob'] = ccdf['dob'].apply(clean_dob)
+
+
 # #### Do Not Email
 
-# In[836]:
+# In[566]:
 
 
 # Cleans up dates
@@ -468,7 +426,7 @@ ccdf['email_id'] = ccdf['email_id'].apply(clean_dne)
 
 # #### Amount
 
-# In[837]:
+# In[567]:
 
 
 def clean_amount(v):
@@ -479,7 +437,7 @@ def clean_amount(v):
 
 # ### 4) Applying the above cleaning modules to the databases
 
-# In[838]:
+# In[568]:
 
 
 # Dataframe containing incomplete names
@@ -519,126 +477,11 @@ ccdf = ccdf[ccdf['b']]
 ccdf[r'email_id'] = ccdf['cemail']
 
 
-# ### 5) Reporting potential dupliates
-
-# In[839]:
-
-
-# a = ccdf[ccdf['email_id'] != '']
-# a = a[a['email_id'].duplicated(keep = False)]
-# a = a.groupby([r'email_id','title','constituent_type']).size().reset_index(name='Size')
-
-# b = ccdf[ccdf[r'phone'] != '']
-# b = b[b[r'phone'].duplicated(keep= False)]
-# b = b.groupby([r'phone','title','constituent_type']).size().reset_index(name='Size')
-
-# c = ccdf[ccdf[r'address_1'] != '']
-# c = c[c[r'address_1'].duplicated(keep= False)]
-# c = c.groupby([r'address_1','title','constituent_type']).size().reset_index(name='Size')
-
-# dup_emails = a['email_id'].tolist()
-# dup_phones = b[r'phone'].tolist()
-# dup_address = c['address_1'].tolist()
-
-
-# In[840]:
-
-
-# potential_duplicates = ccdf.copy()
-# potential_duplicates['dup_email'] = potential_duplicates['email_id'].apply(lambda v: v not in dup_emails)
-# potential_duplicates = potential_duplicates[potential_duplicates['dup_email']]
-
-
-# In[841]:
-
-
-# a = ccdf[ccdf['email_id'] != '']
-# a = a[a['email_id'].duplicated(keep = False)]
-# a = a.groupby([r'email_id','title','constituent_type']).size().reset_index(name='Size')
-
-# b = ccdf[ccdf[r'phone'] != '']
-# b = b[b[r'phone'].duplicated(keep= False)]
-# b = b.groupby([r'phone','title','constituent_type']).size().reset_index(name='Size')
-
-# c = ccdf[ccdf[r'address_1'] != '']
-# c = c[c[r'address_1'].duplicated(keep= False)]
-# c = c.groupby([r'address_1','title','constituent_type']).size().reset_index(name='Size')
-
-# dup_emails = a['email_id'].tolist()
-# dup_phones = b[r'phone'].tolist()
-# dup_address = c['address_1'].tolist()
-
-
-# ccdf['y'] = ccdf['lookup_id'].apply(lambda v: v not in filterZips)
-# ccdf = ccdf[ccdf['lookup_id'].apply(lambda v: v not in filterZips)]
-# ccdf['zip'] = ccdf['czip']
-
-# potential_duplicates = ccdf[ccdf['email_id'] ]
-
-
-# potential_duplicates = pd.concat([a,b,c]).drop_duplicates().drop_duplicates('lookup_id').reset_index(drop=True)
-# potential_duplicates = potential_duplicates.sort_values(by=r'name')
-# potential_duplicates.drop(potential_duplicates.iloc[:, 3:5], axis=1,inplace=True)
-# potential_duplicates.drop(potential_duplicates.iloc[:, 9:], axis=1,inplace=True)
-# potential_duplicates.drop(potential_duplicates.iloc[:, 6:7], axis=1,inplace=True)
-
-
-# In[842]:
-
-
-# Needed imports:
-from Levenshtein import *
-# Looks like it's working, but still slow
-def get_closest_match(x, list_strings,fun):
-    # fun: the matching method : ratio, wrinkler, ... (cf python-Levenshtein module)
-    best_match = None
-    highest_ratio = 0
-    for current_string in list_strings:
-        if highest_ratio!=1:
-            current_score = fun(x, current_string)
-            if(current_score > highest_ratio):
-                highest_ratio = current_score
-                best_match = current_string
-    #print (x,best_match,highest_ratio)
-    return (best_match,highest_ratio)
-
-# the function that matches 2 dataframes (only the idea behind, since too long to write everything
-#dicto={'Index':[],'score':[], ...}
-def LevRatioMerge(df1,fun):
-    global duplicate_names
-    global choices
-    # Basically loop over df1 with:
-    for r in df1.itertuples():
-        choices = choices[choices['lookup_id'] != r[1]]
-        result=get_closest_match(r[4],choices['name'].tolist(),fun)
-        if result[1] > 0.93:
-            if(r[4]=='David and Penney Miller'):
-                print(result[0])
-            duplicate_names.append(r[4])
-            duplicate_names.append(result[0])
-
-
-# In[843]:
-
-
-# # Constituent has 92866 potential duplicate records
-# duplicate_names = []
-# test = potential_duplicates
-# test = test.head(1000) # 10000 takes 1:27 sec; 20000 takes 5:57 secs; 50,000 38:23s
-# test = test.sort_values(by=['name'])
-# choices = test.copy()
-# LevRatioMerge(test,ratio)
-# dupdf = ccdf[ccdf['name'].apply(lambda v: v in duplicate_names)]
-# dupdf = dupdf.drop_duplicates('lookup_id')
-# ccdf = ccdf[ccdf['name'].apply(lambda v: v not in duplicate_names)].copy()
-# #duplicate_names
-
-
 # ## 4) Seperating data into ERD tables
 
 # #### Creating constituent
 
-# In[844]:
+# In[569]:
 
 
 constituent = ccdf.copy()
@@ -668,7 +511,7 @@ constituent['phone_notes'] = constituent['phone_notes'].str.strip().str.lstrip()
 
 # #### Creating address
 
-# In[845]:
+# In[570]:
 
 
 address = ccdf.copy()
@@ -690,7 +533,7 @@ address['date_added'] = address['date_added'].str.strip().str.lstrip()
 
 # #### Creating membership_record
 
-# In[846]:
+# In[571]:
 
 
 # Copy cdf and make some modifications based on ERD
@@ -700,14 +543,14 @@ mdf.drop(mdf.iloc[:,30:], axis=1, inplace=True)
 # Drop phone number notes from membership data frame
 mdf.drop(mdf.iloc[:,29:30], axis=1, inplace=True)
 # # Drop constituent and address fields from membership data frame
-mdf.drop(mdf.iloc[:,1:17], axis=1, inplace=True)
+mdf.drop(mdf.iloc[:,2:17], axis=1, inplace=True)
 
 # Split membership data into sub groups based on program
 phipps_general = mdf.loc[mdf["membership_scheme"]=='Phipps General Membership'].copy()
 phipps_corporate = mdf.loc[mdf["membership_scheme"]=='Phipps Corporate Partnership'].copy()
 green_mountain = mdf.loc[mdf["membership_scheme"]=='Green Mountain Membership'].copy()
 garden_club = mdf.loc[mdf["membership_scheme"]=='Garden Club Membership'].copy()
-non_member = mdf.loc[mdf["membership_scheme"]==''].copy()
+#non_member = mdf.loc[mdf["membership_scheme"]==''].copy()
 obsolete = mdf.loc[(mdf["membership_scheme"]!='Phipps General Membership') &
                (mdf["membership_scheme"]!='Phipps Corporate Partnership') &
                (mdf["membership_scheme"]!='Green Mountain Membership') &
@@ -715,19 +558,18 @@ obsolete = mdf.loc[(mdf["membership_scheme"]!='Phipps General Membership') &
                (mdf["membership_scheme"]!='')].copy()
 
 #Drop unnecessary records pertaining to other membership program renewal dates
-phipps_general.drop(phipps_general.iloc[:, 8:11], axis=1, inplace=True)
-non_member.drop(non_member.iloc[:, 8:11], axis=1, inplace=True)
-phipps_corporate.drop(phipps_corporate.iloc[:, 7:9], axis=1, inplace=True)
+phipps_general.drop(phipps_general.iloc[:, 9:12], axis=1, inplace=True)
+#non_member.drop(non_member.iloc[:, 8:11], axis=1, inplace=True)
+phipps_corporate.drop(phipps_corporate.iloc[:, 11:12], axis=1, inplace=True)
 phipps_corporate.drop(phipps_corporate.iloc[:, 8:9], axis=1, inplace=True) # Phipps Corporate has only 1 record
-green_mountain.drop(green_mountain.iloc[:, 7:8], axis=1, inplace=True)
-green_mountain.drop(green_mountain.iloc[:, 8:10], axis=1, inplace=True)
-
+green_mountain.drop(green_mountain.iloc[:, 10:12], axis=1, inplace=True)
+green_mountain.drop(green_mountain.iloc[:, 8:9], axis=1, inplace=True)
+obsolete.drop(obsolete.iloc[:,9:12], axis=1, inplace=True)
 phipps_general = phipps_general.rename(columns={'general_last_renewed': 'last_renewed'})
 phipps_corporate = phipps_corporate.rename(columns={'corporate_last_renewed': 'last_renewed'})
 green_mountain = green_mountain.rename(columns={'green_last_renewed': 'last_renewed'})
 garden_club = garden_club.rename(columns={'garden_last_renewed': 'last_renewed'})
 obsolete = obsolete.rename(columns={'general_last_renewed': 'last_renewed'})
-non_member = non_member.rename(columns={'general_last_renewed': 'last_renewed'})
 
 
 # Reordering columns in membership dataframes to the same order as in the Ruby on Rails Application
@@ -735,6 +577,7 @@ columns = ['lookup_id','membership_id', 'membership_scheme', 'membership_level',
            'add_ons', 'membership_level_type', 'membership_status',
            'start_date','end_date', 'last_renewed']
 phipps_general = phipps_general[columns]
+
 phipps_corporate = phipps_corporate[columns]
 green_mountain = green_mountain[columns]
 garden_club = garden_club[columns]
@@ -742,10 +585,8 @@ obsolete = obsolete[columns]
 
 # Combining all membership types together
 membership_record_all = pd.concat([phipps_general,phipps_corporate,green_mountain,garden_club],ignore_index=True)
-# Removing lookup_id from membership_record
-membership_record = membership_record_all.drop(membership_record_all.iloc[:, 0:1], axis=1)
 # Dropping duplicates in membership records
-membership_record = membership_record.drop_duplicates('membership_id')
+membership_record = membership_record_all.drop_duplicates('membership_id').copy()
 
 # Stripping off any extra white space
 membership_record['membership_id'] = membership_record['membership_id'].str.strip().str.lstrip()
@@ -761,7 +602,7 @@ membership_record['last_renewed'] = membership_record['last_renewed'].str.strip(
 
 # #### Creating constituent_membership_record
 
-# In[847]:
+# In[572]:
 
 
 constituent_membership_record = membership_record_all.drop(membership_record_all.iloc[:, 2:10],axis=1)
@@ -772,7 +613,7 @@ constituent_membership_record['membership_id'] = constituent_membership_record['
 
 # #### Creating constituent_event
 
-# In[848]:
+# In[573]:
 
 
 edf.drop(edf.iloc[:, 7:8], axis=1,inplace=True)
@@ -791,7 +632,7 @@ constituent_event['attend'] = constituent_event['attend'].str.strip().str.lstrip
 
 # #### Creating event
 
-# In[849]:
+# In[574]:
 
 
 event = edf.iloc[:,3:5].join(edf.iloc[:,5:7])
@@ -810,26 +651,26 @@ event['end_date_time'] = event['end_date_time'].str.strip().str.lstrip()
 
 # #### Creating contact_history
 
-# In[850]:
+# In[575]:
 
 
 contact_history = chdf.iloc[:,1:].copy()
 contact_history = contact_history.drop(columns=['Name'])
-contact_history.columns = ['lookup_id','type','date']
+contact_history.columns = ['lookup_id','contact_type','date']
 contact_history['date'] = contact_history['date'].apply(clean_Date)
 contact_history = contact_history[contact_history['lookup_id'] != "anonymous"] # weird case
-contact_history['type'] = contact_history['type'].apply(lambda x: x if x != "" else "Not specified")
+contact_history['contact_type'] = contact_history['contact_type'].apply(lambda x: x if x != "" else "Not specified")
 contact_history = contact_history.drop_duplicates()
 
 # Approx 9862 duplicate contact_history; may be due to multiple mails/emails on the same day
 contact_history['lookup_id'] = contact_history['lookup_id'].str.strip().str.lstrip()
-contact_history['type'] = contact_history['type'].str.strip().str.lstrip()
+contact_history['contact_type'] = contact_history['contact_type'].str.strip().str.lstrip()
 contact_history['date'] = contact_history['date'].str.strip().str.lstrip()
 
 
 # #### Creating donation_history
 
-# In[852]:
+# In[576]:
 
 
 dddf = ddf.iloc[:,1:].copy()
@@ -862,7 +703,7 @@ donation_history['transaction_type'] = donation_history['transaction_type'].str.
 
 # #### Creating donation_program
 
-# In[853]:
+# In[577]:
 
 
 donation_program = dddf.iloc[:,1:2].join(dddf.iloc[:,9:10])
@@ -878,10 +719,158 @@ donation_program['program'] = donation_program['program'].apply(clean_program_na
 donation_program['donation_program_id'] = donation_program['donation_program_id'].str.strip().str.lstrip()
 donation_program['program'] = donation_program['program'].str.strip().str.lstrip()
 
+
+# ### 5) Reporting potential dupliates
+
+# In[578]:
+
+
+# Needed imports:
+from Levenshtein import *
+# Looks like it's working, but still slow
+def get_closest_match(x, y, df_choices,fun,index):
+    # fun: the matching method : ratio, wrinkler, ... (cf python-Levenshtein module)
+    list_strings = df_choices['name'].tolist()
+    list_lookupIDs = df_choices['lookup_id'].tolist()
+    list_compare = df_choices[df_choices.columns[index]].tolist()
+    best_match = None
+    highest_ratio = 0
+    best_match_id = 0
+    for i in range(0,len(list_strings)):
+        if y == list_compare[i]:
+            current_string = list_strings[i]
+            if highest_ratio != 1:
+                current_score = fun(x, current_string)
+                if (current_score > highest_ratio):
+                    highest_ratio = current_score
+                    best_match = current_string
+                    best_match_id = list_lookupIDs[i]
+    return (best_match,highest_ratio,best_match_id)
+
+# the function that matches 2 dataframes (only the idea behind, since too long to write everything
+#dicto={'Index':[],'score':[], ...}
+def LevRatioMerge(df1,fun,index):
+    global duplicate_names
+    global choices
+    # Basically loop over df1 with:
+    for r in df1.itertuples():
+        choices = choices[choices['lookup_id'] != r[1]]
+        result = get_closest_match(r[4],r[index+1],choices,fun,index)
+        if result[1] > 0.93:
+            if r[1] in duplicate_names:
+                duplicate_names[r[1]].append(result[2])
+            else:
+                duplicate_names[r[1]] = [result[2]]
+            if result[2] in duplicate_names:
+                duplicate_names[result[2]].append(r[1])
+            else:
+                duplicate_names[result[2]] = [r[1]]
+
+# In[579]:
+
+
+duplicate_names = {}
+dup_ind_mr = ccdf[(ccdf['constituent_type']=='Individual') & (ccdf['title'] == 'Mr.')].drop_duplicates('lookup_id')
+
+dup_ind_mr_email = dup_ind_mr[dup_ind_mr['email_id'] != '']
+dup_ind_mr_email = dup_ind_mr_email[dup_ind_mr_email['email_id'].duplicated(keep = False)]
+dup_ind_mr_phone = dup_ind_mr[dup_ind_mr[r'phone'] != '']
+dup_ind_mr_phone = dup_ind_mr_phone[dup_ind_mr_phone[r'phone'].duplicated(keep = False)]
+dup_ind_mr_address = dup_ind_mr[dup_ind_mr['address_1'] != '']
+dup_ind_mr_address = dup_ind_mr_address[dup_ind_mr_address['address_1'].duplicated(keep = False)]
+
+pot_dup = dup_ind_mr_email.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,9)
+
+pot_dup = dup_ind_mr_phone.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,6)
+
+pot_dup = dup_ind_mr_address.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,10)
+
+dup_ind_mrs = ccdf[(ccdf['constituent_type']=='Individual') & (ccdf['title'] == 'Mrs.')].drop_duplicates('lookup_id')
+
+dup_ind_mrs_email = dup_ind_mrs[dup_ind_mrs['email_id'] != '']
+dup_ind_mrs_email = dup_ind_mrs_email[dup_ind_mrs_email['email_id'].duplicated(keep = False)]
+dup_ind_mrs_phone = dup_ind_mrs[dup_ind_mrs[r'phone'] != '']
+dup_ind_mrs_phone = dup_ind_mrs_phone[dup_ind_mrs_phone[r'phone'].duplicated(keep = False)]
+dup_ind_mrs_address = dup_ind_mrs[dup_ind_mrs['address_1'] != '']
+dup_ind_mrs_address = dup_ind_mrs_address[dup_ind_mrs_address['address_1'].duplicated(keep = False)]
+
+pot_dup = dup_ind_mrs_email.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,9)
+
+pot_dup = dup_ind_mrs_phone.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,6)
+
+pot_dup = dup_ind_mrs_address.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,10)
+
+dup_organization = ccdf[ccdf['constituent_type']=='Organization'].drop_duplicates('lookup_id')
+
+dup_organization_email = dup_organization[dup_organization['email_id'] != '']
+dup_organization_email = dup_organization_email[dup_organization_email['email_id'].duplicated(keep = False)]
+dup_organization_phone = dup_organization[dup_organization[r'phone'] != '']
+dup_organization_phone = dup_organization_phone[dup_organization_phone[r'phone'].duplicated(keep = False)]
+dup_organization_address = dup_organization[dup_organization['address_1'] != '']
+dup_organization_address = dup_organization_address[dup_organization_address['address_1'].duplicated(keep = False)]
+
+pot_dup = dup_organization_email.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,9)
+
+pot_dup = dup_organization_phone.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,6)
+
+pot_dup = dup_organization_address.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,10)
+
+dup_house = ccdf[ccdf['constituent_type']=='Household'].drop_duplicates('lookup_id')
+
+dup_house_email = dup_house[dup_house['email_id'] != '']
+dup_house_email = dup_house_email[dup_house_email['email_id'].duplicated(keep = False)]
+dup_house_phone = dup_house[dup_house[r'phone'] != '']
+dup_house_phone = dup_house_phone[dup_house_phone[r'phone'].duplicated(keep = False)]
+dup_house_address = dup_house[dup_house['address_1'] != '']
+dup_house_address = dup_house_address[dup_house_address['address_1'].duplicated(keep = False)]
+
+pot_dup = dup_house_email.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,9)
+
+pot_dup = dup_house_phone.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,6)
+
+pot_dup = dup_house_address.sort_values(by=['name'])
+choices = pot_dup.copy()
+LevRatioMerge(pot_dup,ratio,10)
+
+for key in duplicate_names:
+    duplicate_names[key] = list(set(duplicate_names[key]))
+duplicate_names
+
+
 # #### Creating incomplete_records, incomplete_names, invalid_zips, invalid_phones, invalid_emails, and dupliate records
 
-# In[854]:
+# In[580]:
 
+
+final_duplicate = ccdf.copy()
+final_duplicate['duplicate'] = ''
+for key in duplicate_names:
+    final_duplicate.loc[final_duplicate['lookup_id'] == key, 'duplicate'] = duplicate_names[key]
+final_duplicate = final_duplicate[final_duplicate['duplicate'] !='']
+final_duplicate = final_duplicate.drop_duplicates('lookup_id')
+final_duplicate.drop(final_duplicate.iloc[:,17:-1], axis=1,inplace=True)
 
 no_contact.drop(no_contact.iloc[:,-13:], axis=1,inplace=True)
 no_contact['no_contact'] = True
@@ -894,39 +883,43 @@ invalid_phones.drop(invalid_phones.iloc[:,-19:], axis=1,inplace=True)
 invalid_phones['invalid_phones'] = True
 invalid_emails.drop(invalid_emails.iloc[:,-19:], axis=1,inplace=True)
 invalid_emails['invalid_emails'] = True
-incomplete_invalid = no_contact.append([incomplete_names,invalid_zips,invalid_phones,invalid_emails])
-incomplete_invalid_address = invalid_zips.copy()
+
+
+
+incomplete_invalid = no_contact.append([incomplete_names,invalid_zips,invalid_phones,
+                                        invalid_emails,final_duplicate])
+
+
+
+incomplete_invalid_address = invalid_zips.copy() # add invalid cities later
 columns = ['lookup_id','address_1','city','state','zip','country',
          'address_type', 'date_added', 'constituent_type','do_not_email',
           'dob','email_id','last_group','name', 'phone','suffix','title','invalid_zips']
 
 incomplete_invalid_address = incomplete_invalid_address[columns]
-incomplete_invalid_address.drop(incomplete_invalid_address.iloc[:, 8:], axis=1,inplace=True)
+incomplete_invalid_address.drop(incomplete_invalid_address.iloc[:, 8:17], axis=1,inplace=True)
 
-
-
-incomplete_invalid_constituent = incomplete_invalid.drop(incomplete_invalid.iloc[:,-1:], axis=1,inplace=False)
-incomplete_invalid_constituent.drop(incomplete_invalid_constituent.iloc[:,19:20], axis=1,inplace=True)
+incomplete_invalid_constituent = incomplete_invalid.drop(incomplete_invalid.iloc[:,-1:], axis=1,inplace=False) #remove zip
+incomplete_invalid_constituent.drop(incomplete_invalid_constituent.iloc[:,20:21], axis=1,inplace=True) # remove state
 incomplete_invalid_constituent.drop(incomplete_invalid_constituent.iloc[:,4:6], axis=1,inplace=True)
 incomplete_invalid_constituent.drop(incomplete_invalid_constituent.iloc[:,0:3], axis=1,inplace=True)
+
+
 columns = [ 'lookup_id', 'suffix', 'title', 'name', 'last_group', 'email_id', 'phone',
            'dob', 'do_not_email', 'constituent_type', 'phone_notes',
-           'incomplete_names','invalid_emails','invalid_phones','invalid_zips','no_contact']
+           'incomplete_names','invalid_emails','invalid_phones','invalid_zips','no_contact','duplicate']
 incomplete_invalid_constituent = incomplete_invalid_constituent[columns]
 incomplete_invalid_constituent['incomplete_names'] = incomplete_invalid_constituent['incomplete_names'].fillna(value=False)
 incomplete_invalid_constituent['invalid_emails'] = incomplete_invalid_constituent['invalid_emails'].fillna(value=False)
 incomplete_invalid_constituent['invalid_phones'] = incomplete_invalid_constituent['invalid_phones'].fillna(value=False)
 incomplete_invalid_constituent['invalid_zips'] = incomplete_invalid_constituent['invalid_zips'].fillna(value=False)
 incomplete_invalid_constituent['no_contact'] = incomplete_invalid_constituent['no_contact'].fillna(value=False)
-incomplete_invalid_constituent['duplicate'] = False # Temporary
-incomplete_invalid_constituent['duplicate_lookup_ids'] = np.array('')
-
-
+incomplete_invalid_constituent['duplicate'] = incomplete_invalid_constituent['duplicate'].fillna(value='')
 
 
 # ### 5) Exporting into final databases for ERD
 
-# In[855]:
+# In[581]:
 
 
 constituent_membership_record.to_csv('public/'+'constituent_membership_record.csv', index=False)
@@ -941,15 +934,14 @@ event.to_csv('public/'+'event.csv', index=False)
 incomplete_invalid_address.to_csv('public/'+'incomplete_invalid_address.csv', index=False)
 incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.csv', index=False)
 
-
 #  ### 6) Validations
 #
 
 # #### constituent validations
 
-# In[856]:
+# In[582]:
 
-
+#
 # # Edit this more later, but this has the basic regex formulas for the fields for now
 # # as a means to validate the values.
 # schema = Schema([
@@ -978,7 +970,7 @@ incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.
 #
 # # #### constituent_membership_record validations
 #
-# # In[857]:
+# # In[583]:
 #
 #
 # schema = Schema([
@@ -986,7 +978,7 @@ incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.
 #                          MatchesPatternValidation('^(?!\s*$).+')]),
 #     Column('membership_id',[LeadingWhitespaceValidation(), TrailingWhitespaceValidation(),
 #                          MatchesPatternValidation('^(?!\s*$).+')])
-#     ])2
+#     ])
 # errors = schema.validate(constituent_membership_record)
 # if len(errors) == 0:
 #     print("Validations passed!")
@@ -996,7 +988,7 @@ incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.
 #
 # # #### membership_record validations
 #
-# # In[858]:
+# # In[584]:
 #
 #
 # # Need to find a way to validate the time values
@@ -1024,7 +1016,7 @@ incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.
 #
 # # #### address validations
 #
-# # In[859]:
+# # In[585]:
 #
 #
 # # Added common state names for Canada, and DC
@@ -1038,7 +1030,7 @@ incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.
 #   'American Samoa','Armed Forces Europe/Canada/Middle East/Africa',"Armed Forces Pacific",""]
 #
 #
-# # In[860]:
+# # In[586]:
 #
 #
 # schema = Schema([
@@ -1066,14 +1058,14 @@ incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.
 #
 # # #### contact_history validations
 #
-# # In[862]:
+# # In[587]:
 #
 #
 # # Need to find a way to validate the time values
 # schema = Schema([
 #     Column('lookup_id', [LeadingWhitespaceValidation(), TrailingWhitespaceValidation(),
 #                          MatchesPatternValidation('^(?!\s*$).+')]),
-#     Column('type',[LeadingWhitespaceValidation(), TrailingWhitespaceValidation(),
+#     Column('contact_type',[LeadingWhitespaceValidation(), TrailingWhitespaceValidation(),
 #                          InListValidation(['Email','Mail','Not specified','Phone'])]),
 #     Column('date',[LeadingWhitespaceValidation(), TrailingWhitespaceValidation()])
 #     ])

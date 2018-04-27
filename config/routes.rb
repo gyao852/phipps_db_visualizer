@@ -41,47 +41,47 @@ Rails.application.routes.draw do
     collection {post :importfile}
   end
 
-  resources :unclean_constituent do
+  resources :unclean_constituents do
     # collection {post :import}
     collection {post :importfile}
   end
 
-  resources :unclean_address do
+  resources :unclean_addresses do
     # collection {post :import}
     collection {post :importfile}
   end
 
-  resources :unclean_membership_record do
+  resources :unclean_membership_records do
     # collection {post :import}
     collection {post :importfile}
   end
 
-  resources :unclean_constituent_membership_record do
+  resources :unclean_constituent_membership_records do
     # collection {post :import}
     collection {post :importfile}
   end
 
-  resources :unclean_contact_history do
+  resources :unclean_contact_histories do
     # collection {post :import}
     collection {post :importfile}
   end
 
-  resources :unclean_constituent_event do
+  resources :unclean_constituent_events do
     # collection {post :import}
     collection {post :importfile}
   end
 
-  resources :unclean_event do
+  resources :unclean_events do
     # collection {post :import}
     collection {post :importfile}
   end
 
-  resources :unclean_donation_history do
+  resources :unclean_donation_histories do
     # collection {post :import}
     collection {post :importfile}
   end
 
-  resources :unclean_donation_program do
+  resources :unclean_donation_programs do
     # collection {post :import}
     collection {post :importfile}
   end

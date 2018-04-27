@@ -1,4 +1,4 @@
-class UncleanAddressController < ApplicationController
+class UncleanAddressesController < ApplicationController
 
 	def create
     @unclean_address = UncleanAddress.new(unclean_address_params)

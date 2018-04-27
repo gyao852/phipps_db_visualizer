@@ -1,0 +1,12 @@
+lookup_id,suffix,title,name,last_group,email_id,phone,dob,do_not_email,constituent_type,phone_notes,incomplete_names,invalid_emails,invalid_phones,invalid_zips,no_contact,duplicate,duplicate_lookup_ids
+100274,,Mrs.,Beryl C. Veydt,Veydt,,,,,Individual,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,
+100814,,Ms.,Cheryl Barker,Barker,,,,,Individual,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,
+100851,,,Winthrop Management,Winthrop Management,,,,,Organization,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,
+100857,,,Barry Lhormer LTD Partnership,Barry Lhormer LTD Partnership,,,,,Organization,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,
+100932,,,Forever Grateful Lawn & Garden Service,Forever Grateful Lawn & Garden Service,,,,,Organization,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,
+101280,,Mrs.,Michele Regan,Regan,,,,,Individual,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,
+101318,,,Greater Pennsylvania Regional Council Of Carpenters,Greater Pennsylvania Regional Council Of Carpenters,,,,,Organization,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,
+101594,,Mr.,Frank Balk,Balk,,,,,Individual,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,
+101668,,Ms.,Tracy Tomasic,Tomasic,,,,,Individual,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,
+101672,,Ms.,Emily Welsh,Welsh,,,,,Individual,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,
+101673,,Mr.,Devin Bartolotta,Bartolotta,,,,,Individual,,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,

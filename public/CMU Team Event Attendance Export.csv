@@ -1,4 +1,4 @@
-﻿Lookup ID,Name,System record ID,Status,Attended,Start date,End date,QUERYRECID
+﻿Lookup ID,Name,System record ID,Status,Attended,event\start date,End date,QUERYRECID
 100077,Member Night,1787f3e1-3315-485a-95d7-1da21ed4ddb9,Registered,No,3/22/18,3/22/18,b446ad1f-a909-47bb-90b9-83f0c2373749
 100137,Peek Behind The Petals,90927b93-07cf-4d47-bc16-1e0da1bc5576,Will not attend,No,11/4/17,11/4/17,1058cf34-3cf7-4263-b119-7c48ba6f8a87
 100233,Member Night,1787f3e1-3315-485a-95d7-1da21ed4ddb9,Registered,Yes,3/22/18,3/22/18,b446ad1f-a909-47bb-90b9-83f0c2373749

@@ -23,8 +23,8 @@
       <div class='container-fluid right-container'>
         <% if @nav_status == 'db' %>
           <%= render :partial => 'partials/db_nav' %>
-        <% elsif @nav_status == "duplicate" %>
-          <%= render :partial => 'partials/duplicates_nav' %>
+        <% elsif @nav_status == "review" %>
+          <%= render :partial => 'partials/unclean_db_nav' %>
         <% end %>
         
         <%= yield %>

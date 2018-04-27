@@ -1,12 +1,12 @@
 class UncleanConstituent < ApplicationRecord
-	has_many :addresses, foreign_key: "lookup_id"
-  	has_many :donation_histories, foreign_key: "lookup_id"
-  	has_many :donation_programs, through: :donation_histories
-  	has_many :constituent_events, foreign_key: "lookup_id"
-  	has_many :events, through: :constituent_events
-  	has_many :contact_histories, foreign_key: "lookup_id"
-  	has_many :constituent_membership_records, foreign_key: "lookup_id"
-	has_many :membership_records, through: :constituent_membership_records
+	has_many :unclean_addresses, foreign_key: "lookup_id"
+  	has_many :unclean_donation_histories, foreign_key: "lookup_id"
+  	has_many :unclean_donation_programs, through: :unclean_donation_histories
+  	has_many :unclean_constituent_events, foreign_key: "lookup_id"
+  	has_many :unclean_events, through: :unclean_constituent_events
+  	has_many :unclean_contact_histories, foreign_key: "lookup_id"
+  	has_many :unclean_constituent_membership_records, foreign_key: "lookup_id"
+	has_many :unclean_membership_records, through: :unclean_constituent_membership_records
 	
 
  	scope :duplicates, -> {where(duplicate: true)}
@@ -26,10 +26,10 @@ class UncleanConstituent < ApplicationRecord
 	 end
 
 	def current_membership_level
-		if self.membership_records.current.blank?
+		if self.unclean_membership_records.current.blank?
 			return nil
 		else
-			curr = self.membership_records.current.first.membership_level
+			curr = self.unclean_membership_records.current.first.membership_level
 			return curr
 	    end
 	end

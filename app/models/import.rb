@@ -71,7 +71,7 @@ class Import < ApplicationRecord
 	end
 
 	def import_uncleanconstituent_csv_data
-		CSV.foreach("#{Rails.root}/public/incomplete_invalid_constituents.csv", headers:true) do |row|
+		CSV.foreach("#{Rails.root}/public/incomplete_invalid_constituent.csv", headers:true) do |row|
       		create_uncleanconstituent(row)
     	end
 	end
@@ -79,11 +79,10 @@ class Import < ApplicationRecord
 	def import_contacthistory_csv_data
 		CSV.foreach("#{Rails.root}/public/contact_history.csv", headers:true) do |row|
 			lookup_check = row[0].to_s
-			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
+			if UncleanConstituent.where(:lookup_id => lookup_check).empty? and !Constituent.where(:lookup_id => lookup_check).empty?
 				create_contacthistory(row)
-			else
+			elsif Constituent.where(:lookup_id => lookup_check).empty? and !UncleanConstituent.where(:lookup_id => lookup_check).empty?
 				create_uncleancontacthistory(row)
-				
 			end
     	end
 	end

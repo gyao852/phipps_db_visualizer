@@ -28,8 +28,11 @@ class Event < ApplicationRecord
   def count_rsvp
     count = 0
     self.constituent_events.each do |ce|
-      
+      if ce.status == 'Yes'
+        count += 1
+      end
     end
+    return count
   end
   def generate_attendance_report
     filename = 'reports/attendance-report' + self.event_id + '.csv'

@@ -15,15 +15,8 @@
 
           </li>
 
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Events
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">All</a>
-                <a class="dropdown-item" href="#">Category</a>
-                <a class="dropdown-item" href="#">Date</a>
-              </div>
+          <li class="nav-item">
+              <%= link_to "Events", events_path, class:'nav-link' %>
               
           </li>
 
@@ -32,10 +25,8 @@
                 Programs
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Membership Programs</a>
+                  <%= link_to 'Membership Programs', membership_records_path, class:'dropdown-item' %>
                   <%= link_to 'Donation Programs', donation_programs_path, class: 'dropdown-item'%>
-          
-
                 </div>
           </li>
           
@@ -55,7 +46,7 @@
               Contact
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">All</a>
+                <%= link_to "All", contact_histories_path, class: 'dropdown-item' %>
                 <a class="dropdown-item" href="#">Individuals</a>
                 <a class="dropdown-item" href="#">Companies</a>
                 <a class="dropdown-item" href="#">Groups</a>

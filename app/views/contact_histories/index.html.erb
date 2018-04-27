@@ -1,33 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class = 'container-fluid bg-white'>
+  <h3 class='text-primary-darl'>Contact Histories</h1>
 
-<h1>Contact Histories</h1>
-
-<table>
-  <thead>
-    <tr>
-      
-      <th>Lookup</th>
-      <th>Type</th>
-      <th>Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @contact_histories.each do |contact_history| %>
+  <table class='table table-bordered table-hover'>
+    <thead>
       <tr>
         
-        <td><%= contact_history.lookup_id %></td>
-        <td><%= contact_history.contact_type %></td>
-        <td><%= contact_history.date %></td>
-        <td><%= link_to 'Show', contact_history %></td>
-        <td><%= link_to 'Edit', edit_contact_history_path(contact_history) %></td>
-        <td><%= link_to 'Destroy', contact_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope='col'>Constituent</th>
+        <th scope='col'>Type</th>
+        <th scope='col'>Date</th>
+        
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @contact_histories.each do |contact_history| %>
+        <tr>
+          
+          <td><%= contact_history.constituent.name %></td>
+          <td><%= contact_history.contact_type %></td>
+          <td><%= contact_history.date %></td>
 
-<%= link_to 'New Contact History', new_contact_history_path %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+</div>

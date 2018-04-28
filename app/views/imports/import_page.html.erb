@@ -2,6 +2,8 @@
     <h3 class='text-primary'>Import Altru Data</h3>
 </div>
 
+
+
 <%= form_tag importfile_imports_path, multipart: true do %>
 <div class='d-flex card-group'>
     
@@ -52,9 +54,32 @@
     <% end %>
     <div>
         <%= form_tag importdata_imports_path, method: :post do %>
-  			<%= submit_tag 'Update Data', class: 'btn btn-primary' %>
+              <%= submit_tag 'Update Data', class: 'btn btn-primary', 'data-toggle' =>'modal' %>
 		<% end %>
     </div>
 
 
 </div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-dialog-centered" modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class='loader-wrapper'>
+        <div class='loader'></div>
+        </div>
+        <br/>
+        <br/>
+        <h5 class='text-center'>Loading...</h5>
+      </div>
+      
+    </div>
+  </div>
+</div>
+

@@ -71,8 +71,7 @@ class ImportsController < ApplicationController
       # importer.import_event_csv_data
       # importer.import_donationprogram_csv_data 
       
-      # address line 1 is emplty for some records
-      # importer.import_address_csv_data
+    
 
       # # To debug import
       # address line 1 is emplty for some records
@@ -80,7 +79,7 @@ class ImportsController < ApplicationController
       # missing constituent  8-10155266 from constituent report
       # importer.import_constituentevent_csv_data
       # missing constituent  8-10155266 from constituent report
-      # importer.import_contacthistory_csv_data
+      importer.import_contacthistory_csv_data
       # importer.import_donationhistory_csv_data
       
       

@@ -1,6 +1,6 @@
 class Import < ApplicationRecord
 	@@unclean_constituent_lookup_id = UncleanConstituent.pluck(:lookup_id)
-	@@constituent_lookup_id =[]
+	@@constituent_lookup_id = Constituent.pluck(:lookup_id)
 
 	attr_accessor :cmuteamconstituentsexport_file
 	attr_accessor :cmuteameventattendanceexport_file
@@ -80,7 +80,7 @@ class Import < ApplicationRecord
 			lookup_check = row[0].to_s
 			if @@unclean_constituent_lookup_id.include?(lookup_check) 
 				create_uncleancontacthistory(row)
-			else
+			elsif @@constituent_lookup_id.include?(lookup_check) 
 				create_contacthistory(row)
 			end
     	end

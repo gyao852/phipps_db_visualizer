@@ -16,7 +16,6 @@ class CreateUncleanConstituents < ActiveRecord::Migration[5.1]
       t.boolean :incomplete_names
       t.boolean :invalid_emails
       t.boolean :invalid_phones
-      t.boolean :invalid_zips
       t.boolean :no_contact
       t.boolean :duplicate
       t.text    :duplicate_lookup_ids

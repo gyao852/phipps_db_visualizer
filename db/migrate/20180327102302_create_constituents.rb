@@ -10,7 +10,6 @@ class CreateConstituents < ActiveRecord::Migration[5.1]
       t.text :phone
       t.date :dob
       t.boolean :do_not_email
-      t.boolean :duplicate
 
     
     end

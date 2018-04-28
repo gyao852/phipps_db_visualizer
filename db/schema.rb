@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422211513) do
+ActiveRecord::Schema.define(version: 20180428060631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20180422211513) do
     t.text "phone"
     t.date "dob"
     t.boolean "do_not_email"
-    t.boolean "duplicate"
     t.text "constituent_type"
     t.text "phone_notes"
   end
@@ -149,6 +148,11 @@ ActiveRecord::Schema.define(version: 20180422211513) do
     t.text "error"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "invalid_addresses_1"
+    t.boolean "invalid_cities"
+    t.boolean "invalid_states"
+    t.boolean "invalid_countries"
+    t.boolean "invalid_zips"
   end
 
   create_table "unclean_constituent_events", force: :cascade do |t|
@@ -185,9 +189,8 @@ ActiveRecord::Schema.define(version: 20180422211513) do
     t.boolean "incomplete_names"
     t.boolean "invalid_emails"
     t.boolean "invalid_phones"
-    t.boolean "invalid_zips"
     t.boolean "no_contact"
-    t.text "duplicate_lookup_ids"
+    t.text "duplicate_lookup_ids", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

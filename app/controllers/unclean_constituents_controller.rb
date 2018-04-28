@@ -6,7 +6,25 @@ class UncleanConstituentsController < ApplicationController
   def index
     @nav_status = 'review'
     @unclean_constituents = UncleanConstituent.all
+    @invalid = UncleanConstituent.invalid
+    @i
   end
+
+  def index_invalid_emails
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.invalid_emails
+  end
+
+  def index_invalid_phones
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.invalid_phones
+  end
+
+  def index_invalid_zips
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.invalid_zips
+  end
+
 
   # GET /constituents/1
   # GET /constituents/1.json

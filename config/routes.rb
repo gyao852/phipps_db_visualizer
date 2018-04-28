@@ -108,6 +108,10 @@ Rails.application.routes.draw do
   get 'constituents_events_import_page' => 'constituent_events#constituents_events_import_page', as: :constituents_events_import_page
   get 'contact_histories_import_page' => 'contact_histories#contact_history_import_page', as: :contact_histories_import_page
   # Routes for duplicate record filtering pages
+  get 'invalid_emails' => 'unclean_constituents#index_invalid_emails', as: :invalid_emails
+  get 'invalid_phones' => 'unclean_constituents#index_invalid_phones', as: :invalid_phones
+  get 'invalid_zips' => 'unclean_constituents#_invalid_zips', as: :invalid_zips
+  
   get 'duplicates_unresolved' => 'duplicates#unresolved', as: :duplicates_unresolved
   get 'duplicates_deleted' => 'duplicates#deleted', as: :duplicates_deleted
   get 'duplicates_merged' => 'duplicates#merged', as: :duplicates_merged

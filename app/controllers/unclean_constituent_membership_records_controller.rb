@@ -1,4 +1,4 @@
-class UncleanConstituentMembershipRecordController < ApplicationController
+class UncleanConstituentMembershipRecordsController < ApplicationController
 
 	def create
     @unclean_constituent_membership_record = UncleanConstituentMembershipRecord.new(unclean_constituent_membership_record_params)

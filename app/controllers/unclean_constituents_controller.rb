@@ -1,34 +1,52 @@
-class UncleanConstituentController < ApplicationController
+class UncleanConstituentsController < ApplicationController
 	before_action :set_constituent, only: [:show]
 
   # GET /constituents
   # GET /constituents.json
   def index
-    @nav_status = 'db'
+    @nav_status = 'review'
     @unclean_constituents = UncleanConstituent.all
+    @invalid = UncleanConstituent.invalid
+    @i
   end
+
+  def index_invalid_emails
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.invalid_emails
+  end
+
+  def index_invalid_phones
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.invalid_phones
+  end
+
+  def index_invalid_zips
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.invalid_zips
+  end
+
 
   # GET /constituents/1
   # GET /constituents/1.json
   def show
-    @nav_status = 'db'
+    @nav_status = 'review'
   end
 
   # GET /constituents/new
   def new
-    @nav_status = 'db'
+    @nav_status = 'review'
     @unclean_constituents = UncleanConstituent.new
   end
 
   # GET /constituents/1/edit
   def edit
-    @nav_status = 'db'
+    @nav_status = 'review'
   end
 
   # POST /constituents
   # POST /constituents.json
   def create
-    @nav_status = 'db'
+    @nav_status = 'review'
     @unclean_constituents = UncleanConstituent.new(unclean_constituent_params)
 
     respond_to do |format|
@@ -45,7 +63,7 @@ class UncleanConstituentController < ApplicationController
   # PATCH/PUT /constituents/1
   # PATCH/PUT /constituents/1.json
   def update
-    @nav_status = 'db'
+    @nav_status = 'review'
     respond_to do |format|
       if @unclean_constituents.update(unclean_constituent_params)
         format.html { redirect_to @unclean_constituents, notice: 'Constituent was successfully updated.' }

@@ -1,4 +1,4 @@
-class UncleanContactHistoryController < ApplicationController
+class UncleanContactHistoriesController < ApplicationController
 	def create
     @unclean_contact_history = UncleanContactHistory.new(unclean_contact_history_params)
 

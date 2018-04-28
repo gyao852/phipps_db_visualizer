@@ -1,4 +1,4 @@
-class UncleanConstituentEventController < ApplicationController
+class UncleanConstituentEventsController < ApplicationController
 	def create
     @unclean_constituent_event = UncleanConstituentEvent.new(unclean_constituent_event_params)
 

@@ -1,4 +1,4 @@
-class UncleanEventController < ApplicationController
+class UncleanEventsController < ApplicationController
 
 	def create
     @unclean_event = UncleanEvent.new(unclean_event_params)

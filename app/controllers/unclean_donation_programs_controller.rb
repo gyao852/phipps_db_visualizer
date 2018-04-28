@@ -1,0 +1,2 @@
+class UncleanDonationProgramsController < ApplicationController
+end

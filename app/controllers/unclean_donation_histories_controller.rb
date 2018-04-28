@@ -1,4 +1,4 @@
-class UncleanUncleanDonationHistoryController < ApplicationController
+class UncleanDonationHistoriesController < ApplicationController
 	def create
     puts params
     @unclean_donation_history = UncleanDonationHistory.new(unclean_donation_history_params)

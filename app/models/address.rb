@@ -31,9 +31,6 @@ class Address < ApplicationRecord
   # validates_format_of :address_1, without: /\A(.*[B b]lvd[.]?).*\z/i, message: "cannot contain abbriviations"
   # validates_format_of :address_1, without: /\A(.*[R r]d[.]?).*\z/i, message: "cannot contain abbriviations"
 
-  # # validates city capitalization
-  validates :city, format: { with: /[A-Z]{1}[a-z A-Z]+(?:[\s-][A-Z]+)*/i , message: "City must be capitalized"}
-  # # validates states
   STATES_LIST = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
   'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana',
   'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
@@ -41,7 +38,6 @@ class Address < ApplicationRecord
   'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
   'Wisconsin', 'Wyoming']
-  validates_inclusion_of :state, in: STATES_LIST, message: "is not a valid state"
   validates :country, :allow_blank => true, format:
   { with: /\A[A-Z][a-z A-Z]+(?:[\s-][A-Z]+)*\z/i ,
     message: "Country must be capitalized"}

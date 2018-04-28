@@ -100,24 +100,22 @@ class Import < ApplicationRecord
 	end
 
 	def import_membershiprecord_csv_data
-		CSV.foreach("#{Rails.root}/public/membership_records.csv", headers:true) do |row|
+		CSV.foreach("#{Rails.root}/public/membership_record.csv", headers:true) do |row|
       		lookup_check = row[1].to_s
-			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
-				create_membershiprecord(row)
-
-			else
+			if UncleanConstituent.where(:lookup_id => lookup_check)
 				create_uncleanmembershiprecord(row)
+			elsif Constituent.where(:lookup_id => lookup_check)
+				create_membershiprecord(row)
 			end
     	end
 	end
 
 	def import_constituentmembershiprecord_csv_data
-		CSV.foreach("#{Rails.root}/public/constituent_membership_records.csv", headers:true) do |row|
+		CSV.foreach("#{Rails.root}/public/constituent_membership_record.csv", headers:true) do |row|
       		lookup_check = row[0].to_s
 			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
 				create_constituentmembershiprecord(row)
 			else
-				# move membership record to unclean
 				create_uncleanconstituentmembershiprecord(row)
 			end
 
@@ -126,13 +124,14 @@ class Import < ApplicationRecord
 
 
 	def import_event_csv_data
-		CSV.foreach("#{Rails.root}/public/events.csv", headers:true) do |row|
+		CSV.foreach("#{Rails.root}/public/event.csv", headers:true) do |row|
       		create_event(row)
+      		create_uncleanevent(row)
     	end
 	end
 
 	def import_constituentevent_csv_data
-		CSV.foreach("#{Rails.root}/public/constituent_events.csv", headers:true) do |row|
+		CSV.foreach("#{Rails.root}/public/constituent_event.csv", headers:true) do |row|
       		lookup_check = row[0].to_s
 			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
 				create_constituentevent(row)
@@ -145,6 +144,7 @@ class Import < ApplicationRecord
 	def import_donationprogram_csv_data
 		CSV.foreach("#{Rails.root}/public/donation_program.csv", headers:true) do |row|
       		create_donationprogram(row)
+      		create_uncleandonationprogram(row)
     	end
 	end
 

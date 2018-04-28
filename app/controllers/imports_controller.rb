@@ -41,11 +41,8 @@ class ImportsController < ApplicationController
 
 	def importdata
       Constituent.delete_all
-<<<<<<< HEAD
-=======
       UncleanConstituent.delete_all
       UncleanAddress.delete_all
->>>>>>> test_files
       DonationProgram.delete_all
       Event.delete_all
       Address.delete_all
@@ -54,14 +51,6 @@ class ImportsController < ApplicationController
       MembershipRecord.delete_all
       ConstituentEvent.delete_all
       DonationHistory.delete_all
-      
-<<<<<<< HEAD
-
-      UncleanConstituent.delete_all
-      UncleanAddress.delete_all
-=======
-      
->>>>>>> test_files
       UncleanDonationProgram.delete_all
       UncleanEvent.delete_all
       UncleanContactHistory.delete_all
@@ -71,16 +60,9 @@ class ImportsController < ApplicationController
       UncleanDonationHistory.delete_all
       
       
-<<<<<<< HEAD
-      importer = Import.new()
+
       
-  		importer.import_constituent_csv_data
-      importer.import_uncleanconstituent_csv_data
-      # importer.import_uncleanaddress_csv_data
-      importer.import_event_csv_data
-      importer.import_donationprogram_csv_data 
-      
-=======
+
   		importer = Import.new()
   		importer.import_constituent_csv_data
       importer.import_uncleanconstituent_csv_data
@@ -89,26 +71,22 @@ class ImportsController < ApplicationController
       importer.import_uncleanaddress_csv_data
       importer.import_event_csv_data
       importer.import_donationprogram_csv_data 
->>>>>>> test_files
+      importer.import_donationhistory_csv_data
       importer.import_contacthistory_csv_data
-      
-    
-
-<<<<<<< HEAD
-      # To debug import
-      importer.import_address_csv_data
       importer.import_constituentevent_csv_data
-      importer.import_membershiprecord_csv_data
-      importer.import_constituentmembershiprecord_csv_data
-=======
+      importer.import_address_csv_data
+
+
+      # To debug import
+
+      
+
       # # To debug import
       # address line 1 is emplty for some records
-      # importer.import_address_csv_data
       # missing constituent  8-10155266 from constituent report
-      # importer.import_constituentevent_csv_data
       # missing constituent  8-10155266 from constituent report
-      # importer.import_donationhistory_csv_data
->>>>>>> test_files
+      # 
+
       
       
   		redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"

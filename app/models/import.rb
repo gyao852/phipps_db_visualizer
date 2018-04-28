@@ -1,19 +1,16 @@
 class Import < ApplicationRecord
+	@@unclean_constituent_lookup_id = UncleanConstituent.pluck(:lookup_id)
+	@@constituent_lookup_id =[]
 
 	attr_accessor :cmuteamconstituentsexport_file
 	attr_accessor :cmuteameventattendanceexport_file
 	attr_accessor :cmuteamcontacthistoryexport_file
 	attr_accessor :cmuteamdonationsexport_file
-	# attr_accessor :cmuTeamDonationProgramExport
-	# attr_accessor :cmuTeamEventExport
-
 	def initialize(cmuteamconstituentsexport_file=nil,cmuteameventattendanceexport_file=nil,cmuteamcontacthistoryexport_file=nil,cmuteamdonationsexport_file=nil)
 		@cmuteamconstituentsexport_file = cmuteamconstituentsexport_file
 		@cmuteameventattendanceexport_file = cmuteameventattendanceexport_file
 		@cmuteamcontacthistoryexport_file = cmuteamcontacthistoryexport_file
 		@cmuteamdonationsexport_file = cmuteamdonationsexport_file
-		# @cmuTeamDonationsExport = cmuTeamDonationsExport
-		# @cmuTeamEventExport = cmuTeamEventExport
 	end
 
 #############################################################
@@ -68,21 +65,23 @@ class Import < ApplicationRecord
 		CSV.foreach("#{Rails.root}/public/constituent.csv", headers:true) do |row|
       		create_constituent(row)
     	end
+		@@constituent_lookup_id = Constituent.pluck(:lookup_id)
 	end
 
 	def import_uncleanconstituent_csv_data
 		CSV.foreach("#{Rails.root}/public/incomplete_invalid_constituent.csv", headers:true) do |row|
       		create_uncleanconstituent(row)
     	end
+    	@@unclean_constituent_lookup_id = UncleanConstituent.pluck(:lookup_id)
 	end
 
 	def import_contacthistory_csv_data
 		CSV.foreach("#{Rails.root}/public/contact_history.csv", headers:true) do |row|
 			lookup_check = row[0].to_s
-			if UncleanConstituent.where(:lookup_id => lookup_check).empty? and !Constituent.where(:lookup_id => lookup_check).empty?
-				create_contacthistory(row)
-			elsif Constituent.where(:lookup_id => lookup_check).empty? and !UncleanConstituent.where(:lookup_id => lookup_check).empty?
+			if @@unclean_constituent_lookup_id.include?(lookup_check) 
 				create_uncleancontacthistory(row)
+			else
+				create_contacthistory(row)
 			end
     	end
 	end
@@ -101,10 +100,10 @@ class Import < ApplicationRecord
 
 	def import_membershiprecord_csv_data
 		CSV.foreach("#{Rails.root}/public/membership_record.csv", headers:true) do |row|
-      		lookup_check = row[1].to_s
-			if UncleanConstituent.where(:lookup_id => lookup_check)
+      		lookup_check = row[0].to_s
+			if @@unclean_constituent_lookup_id.include?(lookup_check)
 				create_uncleanmembershiprecord(row)
-			elsif Constituent.where(:lookup_id => lookup_check)
+			else
 				create_membershiprecord(row)
 			end
     	end
@@ -113,10 +112,10 @@ class Import < ApplicationRecord
 	def import_constituentmembershiprecord_csv_data
 		CSV.foreach("#{Rails.root}/public/constituent_membership_record.csv", headers:true) do |row|
       		lookup_check = row[0].to_s
-			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
-				create_constituentmembershiprecord(row)
-			else
+			if @@unclean_constituent_lookup_id.include?(lookup_check)
 				create_uncleanconstituentmembershiprecord(row)
+			else
+				create_constituentmembershiprecord(row)
 			end
 
     	end
@@ -133,10 +132,10 @@ class Import < ApplicationRecord
 	def import_constituentevent_csv_data
 		CSV.foreach("#{Rails.root}/public/constituent_event.csv", headers:true) do |row|
       		lookup_check = row[0].to_s
-			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
-				create_constituentevent(row)
-			else
+			if @@unclean_constituent_lookup_id.include?(lookup_check)
 				create_uncleanconstituentevent(row)
+			else
+				create_constituentevent(row)
 			end
     	end
 	end
@@ -151,10 +150,10 @@ class Import < ApplicationRecord
 	def import_donationhistory_csv_data
 		CSV.foreach("#{Rails.root}/public/donation_history.csv", headers:true) do |row|
       		lookup_check = row[2].to_s
-			if UncleanConstituent.where(:lookup_id => lookup_check).empty?
-				create_donationhistory(row)
-			else
+			if @@unclean_constituent_lookup_id.include?(lookup_check)
 				create_uncleandonationhistory(row)
+			else
+				create_donationhistory(row)
 			end
     	end
 	end

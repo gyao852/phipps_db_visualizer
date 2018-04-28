@@ -1,5 +1,6 @@
 lookup_id,suffix,title,name,last_group,email_id,phone,dob,do_not_email,constituent_type,phone_notes
-1,,Mrs.,Mary C Mccormick,Mccormick,wmbillmary@aol.com,(412) 781-9306,1940/08/01,FALSE,Individual,
+0001,,Mrs.,Mary C Mccormick,Mccormick,wmbillmary@aol.com,(412) 781-9306,1940/08/01,FALSE,Individual,
+1,,,J Preston Levis Charitable Foundation,J Preston Levis Charitable Foundation,,(540) 687-5485,,,Organization,
 100000,,Mr.,John Ludden,Ludden,anca0404@msn.com,(703) 349-3723,,FALSE,Individual,
 100001,,Ms.,Laurie Cybulski,Cybulski,contraryone@hotmail.com,(412) 441-4125,,FALSE,Individual,
 100003,,Ms.,Amy Gigler,Gigler,,(412) 926-9378,,,Individual,

@@ -15,7 +15,7 @@ class UncleanConstituent < ApplicationRecord
 	 scope :invalid_emails, ->{where(invalid_emails: true)}
 	 scope :invalid_phones, -> {where(invalid_phones: true)}
 	 scope :invalid_zips, -> {where(invalid_zips: true)}  
-	 scope :invalid, -> {where('invalid_emails OR invalid_phones OR invalid_zips')}
+	 scope :invalid, -> {where('invalid_emails OR invalid_phones')}
 	 scope :incomplete_names, -> {where(incomplete_names: true)}
 	 scope :duplicate_scope, -> {where(duplicate: true)}
 	 
@@ -85,14 +85,13 @@ class UncleanConstituent < ApplicationRecord
 		filename = 'reports/invalid-records-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+".csv"
 		i = UncleanConstituent.invalid
 		CSV.open(filename,'wb') do |csv|
-			csv << ['LookupID', 'Name', 'Email', 'Phone','Zip']
+			csv << ['LookupID', 'Name', 'Email', 'Phone']
 			toAppend = []
 			i.each do |row|
 				toAppend[0] = row.lookup_id
 				toAppend[1] = row.name
 				toAppend[2] = row.email_id
 				toAppend[3] = row.phone
-				toAppend[4] = row.zip
 			end
 		end
 	end
@@ -127,24 +126,34 @@ class UncleanConstituent < ApplicationRecord
 		end
 	end
 
-	def self.generate_invalid_zips
-		filename = 'reports/invalid-zip-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
-		iz = UncleanConstituent.invalid_zips
-		CSV.open(filename, 'wb') do |csv|
-			csv << ['LookupID','Name','Invalid Zip']
-			toAppend = []
-			iz.each do |row|
-				toAppend[0] = row.lookup_id
-				toAppend[1] = row.name
-				toAppend[2] = row.zip
-				csv << toAppend
-			end
-		end
-	end
+	# def self.generate_invalid_zips
+	# 	filename = 'reports/invalid-zip-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
+	# 	iz = UncleanConstituent.invalid_zips
+	# 	CSV.open(filename, 'wb') do |csv|
+	# 		csv << ['LookupID','Name','Invalid Zip']
+	# 		toAppend = []
+	# 		iz.each do |row|
+	# 			toAppend[0] = row.lookup_id
+	# 			toAppend[1] = row.name
+	# 			toAppend[2] = row.zip
+	# 			csv << toAppend
+	# 		end
+	# 	end
+	# end
 
 	def self.generate_duplicates
 		filename = 'reports/duplicate-constituents-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
-		d = UncleanConstituent.duplicates
+		d = UncleanConstituent.duplicate_scope
+		CSV.open(filename, 'wb') do |csv|
+			csv << ['LookupID', 'Name', 'Duplicate_Lookup_Ids']
+			toAppend = []
+			d.each do |row|
+				toAppend[0] = row.lookup_id
+				toAppend[1] = row.name
+				toAppend[2] = row.duplicate_lookup_ids
+				csv << toAppend
+			end
+		end
 
 	end
 

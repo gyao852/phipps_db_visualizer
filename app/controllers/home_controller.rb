@@ -78,9 +78,41 @@ class HomeController < ApplicationController
 
     end
 
+    def generate_invalid_constituents_report
+        UncleanConstituent.generate_all_invalid
+        redirect_to reports_path
+    end
+
+
+    def generate_no_contact_constituents_report
+        UncleanConstituent.generate_no_contact
+        redirect_to reports_path
+    end
+
+    def generate_invalid_phone_constituents_report
+        UncleanConstituent.generate_invalid_phones
+        redirect_to reports_path
+    end
+
+    def generate_invalid_email_constituents_report
+        UncleanConstituent.generate_invalid_emails
+        redirect_to reports_path
+    end
+
+    def generate_incomplete_name_constituents_report
+        UncleanConstituent.generate_incomplete_names
+        redirect_to reports_path
+    end
+
+    def generate_duplicate_constituents_report
+        UncleanConstituent.generate_duplicates
+        redirect_to reports_path
+    end
+
     def generate_donation_report
         Constituent.generate_donations_report(params[:date])
     end
+
 
     def generate_contact_history_report
         Constituent.generate_contact_history_report(params[:date])

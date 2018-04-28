@@ -71,7 +71,7 @@ class ImportsController < ApplicationController
       importer.import_uncleanaddress_csv_data
       importer.import_event_csv_data
       importer.import_donationprogram_csv_data 
-      importer.import_donationhistory_csv_data
+      # importer.import_donationhistory_csv_data
       importer.import_contacthistory_csv_data
       importer.import_constituentevent_csv_data
       importer.import_address_csv_data

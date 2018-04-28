@@ -152,7 +152,7 @@ class Import < ApplicationRecord
       		lookup_check = row[2].to_s
 			if @@unclean_constituent_lookup_id.include?(lookup_check)
 				create_uncleandonationhistory(row)
-			else
+			elsif @@constituent_lookup_id.include?(lookup_check)
 				create_donationhistory(row)
 			end
     	end

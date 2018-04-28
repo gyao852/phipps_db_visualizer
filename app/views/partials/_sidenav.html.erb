@@ -83,20 +83,20 @@
 				</li>
 			<% end %>
 
-			<% if @nav_status == 'duplicate' %>
+			<% if @nav_status == 'review' %>
 				<li class='nav-item'>
-					<%= link_to duplicates_unresolved_path, class:'btn nav-link' do %>			
+					<%= link_to unclean_constituents_path, class:'btn nav-link' do %>			
 						<i class="material-icons">flag</i>
 						<br/>
-						Duplicates
+						Review
 					<% end %>
 				</li>
 			<% else %>
 				<li class='nav-item'>
-					<%= link_to duplicates_unresolved_path, class: 'btn nav-link text-light' do %>
+					<%= link_to unclean_constituents_path, class: 'btn nav-link text-light' do %>
 						<i class="material-icons">flag</i>
 						<br/>
-						Duplicates
+						Review
 					<% end %>
 				</li>
 			<% end %>

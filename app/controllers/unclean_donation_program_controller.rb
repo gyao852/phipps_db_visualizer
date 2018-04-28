@@ -1,2 +1,0 @@
-class UncleanDonationProgramController < ApplicationController
-end

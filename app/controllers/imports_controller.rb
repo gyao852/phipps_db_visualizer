@@ -1,4 +1,5 @@
 class ImportsController < ApplicationController
+  before_action :check_login
 	def importfile
 
     	if params[:cmuteameventattendanceexport].nil? || params[:cmuteamdonationexport].nil? || params[:cmuteamconstituentsexport].nil?|| params[:cmuteamcommunicationhistoryexport].nil?

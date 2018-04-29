@@ -63,7 +63,6 @@ class AddressesController < ApplicationController
     end
   end
 
-
   def importfile
     Address.import_file(params[:file])
     redirect_to address_import_page_path, notice: "csv imported"

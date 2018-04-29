@@ -1,0 +1,54 @@
+<div class='d-flex unclean-address-reports'>
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4> Invalid Street Address Report</h4>
+        </div>
+        <div class='card-body'>
+            <p>Generate report of all invalid street addresses </p>
+            <%= link_to 'Generate', generate_invalid_addresses_1_report_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4> Invalid City Reports</h4>
+        </div>
+        <div class='card-body'>
+            <p>Generate report of all addresses with invalid cities. </p>
+            <%= link_to 'Generate', generate_invalid_city_addresses_report_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4> Invalid State Reports</h4>
+        </div>
+        <div class='card-body'>
+            <p>Generate report of all addresses with invalid states. </p>
+            <%= link_to 'Generate', generate_invalid_state_addresses_report_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+</div>
+
+<div class='d-flex unclean-address-reports'>
+
+    <div class="card bg-white report-form-wrapper">
+        <div class='card-header'>
+            <h4> Invalid Zip Reports</h4>
+        </div>
+        <div class='card-body'>
+            <p>Generate report of all addresses with invalid zip codes. </p>
+            <%= link_to 'Generate', generate_invalid_zips_addresses_report_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+
+    <div class="card bg-white report-form-wrapper">
+        <div class='card-header'>
+            <h4> Invalid Country Reports</h4>
+        </div>
+        <div class='card-body'>
+            <p>Generate report of all addresses with invalid countries. </p>
+            <%= link_to 'Generate', generate_invalid_country_addresses_report_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+</div>

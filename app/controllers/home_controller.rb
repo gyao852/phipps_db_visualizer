@@ -78,9 +78,69 @@ class HomeController < ApplicationController
 
     end
 
+    # Methods to generate unclean address reports
+    def generate_invalid_zips_addresses_report
+        UncleanAddress.generate_invalid_zips
+        redirect_to reports_path 
+    end
+
+    def generate_invalid_addresses_1_report
+        UncleanAddress.generate_invalid_address_1
+        redirect_to reports_path
+    end
+
+    def generate_invalid_state_addresses_report
+        UncleanAddress.generate_invalid_states
+        redirect_to reports_path
+    end
+
+    def generate_invalid_city_addresses_report
+        UncleanAddress.generate_invalid_cities
+        redirect_to reports_path
+    end
+
+    def generate_invalid_country_addresses_report
+        UncleanAddress.generate_invalid_countries
+        redirect_to reports_path
+    end
+
+    # Methods to generate unclean constituent reports
+    def generate_invalid_constituents_report
+        UncleanConstituent.generate_all_invalid
+        redirect_to reports_path
+    end
+
+
+    def generate_no_contact_constituents_report
+        UncleanConstituent.generate_no_contact
+        redirect_to reports_path
+    end
+
+    def generate_invalid_phone_constituents_report
+        UncleanConstituent.generate_invalid_phones
+        redirect_to reports_path
+    end
+
+    def generate_invalid_email_constituents_report
+        UncleanConstituent.generate_invalid_emails
+        redirect_to reports_path
+    end
+
+    def generate_incomplete_name_constituents_report
+        UncleanConstituent.generate_incomplete_names
+        redirect_to reports_path
+    end
+
+    def generate_duplicate_constituents_report
+        UncleanConstituent.generate_duplicates
+        redirect_to reports_path
+    end
+
+    # Methods to functional reports
     def generate_donation_report
         Constituent.generate_donations_report(params[:date])
     end
+
 
     def generate_contact_history_report
         Constituent.generate_contact_history_report(params[:date])

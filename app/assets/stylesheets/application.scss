@@ -111,6 +111,31 @@ html, body {
     height: 100%;
 }
 
+.loader-wrapper {
+    min-height: 170px;
+}
+
+
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 h1 {
     padding: 8px;
 }
@@ -169,6 +194,13 @@ i.md-40 {
     text-align: center;
 }
 
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+    background-color: $mint !important;
+}
+
+.nav-tabs a.nav-link {
+    color: $dark-gray !important;
+}
 /* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
 #sidebar .sidebar-header strong {
     display: none;

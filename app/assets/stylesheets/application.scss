@@ -194,8 +194,12 @@ i.md-40 {
     text-align: center;
 }
 
-.nav-tabs>li.active>a {
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
     background-color: $mint !important;
+}
+
+.nav-tabs a.nav-link {
+    color: $dark-gray !important;
 }
 /* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
 #sidebar .sidebar-header strong {

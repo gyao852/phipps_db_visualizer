@@ -40,15 +40,16 @@
 <script type="text/javascript">
 // Progress bars
 
-var totalProgress = <%= raw @total_progress.to_json %>
 
-console.log(totalProgress)
+
+
     
 // console.log(aaProgress, ccProgress, cpProgress, dgProgress, mhProgress, sgProgress)
 
 // have to call the class later for each of the progress bars
 
 function progressBar(c){
+    var totalProgress = <%= raw @total_progress.to_json %>
     var svg = d3.select(c)
     .append('svg')
     .attr('height', "1.5rem")
@@ -96,8 +97,9 @@ var progressText = svg.append("svg:text")
                     progress.transition()
                     .duration(1000)
                     .attr('width', function(){
-                        var index = states.indexOf(currentState);
-                        return (index + 1) * segmentWidth;
+                        var totalProgress = <%= raw @total_progress.to_json %>
+                       
+                        return totalProgress.progress * segmentWidth
                     });
                 
                 function moveProgressBar(state){
@@ -107,8 +109,8 @@ var progressText = svg.append("svg:text")
                             return colorScale();
                         })
                         .attr('width', function(){
-                            var index = states.indexOf(state);
-                            return (index + 1) * segmentWidth;
+                            var totalProgress = <%= raw @total_progress.to_json %>
+                            return totalProgress.progress * segmentWidth
                         });
                 }
 

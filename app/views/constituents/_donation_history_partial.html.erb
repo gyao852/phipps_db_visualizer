@@ -1,0 +1,38 @@
+<div class='card bg-white show-constituent-donation-history'>
+      <h4 class='card-header'>Donation History</h4>
+      <div class="card-body">
+          <% if  @constituent.donation_histories.empty? %>
+            <p>No records </p>
+          <% else %>
+            <table class="table table-sm table-hover table-bordered">
+                <thead>
+                <tr>
+                  <th scope='col'>Program</th>
+                  <th scope='col'>Amount</th>
+                  <th scope='col'>Date</th>
+                  <th scope='col'>Payment Method</th>
+                  <th scope='col'>Transaction Type</th>
+                  <th scope='col'>Anonymous</th>
+                  <th scope='col'>Do Not Acknowledge</th>              
+                </tr>
+                </thead>
+
+                <tbody>
+                  
+                  <% @constituent.donation_histories.each do |dh| %>
+                    <tr>
+                      <td><%= dh.donation_program.program %></td>
+                      <td><%= dh.amount %></td>
+                      <td><%= dh.date.nil?  ? 'N/A' : dh.date.strftime('%m/%d/%y') %></td>
+                      <td><%= dh.payment_method %></td>
+                      <td><%= dh.transaction_type %></td>
+                      <td><%= dh.given_anonymously %></td>
+                      <td><%= dh.do_not_acknowledge %></td>
+                    </tr>              
+                  <%end %>
+                </tbody>
+            </table>
+          <% end %>
+
+      </div>
+</div>

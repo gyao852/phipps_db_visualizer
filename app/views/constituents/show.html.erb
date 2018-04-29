@@ -1,224 +1,30 @@
-<div class='container-fluid d-flex flex-column'>
-  <div class='d-flex'>
-    <div class='card bg-white show-constituent-information'>
-      <h4 class="card-header">Constituent Information</h4>
-      <div class='card-body'>
-        <ul class='list-group list-group-flush'>
-          <li class="list-group-item">    
-            <strong>Name:</strong>
-            <%= @constituent.name %>
-          </li>
+<div class='container-fluid'>
+  <div class= 'd-flex flex-wrap'>
 
-          <li class="list-group-item">
-            <strong>Last / Group Name:</strong>
-            <%= @constituent.last_group %>
-          </li>
+    <%= render :partial => 'constituent_information_partial' %>
+    
 
-          <li class="list-group-item">
-            <strong>Lookup ID:</strong>
-            <%= @constituent.lookup_id %>
-          </li>
+    <%= render :partial => 'addresses_partial' %>
 
-          <li class="list-group-item">
-            <strong>Title:</strong>
-            <% if @constituent.title.nil? %>
-              N/A
-            <% else %>
-              <%= @constituent.title %>
-            <% end %>
-          </li>
+    <%= render :partial => 'contact_history_partial' %>
 
-          <li class="list-group-item">
-            <strong>Suffix:</strong>
-            <% if @constituent.suffix.nil? %>
-              N/A
-            <% else %>
-              <%= @constituent.suffix %>
-            <% end %>
-          </li>
-
-          <li class="list-group-item">
-            <strong>Email:</strong>
-            <% if @constituent.email_id.nil? %>
-              N/A
-            <% else %>
-              <%= @constituent.email_id %>
-            <% end %>
-          </li>
-
-          <li class="list-group-item">
-            <strong>Phone:</strong>
-            <% if @constituent.phone.nil? %>
-              N/A
-            <% else %>
-              <%= @constituent.phone %>
-            <% end %>
-          </li>
-
-          <li class="list-group-item">
-            <strong>Dob:</strong>
-            <% if @constituent.dob.nil? %>
-              N/A
-            <% else %>
-              <%= @constituent.dob %>
-            <% end %>
-          </li>
-
-          <li class="list-group-item">
-            <strong>Do not email:</strong>
-            <%= @constituent.do_not_email %>
-          </li>
+    <%= render :partial => 'membership_record_partial' %>
 
 
-        </ul>
+   
+  
 
 
-        
-        </div>
+  <!-- <div class='d-flex'> -->
+    <%= render :partial => 'attendance_partial' %>
 
-        
-    </div>
+    <%= render :partial => 'donation_history_partial' %>
+    
+    
+    
 
-
-    <div class='card bg-white show-constituent-membership-record'>
-      <h4 class="card-header">Membership History</h4>
-      <div class="card-body">
-        <% if @constituent.constituent_membership_records.empty? %>
-          No records
-        <% else %>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th scope='col'>Scheme</th>
-                <th scope='col'>Level</th>
-                <th scope='col'>Type</th>
-                <th scope='col'>Status</th>
-                <th scope='col'>Start Date</th>
-                <th scope='col'>End Date</th>
-                <th scope='col'>Last Renewed Date</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @constituent.constituent_membership_records.each do |cmr| %>
-                <tr>
-                  <td><%= cmr.membership_record.membership_scheme %></td>
-                  <td><%= cmr.membership_record.membership_level %></td>
-                  <td><%= cmr.membership_record.membership_level_type %></td>
-                  <td><%= cmr.membership_record.membership_status %></td>
-                  <td><%= cmr.membership_record.start_date %></td>
-                  <td><%= cmr.membership_record.end_date %></td>
-                  <td><%= cmr.membership_record.last_renewed %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        <% end %>
-      </div>
-    </div>
-
-
-    <div class='card bg-white show-constituent-contact-history mr-auto'>
-      <h4 class='card-header'>Contact History</h4>
-      <div class='card-body'>
-        <% if @constituent.contact_histories.empty? %>
-          <p> No records </p>
-        <% else %>
-          <table class='table'>
-              <thead>
-                <th scope="col">Contact Type</th>
-                <th scope="col">Date</th>
-              </thead>
-
-              <tbody>
-                <% @constituent.contact_histories.each do |ch| %>
-                  <tr>
-                    <td><%= ch.contact_type %></td>
-                    <td><%= ch.date %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-          </table>
-        <% end %>
-      </div>
-    </div>
+  <!-- </div> -->
   </div>
-
-<br/>
-  <div class='d-flex'>
-
-    <div class='card bg-white show-constituent-donation-history'>
-      <h4 class='card-header'>Donation History</h4>
-      <div class="card-body">
-          <% if  @constituent.donation_histories.empty? %>
-            <p>No records </p>
-          <% else %>
-            <table class="table">
-                <thead>
-                <tr>
-                  <th scope='col'>Program</th>
-                  <th scope='col'>Amount</th>
-                  <th scope='col'>Date</th>
-                  <th scope='col'>Payment Method</th>
-                  <th scope='col'>Transaction Type</th>
-                  <th scope='col'>Anonymous</th>
-                  <th scope='col'>Do Not Acknowledge</th>              
-                </tr>
-                </thead>
-
-                <tbody>
-                  
-                  <% @constituent.donation_histories.each do |dh| %>
-                    <tr>
-                      <td><%= dh.donation_program.program %></td>
-                      <td><%= dh.amount %></td>
-                      <td><%= dh.date %></td>
-                      <td><%= dh.payment_method %></td>
-                      <td><%= dh.transaction_type %></td>
-                      <td><%= dh.given_anonymously %></td>
-                      <td><%= dh.do_not_acknowledge %></td>
-                    </tr>              
-                  <%end %>
-                </tbody>
-            </table>
-          <% end %>
-
-      </div>
-    </div>
-
-    <div class='card bg-white show-constituent-attendance-history'>
-      <h4 class='card-header'>Attendance History</h4>
-      <div class='card-body'>
-        <% if @constituent.constituent_events.empty? %>
-          <p>No records</p>
-        <% else %>
-          <table class='table'>
-              <thead>
-                  <th scope="col">Event Name</th>
-                  <th scope="col">Start Date</th>
-                  <th scope="col">End Date</th>
-                  <th scope="col">RSVP</th>
-                  <th scope="col">Attended</th>
-              </thead>
-              
-              <tbody>
-                  <% @constituent.constituent_events.each do |ce| %>
-                    <tr>
-                      <td><%= ce.event.event_name %></td>
-                      <td><%= ce.event.start_date_time %></td>
-                      <td><%= ce.event.end_date_time %></td>
-                      <td><%= ce.status %></td>
-                      <td><%= ce.attend %></td>
-                    </tr>
-                  <% end %>
-              </tbody>
-          </table>
-        <% end %>
-      </div>
-    </div>
-
-  </div>
-
   <%= link_to 'Back', constituents_path %>
   
 </div>

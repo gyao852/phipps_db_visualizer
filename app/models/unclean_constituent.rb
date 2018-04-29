@@ -1,4 +1,5 @@
 class UncleanConstituent < ApplicationRecord
+	self.primary_key = 'lookup_id'
 	has_many :unclean_addresses, foreign_key: "lookup_id"
   	has_many :unclean_donation_histories, foreign_key: "lookup_id"
   	has_many :unclean_donation_programs, through: :unclean_donation_histories

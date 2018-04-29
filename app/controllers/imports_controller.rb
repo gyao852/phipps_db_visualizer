@@ -64,30 +64,33 @@ class ImportsController < ApplicationController
       
 
   		importer = Import.new()
+      # tested
   		importer.import_constituent_csv_data
       importer.import_uncleanconstituent_csv_data
       importer.import_membershiprecord_csv_data
       importer.import_constituentmembershiprecord_csv_data
-      importer.import_uncleanaddress_csv_data
-      importer.import_event_csv_data
-      importer.import_donationprogram_csv_data 
-      importer.import_donationhistory_csv_data
-      importer.import_contacthistory_csv_data
-      importer.import_constituentevent_csv_data
-      importer.import_address_csv_data
+      
+      # importer.import_address_csv_data
+      # importer.import_contacthistory_csv_data
+      # importer.import_event_csv_data
+      # importer.import_constituentevent_csv_data
+      # importer.import_uncleanaddress_csv_data
+      # importer.import_donationprogram_csv_data 
+      # importer.import_donationhistory_csv_data
+      
 
 
-      # To debug import
+# to test
+      
+      
+      
+      
+      
+
+
 
       
 
-      # # To debug import
-      # address line 1 is emplty for some records
-      # missing constituent  8-10155266 from constituent report
-      # missing constituent  8-10155266 from constituent report
-      # 
-
-      
       
   		redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
 	end

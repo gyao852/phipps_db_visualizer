@@ -1,6 +1,11 @@
 class HomeController < ApplicationController
     def home
         @home = true
+
+        @newGoal = Goal.new
+        
+        @currentGoal = Goal.chronological.first
+
         
         # donation goals from setting cache
 
@@ -20,32 +25,32 @@ class HomeController < ApplicationController
         @cc = DonationProgram.sum_and_count_level("Commemorative Certificates")
         @dgb= DonationProgram.sum_and_count_level("Discovery Garden")
         @mh = DonationProgram.sum_and_count_level("Memorials & Honoraria")
-        @sg = DonationProgram.sum_and_count_level("Sustained Giving")
         @other = DonationProgram.sum_and_count_level("Other")
 
 
-        @donations_by_program = [@cp, @cc, @dgb, @mh, @sg, @aa, @other]
+        @donations_by_program = [@cp, @cc, @dgb, @mh, @aa, @other]
 
         @pie_chart_data_set = []
         @bar_chart_data_set = []
+
+        @total_progress = {sum: @donation_sum_fYear, progress: @donation_sum_fYear.to_f/@currentGoal.goal.to_f}
+    
         
         @donations_by_program.each do |p|
             m = p['sum'].to_f/ @donation_sum_fYear.to_f
-            if p['program']=="Annual Appeal"
-                @aa_progress = {sum: p['sum'], goal: Setting.aa_goal, progress:  p['sum'].to_f/ Setting.aa_goal}
-            elsif p['program']=="Commemorative Certificates"
-                @cc_progress = {sum: p['sum'], goal: Setting.cc_goal, progress:  p['sum'].to_f/ Setting.cc_goal}
-            elsif p['program']=="Childrens' Programs"
-                @cp_progress = {sum: p['sum'], goal: Setting.cp_goal, progress:  p['sum'].to_f/ Setting.cp_goal}
-            elsif p['program']=="Discovery Garden"
-                @dg_progress = {sum: p['sum'], goal: Setting.dg_goal, progress:  p['sum'].to_f/ Setting.dg_goal}
-            elsif p['program']=="Memorials & Honoraria"
-                @mh_progress = {sum: p['sum'], goal: Setting.mh_goal, progress:  p['sum'].to_f/ Setting.mh_goal}
-            elsif p['program']=="Sustained Giving"
-                @sg_progress = {sum: p['sum'], goal: Setting.sg_goal, progress:  p['sum'].to_f/ Setting.sg_goal}
-            else
-                goal = nil
-            end
+        #     if p['program']=="Annual Appeal"
+        #         @aa_progress = {sum: p['sum'], goal: Setting.aa_goal, progress:  p['sum'].to_f/ Setting.aa_goal}
+        #     elsif p['program']=="Commemorative Certificates"
+        #         @cc_progress = {sum: p['sum'], goal: Setting.cc_goal, progress:  p['sum'].to_f/ Setting.cc_goal}
+        #     elsif p['program']=="Childrens' Programs"
+        #         @cp_progress = {sum: p['sum'], goal: Setting.cp_goal, progress:  p['sum'].to_f/ Setting.cp_goal}
+        #     elsif p['program']=="Discovery Garden"
+        #         @dg_progress = {sum: p['sum'], goal: Setting.dg_goal, progress:  p['sum'].to_f/ Setting.dg_goal}
+        #     elsif p['program']=="Memorials & Honoraria"
+        #         @mh_progress = {sum: p['sum'], goal: Setting.mh_goal, progress:  p['sum'].to_f/ Setting.mh_goal}
+        #     else
+        #         goal = nil
+        #     end
             
             obj = {category:p['program'],sum: p['sum'], measure: m}
             

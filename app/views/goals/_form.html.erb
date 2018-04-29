@@ -15,7 +15,7 @@
         <% else %>
           <% year = Data.current.year + 1 %>
         <% end %>
-        <%= f.input :year, :as => :hidden, :input_html => {:value => year %>
+        <%= f.input :year, :as => :hidden, :input_html => {:value => year} %>
 
         <div class="form-actions">
           <%= f.submit "Submit", :class => 'btn btn-primary', :type => 'submit', :name => 'action'%>

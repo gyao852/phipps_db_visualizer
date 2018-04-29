@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
     def home
         @home = true
+
+        @newGoal = Goal.new
         
         # donation goals from setting cache
 

@@ -139,19 +139,19 @@
 			
 			<% if @nav_status == 'log_out'%>
 				<li class='nav-item'>
-					<a href='#' class='btn nav-link'>
+					<%= link_to logout_path, clas: 'btn nav-link' do %>
 						<i class="material-icons">power_settings_new</i>
 						<br/>
 						Log Out
-					</a>
+					<% end %>
 				</li>
 			<% else %>
 				<li class='nav-item'>
-					<a href='#' class='btn nav-link text-light'>
+					<%= link_to logout_path, class: 'btn nav-link text-light' do %>
 						<i class="material-icons">power_settings_new</i>
 						<br/>
 						Log Out
-					</a>
+					<% end %>
 				</li>
 			<% end %>
 

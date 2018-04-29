@@ -10,6 +10,7 @@ class DonationProgram < ApplicationRecord
   # -----------------------------
     scope :alphabetical, -> { order('program') }
     scope :for_program, -> (aProgram){where("program LIKE ?", "%#{aProgram}%")}
+   
 
 
   # Validations

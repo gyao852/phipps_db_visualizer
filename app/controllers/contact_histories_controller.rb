@@ -5,7 +5,7 @@ class ContactHistoriesController < ApplicationController
   # GET /contact_histories.json
   def index
     @nav_status = 'db'
-    @contact_histories = ContactHistory.all
+    @contact_histories = ContactHistory.all.chronological.paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /contact_histories/1

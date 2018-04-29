@@ -194,6 +194,9 @@ i.md-40 {
     text-align: center;
 }
 
+.nav-tabs>li.active>a {
+    background-color: $mint !important;
+}
 /* Toggling the sidebar header content, hide the big heading [h3] and showing the small heading [strong] and vice versa*/
 #sidebar .sidebar-header strong {
     display: none;

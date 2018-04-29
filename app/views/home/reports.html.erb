@@ -2,9 +2,10 @@
     <h3 class='text-primary'>Generate Reports</h3>
 </div>
 
+
 <ul class="nav nav-tabs bg-white" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="functional-tab" data-toggle="tab" href="#functional" role="tab" aria-controls="functional" aria-selected="true">Email Lists</a>
+    <a class="nav-link active" id="functional-tab" data-toggle="tab" href="#functional" role="tab" aria-controls="functional" aria-selected="true">Functional</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="unclean-constituent-tab" data-toggle="tab" href="#unclean-constituent" role="tab" aria-controls="unclean-constituent" aria-selected="false">Unclean Constituent</a>
@@ -26,8 +27,8 @@
   <div class="tab-pane" id="unclean-address" role="tabpanel" aria-labelledby="unclean-address-tab">
     <%= render :partial => 'unclean_address_report_partial' %>
   </div>
-</div>
 
+</div>
 <script>
   $(function () {
     $('#myTab li:last-child a').tab('show')

@@ -1,4 +1,6 @@
 class UncleanConstituent < ApplicationRecord
+	self.primary_key = 'lookup_id'
+	
 	has_many :unclean_addresses, foreign_key: "lookup_id"
   	has_many :unclean_donation_histories, foreign_key: "lookup_id"
   	has_many :unclean_donation_programs, through: :unclean_donation_histories
@@ -14,7 +16,6 @@ class UncleanConstituent < ApplicationRecord
 	 scope :no_contact, -> {where(no_contact: true)}
 	 scope :invalid_emails, ->{where(invalid_emails: true)}
 	 scope :invalid_phones, -> {where(invalid_phones: true)}
-	 scope :invalid_zips, -> {where(invalid_zips: true)}  
 	 scope :invalid, -> {where('invalid_emails OR invalid_phones')}
 	 scope :incomplete_names, -> {where(incomplete_names: true)}
 	 scope :duplicate_scope, -> {where(duplicate: true)}
@@ -126,20 +127,6 @@ class UncleanConstituent < ApplicationRecord
 		end
 	end
 
-	# def self.generate_invalid_zips
-	# 	filename = 'reports/invalid-zip-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
-	# 	iz = UncleanConstituent.invalid_zips
-	# 	CSV.open(filename, 'wb') do |csv|
-	# 		csv << ['LookupID','Name','Invalid Zip']
-	# 		toAppend = []
-	# 		iz.each do |row|
-	# 			toAppend[0] = row.lookup_id
-	# 			toAppend[1] = row.name
-	# 			toAppend[2] = row.zip
-	# 			csv << toAppend
-	# 		end
-	# 	end
-	# end
 
 	def self.generate_duplicates
 		filename = 'reports/duplicate-constituents-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'

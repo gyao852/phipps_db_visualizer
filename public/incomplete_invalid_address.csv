@@ -1,4 +1,4 @@
-lookup_id,address_1,city,state,zip,country,address_type,date_added,incomplete_addresses_1,incomplete_cities,incomplete_states,incomplete_countries,invalid_zips
+lookup_id,address_1,city,state,zip,country,address_type,date_added,invalid_addresses_1,invalid_cities,invalid_states,invalid_countries,invalid_zips
 100274,,,,,,,,False,False,False,False,False
 100814,,,,,,,,False,False,False,False,False
 100851,,,,,,,,False,False,False,False,False

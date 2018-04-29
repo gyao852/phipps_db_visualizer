@@ -34,34 +34,34 @@ class ImportsController < ApplicationController
           importer.save_cmuteamdonationsexport_csv_file
           importer.save_cmuteamcontacthistoryexport_csv_file
           importer.save_cmuteameventattendanceexport_csv_file
-          
+
           redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
     	end
   	end
 
 	def importdata
-      Constituent.delete_all
-      UncleanConstituent.delete_all
-      UncleanAddress.delete_all
-      DonationProgram.delete_all
-      Event.delete_all
-      Address.delete_all
-      ContactHistory.delete_all
-      ConstituentMembershipRecord.delete_all
-      MembershipRecord.delete_all
-      ConstituentEvent.delete_all
-      DonationHistory.delete_all
-      UncleanDonationProgram.delete_all
-      UncleanEvent.delete_all
-      UncleanContactHistory.delete_all
-      UncleanConstituentMembershipRecord.delete_all
-      UncleanMembershipRecord.delete_all
-      UncleanConstituentEvent.delete_all
-      UncleanDonationHistory.delete_all
-      
-      
+      # Constituent.delete_all
+      # UncleanConstituent.delete_all
+      # UncleanAddress.delete_all
+      # DonationProgram.delete_all
+      # Event.delete_all
+      #Address.delete_all
+      # ContactHistory.delete_all
+      # ConstituentMembershipRecord.delete_all
+      # MembershipRecord.delete_all
+      # ConstituentEvent.delete_all
+      # DonationHistory.delete_all
+      # UncleanDonationProgram.delete_all
+      # UncleanEvent.delete_all
+      # UncleanContactHistory.delete_all
+      # UncleanConstituentMembershipRecord.delete_all
+      # UncleanMembershipRecord.delete_all
+      # UncleanConstituentEvent.delete_all
+      # UncleanDonationHistory.delete_all
 
-      
+
+
+
 
   		importer = Import.new()
   		importer.import_constituent_csv_data
@@ -79,16 +79,16 @@ class ImportsController < ApplicationController
 
       # To debug import
 
-      
+
 
       # # To debug import
       # address line 1 is emplty for some records
       # missing constituent  8-10155266 from constituent report
       # missing constituent  8-10155266 from constituent report
-      # 
+      #
 
-      
-      
+
+
   		redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
 	end
 end

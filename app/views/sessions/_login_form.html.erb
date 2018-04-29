@@ -1,0 +1,27 @@
+<div class='container-fluid'>
+
+    <div class= 'card bg-white' style="width: 30rem;">
+
+        <div class='card-header'>
+        <h3>Log In</h3>
+        </div>
+
+        <div class='card-body'>
+            <%= form_tag sessions_path do %>
+                <p>
+                    <%= label_tag :login, "Username or Email Address" %> <br/>
+                    <%= text_field_tag :login, params[:login], class: 'form-control' %>
+                </p>
+
+                <p>
+                    <%= label_tag :password %> <br/>
+                    <%= password_field_tag :password, params[:password], class: 'form-control' %>
+                </p>
+
+                <p><%= submit_tag "Log in", class: 'btn btn-primary' %></p>
+
+            <% end %>
+        </div
+
+    </div>
+</div>

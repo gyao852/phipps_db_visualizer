@@ -47,8 +47,6 @@ class ImportsController < ApplicationController
       Event.delete_all
       Address.delete_all
       ContactHistory.delete_all
-      ConstituentMembershipRecord.delete_all
-      MembershipRecord.delete_all
       ConstituentEvent.delete_all
       DonationHistory.delete_all
       UncleanDonationProgram.delete_all
@@ -58,10 +56,8 @@ class ImportsController < ApplicationController
       UncleanMembershipRecord.delete_all
       UncleanConstituentEvent.delete_all
       UncleanDonationHistory.delete_all
-      
-      
-
-      
+      ConstituentMembershipRecord.delete_all
+      MembershipRecord.delete_all
 
   		importer = Import.new()
       # tested
@@ -76,22 +72,6 @@ class ImportsController < ApplicationController
       importer.import_donationhistory_csv_data
       importer.import_membershiprecord_csv_data
       importer.import_constituentmembershiprecord_csv_data
-      
-      
-      
-
-
-# to test
-      
-      
-      
-      
-      
-
-
-
-      
-
       
   		redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
 	end

@@ -1,6 +1,9 @@
 class Import < ApplicationRecord
 	@unclean_constituent_lookup_id = UncleanConstituent.pluck(:lookup_id)
 	@constituent_lookup_id = Constituent.pluck(:lookup_id)
+	@clean_membership = MembershipRecord.pluck(:membership_id)
+	@unclean_membership = UncleanMembershipRecord.pluck(:membership_id)
+
 
 	attr_accessor :cmuteamconstituentsexport_file
 	attr_accessor :cmuteameventattendanceexport_file
@@ -101,10 +104,6 @@ class Import < ApplicationRecord
 	def import_membershiprecord_csv_data
 		CSV.foreach("#{Rails.root}/public/membership_record.csv", headers:true) do |row|
       		lookup_check = row[0].to_s
-      		puts "sdfcsdiyfgadsifuadsgfiouadsgfiusg"
-      		puts @unclean_constituent_lookup_id.include?(lookup_check)
-      		puts @constituent_lookup_id.include?(lookup_check)
-      		puts "sdfcsdiyfgadsifuadsgfiouadsgfiusg"
 			if @unclean_constituent_lookup_id.include?(lookup_check)
 				create_uncleanmembershiprecord(row)
 			else
@@ -114,12 +113,15 @@ class Import < ApplicationRecord
 	end
 
 	def import_constituentmembershiprecord_csv_data
+		@clean_membership = MembershipRecord.pluck(:membership_id)
+		@unclean_membership = UncleanMembershipRecord.pluck(:membership_id)
 		CSV.foreach("#{Rails.root}/public/constituent_membership_record.csv", headers:true) do |row|
       		lookup_check = row[0].to_s
-			if @unclean_constituent_lookup_id.include?(lookup_check)
+      		membership_check = row[1].to_s
+			if @unclean_constituent_lookup_id.include?(lookup_check) and @unclean_membership.include?(membership_check)
 				create_uncleanconstituentmembershiprecord(row)
-			else
-				create_constituentmembershiprecord(row)
+			elsif @constituent_lookup_id.include?(lookup_check)and @clean_membership.include?(membership_check)
+				create_constituentmembershiprecord(row) 
 			end
 
     	end

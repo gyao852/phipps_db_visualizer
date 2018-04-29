@@ -40,24 +40,24 @@ class ImportsController < ApplicationController
   	end
 
 	def importdata
-      # Constituent.delete_all
-      # UncleanConstituent.delete_all
-      # UncleanAddress.delete_all
-      # DonationProgram.delete_all
-      # Event.delete_all
-      #Address.delete_all
-      # ContactHistory.delete_all
-      # ConstituentMembershipRecord.delete_all
-      # MembershipRecord.delete_all
-      # ConstituentEvent.delete_all
-      # DonationHistory.delete_all
-      # UncleanDonationProgram.delete_all
-      # UncleanEvent.delete_all
-      # UncleanContactHistory.delete_all
-      # UncleanConstituentMembershipRecord.delete_all
-      # UncleanMembershipRecord.delete_all
-      # UncleanConstituentEvent.delete_all
-      # UncleanDonationHistory.delete_all
+      Constituent.delete_all
+      UncleanConstituent.delete_all
+      UncleanAddress.delete_all
+      DonationProgram.delete_all
+      Event.delete_all
+      Address.delete_all
+      ContactHistory.delete_all
+      ConstituentMembershipRecord.delete_all
+      MembershipRecord.delete_all
+      ConstituentEvent.delete_all
+      DonationHistory.delete_all
+      UncleanDonationProgram.delete_all
+      UncleanEvent.delete_all
+      UncleanContactHistory.delete_all
+      UncleanConstituentMembershipRecord.delete_all
+      UncleanMembershipRecord.delete_all
+      UncleanConstituentEvent.delete_all
+      UncleanDonationHistory.delete_all
 
 
 

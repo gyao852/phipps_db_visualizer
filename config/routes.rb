@@ -110,7 +110,10 @@ Rails.application.routes.draw do
   
   #Bad address reports
   get 'generate_invalid_zips_addresses_report' => 'home#generate_invalid_zips_addresses_report', as: :generate_invalid_zips_addresses_report
-
+  get 'generate_invalid_addresses_1_report' => 'home#generate_invalid_addresses_1_report', as: :generate_invalid_addresses_1_report
+  get 'generate_invalid_state_addresses_report' => 'home#generate_invalid_state_addresses_report', as: :generate_invalid_state_addresses_report
+  get 'generate_invalid_city_addresses_report' => 'home#generate_invalid_city_addresses_report', as: :generate_invalid_city_addresses_report
+  get 'generate_invalid_country_addresses_report' => 'home#generate_invalid_country_addresses_report', as: :generate_invalid_country_addresses_report
   
   
   get 'goals_import_page' => 'goals#goals_import_page', as: :goals_import_page

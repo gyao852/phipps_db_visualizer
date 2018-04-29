@@ -78,6 +78,33 @@ class HomeController < ApplicationController
 
     end
 
+    # Methods to generate unclean address reports
+    def generate_invalid_zips_addresses_report
+        UncleanAddress.generate_invalid_zips
+        redirect_to reports_path 
+    end
+
+    def generate_invalid_addresses_1_report
+        UncleanAddress.generate_invalid_address_1
+        redirect_to reports_path
+    end
+
+    def generate_invalid_state_addresses_report
+        UncleanAddress.generate_invalid_states
+        redirect_to reports_path
+    end
+
+    def generate_invalid_city_addresses_report
+        UncleanAddress.generate_invalid_cities
+        redirect_to reports_path
+    end
+
+    def generate_invalid_country_addresses_report
+        UncleanAddress.generate_invalid_countries
+        redirect_to reports_path
+    end
+
+    # Methods to generate unclean constituent reports
     def generate_invalid_constituents_report
         UncleanConstituent.generate_all_invalid
         redirect_to reports_path
@@ -109,6 +136,7 @@ class HomeController < ApplicationController
         redirect_to reports_path
     end
 
+    # Methods to functional reports
     def generate_donation_report
         Constituent.generate_donations_report(params[:date])
     end

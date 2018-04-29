@@ -1,0 +1,43 @@
+<div class="d-flex functional-reports">
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4>Donation History Report</h4>
+        </div>
+        <div class='card-body'>
+            <p>Generate email list of constituents who have not donated since the selected date</p>
+            <%= form_tag generate_donation_report_path, remote:true, method: "get" do %>
+                <%= date_field_tag 'date', id:"donation-report-datepicker"%>
+                <%= submit_tag 'Generate', class:'btn btn-primary'%>
+            <% end %>
+
+             
+        </div>
+    </div> 
+
+    <div class="card bg-white donation-history report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4>Contact History Report</h4>
+        </div>
+        <div class='card-body'>
+            <p>Generate email list of constituents who have not been contacted since the selected date</p>
+            <%= form_tag generate_contact_history_report_path, remote:true, method: "get" do %>
+                <%= date_field_tag 'date', id:"contact-history-report-datepicker"%>
+                <%= submit_tag 'Generate', class: 'btn btn-primary' %>
+            <% end %>
+        </div>
+    </div> 
+
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4>Attendance Report</h4>
+        </div>
+		<div class='card-body'>
+			<p> Generate atttendance list for a specific event </p>
+			<%= form_tag generate_attendance_report_path, remote: true, method: 'get' do %>
+				<%= collection_select :events, :ids, Event.all.chronological, :event_id, 'event_name'%>
+				<%= submit_tag 'Generate', class: 'btn btn-primary' %>
+			<% end %>
+	
+		</div>
+    </div>
+</div>

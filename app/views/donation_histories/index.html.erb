@@ -1,9 +1,9 @@
-<div class='card bg-white'>
+<div class='conatiner-fluid bg-white'>
 
-<div class='card-body'>
-<h3>Donation Histories</h3>
+<h2 class='text-primary-dark'>Donation Histories</h2>
+<p id="notice" class='bg-white'><%= notice %></p>
 
-<table class='table-bordered table-hover table'>
+<table class='table-bordered table-hover table table-sm'>
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -31,6 +31,6 @@
 </table>
 
 <br>
+<%= will_paginate @donation_histories, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 
-</div>
 </div>

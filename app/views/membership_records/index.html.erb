@@ -1,43 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Membership Records</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Membership</th>
-      <th>Membership scheme</th>
-      <th>Membership level</th>
-      <th>Add ons</th>
-      <th>Membership level type</th>
-      <th>Membership status</th>``
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Last renewed</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @membership_records.each do |membership_record| %>
+<div class='container-fluiid bg-white'>
+  
+  <h3 class='text-primary-dark'>Membership Records</h2>
+  <p id="notice" class='bg-white'><%= notice %></p>
+  <table class="table table-bordered table-hover table-sm">
+    <thead>
       <tr>
-        <td><%= membership_record.membership_id %></td>
-        <td><%= membership_record.membership_scheme %></td>
-        <td><%= membership_record.membership_level %></td>
-        <td><%= membership_record.add_ons %></td>
-        <td><%= membership_record.membership_level_type %></td>
-        <td><%= membership_record.membership_status %></td>
-        <td><%= membership_record.start_date %></td>
-        <td><%= membership_record.end_date %></td>
-        <td><%= membership_record.last_renewed %></td>
-        <td><%= link_to 'Show', membership_record %></td>
-        <td><%= link_to 'Edit', edit_membership_record_path(membership_record) %></td>
-        <td><%= link_to 'Destroy', membership_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th scope='col'>Membership ID</th>
+        <th scope='col'>Membership scheme</th>
+        <th scope='col'>Membership level</th>
+        <th scope='col'>Add ons</th>
+        <th scope='col'>Membership level type</th>
+        <th scope='col'>Membership status</th>
+        <th scope='col'>Start date</th>
+        <th scope='col'>End date</th>
+
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @membership_records.each do |membership_record| %>
+        <tr>
+          <td><%= membership_record.membership_id %></td>
+          <td><%= membership_record.membership_scheme %></td>
+          <td><%= membership_record.membership_level %></td>
+          <td><%= membership_record.add_ons %></td>
+          <td><%= membership_record.membership_level_type %></td>
+          <td><%= membership_record.membership_status %></td>
+          <td><%= membership_record.start_date.strftime("%m/%d/%y") %></td>
+          <td><%= membership_record.end_date.strftime("%m/%d/%y") %></td>
 
-<%= link_to 'New Membership Record', new_membership_record_path %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= will_paginate @membership_records, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+</div>

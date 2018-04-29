@@ -5,7 +5,7 @@ class MembershipRecordsController < ApplicationController
   # GET /membership_records.json
   def index
     @nav_status = 'db'
-    @membership_records = MembershipRecord.all
+    @membership_records = MembershipRecord.all.paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /membership_records/1

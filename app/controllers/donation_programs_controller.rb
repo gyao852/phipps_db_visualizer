@@ -5,7 +5,7 @@ class DonationProgramsController < ApplicationController
   # GET /donation_programs.json
   def index
     @nav_status = 'db'
-    @donation_programs = DonationProgram.all
+    @donation_programs = DonationProgram.alphabetical.paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /donation_programs/1

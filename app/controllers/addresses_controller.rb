@@ -5,7 +5,7 @@ class AddressesController < ApplicationController
   # GET /addresses.json
   def index
     @nav_status = 'db'
-    @addresses = Address.all
+    @addresses = Address.alphabetical_country.paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /addresses/1

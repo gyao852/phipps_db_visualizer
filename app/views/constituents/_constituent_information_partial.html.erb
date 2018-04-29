@@ -1,0 +1,87 @@
+<div class='card bg-white show-constituent-information'>
+<h4 class="card-header">Constituent Information</h4>
+<div class='card-body'>
+  <ul class='list-group list-group-flush'>
+    <li class="list-group-item">    
+      <strong>Name:</strong>
+      <%= @constituent.name %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Last / Group Name:</strong>
+      <%= @constituent.last_group %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Lookup ID:</strong>
+      <%= @constituent.lookup_id %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Title:</strong>
+      <% if @constituent.title.nil? %>
+        N/A
+      <% else %>
+        <%= @constituent.title %>
+      <% end %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Suffix:</strong>
+      <% if @constituent.suffix.nil? %>
+        N/A
+      <% else %>
+        <%= @constituent.suffix %>
+      <% end %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Email:</strong>
+      <% if @constituent.email_id.nil? %>
+        N/A
+      <% else %>
+        <%= @constituent.email_id %>
+      <% end %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Phone:</strong>
+      <% if @constituent.phone.nil? %>
+        N/A
+      <% else %>
+        <%= @constituent.phone %>
+      <% end %>
+    </li>
+
+    <li class="list-group-item">
+    <strong>Current Address:</strong>
+    <% if @constituent.current_address.nil? %>
+      N/A
+    <% else %>
+      <%= @constituent.current_address %>
+    <% end %>
+  </li>
+
+    <li class="list-group-item">
+      <strong>Dob:</strong>
+      <% if @constituent.dob.nil? %>
+        N/A
+      <% else %>
+        <%= @constituent.dob %>
+      <% end %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Do not email:</strong>
+      <%= @constituent.do_not_email %>
+    </li>
+
+
+  </ul>
+
+
+  
+  </div>
+
+  
+</div>

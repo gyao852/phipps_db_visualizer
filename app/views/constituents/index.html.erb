@@ -1,48 +1,42 @@
 
 <div class="container-fluid bg-white">
 
-  <nav aria-label="breadcrumb" class="breadcrumb-nav">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <%= link_to 'Constituents', constituents_path %></li>
-    <li class="breadcrumb-item active" aria-current="page">All</li>
-  </ol>
-  </nav>
-  <h3  class="text-primary-dark">Constituents</h3>
+  <h2  class="text-primary-dark">Constituents</h2>
+  <p id="notice" class='bg-white'><%= notice %></p>
 
-<table class="table table-bordered table-hover">
-  <thead>
-    <tr>
-      <th scope="col">LookupID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Last/Group Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Address</th>
-      <th scope="col">Membership</th>
-      <th scope="col">Membership Level</th>
+  <table class="table table-bordered table-hover table-sm">
+    <thead>
+      <tr>
+        <th scope="col">LookupID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last/Group Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">Membership</th>
+        <th scope="col">Membership Level</th>
 
-     
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @constituents.each do |constituent| %>
-      <tr data-link="<%= constituent_path(constituent)%>">
-        <td><%= constituent.lookup_id %></td>
-        <td><%= constituent.name %></td>
-        <td><%= constituent.last_group %></td>
-        <td><%= constituent.email_id %></td>
-        <td><%= constituent.phone %></td>
-        <td><%= constituent.current_address %> </td>
-        <td><%= constituent.current_membership_scheme%> </td>
-        <td><%= constituent.current_membership_level %></td>
-        
+      
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @constituents.each do |constituent| %>
+        <tr data-link="<%= constituent_path(constituent)%>">
+          <td><%= constituent.lookup_id %></td>
+          <td><%= constituent.name %></td>
+          <td><%= constituent.last_group %></td>
+          <td><%= constituent.email_id %></td>
+          <td><%= constituent.phone %></td>
+          <td><%= constituent.current_address %> </td>
+          <td><%= constituent.current_membership_scheme%> </td>
+          <td><%= constituent.current_membership_level %></td>
+          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
+  <br>
+  <%= will_paginate @constituents, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 </div>

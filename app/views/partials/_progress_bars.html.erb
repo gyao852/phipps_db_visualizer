@@ -28,32 +28,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for @newGoal, html: {multipart: true} do |f| %>
-
-            <div class='form-group'>
-              <%= f.input :goal, label: 'Goal Amount', input_html: {class:'form-control'}, wrapper_html: {class:'input-field'} %>
-            </div>
-    
-            <%= f.input :userid, :as => :hidden, :input_html => {:value => session[:user_id]} %>
-            <% if Date.current.month < 10 %>
-              <% year = Date.current.year %>
-            <% else %>
-              <% year = Data.current.year + 1 %>
-            <% end %>
-            <%= f.input :year, :as => :hidden, :input_html => {:value => year} %>
-    
-            <div class="form-actions">
-              <%= f.submit "Submit", :class => 'btn btn-primary', :type => 'submit', :name => 'action'%>
-            </div>
-        <% end %>
-
-    
+        <%= render :partial => 'new_goal_form' %>
   
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+
     </div>
   </div>
 </div>

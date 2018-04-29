@@ -4,6 +4,9 @@ class HomeController < ApplicationController
 
         @newGoal = Goal.new
         
+        @currentGoal = Goal.chronological.first
+
+        
         # donation goals from setting cache
 
         # get donation histories

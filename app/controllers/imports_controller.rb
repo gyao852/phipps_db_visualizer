@@ -1,4 +1,5 @@
 class ImportsController < ApplicationController
+  before_action :check_login
 	def importfile
 
     	if params[:cmuteameventattendanceexport].nil? || params[:cmuteamdonationexport].nil? || params[:cmuteamconstituentsexport].nil?|| params[:cmuteamcommunicationhistoryexport].nil?
@@ -34,7 +35,7 @@ class ImportsController < ApplicationController
           importer.save_cmuteamdonationsexport_csv_file
           importer.save_cmuteamcontacthistoryexport_csv_file
           importer.save_cmuteameventattendanceexport_csv_file
-          
+
           redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
     	end
   	end
@@ -72,7 +73,16 @@ class ImportsController < ApplicationController
       importer.import_donationhistory_csv_data
       importer.import_membershiprecord_csv_data
       importer.import_constituentmembershiprecord_csv_data
-      
-  		redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
+
+
+      # # To debug import
+      # address line 1 is emplty for some records
+      # missing constituent  8-10155266 from constituent report
+      # missing constituent  8-10155266 from constituent report
+      #
+
+
+
+  		redirect_to constituents_path, notice: "Constituents Added Successfully through CSV"
 	end
 end

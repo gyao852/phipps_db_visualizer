@@ -47,18 +47,18 @@ class Event < ApplicationRecord
     end
   end
 
-  def self.generate_event_report(start_date, end_date)
-    relevant_events = Event.on_or_after(start_date).on_or_before(end_date)
-    relevant_events.each do |e|
-      event_hash = {Date: e.start_date_time, Event: e.event_name, Constituents: [], Emails: []}
-      e.constituent_events.each do |ce|
-      end
-    end
-    # edit the report string
-    CSV.open("reports/event-report.csv", "wb") do |csv|
-      csv << ["Date", "Event", "Constituent", "Email"]
-    end
-  end
+  # def self.generate_event_report(start_date, end_date)
+  #   relevant_events = Event.on_or_after(start_date).on_or_before(end_date)
+  #   relevant_events.each do |e|
+  #     event_hash = {Date: e.start_date_time, Event: e.event_name, Constituents: [], Emails: []}
+  #     e.constituent_events.each do |ce|
+  #     end
+  #   end
+  #   # edit the report string
+  #   CSV.open("reports/event-report.csv", "wb") do |csv|
+  #     csv << ["Date", "Event", "Constituent", "Email"]
+  #   end
+  # end
 
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|

@@ -57,7 +57,7 @@ class UncleanConstituent < ApplicationRecord
 	def self.generate_no_contact
 		filename = 'reports/no-contact-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+".csv"
 		nc = UncleanConstituent.no_contact
-		CSV.open(filename, 'wb') do |csv|
+		result = CSV.generate do |csv|
 			csv << ['Lookup ID', 'Name']
 			toAppend = []
 			nc.each do |row|
@@ -66,12 +66,13 @@ class UncleanConstituent < ApplicationRecord
 				csv << toAppend
 			end
 		end
+		return result
 	end
 
 	def self.generate_incomplete_names
 		filename = 'reports/incomplete-names-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+".csv"
 		inc_names = UncleanConstituent.incomplete_names
-		CSV.open(filename, 'wb') do |csv|
+		result = CSV.generate do |csv|
 			csv << ['Lookup ID', 'Name', 'Last/Group Name']
 			toAppend = []
 			inc_names.each do |row|
@@ -80,12 +81,14 @@ class UncleanConstituent < ApplicationRecord
 				toAppend[2] = row.last_group
 			end
 		end
+		
+		return result
 	end
 
 	def self.generate_all_invalid
 		filename = 'reports/invalid-records-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+".csv"
 		i = UncleanConstituent.invalid
-		CSV.open(filename,'wb') do |csv|
+		result = CSV.generate do |csv|
 			csv << ['LookupID', 'Name', 'Email', 'Phone']
 			toAppend = []
 			i.each do |row|
@@ -95,12 +98,14 @@ class UncleanConstituent < ApplicationRecord
 				toAppend[3] = row.phone
 			end
 		end
+		
+		return result
 	end
 
 	def self.generate_invalid_emails
 		filename = 'reports/invalid-email-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+".csv"
 		ie = UncleanConstituent.invalid_emails
-		CSV.open(filename, 'wb') do |csv|
+		result = CSV.generate do |csv|
 			csv << ['LookupID', 'Name', 'Invalid Email']
 			toAppend = []
 			ie.each do |row|
@@ -110,12 +115,14 @@ class UncleanConstituent < ApplicationRecord
 				csv << toAppend
 			end
 		end
+		
+		return result
 	end
 
 	def self.generate_invalid_phones
 		filename = 'reports/invalid-phone-numbers-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+".csv"
 		ip = UncleanConstituent.invalid_phones
-		CSV.open(filename,'wb') do |csv|
+		result = CSV.generate do |csv|
 			csv << ['LookupID', 'Name', 'Invalid Phone']
 			toAppend = []
 			ip.each do |row|
@@ -125,13 +132,15 @@ class UncleanConstituent < ApplicationRecord
 				csv << toAppend
 			end
 		end
+		
+		return result
 	end
 
 
 	def self.generate_duplicates
 		filename = 'reports/duplicate-constituents-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
 		d = UncleanConstituent.duplicate_scope
-		CSV.open(filename, 'wb') do |csv|
+		result = CSV.generate do |csv|
 			csv << ['LookupID', 'Name', 'Duplicate_Lookup_Ids']
 			toAppend = []
 			d.each do |row|
@@ -141,7 +150,7 @@ class UncleanConstituent < ApplicationRecord
 				csv << toAppend
 			end
 		end
-
+		return result
 	end
 
 

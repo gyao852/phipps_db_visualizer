@@ -89,6 +89,6 @@ class ImportsController < ApplicationController
 
 
 
-  		redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
+  		redirect_to constituents_path, notice: "Constituents Added Successfully through CSV"
 	end
 end

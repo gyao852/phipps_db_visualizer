@@ -28,7 +28,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= render :partial => 'new_goal_form' %>
+        <%= render :partial => 'partials/new_goal_form' %>
   
       </div>
 
@@ -40,14 +40,11 @@
 <script type="text/javascript">
 // Progress bars
 
-var aaProgress =  <%= raw @aa_progress.to_json %>,
-    ccProgress = <%= raw @cc_progress.to_json %>,
-    cpProgress = <%= raw @cp_progress.to_json %>,
-    dgProgress = <%= raw @dg_progress.to_json %>,
-    mhProgress = <%= raw @mh_progress.to_json %>,
-    sgProgress = <%= raw @sg_progress.to_json %>
+var totalProgress = <%= raw @total_progress.to_json %>
+
+console.log(totalProgress)
     
-console.log(aaProgress, ccProgress, cpProgress, dgProgress, mhProgress, sgProgress)
+// console.log(aaProgress, ccProgress, cpProgress, dgProgress, mhProgress, sgProgress)
 
 // have to call the class later for each of the progress bars
 

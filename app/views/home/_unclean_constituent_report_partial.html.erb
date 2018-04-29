@@ -1,0 +1,70 @@
+<div class='d-flex unclean-constituent-reports'>
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4> Incomplete Names Report </h4>
+           
+        </div>
+        <div class='card-body'>
+            <p>Generate report of all unclean constituents with incomplete names </p>
+            <%= link_to 'Generate', generate_incomplete_name_constituents_report_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4> No Contact Report </h4>
+           
+        </div>
+        <div class='card-body'>
+            <p>Generate report of all unclean constituents with no contact information </p>
+            <%= link_to 'Generate', generate_no_contact_constituents_report_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+
+
+    
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4> Duplicate Constituents Report </h4>
+        </div>
+        <div class='card-body'>
+            <p>Generate report of all duplicate constituents </p>
+            <%= link_to 'Generate', generate_duplicate_constituents_report_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+
+
+</div>
+
+<div class='d-flex unclean-constituent-reports'>
+
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4> All Invalid Constituents Report </h4>
+        </div>
+        <div class='card-body'>
+            <p>Generate report of all invalid constituents </p>
+            <%= link_to 'Generate', generate_invalid_constituents_report_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4> Invalid Email Report </h4>
+        </div>
+        <div class='card-body'>
+            <p>Generate report of all constituents with invalid email addresses. </p>
+            <%= link_to 'Generate', generate_invalid_email_constituents_report_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+
+    <div class="card bg-white report-form-wrapper mr-auto">
+        <div class='card-header'>
+            <h4> Invalid Phone Report </h4>
+        </div>
+        <div class='card-body'>
+            <p>Generate report of all constituents with invalid email addresses. </p>
+            <%= link_to 'Generate', generate_invalid_phone_constituents_report_path, class: 'btn btn-primary' %>
+        </div>
+    </div>
+</div>

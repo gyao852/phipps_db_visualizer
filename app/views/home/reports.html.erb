@@ -1,76 +1,43 @@
-<div class="d-flex">
-    <div class="card bg-white report-form-wrapper mr-auto">
-        <div class='card-header'>
-            <h4>Donation History Report</h4>
-        </div>
-        <div class='card-body'>
-            <p>Generate email list of constituents who have not donated since the selected date</p>
-            <%= form_tag generate_donation_report_path, remote:true, method: "get" do %>
-                <%= date_field_tag 'date', id:"donation-report-datepicker"%>
-                <%= submit_tag 'Generate', class:'btn btn-primary'%>
-            <% end %>
-
-             
-        </div>
-    </div> 
-
-    <div class="card bg-white donation-history report-form-wrapper mr-auto">
-        <div class='card-header'>
-            <h4>Contact History Report</h4>
-        </div>
-        <div class='card-body'>
-            <p>Generate email list of constituents who have not been contacted since the selected date</p>
-            <%= form_tag generate_contact_history_report_path, remote:true, method: "get" do %>
-                <%= date_field_tag 'date', id:"contact-history-report-datepicker"%>
-                <%= submit_tag 'Generate', class: 'btn btn-primary' %>
-            <% end %>
-        </div>
-    </div> 
-
-    <div class="card bg-white report-form-wrapper mr-auto">
-        <div class='card-header'>
-            <h4>Attendance Report</h4>
-        </div>
-		<div class='card-body'>
-			<p> Generate atttendance list for a specific event </p>
-			<%= form_tag generate_attendance_report_path, remote: true, method: 'get' do %>
-				<%= collection_select :events, :ids, Event.all.chronological, :event_id, 'event_name'%>
-				<%= submit_tag 'Generate', class: 'btn btn-primary' %>
-			<% end %>
-	
-		</div>
-    </div>
+<div class='bg-dark-gray'>
+    <h3 class='text-primary'>Generate Reports</h3>
 </div>
 
 
-<div class='d-flex'>
-    <div class="card bg-white report-form-wrapper mr-auto">
-        <div class='card-header'>
-            <h4> Incomplete Constituents Report </h4>
-           
-        </div>
-        <div class='card-body'>
-            <p>Generate report of all incomplete constituents </p>
-        </div>
-    </div>
+<ul class="nav nav-tabs bg-white" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="functional-tab" data-toggle="tab" href="#functional" role="tab" aria-controls="functional" aria-selected="true">Functional</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="unclean-constituent-tab" data-toggle="tab" href="#unclean-constituent" role="tab" aria-controls="unclean-constituent" aria-selected="false">Unclean Constituent</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="unclean-address-tab" data-toggle="tab" href="#unclean-address" role="tab" aria-controls="unclean-address" aria-selected="false">Unclean Address</a>
+  </li>
+</ul>
 
-    <div class="card bg-white report-form-wrapper mr-auto">
-        <div class='card-header'>
-            <h4> Invalid Constituents Report </h4>
-            
-        </div>
-        <div class='card-body'>
-            <p>Generate report of all invalid constituents </p>
-        </div>
-    </div>
-    
-    <div class="card bg-white report-form-wrapper mr-auto">
-        <div class='card-header'>
-            <h4> Duplicate Constituents Report </h4>
+<div class="tab-content">
+  <div class="tab-pane active" id="functional" role="tabpanel" aria-labelledby="functional-tab">
+    <%= render :partial => 'functional_report_partial'%>
+  </div>
 
-        </div>
-    <div class='card-body'>
-        <p>Generate report of all duplicate constituents </p>
-    </div>
-    </div>
+  <div class="tab-pane" id="unclean-constituent" role="tabpanel" aria-labelledby="unclean-constituent-tab">
+    <!-- Bad Constituent Reports -->
+    <%= render :partial => 'unclean_constituent_report_partial' %>
+  </div>
+  <div class="tab-pane" id="unclean-address" role="tabpanel" aria-labelledby="unclean-address-tab">
+    <%= render :partial => 'unclean_address_report_partial' %>
+  </div>
+
 </div>
+<script>
+  $(function () {
+    $('#myTab li:last-child a').tab('show')
+  })
+</script>
+
+
+
+
+
+
+

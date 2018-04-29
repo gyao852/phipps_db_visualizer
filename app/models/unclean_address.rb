@@ -11,13 +11,12 @@ class UncleanAddress < ApplicationRecord
     	filename = 'reports/invalid-zip-address-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
     	iz = UncleanAddress.invalid_zip_scope
     	CSV.open(filename, 'wb') do |csv|
-    		csv << ['Address ID','Lookup ID', 'Constituent Name' 'Invalid Zip']
+    		csv << ['Lookup ID', 'Constituent Name','Invalid Zip']
     		toAppend = []
     		iz.each do |row|
-                toAppend[0] = row.address_id
-                toAppend[1] = row.lookup_id
-                toAppend[2] = row.constituent.name
-    			toAppend[3] = row.zip
+                toAppend[0] = row.lookup_id
+                toAppend[1] = row.unclean_constituent.name
+    			toAppend[2] = row.zip
     			csv << toAppend
     		end
     	end
@@ -27,13 +26,12 @@ class UncleanAddress < ApplicationRecord
     	filename = 'reports/invalid-address-1-address-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
     	is = UncleanAddress.invalid_address_1_scope
     	CSV.open(filename, 'wb') do |csv|
-    		csv << ['Address ID','Lookup ID', 'Constituent Name' 'Invalid Address_1']
+    		csv << ['Lookup ID', 'Constituent Name','Invalid Address_1']
     		toAppend = []
     		is.each do |row|
-                toAppend[0] = row.address_id
-                toAppend[1] = row.lookup_id
-                toAppend[2] = row.constituent.name
-                toAppend[3] = row.address_1
+                toAppend[0] = row.lookup_id
+                toAppend[1] = row.unclean_constituent.name
+                toAppend[2] = row.address_1
     			csv << toAppend
     		end
     	end
@@ -44,13 +42,12 @@ class UncleanAddress < ApplicationRecord
     	filename = 'reports/invalid-state-address-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
     	is = UncleanAddress.invalid_state_scope
     	CSV.open(filename, 'wb') do |csv|
-    		csv << ['Address ID','Lookup ID', 'Constituent Name' 'Invalid State']
+    		csv << ['Lookup ID', 'Constituent Name' ,'Invalid State']
     		toAppend = []
     		is.each do |row|
-                toAppend[0] = row.address_id
-                toAppend[1] = row.lookup_id
-                toAppend[2] = row.constituent.name
-                toAppend[3] = row.state
+                toAppend[0] = row.lookup_id
+                toAppend[1] = row.unclean_constituent.name
+                toAppend[2] = row.state
     			csv << toAppend
     		end
     	end
@@ -60,13 +57,12 @@ class UncleanAddress < ApplicationRecord
         filename = 'reports/invalid-city-address-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
     	ic = UncleanAddress.invalid_city_scope
     	CSV.open(filename, 'wb') do |csv|
-    		csv << ['Address ID','Lookup ID', 'Constituent Name' 'Invalid City']
+    		csv << ['Lookup ID', 'Constituent Name','Invalid City']
     		toAppend = []
     		ic.each do |row|
-                toAppend[0] = row.address_id
-                toAppend[1] = row.lookup_id
-                toAppend[2] = row.constituent.name
-                toAppend[3] = row.city
+                toAppend[0] = row.lookup_id
+                toAppend[1] = row.unclean_constituent.name
+                toAppend[2] = row.city
     			csv << toAppend
     		end
     	end
@@ -76,13 +72,12 @@ class UncleanAddress < ApplicationRecord
         filename = 'reports/invalid-country-address-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
     	ic = UncleanAddress.invalid_country_scope
     	CSV.open(filename, 'wb') do |csv|
-    		csv << ['Address ID','Lookup ID', 'Constituent Name' 'Invalid City']
+    		csv << ['Lookup ID', 'Constituent Name','Invalid City']
     		toAppend = []
     		ic.each do |row|
-                toAppend[0] = row.address_id
-                toAppend[1] = row.lookup_id
-                toAppend[2] = row.constituent.name
-                toAppend[3] = row.country
+                toAppend[0] = row.lookup_id
+                toAppend[1] = row.unclean_constituent.name
+                toAppend[2] = row.country
     			csv << toAppend
     		end
     	end

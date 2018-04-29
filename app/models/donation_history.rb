@@ -17,7 +17,7 @@ class DonationHistory < ApplicationRecord
   validates_presence_of :amount
   validates_numericality_of :amount, :greater_than_equal_to => 0
   # validates_presence_of :date
-  validates_date :date, :on_or_before => Date.today
+  # validates_date :date, :on_or_before => Date.today
   # validates_presence_of :payment_method
   validates_inclusion_of :do_not_acknowledge, :in => [true,false]
   validates_inclusion_of :given_anonymously, :in => [true,false]

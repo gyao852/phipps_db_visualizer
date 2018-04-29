@@ -48,8 +48,6 @@ class ImportsController < ApplicationController
       Event.delete_all
       Address.delete_all
       ContactHistory.delete_all
-      ConstituentMembershipRecord.delete_all
-      MembershipRecord.delete_all
       ConstituentEvent.delete_all
       DonationHistory.delete_all
       UncleanDonationProgram.delete_all
@@ -59,28 +57,22 @@ class ImportsController < ApplicationController
       UncleanMembershipRecord.delete_all
       UncleanConstituentEvent.delete_all
       UncleanDonationHistory.delete_all
-
-
-
-
+      ConstituentMembershipRecord.delete_all
+      MembershipRecord.delete_all
 
   		importer = Import.new()
-
+      # tested
   		importer.import_constituent_csv_data
       importer.import_uncleanconstituent_csv_data
-      importer.import_membershiprecord_csv_data
-      importer.import_constituentmembershiprecord_csv_data
-      importer.import_uncleanaddress_csv_data
+      importer.import_address_csv_data
+      importer.import_contacthistory_csv_data
       importer.import_event_csv_data
+      importer.import_constituentevent_csv_data
+      importer.import_uncleanaddress_csv_data
       importer.import_donationprogram_csv_data 
       importer.import_donationhistory_csv_data
-      importer.import_contacthistory_csv_data
-      importer.import_constituentevent_csv_data
-      importer.import_address_csv_data
-
-
-      # To debug import
-
+      importer.import_membershiprecord_csv_data
+      importer.import_constituentmembershiprecord_csv_data
 
 
       # # To debug import

@@ -1,4 +1,5 @@
 class ImportsController < ApplicationController
+  before_action :check_login
 	def importfile
 
     	if params[:cmuteameventattendanceexport].nil? || params[:cmuteamdonationexport].nil? || params[:cmuteamconstituentsexport].nil?|| params[:cmuteamcommunicationhistoryexport].nil?
@@ -73,9 +74,12 @@ class ImportsController < ApplicationController
       importer.import_event_csv_data
       importer.import_donationprogram_csv_data 
       importer.import_donationhistory_csv_data
+<<<<<<< HEAD
       importer.import_contacthistory_csv_data
       importer.import_constituentevent_csv_data
       importer.import_address_csv_data
+=======
+>>>>>>> minnie
       importer.import_contacthistory_csv_data
       importer.import_constituentevent_csv_data
       importer.import_address_csv_data
@@ -93,6 +97,6 @@ class ImportsController < ApplicationController
 
 
 
-  		redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
+  		redirect_to constituents_path, notice: "Constituents Added Successfully through CSV"
 	end
 end

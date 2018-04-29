@@ -1,5 +1,8 @@
 class ConstituentsController < ApplicationController
+
   before_action :set_constituent, only: [:show]
+  before_action :check_login
+
 
   # GET /constituents
   # GET /constituents.json

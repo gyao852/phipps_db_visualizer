@@ -4,7 +4,7 @@
 
 
 
-<table class='table table-bordered table-hover'>
+<table class='table table-bordered table-hover table-sm'>
   <thead>
     <tr>
       <th scope='col'>Event name</th>
@@ -17,15 +17,15 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.event_name %></td>
-        <td><%= event.start_date_time %></td>
-        <td><%= event.end_date_time %></td>
+        <td><%= event.start_date_time.strftime("%m/%d/%y") %></td>
+        <td><%= event.end_date_time.strftime("%m/%d/%y")%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<%= will_paginate @events, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 
 
 </div>

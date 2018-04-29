@@ -1,10 +1,14 @@
 class HomeController < ApplicationController
+    before_action :check_login
     def home
+
         @home = true
 
         @newGoal = Goal.new
+
+
+
         
-        @currentGoal = Goal.chronological.first
 
         
         # donation goals from setting cache
@@ -17,7 +21,13 @@ class HomeController < ApplicationController
             @donation_sum_fYear += h.amount
         end
 
-
+        if Goal.chronological.first
+            @currentGoal = Goal.chronological.first
+            @total_progress = {sum: @donation_sum_fYear, progress: @donation_sum_fYear.to_f/@currentGoal.goal.to_f}
+        else
+            @currentGoal = nil
+        end
+        
 
 
         @cp = DonationProgram.sum_and_count_level("Childrens' Programs")
@@ -33,7 +43,7 @@ class HomeController < ApplicationController
         @pie_chart_data_set = []
         @bar_chart_data_set = []
 
-        @total_progress = {sum: @donation_sum_fYear, progress: @donation_sum_fYear.to_f/@currentGoal.goal.to_f}
+        
     
         
         @donations_by_program.each do |p|

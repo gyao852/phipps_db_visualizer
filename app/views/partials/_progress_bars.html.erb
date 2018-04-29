@@ -3,17 +3,21 @@
         <h4>Donation Progress</h4>
     </div>
     <div class="card-body">
-
+        <% unless @currentGoal.nil? %>
             <div class="progress-element">
                 <div class="total-progress progress"></div>
                 <div>
                 <p class='text-right'> $<%=@donation_sum_fYear %> / $<%=@currentGoal.goal %> </p>
                 </div>
             </div>
+        <% else %>
+            No current goal.
+        <% end %>
             <div>
             <!-- Button trigger modal -->
             <%= link_to 'Add a New Goal', new_goal_path, class: 'btn btn-primary', 'data-target'=>'#newGoalModal', 'data-toggle'=>'modal' %>
             </div>
+        
  
     </div> 
 </div>

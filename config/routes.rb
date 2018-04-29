@@ -115,18 +115,18 @@ Rails.application.routes.draw do
   get 'generate_invalid_city_addresses_report' => 'home#generate_invalid_city_addresses_report', as: :generate_invalid_city_addresses_report
   get 'generate_invalid_country_addresses_report' => 'home#generate_invalid_country_addresses_report', as: :generate_invalid_country_addresses_report
   
-  
-  get 'goals_import_page' => 'goals#goals_import_page', as: :goals_import_page
-  get 'constituents_import_page' => 'constituents#constituents_import_page', as: :constituents_import_page
-  get 'unclean_constituents_import_page' => 'unclean_constituents#unclean_import_page', as: :unclean_import_page
-  get 'address_import_page' => 'addresses#addresses_import_page', as: :address_import_page
-  get 'membership_record_import_page' => 'membership_records#membership_record_import_page', as: :membership_record_import_page
-  get 'constituent_membership_record_import_page' => 'constituent_membership_records#constituent_membership_record_import_page', as: :constituent_membership_record_import_page
-  get 'donation_histories_import_page' => 'donation_histories#donation_histories_import_page', as: :donation_histories_import_page
-  get 'donation_programs_import_page' => 'donation_programs#donation_programs_import_page', as: :donation_programs_import_page
-  get 'events_import_page' => 'events#events_import_page', as: :events_import_page
-  get 'constituents_events_import_page' => 'constituent_events#constituents_events_import_page', as: :constituents_events_import_page
-  get 'contact_histories_import_page' => 'contact_histories#contact_history_import_page', as: :contact_histories_import_page
+  # 
+  # get 'goals_import_page' => 'goals#goals_import_page', as: :goals_import_page
+  # get 'constituents_import_page' => 'constituents#constituents_import_page', as: :constituents_import_page
+  # get 'unclean_constituents_import_page' => 'unclean_constituents#unclean_import_page', as: :unclean_import_page
+  # get 'address_import_page' => 'addresses#addresses_import_page', as: :address_import_page
+  # get 'membership_record_import_page' => 'membership_records#membership_record_import_page', as: :membership_record_import_page
+  # get 'constituent_membership_record_import_page' => 'constituent_membership_records#constituent_membership_record_import_page', as: :constituent_membership_record_import_page
+  # get 'donation_histories_import_page' => 'donation_histories#donation_histories_import_page', as: :donation_histories_import_page
+  # get 'donation_programs_import_page' => 'donation_programs#donation_programs_import_page', as: :donation_programs_import_page
+  # get 'events_import_page' => 'events#events_import_page', as: :events_import_page
+  # get 'constituents_events_import_page' => 'constituent_events#constituents_events_import_page', as: :constituents_events_import_page
+  # get 'contact_histories_import_page' => 'contact_histories#contact_history_import_page', as: :contact_histories_import_page
   # Routes for duplicate record filtering pages
   get 'invalid_emails' => 'unclean_constituents#index_invalid_emails', as: :invalid_emails
   get 'invalid_phones' => 'unclean_constituents#index_invalid_phones', as: :invalid_phones

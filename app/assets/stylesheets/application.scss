@@ -76,17 +76,32 @@ html, body {
 
 
 .container-fluid {
-    padding: 0px;
+
 }
+
 
 
 .container {
-    margin-top: 15px;
+    padding: 10px
 }
 
+.inner-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+
+
+}
 .right-container {
-    padding: 0px !important;
+    padding-left: 80px !important;
+    padding-right: 0px !important;
+    margin-right: 0px !important;
+
    
+}
+
+.top-nav {
+    z-index: 0;
+    margin-left: 2px !important;
 }
 
 .breadcrumb-nav {
@@ -164,6 +179,9 @@ i.md-40 {
 #sidebar {
     background-color: $mint-5;
     height: 100%;
+    position: fixed;
+    z-index: 20;
+    
 }
 
 #loader {
@@ -280,6 +298,7 @@ i.md-40 {
 .progressBarWrapper {
     width: 20rem;
 }
+
 
 .progress-element {
     padding: 5px;

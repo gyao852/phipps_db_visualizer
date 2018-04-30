@@ -29,13 +29,13 @@
   </script>
 
 
-    <div class='d-flex container-fluid flex-row  align-items-stretch'>
+    <div class='d-flex container-fluid flex-row  .align-content-stretch'>
 
       <%= render :partial => 'partials/sidenav'%>
 
   
   
-      <div class='container-fluid right-container'>
+      <div class='right-container container-fluid .align-content-stretch'>
         <% if @nav_status == 'db' %>
           <%= render :partial => 'partials/db_nav' %>
         <% elsif @nav_status == "review" %>

@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  
+
   resources :goals
   resources :imports do
-    collection do 
+    collection do
       post 'importfile'
       post 'importdata'
     end
-    
+
   end
   resources :addresses do
     collection {post :importfile}
@@ -93,12 +93,12 @@ Rails.application.routes.draw do
   get 'import_page' => 'imports#import_page', as: :import_page
   get 'imports_importdata' => 'imports#importdata', :as => :importdata
   get 'reports' => 'home#reports', as: :reports
-  
+
   # Use case reports
   get 'generate_donation_report' => 'home#generate_donation_report', as: :generate_donation_report
   get 'generate_contact_history_report' => 'home#generate_contact_history_report', as: :generate_contact_history_report
   get 'generate_attendance_report' => 'home#generate_attendance_report', as: :generate_attendance_report
-  
+
   # Bad constituents reports
   get 'generate_invalid_constituents_report' => 'home#generate_invalid_constituents_report', as: :generate_invalid_constituents_report
   get 'generate_invalid_phone_constituents_report' => 'home#generate_invalid_phone_constituents_report', as: :generate_invalid_phone_constituents_report
@@ -107,15 +107,15 @@ Rails.application.routes.draw do
   get 'generate_no_contact_constituents_report' => 'home#generate_no_contact_constituents_report', as: :generate_no_contact_constituents_report
   get 'generate_duplicate_constituents_report' => 'home#generate_duplicate_constituents_report', as: :generate_duplicate_constituents_report
 
-  
+
   #Bad address reports
   get 'generate_invalid_zips_addresses_report' => 'home#generate_invalid_zips_addresses_report', as: :generate_invalid_zips_addresses_report
   get 'generate_invalid_addresses_1_report' => 'home#generate_invalid_addresses_1_report', as: :generate_invalid_addresses_1_report
   get 'generate_invalid_state_addresses_report' => 'home#generate_invalid_state_addresses_report', as: :generate_invalid_state_addresses_report
   get 'generate_invalid_city_addresses_report' => 'home#generate_invalid_city_addresses_report', as: :generate_invalid_city_addresses_report
   get 'generate_invalid_country_addresses_report' => 'home#generate_invalid_country_addresses_report', as: :generate_invalid_country_addresses_report
-  
-  # 
+
+  #
   # get 'goals_import_page' => 'goals#goals_import_page', as: :goals_import_page
   # get 'constituents_import_page' => 'constituents#constituents_import_page', as: :constituents_import_page
   # get 'unclean_constituents_import_page' => 'unclean_constituents#unclean_import_page', as: :unclean_import_page
@@ -131,7 +131,7 @@ Rails.application.routes.draw do
   get 'invalid_emails' => 'unclean_constituents#index_invalid_emails', as: :invalid_emails
   get 'invalid_phones' => 'unclean_constituents#index_invalid_phones', as: :invalid_phones
   get 'invalid_zips' => 'unclean_constituents#_invalid_zips', as: :invalid_zips
-  
+
   get 'duplicates_unresolved' => 'duplicates#unresolved', as: :duplicates_unresolved
   get 'duplicates_deleted' => 'duplicates#deleted', as: :duplicates_deleted
   get 'duplicates_merged' => 'duplicates#merged', as: :duplicates_merged
@@ -141,4 +141,6 @@ Rails.application.routes.draw do
   # Set the root url
   root :to => 'home#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end

@@ -9,8 +9,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 gem 'pg', '~> 1.0.0'
-gem 'delayed_job_active_record'
-
+gem 'sidekiq'
+gem 'sinatra', github: 'sinatra/sinatra'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'

@@ -20,9 +20,13 @@ class Import < ApplicationRecord
 # upload files
 #############################################################
 
+
+
+
 	def save_cmuteamconstituentsexport_csv_file
 		CSV.open("#{Rails.root}/public/CMU Team Constituents Export.csv", "wb") do |csv|
-			CSV.foreach(cmuteamconstituentsexport_file.path, headers:false) do |row|
+			CSV.foreach(cmuteamconstituentsexport_file.path, headers: false,
+				encoding: "bom|utf-8") do |row|
       			csv << row
     		end
 		end
@@ -30,7 +34,8 @@ class Import < ApplicationRecord
 
 	def save_cmuteameventattendanceexport_csv_file
 		CSV.open("#{Rails.root}/public/CMU Team Event Attendance Export.csv", "wb") do |csv|
-			CSV.foreach(cmuteameventattendanceexport_file.path, headers:false) do |row|
+			CSV.foreach(cmuteameventattendanceexport_file.path, headers:false,
+				encoding: "bom|utf-8") do |row|
       			csv << row
     		end
 		end
@@ -38,15 +43,8 @@ class Import < ApplicationRecord
 
 	def save_cmuteamdonationsexport_csv_file
 		CSV.open("#{Rails.root}/public/CMU Team Donations Export.csv", "wb") do |csv|
-			CSV.foreach(cmuteamdonationsexport_file.path, headers:false) do |row|
-      			csv << row
-    		end
-		end
-	end
-
-	def save_CMUTeamEventAttendanceExport_csv_file
-		CSV.open("#{Rails.root}/public/CMU Team Event Attendance Export.csv", "wb") do |csv|
-			CSV.foreach(cmuTeamEventAttendanceExport.path, headers:false) do |row|
+			CSV.foreach(cmuteamdonationsexport_file.path, headers:false,
+				encoding: "bom|utf-8") do |row|
       			csv << row
     		end
 		end
@@ -54,7 +52,8 @@ class Import < ApplicationRecord
 
 	def save_cmuteamcontacthistoryexport_csv_file
 		CSV.open("#{Rails.root}/public/CMU Team Contact History Export.csv", "wb") do |csv|
-			CSV.foreach(cmuteamcontacthistoryexport_file.path, headers:false) do |row|
+			CSV.foreach(cmuteamcontacthistoryexport_file.path, headers:false,
+				encoding: "bom|utf-8") do |row|
       			csv << row
     		end
 		end
@@ -81,9 +80,9 @@ class Import < ApplicationRecord
 	def import_contacthistory_csv_data
 		CSV.foreach("#{Rails.root}/public/contact_history.csv", headers:true) do |row|
 			lookup_check = row[0].to_s
-			if @unclean_constituent_lookup_id.include?(lookup_check) 
+			if @unclean_constituent_lookup_id.include?(lookup_check)
 				create_uncleancontacthistory(row)
-			elsif @constituent_lookup_id.include?(lookup_check) 
+			elsif @constituent_lookup_id.include?(lookup_check)
 				create_contacthistory(row)
 			end
     	end
@@ -121,7 +120,7 @@ class Import < ApplicationRecord
 			if @unclean_constituent_lookup_id.include?(lookup_check) and @unclean_membership.include?(membership_check)
 				create_uncleanconstituentmembershiprecord(row)
 			elsif @constituent_lookup_id.include?(lookup_check)and @clean_membership.include?(membership_check)
-				create_constituentmembershiprecord(row) 
+				create_constituentmembershiprecord(row)
 			end
 
     	end
@@ -164,9 +163,9 @@ class Import < ApplicationRecord
     	end
 	end
 
-	
 
-	
+
+
 
 
 

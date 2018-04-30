@@ -7,7 +7,7 @@
 
 # ### Libraries
 
-# In[416]:
+# In[895]:
 
 
 import csv
@@ -23,7 +23,7 @@ from pandas_schema.validation import *
 
 # ### Read CSV files
 
-# In[417]:
+# In[713]:
 
 
 # Read csv files and place into dataframes
@@ -38,7 +38,7 @@ chdf = pd.read_csv('public/CMU Team Contact History Export.csv',dtype="str",na_f
 
 # ### Additional Dataframes (Global variables)
 
-# In[423]:
+# In[902]:
 
 
 # Dataframes for each membership scheme/type
@@ -65,7 +65,7 @@ duplicate_records = pd.DataFrame() # ZIP code not abiding to US/Canadian format
 
 # ## 1) Setting up initial database for constituent, address, and membership
 
-# In[424]:
+# In[903]:
 
 
 # ccdf will be the copy used to create future dataframes
@@ -93,14 +93,14 @@ ccdf.columns = columns
 
 # ## 2) Flag and remove records with no names, or name but no mailing and email address
 
-# In[425]:
+# In[904]:
 
 
 no_contact = ccdf[
     ((ccdf["email_id"] == '') & (ccdf["address_1"] == '')
-    & (ccdf[r"phone"] == ''))]
+    & (ccdf[r"phone"] == '')) & (ccdf['lookup_id'] != 'anonymous')]
 
-ccdf = ccdf[((ccdf["email_id"] != '') | (ccdf["address_1"] != '')
+ccdf = ccdf[(ccdf['lookup_id']=='anonymous') | ((ccdf["email_id"] != '') | (ccdf["address_1"] != '')
                                      | (ccdf[r"phone"] != ''))]
 
 
@@ -110,7 +110,7 @@ ccdf = ccdf[((ccdf["email_id"] != '') | (ccdf["address_1"] != '')
 #
 # Clean the name by capitalizing each part of the name, and remove common invalid characters or phrases
 
-# In[426]:
+# In[905]:
 
 
 # Cleans up Name
@@ -123,7 +123,7 @@ def clean_name(v):
             return "NO NAME"
 
         cName = cName.title()
-        if len(cName.split(' ')) == 1:
+        if (len(cName.split(' ')) == 1) and cName[0]!='Anonymous':
             return "ONE WORD"
         return cName
     else:
@@ -135,7 +135,7 @@ ccdf['cname'] = ccdf['name'].apply(clean_name)
 #
 # Clean the last name, or the organization's name by capitalizing each part of the name, and removing common special characters
 
-# In[427]:
+# In[906]:
 
 
 # Cleans up Last name/organization
@@ -153,7 +153,7 @@ ccdf['clname'] = ccdf['last_group'].apply(clean_last_Name)
 #
 # Clean up the address of a record by replacing any address abbreviations with it's respective full word, getting rid of any special characters or double spaces.
 
-# In[428]:
+# In[907]:
 
 
 # Cleans up address
@@ -190,7 +190,7 @@ ccdf['caddress_1'] = ccdf['address_1'].apply(clean_address)
 #
 # Clean up the city name by simply capitalizing the name.
 
-# In[429]:
+# In[908]:
 
 
 # Capitalize City name
@@ -208,7 +208,7 @@ ccdf['ccity'] = ccdf['city'].apply(clean_city)
 #
 # Cleans up state by replacing any abreviations for US states with the full name.
 
-# In[430]:
+# In[909]:
 
 
 # Convert state abreviation to full name
@@ -246,17 +246,11 @@ ccdf['cstate'] = ccdf['state'].apply(clean_state)
 
 
 
-# In[431]:
-
-
-ccdf[ccdf['state']=='West Virginia']
-
-
 # #### Clean country
 #
 # Clean up the country name by simply capitalizing the name.
 
-# In[432]:
+# In[910]:
 
 
 # Capitalize Country name
@@ -273,7 +267,7 @@ ccdf['ccountry'] = ccdf['country'].apply(clean_country)
 #
 # Clean up the zip code by replacing common special characters with their counterpart, and then reporting any invalid zip codes (US and Canadian).
 
-# In[433]:
+# In[911]:
 
 
 def clean_zip(v):
@@ -294,7 +288,7 @@ ccdf['czip'] = ccdf['zip'].apply(clean_zip)
 #
 # Clean up the phone number by ensuring it is a 10 digit number in the format of (xxx) xxx-xxxx
 
-# In[434]:
+# In[912]:
 
 
 # Retrieves any extra phone number notes
@@ -356,7 +350,7 @@ ccdf['phone_notes'] = ccdf[r'phone'].apply(get_phone_notes)
 #
 # Clean up the email be replacing common special characters. The regex for e-mail format is relativewly loose, as we could not account for all edge cases of emails.
 
-# In[435]:
+# In[913]:
 
 
 def clean_email(v):
@@ -375,7 +369,7 @@ ccdf['cemail'] = ccdf['email_id'].apply(clean_email)
 # #### Dates
 # Clean the expiration date by removing the 11:59 PM on certain records
 
-# In[436]:
+# In[914]:
 
 
 # Cleans up dates
@@ -414,7 +408,7 @@ ccdf['dob'] = ccdf['dob'].apply(clean_Date)
 
 # #### Do Not Email
 
-# In[437]:
+# In[915]:
 
 
 # Cleans up dates
@@ -427,7 +421,7 @@ ccdf['email_id'] = ccdf['email_id'].apply(clean_dne)
 
 # #### Amount
 
-# In[438]:
+# In[916]:
 
 
 def clean_amount(v):
@@ -438,7 +432,8 @@ def clean_amount(v):
 
 # ### 4) Applying the above cleaning modules to the databases
 
-# In[439]:
+# In[917]:
+
 
 # Dataframe containing incomplete names
 incomplete_names = ccdf[(ccdf['cname']=="ONE WORD") & (ccdf['constituent_type']=='Individual')
@@ -510,8 +505,7 @@ ccdf[r'email_id'] = ccdf['cemail']
 
 # #### Creating constituent
 
-
-# In[444]:
+# In[918]:
 
 
 constituent = ccdf.copy()
@@ -543,7 +537,7 @@ constituent['phone_notes'] = constituent['phone_notes'].str.strip().str.lstrip()
 
 # #### Creating address
 
-# In[445]:
+# In[919]:
 
 
 address = ccdf.copy()
@@ -566,7 +560,7 @@ address = address.drop_duplicates('address_1')
 
 # #### Creating membership_record
 
-# In[446]:
+# In[920]:
 
 
 # Copy cdf and make some modifications based on ERD
@@ -627,7 +621,7 @@ membership_record['last_renewed'] = membership_record['last_renewed'].str.strip(
 
 # #### Creating constituent_membership_record
 
-# In[447]:
+# In[921]:
 
 
 constituent_membership_record = membership_record_all.drop(membership_record_all.iloc[:, 2:10],axis=1)
@@ -638,7 +632,7 @@ constituent_membership_record['membership_id'] = constituent_membership_record['
 
 # #### Creating constituent_event
 
-# In[448]:
+# In[922]:
 
 
 edf.drop(edf.iloc[:, 0:1], axis=1,inplace=True)
@@ -656,7 +650,7 @@ constituent_event['attend'] = constituent_event['attend'].str.strip().str.lstrip
 
 # #### Creating event
 
-# In[449]:
+# In[923]:
 
 
 event = edf.iloc[:,1:2].join(edf.iloc[:,4:7])
@@ -675,15 +669,14 @@ event['end_date_time'] = event['end_date_time'].str.strip().str.lstrip()
 
 # #### Creating contact_history
 
-# In[450]:
+# In[924]:
 
 
 contact_history = chdf.iloc[:,1:].copy()
 contact_history = contact_history.drop(columns=['Name'])
 contact_history.columns = ['lookup_id','contact_type','date']
 contact_history['date'] = contact_history['date'].apply(clean_Date)
-contact_history = contact_history[contact_history['lookup_id'] != "anonymous"] # weird case
-contact_history['contact_type'] = contact_history['contact_type'].apply(lambda x: x if x != "" else "Not specified")
+contact_history = contact_history[contact_history['contact_type']!='']
 contact_history = contact_history.drop_duplicates()
 
 # Approx 9862 duplicate contact_history; may be due to multiple mails/emails on the same day
@@ -694,7 +687,7 @@ contact_history['date'] = contact_history['date'].str.strip().str.lstrip()
 
 # #### Creating donation_history
 
-# In[451]:
+# In[925]:
 
 
 dddf = ddf.iloc[:,1:].copy()
@@ -702,8 +695,8 @@ columns =  ['donation_history_id', 'lookup_id','amount','date','payment_method',
             'given_anonymously', 'do_not_acknowledge', 'donation_program_id','program',
             'donation_method','transaction_type']
 dddf.columns = columns
-dddf = dddf[(dddf["lookup_id"] != "")
-                                    & (dddf["lookup_id"] != "anonymous")]
+dddf.loc[dddf.lookup_id == '', 'lookup_id'] = "anonymous"
+dddf = dddf[dddf['lookup_id']!=""] #just in case
 dddf = dddf[dddf['program']!=""]
 columns =  ['donation_history_id', 'donation_program_id','lookup_id','amount','date','payment_method',
             'given_anonymously', 'do_not_acknowledge', 'transaction_type','program',
@@ -715,7 +708,7 @@ donation_history = dddf.iloc[:,0:9].copy()
 
 donation_history['date']=donation_history['date'].apply(clean_Date)
 donation_history['amount']=donation_history['amount'].apply(clean_amount)
-donation_history = donation_history.drop_duplicates()
+#donation_history = donation_history.drop_duplicates()
 
 donation_history['donation_history_id'] = donation_history['donation_history_id'].str.strip().str.lstrip()
 donation_history['donation_program_id'] = donation_history['donation_program_id'].str.strip().str.lstrip()
@@ -730,7 +723,7 @@ donation_history['transaction_type'] = donation_history['transaction_type'].str.
 
 # #### Creating donation_program
 
-# In[452]:
+# In[926]:
 
 
 donation_program = dddf.iloc[:,1:2].join(dddf.iloc[:,9:10])
@@ -749,7 +742,7 @@ donation_program['program'] = donation_program['program'].str.strip().str.lstrip
 
 # ### 5) Reporting potential dupliates
 
-# In[453]:
+# In[927]:
 
 
 # Needed imports:
@@ -795,7 +788,7 @@ def LevRatioMerge(df1,fun,index):
             #print(r[1],result[2],r[4],result[0],r[index])
 
 
-# In[454]:
+# In[928]:
 
 
 duplicate_names = {}
@@ -889,7 +882,7 @@ for key in duplicate_names:
 
 # #### Creating incomplete_records, incomplete_names, invalid_zips, invalid_phones, invalid_emails, and dupliate records
 
-# In[455]:
+# In[929]:
 
 
 # Creating a df that houses all duplicates
@@ -906,6 +899,7 @@ final_duplicate['duplicate'] = True
 # Creating a df of records with no contact (as in, no addr, email or phone)
 no_contact.drop(no_contact.iloc[:,-13:], axis=1,inplace=True)
 no_contact['no_contact'] = True
+no_contact = no_contact[no_contact['lookup_id']!='anonymous']
 no_contact['phone_notes'] = ''
 
 # Creating a df of records with incomplete names
@@ -951,12 +945,19 @@ columns = ['lookup_id','address_1','city','state','zip','country',
            'invalid_emails', 'invalid_phones', 'no_contact','duplicate_lookup_ids', 'membership_id',
            'membership_level','membership_level_type']
 incomplete_invalid = incomplete_invalid[columns]
+columns = ['lookup_id','address_1','city','state','zip','country',
+           'address_type', 'date_added', 'invalid_addresses_1', 'invalid_cities', 'invalid_states',
+           'invalid_countries','invalid_zips', 'suffix','title', 'name', 'last_group', 'email_id','phone',
+           'dob','do_not_email','duplicate','constituent_type','phone_notes', 'incomplete_names',
+           'invalid_emails', 'invalid_phones', 'no_contact','duplicate_lookup_ids', 'membership_id',
+           'membership_level','membership_level_type']
+incomplete_invalid.columns = columns
 incomplete_invalid_address = incomplete_invalid.copy()
 incomplete_invalid_address.drop(incomplete_invalid_address.iloc[:,13:],axis=1,inplace=True)
-incomplete_invalid_address['incomplete_addresses_1'] = incomplete_invalid_address['incomplete_addresses_1'].fillna(value=False)
-incomplete_invalid_address['incomplete_cities'] = incomplete_invalid_address['incomplete_cities'].fillna(value=False)
-incomplete_invalid_address['incomplete_states'] = incomplete_invalid_address['incomplete_states'].fillna(value=False)
-incomplete_invalid_address['incomplete_countries'] = incomplete_invalid_address['incomplete_countries'].fillna(value=False)
+incomplete_invalid_address['invalid_addresses_1'] = incomplete_invalid_address['invalid_addresses_1'].fillna(value=False)
+incomplete_invalid_address['invalid_cities'] = incomplete_invalid_address['invalid_cities'].fillna(value=False)
+incomplete_invalid_address['invalid_states'] = incomplete_invalid_address['invalid_states'].fillna(value=False)
+incomplete_invalid_address['invalid_countries'] = incomplete_invalid_address['invalid_countries'].fillna(value=False)
 incomplete_invalid_address['invalid_zips'] = incomplete_invalid_address['invalid_zips'].fillna(value=False)
 
 
@@ -974,15 +975,7 @@ incomplete_invalid_constituent['duplicate_lookup_ids'] = incomplete_invalid_cons
 
 # ### 5) Exporting into final databases for ERD
 
-# In[456]:
-
-# z = incomplete_invalid_constituent['lookup_id'].tolist()
-# y = contact_history['lookup_id'].tolist()
-# set(y)-set(x+z)
-
-
-# In[458]:
-
+# In[930]:
 
 constituent_membership_record.to_csv('public/'+'constituent_membership_record.csv', index=False)
 constituent.to_csv('public/'+'constituent.csv', index=False)
@@ -996,13 +989,13 @@ event.to_csv('public/'+'event.csv', index=False)
 incomplete_invalid_address.to_csv('public/'+'incomplete_invalid_address.csv', index=False)
 incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.csv', index=False)
 
-
-#  ### 6) Validations
+#
+# #  ### 6) Validations
 # #
 #
 # # #### constituent validations
 #
-# # In[459]:
+# # In[933]:
 #
 #
 # # Edit this more later, but this has the basic regex formulas for the fields for now
@@ -1033,7 +1026,7 @@ incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.
 #
 # # #### constituent_membership_record validations
 #
-# # In[460]:
+# # In[934]:
 #
 #
 # schema = Schema([
@@ -1051,7 +1044,7 @@ incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.
 #
 # # #### membership_record validations
 #
-# # In[461]:
+# # In[935]:
 #
 #
 # # Need to find a way to validate the time values
@@ -1081,7 +1074,7 @@ incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.
 #
 # # #### address validations
 #
-# # In[462]:
+# # In[936]:
 #
 #
 # # Added common state names for Canada, and DC
@@ -1098,7 +1091,7 @@ incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.
 #               ]
 #
 #
-# # In[463]:
+# # In[937]:
 #
 #
 # schema = Schema([
@@ -1126,7 +1119,7 @@ incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.
 #
 # # #### contact_history validations
 #
-# # In[464]:
+# # In[938]:
 #
 #
 # # Need to find a way to validate the time values

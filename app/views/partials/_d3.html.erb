@@ -4,9 +4,12 @@
 		<h4>Donation Revenue By Program and Giving Level</h4>
 	</div>
 	<div class='card-body'>
-	
-	<div id="donationChart"></div>
-	<%= raw @donation_sum_fYear %>
+		<% unless @donation_histories.empty? %>
+			<div id="donationChart"></div>
+		<% else %>
+			<p>No donation information available</p>
+		<%end %>
+
 	</div> 
 </div>
 

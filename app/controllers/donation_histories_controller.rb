@@ -4,7 +4,7 @@ class DonationHistoriesController < ApplicationController
   # GET /donation_histories
   # GET /donation_histories.json
   def index
-    @donation_histories = DonationHistory.all
+    @donation_histories = DonationHistory.all.chronological.paginate(:page => params[:page], :per_page => 30)
     @nav_status = 'db'
   end
 

@@ -1,7 +1,7 @@
 <div class = 'container-fluid bg-white'>
-  <h3 class='text-primary-darl'>Contact Histories</h1>
+  <h2 class='text-primary-dark'>Contact Histories</h2>
 
-  <table class='table table-bordered table-hover'>
+  <table class='table table-bordered table-hover table-sm'>
     <thead>
       <tr>
         
@@ -24,6 +24,7 @@
       <% end %>
     </tbody>
   </table>
-
+  <br/>
+  <%= will_paginate @donation_programs, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 
 </div>

@@ -65,14 +65,14 @@ class Constituent < ApplicationRecord
   def self.generate_donations_report(date)
     d = Date.parse(date)
     filename = 'reports/donation-history-report-before-'+date+".csv"
-    puts filename
     donations = Constituent.last_donation_before(d)
-    CSV.open(filename,'wb') do |csv|
+    result = CSV.generate do |csv|
       csv << ["Constituent", "Email", "Last Donation Date", "Last Donation Amount"]
       donations.each do |row|
         csv << row
       end
     end
+    return result
   end
 
   def most_recently_contacted_date
@@ -95,14 +95,14 @@ class Constituent < ApplicationRecord
 
   def self.generate_contact_history_report(date)
     d = Date.parse(date)
-    filename = 'reports/contact-history-report-before-'+date+".csv"
     to_contact = Constituent.last_contacted_before(d)
-    CSV.open(filename,'wb') do |csv|
+    result = CSV.generate do |csv|
       csv << ["Constituent", "Email", "Do Not Email"]
       to_contact.each do |row|
         csv << row
       end
     end
+    return result
   end
   
   def current_address
@@ -139,16 +139,6 @@ class Constituent < ApplicationRecord
     end
   end
 
-  # def self.import_file(file)
-  #   constituents_array = []
-  #   CSV.foreach(file.path.to_s, headers:true) do |row|
-  #     constituents_array << Constituent.new(row.to_h)
-  #   end
-  #   puts "array is"
-  #   puts constituents_array
-  #   puts "array is"
-  #   Constituent.import constituents_array, on_duplicate_key_ignore: true
-  # end
   def self.import_file(file)
     CSV.foreach(file.path, headers:true) do |row|
       if row[7] != nil

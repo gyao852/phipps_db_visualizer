@@ -1,31 +1,31 @@
 <div class='container-fluid bg-white'>
 
-<h1>Events</h1>
+  <h2 class='text-primary-dark'>Events</h2>
 
+  <p id="notice" class='bg-white'><%= notice %></p>
 
-
-<table class='table table-bordered table-hover'>
-  <thead>
-    <tr>
-      <th scope='col'>Event name</th>
-      <th scope='col'>Start DateTime</th>
-      <th scope='col'>End DateTime</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
+  <table class='table table-bordered table-hover table-sm'>
+    <thead>
       <tr>
-        <td><%= event.event_name %></td>
-        <td><%= event.start_date_time %></td>
-        <td><%= event.end_date_time %></td>
+        <th scope='col'>Event name</th>
+        <th scope='col'>Start DateTime</th>
+        <th scope='col'>End DateTime</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event.event_name %></td>
+          <td><%= event.start_date_time.strftime("%m/%d/%y") %></td>
+          <td><%= event.end_date_time.strftime("%m/%d/%y")%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
+  <br>
+  <%= will_paginate @events, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 
 
 </div>

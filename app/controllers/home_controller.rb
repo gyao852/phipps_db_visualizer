@@ -1,10 +1,14 @@
 class HomeController < ApplicationController
+    before_action :check_login
     def home
+
         @home = true
 
         @newGoal = Goal.new
+
+
+
         
-        @currentGoal = Goal.chronological.first
 
         
         # donation goals from setting cache
@@ -17,7 +21,13 @@ class HomeController < ApplicationController
             @donation_sum_fYear += h.amount
         end
 
-
+        if Goal.chronological.first
+            @currentGoal = Goal.chronological.first
+            @total_progress = {sum: @donation_sum_fYear, progress: @donation_sum_fYear.to_f/@currentGoal.goal.to_f}
+        else
+            @currentGoal = nil
+        end
+        
 
 
         @cp = DonationProgram.sum_and_count_level("Childrens' Programs")
@@ -33,7 +43,7 @@ class HomeController < ApplicationController
         @pie_chart_data_set = []
         @bar_chart_data_set = []
 
-        @total_progress = {sum: @donation_sum_fYear, progress: @donation_sum_fYear.to_f/@currentGoal.goal.to_f}
+        
     
         
         @donations_by_program.each do |p|
@@ -85,75 +95,79 @@ class HomeController < ApplicationController
 
     # Methods to generate unclean address reports
     def generate_invalid_zips_addresses_report
-        UncleanAddress.generate_invalid_zips
-        redirect_to reports_path 
+        report = UncleanAddress.generate_invalid_zips
+        send_data report, :filename => "Invalid_zip_report", :type => "text/csv"
+
     end
 
     def generate_invalid_addresses_1_report
-        UncleanAddress.generate_invalid_address_1
-        redirect_to reports_path
+        report = UncleanAddress.generate_invalid_address_1
+        send_data report, :filename => "Invalid_street_report", :type => "text/csv"
     end
 
     def generate_invalid_state_addresses_report
-        UncleanAddress.generate_invalid_states
-        redirect_to reports_path
+        report = UncleanAddress.generate_invalid_states
+        send_data report, :filename => "Invalid_state_report", :type => "text/csv"
     end
 
     def generate_invalid_city_addresses_report
-        UncleanAddress.generate_invalid_cities
-        redirect_to reports_path
+        report = UncleanAddress.generate_invalid_cities
+        send_data report, :filename => "Invalid_city_report", :type => "text/csv"
     end
 
     def generate_invalid_country_addresses_report
-        UncleanAddress.generate_invalid_countries
-        redirect_to reports_path
+        report =UncleanAddress.generate_invalid_countries
+        send_data report, :filename => "Invalid_country_report", :type => "text/csv"
     end
 
     # Methods to generate unclean constituent reports
     def generate_invalid_constituents_report
-        UncleanConstituent.generate_all_invalid
-        redirect_to reports_path
+        report = UncleanConstituent.generate_all_invalid
+        send_data report, :filename => "Invalid_constituent_report", :type => "text/csv"
     end
 
 
     def generate_no_contact_constituents_report
-        UncleanConstituent.generate_no_contact
-        redirect_to reports_path
+        report = UncleanConstituent.generate_no_contact
+        send_data report, :filename => "Invalid_no_contact_report", :type => "text/csv"
     end
 
     def generate_invalid_phone_constituents_report
-        UncleanConstituent.generate_invalid_phones
-        redirect_to reports_path
+        report = UncleanConstituent.generate_invalid_phones
+        send_data report, :filename => "Invalid_phone_report", :type => "text/csv"
     end
 
     def generate_invalid_email_constituents_report
-        UncleanConstituent.generate_invalid_emails
-        redirect_to reports_path
+        report = UncleanConstituent.generate_invalid_emails
+        send_data report, :filename => "Invalid_email_report", :type => "text/csv"
     end
 
     def generate_incomplete_name_constituents_report
-        UncleanConstituent.generate_incomplete_names
-        redirect_to reports_path
+        report = UncleanConstituent.generate_incomplete_names
+        send_data report, :filename => "Invalid_name_report", :type => "text/csv"
     end
 
     def generate_duplicate_constituents_report
-        UncleanConstituent.generate_duplicates
-        redirect_to reports_path
+        report = UncleanConstituent.generate_duplicates
+        send_data report, :filename => "duplicate_report", :type => "text/csv"
     end
 
     # Methods to functional reports
     def generate_donation_report
-        Constituent.generate_donations_report(params[:date])
+        report Constituent.generate_donations_report(params[:date])
+        send_data report, :filename => "donations_report", :type => "text/csv"
     end
 
 
     def generate_contact_history_report
-        Constituent.generate_contact_history_report(params[:date])
+        report = Constituent.generate_contact_history_report(params[:date])
+        send_data report, :filename => "contact_history_report", :type => "text/csv"
     end
 
     def generate_attendance_report
         @event = Event.find_by(event_id: params[:events][:ids])   
-        @event.generate_attendance_report
+        report = @event.generate_attendance_report
+        send_data report, :filename => "event_attendance_report", :type => "text/csv"
     end
         
 

@@ -194,6 +194,15 @@ i.md-40 {
     text-align: center;
 }
 
+.pagination a {
+    color: $dark-gray;
+}
+
+.pagination em {
+    color: $mint;
+}
+
+
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
     background-color: $mint !important;
 }

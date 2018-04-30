@@ -8,7 +8,7 @@ class ConstituentsController < ApplicationController
   # GET /constituents.json
   def index
     @nav_status = 'db'
-    @constituents = Constituent.all
+    @constituents = Constituent.all.paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /constituents/1

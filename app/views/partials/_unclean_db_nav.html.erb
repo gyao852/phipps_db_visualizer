@@ -15,27 +15,12 @@
 
           </li>
 
-
-          <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Incomplete
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%= link_to 'Membership Programs', membership_records_path, class:'dropdown-item' %>
-                  <%= link_to 'Donation Programs', donation_programs_path, class: 'dropdown-item'%>
-                </div>
-          </li>
+          <li class="nav-item">
+          <%= link_to "Addresses", unclean_addresses_path, class:'nav-link' %>
           
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Invalid
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <%= link_to 'All', unclean_donation_histories_path, class:'dropdown-item'%>
-                <a class="dropdown-item" href="#">By Date </a>
-                <a class="dropdown-item" href="#">By Amount</a>
-              </div>
           </li>
+
+
 
 
 

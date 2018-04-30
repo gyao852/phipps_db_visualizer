@@ -1,0 +1,122 @@
+<div class='card bg-white show-unclean-constituent-information'>
+<h4 class="card-header">Unclean Constituent Information</h4>
+<div class='card-body'>
+  <ul class='list-group list-group-flush'>
+    <li class="list-group-item">    
+      <strong>Name:</strong>
+      <%= @unclean_constituent.name %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Last / Group Name:</strong>
+      <%= @unclean_constituent.last_group %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Lookup ID:</strong>
+      <%= @unclean_constituent.lookup_id %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Title:</strong>
+      <% if @unclean_constituent.title.nil? %>
+        N/A
+      <% else %>
+        <%= @unclean_constituent.title %>
+      <% end %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Suffix:</strong>
+      <% if @unclean_constituent.suffix.nil? %>
+        N/A
+      <% else %>
+        <%= @unclean_constituent.suffix %>
+      <% end %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Email:</strong>
+      <% if @unclean_constituent.email_id.nil? %>
+        N/A
+      <% else %>
+        <%= @unclean_constituent.email_id %>
+      <% end %>
+    </li>
+
+    <li class="list-group-item">
+      <strong>Phone:</strong>
+      <% if @unclean_constituent.phone.nil? %>
+        N/A
+      <% else %>
+        <%= @unclean_constituent.phone %>
+      <% end %>
+    </li>
+
+    <li class="list-group-item">
+    <strong>Current Address:</strong>
+    <% if @unclean_constituent.current_address.nil? %>
+      N/A
+    <% else %>
+      <%= @unclean_constituent.current_address %>
+    <% end %>
+  </li>
+
+    <li class="list-group-item">
+      <strong>Dob:</strong>
+      <% if @unclean_constituent.dob.nil? %>
+        N/A
+      <% else %>
+        <%= @unclean_constituent.dob %>
+      <% end %>
+    </li>
+    
+    <li class="list-group-item">
+        <strong>Do not email:</strong>
+        <%= @unclean_constituent.do_not_email.nil? ? 'N/A' : @unclean_constituent.do_not_email %>
+    </li>
+
+    <li class="list-group-item">
+        <strong>Phone Notes:</strong>
+        <%= @unclean_constituent.phone_notes.nil? ? 'N/A' :@unclean_constituent.phone_notes  %>
+    </li>
+
+    <li class="list-group-item">
+        <strong>Phone Incomplete Names:</strong>
+        <%= @unclean_constituent.incomplete_names  %>
+    </li>
+    
+    <li class="list-group-item">
+        <strong>Invalid Email: </strong>
+        <%= @unclean_constituent.invalid_emails%>
+    </li>
+
+    <li class="list-group-item">
+        <strong>Invalid Phone: </strong>
+        <%= @unclean_constituent.invalid_phones %>
+    </li>
+
+    <li class="list-group-item">
+        <strong>No Contact:</strong>
+        <%= @unclean_constituent.no_contact %>
+    </li>
+
+    <li class="list-group-item">
+        <strong>Duplicate:</strong>
+        <%= @unclean_constituent.duplicate %>
+    </li>
+    
+    <li class="list-group-item">
+        <strong>Duplicate IDs: </strong>
+        <%= @unclean_constituent.duplicate_lookup_ids.nil? ? 'N/A' : @unclean_constituent.duplicate_lookup_ids %>
+    </li>
+
+
+  </ul>
+
+
+  
+  </div>
+
+  
+</div>

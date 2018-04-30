@@ -1,0 +1,30 @@
+<div class='card bg-white show-constituent-attendance-history'>
+      <h4 class='card-header'>Attendance History</h4>
+      <div class='card-body'>
+        <% if @unclean_constituent.unclean_constituent_events.empty? %>
+          <p>No records</p>
+        <% else %>
+          <table class='table table-sm table-hover table-bordered'>
+              <thead>
+                  <th scope="col">Event Name</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">RSVP</th>
+                  <th scope="col">Attended</th>
+              </thead>
+              
+              <tbody>
+                  <% @unclean_constituent.unclean_constituent_events.each do |ce| %>
+                    <tr>
+                      <td><%= ce.unclean_event.event_name %></td>
+                      <td><%= ce.unclean_event.start_date_time.nil? ? 'N/A' : ce.unclean_event.start_date_time.strftime('%m/%d/%y') %></td>
+                      <td><%= ce.unclean_event.end_date_time.nil? ? 'N/A' : ce.unclean_event.end_date_time.strftime('%m/%d/%y') %></td>
+                      <td><%= ce.status %></td>
+                      <td><%= ce.attend %></td>
+                    </tr>
+                  <% end %>
+              </tbody>
+          </table>
+        <% end %>
+      </div>
+    </div>

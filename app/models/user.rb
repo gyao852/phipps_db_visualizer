@@ -19,7 +19,10 @@ class User < ApplicationRecord
   validates :email_id, presence: true
   validates :email_id, format: { with:/.+@.+\..+/i, message: "format of email address is incorrect"}
   validates_inclusion_of :active, :in => [true,false]
+  
 
+  scope :active, ->  {where(active: true)}
+  scope :inactive, -> {where(active: false)}
 
   # Other methods
   # -------------

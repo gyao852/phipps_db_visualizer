@@ -5,9 +5,9 @@ class UncleanConstituentsController < ApplicationController
   # GET /constituents.json
   def index
     @nav_status = 'review'
-    @unclean_constituents = UncleanConstituent.all
+    @unclean_constituents = UncleanConstituent.all.paginate(:page => params[:page], :per_page => 30)
     @invalid = UncleanConstituent.invalid
-    @i
+    
   end
 
   def index_invalid_emails

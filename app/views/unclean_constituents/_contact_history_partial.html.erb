@@ -1,0 +1,24 @@
+<div class='card bg-white show-constituent-contact-history mr-auto'>
+    <h4 class='card-header'>Contact History</h4>
+    <div class='card-body'>
+    <% if @unclean_constituent.unclean_contact_histories.empty? %>
+        <p> No records </p>
+    <% else %>
+        <table class='table table-sm table-hover table-bordered'>
+            <thead>
+            <th scope="col">Contact Type</th>
+            <th scope="col">Date</th>
+            </thead>
+
+            <tbody>
+            <% @unclean_constituent.unclean_contact_histories.each do |ch| %>
+                <tr>
+                <td><%= ch.contact_type %></td>
+                <td><%= ch.date.nil? ? 'N/A' : ch.date.strftime('%m/%d/%y') %></td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    <% end %>
+    </div>
+</div>

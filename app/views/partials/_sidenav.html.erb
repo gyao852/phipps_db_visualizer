@@ -31,19 +31,20 @@
 
 			<% if @nav_status == 'account' %>
 				<li class='nav-item'>
+					<%= link_to user_path(current_user), class: 'btn nav-link' do %>
 					<a href="#" class='btn nav-link'>
 						<i class="material-icons">person</i> 
 						<br/>
 						Account 
-					</a>
+					<% end %>
 				</li>
 			<% else %>
 				<li class='nav-item'>
-					<a href="#" class='btn nav-link text-light'>
+					<%= link_to user_path(current_user), class: 'btn nav-link text-light' do %>
 						<i class="material-icons">person</i> 
 						<br/>
 						Account 
-					</a>
+					<% end %>
 				</li>
 			<% end %>
 			

@@ -22,43 +22,47 @@ class Import < ApplicationRecord
 
 
 
-
 	def save_cmuteamconstituentsexport_csv_file
 		CSV.open("#{Rails.root}/public/CMU Team Constituents Export.csv", "wb") do |csv|
-			CSV.foreach(cmuteamconstituentsexport_file.path, headers: false,
+			CSV.foreach(cmuteamconstituentsexport_file, headers: false,
 				encoding: "bom|utf-8") do |row|
       			csv << row
     		end
 		end
 	end
+
+
+
 
 	def save_cmuteameventattendanceexport_csv_file
 		CSV.open("#{Rails.root}/public/CMU Team Event Attendance Export.csv", "wb") do |csv|
-			CSV.foreach(cmuteameventattendanceexport_file.path, headers:false,
+			CSV.foreach(cmuteameventattendanceexport_file, headers:false,
 				encoding: "bom|utf-8") do |row|
       			csv << row
     		end
 		end
 	end
+
 
 	def save_cmuteamdonationsexport_csv_file
 		CSV.open("#{Rails.root}/public/CMU Team Donations Export.csv", "wb") do |csv|
-			CSV.foreach(cmuteamdonationsexport_file.path, headers:false,
+			CSV.foreach(cmuteamdonationsexport_file, headers:false,
 				encoding: "bom|utf-8") do |row|
       			csv << row
     		end
 		end
 	end
+
 
 	def save_cmuteamcontacthistoryexport_csv_file
 		CSV.open("#{Rails.root}/public/CMU Team Contact History Export.csv", "wb") do |csv|
-			CSV.foreach(cmuteamcontacthistoryexport_file.path, headers:false,
+			CSV.foreach(cmuteamcontacthistoryexport_file, headers:false,
 				encoding: "bom|utf-8") do |row|
       			csv << row
     		end
 		end
 	end
-
+	
 
 #############################################################
 # import data

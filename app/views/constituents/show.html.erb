@@ -1,30 +1,22 @@
 <div class='container-fluid'>
-  <div class= 'd-flex flex-wrap'>
 
-    <%= render :partial => 'constituent_information_partial' %>
-    
+    <div class="row d-flex">
+      <div class="col-sm-4">
+        <%= render :partial => 'constituent_information_partial' %>
+        <%= render :partial => 'contact_history_partial' %>
+      </div>
+      <div class="col-sm-8">
+        <%= render :partial => 'addresses_partial' %>
+        <%= render :partial => 'membership_record_partial' %>
+        <%= render :partial => 'attendance_partial' %>
+        <%= render :partial => 'donation_history_partial' %>
+      </div>
+      
+    </div>
 
-    <%= render :partial => 'addresses_partial' %>
-
-    <%= render :partial => 'contact_history_partial' %>
-
-    <%= render :partial => 'membership_record_partial' %>
 
 
-   
-  
 
-
-  <!-- <div class='d-flex'> -->
-    <%= render :partial => 'attendance_partial' %>
-
-    <%= render :partial => 'donation_history_partial' %>
-    
-    
-    
-
-  <!-- </div> -->
-  </div>
   <%= link_to 'Back', constituents_path %>
   
 </div>

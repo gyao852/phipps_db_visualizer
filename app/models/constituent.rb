@@ -95,7 +95,6 @@ class Constituent < ApplicationRecord
 
   def self.generate_contact_history_report(date)
     d = Date.parse(date)
-    filename = 'reports/contact-history-report-before-'+date+".csv"
     to_contact = Constituent.last_contacted_before(d)
     result = CSV.generate do |csv|
       csv << ["Constituent", "Email", "Do Not Email"]

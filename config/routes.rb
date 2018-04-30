@@ -94,6 +94,11 @@ Rails.application.routes.draw do
   get 'imports_importdata' => 'imports#importdata', :as => :importdata
   get 'reports' => 'home#reports', as: :reports
 
+
+  get 'constituent_individuals' => 'constituents#index_individuals', as: :index_individuals
+  get 'constituent_households' => 'constituents#index_households', as: :index_households
+  get 'constituent_organizations' => 'constituents#index_organizations', as: :index_organizations
+
   # Use case reports
   get 'generate_donation_report' => 'home#generate_donation_report', as: :generate_donation_report
   get 'generate_contact_history_report' => 'home#generate_contact_history_report', as: :generate_contact_history_report

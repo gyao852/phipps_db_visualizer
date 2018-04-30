@@ -28,24 +28,28 @@
 				</li>
 			<% end %>
 				
+			<% if current_user %>
+				<% if @nav_status == 'account' %>
+					<li class='nav-item'>
+						<%= link_to user_path(current_user), class: 'btn nav-link' do %>
+						<a href="#" class='btn nav-link'>
+							<i class="material-icons">person</i> 
+							<br/>
+							Account 
+						<% end %>
+					</li>
+				<% else %>
+					<li class='nav-item'>
+						
+							<%= link_to user_path(current_user), class: 'btn nav-link text-light' do %>
+								<i class="material-icons">person</i> 
+								<br/>
+								Account 
+							<% end %>
 
-			<% if @nav_status == 'account' %>
-				<li class='nav-item'>
-					<%= link_to user_path(current_user), class: 'btn nav-link' do %>
-					<a href="#" class='btn nav-link'>
-						<i class="material-icons">person</i> 
-						<br/>
-						Account 
-					<% end %>
-				</li>
-			<% else %>
-				<li class='nav-item'>
-					<%= link_to user_path(current_user), class: 'btn nav-link text-light' do %>
-						<i class="material-icons">person</i> 
-						<br/>
-						Account 
-					<% end %>
-				</li>
+						
+					</li>
+				<% end %>
 			<% end %>
 			
 			<% if @nav_status=='db' %>

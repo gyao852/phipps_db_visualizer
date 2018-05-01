@@ -12,14 +12,6 @@ gem 'pg', '~> 1.0.0'
 gem 'sidekiq'
 gem 'sinatra', github: 'sinatra/sinatra'
 
-
-
-# Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
-gem 'capistrano-sidekiq' , group: :development
-gem 'capistrano', '~> 2.15.5'
-
-
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -77,6 +69,12 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # Use Capistrano for deployment
+  gem 'capistrano-rails'
+  gem 'capistrano-sidekiq'
+  gem 'capistrano', '~> 2.15.5'
+
 end
 
 group :production do

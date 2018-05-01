@@ -17,9 +17,9 @@ class Constituent < ApplicationRecord
     scope :by_lookup_id, -> {order(:lookup_id)}
     scope :alphabetical_last_group, -> {order(:last_group)}
     scope :alphabetical_name, -> {order(:name)}
-    scope :individual, -> {where(constituent_type: "Individual")}
-    scope :household, -> {where(constituent_type: "Household")}
-    scope :company, -> {where(constituent_type: "Organization")}
+    scope :individuals, -> {where(constituent_type: "Individual")}
+    scope :households, -> {where(constituent_type: "Household")}
+    scope :organizations, -> {where(constituent_type: "Organization")}
 
   #
   # Validations

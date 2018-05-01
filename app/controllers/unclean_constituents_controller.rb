@@ -5,24 +5,80 @@ class UncleanConstituentsController < ApplicationController
   # GET /constituents.json
   def index
     @nav_status = 'review'
-    @unclean_constituents = UncleanConstituent.all
+    @unclean_constituents = UncleanConstituent.all.paginate(:page => params[:page], :per_page => 30)
     @invalid = UncleanConstituent.invalid
-    @i
+    
   end
 
   def index_invalid_emails
     @nav_status = 'review'
-    @unclean_constituents = UncleanConstituent.invalid_emails
+    @unclean_constituents = UncleanConstituent.all.invalid_emails.paginate(:page => params[:page], :per_page => 30)
   end
 
   def index_invalid_phones
     @nav_status = 'review'
-    @unclean_constituents = UncleanConstituent.invalid_phones
+    @unclean_constituents = UncleanConstituent.all.invalid_phones.paginate(:page => params[:page], :per_page => 30)
   end
 
   def index_invalid_zips
     @nav_status = 'review'
-    @unclean_constituents = UncleanConstituent.invalid_zips
+    @unclean_constituents = UncleanConstituent.all.invalid_zips.paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def unclean_individuals
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.all.individuals.paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def unclean_households
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.all.households.paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def unclean_organizations
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.all.organizations.paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def invalid_constituents
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.all.invalid.paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def invalid_individuals
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.all.invalid.individuals.paginate(:page => params[:page], :per_page => 30)
+  end
+
+
+  def invalid_organizations
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.all.invalid.organizations.paginate(:page => params[:page], :per_page => 30)
+  end
+  
+  def invalid_households
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.all.invalid.households.paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def duplicate_constituents
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.all.duplicates.paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def duplicate_individuals
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.all.duplicates.individuals.paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def duplicate_households
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.all.duplicates.households.paginate(:page => params[:page], :per_page => 30)
+  end
+  
+  def duplicate_organizations
+    @nav_status = 'review'
+    @unclean_constituents = UncleanConstituent.all.duplicates.organizations.paginate(:page => params[:page], :per_page => 30)
   end
 
 

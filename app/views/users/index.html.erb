@@ -1,23 +1,27 @@
 
-<%= link_to new_user_path, class: 'btn btn-secondary '  do%>
-	<i class='material-icons'>person_add</i> Add User
-<%end%>
+<nav class='navbar navbar-expand-lg bg-dark-gray top-nav'>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-<div class='container d-flex'>
+  <h2 class='text-primary'>Users</h2>
+
+</div>
+</nav>
+<div class='inner-container'>
+	<div class='d-flex'>
 	<div class='card user-table mr-auto'>
   		<!-- active users -->
   		<div class='card-body'>
 			<h3 class='card-title'>Active Users</h3>
-			<table class='table'>
+			<table class='table sortable table-hover table-sm'>
 				<thead>
 					<tr>
-						<th class='col'>First Name</th>
-						<th class='col'>Last Name</th>
-						<th class='col'>Email</th>
+						<th scope='col'>First Name</th>
+						<th scope='col'>Last Name</th>
+						<th scope='col'>Email</th>
 					</tr>
 				</thead>
 				<tbody>
-					<% @users.each do |user| %>
+					<% @active_users.each do |user| %>
 						<tr>
 							<td><%= user.fname %></td>
 							<td><%= user.lname %></td>
@@ -45,7 +49,7 @@
 				</thead>
 
   				<tbody>
-					<% @users.each do |user| %>
+					<% @inactive_users.each do |user| %>
 					<tr>
 						<td><%= user.fname %></td>
 						<td><%= user.lname %></td>
@@ -57,7 +61,14 @@
 			</table>
 		</div>
 	</div>
-</div>
+	</div>
+	<br/>
+	<%= link_to new_user_path, class: 'btn btn-primary '  do%>
+		<i class='material-icons'>person_add</i> Add User
+	<%end%>
+	
+
+	</div>
 
 
 

@@ -1,9 +1,13 @@
 <div class='container-fluiid bg-white'>
+  <div class='inner-container'>
+    <% if notice %>
+      <p id="notice" class='bg-white'><%= notice %></p>
+    <%end %>
 
   <h2  class="text-primary-dark">Donation Programs</h2>
   <p id="notice" class='bg-white'><%= notice %></p>
 
-  <table class="table table-bordered table-hover table-sm">
+  <table class="table table-bordered table-hover table-sm sortable">
     <thead>
       <tr>
         <th scope='col'>Program ID</th>
@@ -22,5 +26,5 @@
   </table>
 
   <%= will_paginate @donation_programs, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
-
+  </div>
 </div>

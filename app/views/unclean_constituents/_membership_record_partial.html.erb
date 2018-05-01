@@ -1,0 +1,36 @@
+<div class='card bg-white show-constituent-membership-record'>
+      <h4 class="card-header">Membership History</h4>
+      <div class="card-body">
+        <% if @unclean_constituent.unclean_constituent_membership_records.empty? %>
+          No records
+        <% else %>
+          <table class='table table-sm table-bordered table-hover sortable'>
+            <thead>
+              <tr>
+                <th scope='col'>Scheme</th>
+                <th scope='col'>Level</th>
+                <th scope='col'>Type</th>
+                <th scope='col'>Status</th>
+                <th scope='col'>Start Date</th>
+                <th scope='col'>End Date</th>
+                <th scope='col'>Last Renewed Date</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @constituent.constituent_membership_records.each do |cmr| %>
+                <tr>
+                  <td><%= cmr.unclean_membership_record.membership_scheme %></td>
+                  <td><%= cmr.unclean_membership_recordmembership_record.membership_level %></td>
+                  <td><%= cmr.unclean_membership_record.membership_level_type %></td>
+                  <td><%= cmr.unclean_membership_record.membership_status %></td>
+                  <td><%= cmr.unclean_membership_record.start_date.nil? ? 'N/A': cmr.unclean_membership_record.start_date.strftime('%m/%d/%y') %></td>
+                  <td><%= cmr.unclean_membership_record.end_date.nil? ? 'N/A':cmr.unclean_membership_record.end_date.strftime('%m/%d/%y')%></td>
+                  <td><%= cmr.unclean_membership_record.last_renewed.nil? ? 'N/A' : cmr.unclean_membership_record.last_renewed.strftime('%m/%d/%y') %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+    </div>

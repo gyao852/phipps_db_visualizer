@@ -15,7 +15,7 @@
 
   <tbody>
     <% @constituent_events.each do |constituent_event| %>
-      <tr>
+      <tr data-link="<%= constituent_path(constituent_event.constituent)%>">
         <td><%= constituent_event.lookup_id %></td>
         <td><%= constituent_event.event_id %></td>
         <td><%= constituent_event.status %></td>

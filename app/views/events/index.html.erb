@@ -1,10 +1,11 @@
 <div class='container-fluid bg-white'>
+  <div class='inner-container'>
 
   <h2 class='text-primary-dark'>Events</h2>
 
   <p id="notice" class='bg-white'><%= notice %></p>
 
-  <table class='table table-bordered table-hover table-sm'>
+  <table class='table table-bordered table-hover table-sm sortable'>
     <thead>
       <tr>
         <th scope='col'>Event name</th>
@@ -27,5 +28,5 @@
   <br>
   <%= will_paginate @events, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 
-
+  </div>
 </div>

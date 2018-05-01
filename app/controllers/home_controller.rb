@@ -97,6 +97,7 @@ class HomeController < ApplicationController
     def generate_invalid_zips_addresses_report
         report = UncleanAddress.generate_invalid_zips
         send_data report, :filename => "Invalid_zip_report", :type => "text/csv"
+        redirect_to reports_path
 
     end
 

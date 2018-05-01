@@ -1,30 +1,49 @@
-<p id="notice"><%= notice %></p>
+<nav class='navbar navbar-expand-lg bg-dark-gray top-nav'>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-<p>
-  <strong>User:</strong>
-  <%= @user.id %>
-</p>
+    <h2 class='text-primary'>My Account</h2>
 
-<p>
-  <strong>Fname:</strong>
-  <%= @user.fname %>
-</p>
+  </div>
+</nav>
+<div class = 'container-fluid'>
+<div class='inner-container'>
 
-<p>
-  <strong>Lname:</strong>
-  <%= @user.lname %>
-</p>
+    <div class='row'>
+      <div class= 'col-sm-4'>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+          
+            <strong>User Id:</strong>
+            <%= @user.id %>
+            
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email_id %>
-</p>
+          </li>
+          <li class="list-group-item">
+            <strong>First name:</strong>
+            <%= @user.fname %>
+          </li>
+          <li class="list-group-item">
+            <strong>Last name:</strong>
+            <%= @user.lname %>
+          </li>
+          <li class="list-group-item">
+            <strong>Email:</strong>
+            <%= @user.email_id %>
+          </li>
+          <li class="list-group-item">
+            <strong>Active:</strong>
+            <%= @user.active %>
+          </li>
+        </ul>
+      </div>
+    
+   
+
+  </div>
+</div>
 
 
-<p>
-  <strong>Active:</strong>
-  <%= @user.active %>
-</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+</div>

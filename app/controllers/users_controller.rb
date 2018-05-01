@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @nav_status = 'users'
-    @users = User.all
+    @active_users = User.all.active
+    @inactive_users = User.all.inactive
   end
 
   # GET /users/1

@@ -11,6 +11,21 @@ class ConstituentsController < ApplicationController
     @constituents = Constituent.all.paginate(:page => params[:page], :per_page => 30)
   end
 
+  def index_individuals
+    @nav_status = 'db'
+    @constituents = Constituent.individuals.paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def index_households
+    @nav_status = 'db'
+    @constituents = Constituent.households.paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def index_organizations
+    @nav_status = 'db'
+    @constituents = Constituent.organizations.paginate(:page => params[:page], :per_page => 30)
+  end
+
   # GET /constituents/1
   # GET /constituents/1.json
   def show

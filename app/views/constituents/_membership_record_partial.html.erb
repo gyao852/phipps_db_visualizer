@@ -4,7 +4,7 @@
         <% if @constituent.constituent_membership_records.empty? %>
           No records
         <% else %>
-          <table class='table table-sm table-bordered table-hover'>
+          <table class='table table-sm table-bordered table-hover sortable'>
             <thead>
               <tr>
                 <th scope='col'>Scheme</th>
@@ -26,7 +26,7 @@
                   <td><%= cmr.membership_record.membership_status %></td>
                   <td><%= cmr.membership_record.start_date.nil? ? 'N/A': cmr.membership_record.start_date.strftime('%m/%d/%y') %></td>
                   <td><%= cmr.membership_record.end_date.nil? ? 'N/A':cmr.membership_record.end_date.strftime('%m/%d/%y')%></td>
-                  <td><%= cmr.membership_record.nil? ? 'N/A' : cmr.membership_record.last_renewed.strftime('%m/%d/%y') %></td>
+                  <td><%= cmr.membership_record.last_renewed.nil? ? 'N/A' : cmr.membership_record.last_renewed.strftime('%m/%d/%y') %></td>
                 </tr>
               <% end %>
             </tbody>

@@ -6,12 +6,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="sorttable.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
+  
   <script>
     $(document).ready(function(){
         
@@ -28,13 +30,13 @@
   </script>
 
 
-    <div class='d-flex container-fluid full-height flex-row'>
+    <div class='d-flex container-fluid flex-row  .align-content-stretch'>
 
       <%= render :partial => 'partials/sidenav'%>
 
-  
-  
-      <div class='container-fluid right-container'>
+
+      
+      <div class='right-container container-fluid .align-content-stretch'>
         <% if @nav_status == 'db' %>
           <%= render :partial => 'partials/db_nav' %>
         <% elsif @nav_status == "review" %>

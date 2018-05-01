@@ -677,6 +677,7 @@ contact_history = contact_history.drop(columns=['Name'])
 contact_history.columns = ['lookup_id','contact_type','date']
 contact_history['date'] = contact_history['date'].apply(clean_Date)
 contact_history = contact_history[contact_history['contact_type']!='']
+contact_history = contact_history[contact_history['date']!='']
 contact_history = contact_history.drop_duplicates()
 
 # Approx 9862 duplicate contact_history; may be due to multiple mails/emails on the same day

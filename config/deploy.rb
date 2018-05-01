@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 
-server 'dataensemble.net' :web, :app, :db, primary: true #139.59.187.53,
+server 'dataensemble.net', :web, :app, :db, primary: true # 139.59.187.53,
 set :application, "phipps_db_visualizer"
 set :user, 'phipps'
 set :group, 'admin' # Should this be admin?

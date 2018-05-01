@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 
-server '139.59.187.53', :web, :app, :db, primary: true
+server 139.59.187.53, :web, :app, :db, primary: true
 set :application, "phipps_db_visualizer"
 set :user, 'phipps'
 set :group, 'admin' # Should this be admin?

@@ -86,8 +86,8 @@ html, body {
 }
 
 .inner-container {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding: 2rem;
+   
 
 
 }
@@ -100,7 +100,7 @@ html, body {
 }
 
 .top-nav {
-    z-index: 0;
+    z-index: 15;
     margin-left: 2px !important;
 }
 

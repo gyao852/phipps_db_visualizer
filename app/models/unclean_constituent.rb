@@ -16,9 +16,13 @@ class UncleanConstituent < ApplicationRecord
 	 scope :no_contact, -> {where(no_contact: true)}
 	 scope :invalid_emails, ->{where(invalid_emails: true)}
 	 scope :invalid_phones, -> {where(invalid_phones: true)}
-	 scope :invalid, -> {where('invalid_emails OR invalid_phones')}
+	 scope :invalid, -> {where('no_contact OR incomplete_names')}
 	 scope :incomplete_names, -> {where(incomplete_names: true)}
 	 scope :duplicate_scope, -> {where(duplicate: true)}
+
+	 scope :individuals, -> {where(constituent_type: "Individual")}
+	 scope :households, -> {where(constituent_type: "Household")}
+	 scope :organizations, -> {where(constituent_type: "Organization")}
 	 
 
 	def current_address

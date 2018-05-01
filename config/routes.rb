@@ -99,6 +99,22 @@ Rails.application.routes.draw do
   get 'constituent_households' => 'constituents#index_households', as: :index_households
   get 'constituent_organizations' => 'constituents#index_organizations', as: :index_organizations
 
+  get 'unclean_individuals' => 'unclean_constituents#unclean_individuals', as: :index_unclean_individuals
+  get 'unclean_households' => 'unclean_constituents#unclean_households', as: :index_unclean_households
+  get 'unclean_organizations' => 'unclean_constituents#unclean_organizations', as: :index_unclean_organizations
+
+  get 'duplicate_constituents' => 'unclean_constituents#duplicate_constituents', as: :index_duplicate_constituents
+  get 'duplicate_individuals' => 'unclean_constituents#duplicate_individuals', as: :index_duplicate_individuals
+  get 'duplicate_organizations' => 'unclean_constituents#duplicate_organizations', as: :index_duplicate_organizations
+  get 'duplicate_households' => 'unclean_constituents#duplicate_households', as: :index_duplicate_households
+
+
+  get 'invalid_constituents' => 'unclean_constituents#invalid_constituents', as: :index_invalid_constituents
+  get 'invalid_individuals' => 'unclean_constituents#invalid_individuals', as: :index_invalid_individuals
+  get 'invalid_households' => 'unclean_constituents#invalid_households', as: :index_invalid_households
+  get 'invalid_organizations' => 'unclean_constituents#invalid_organizations', as: :index_invalid_organizations
+
+
   # Use case reports
   get 'generate_donation_report' => 'home#generate_donation_report', as: :generate_donation_report
   get 'generate_contact_history_report' => 'home#generate_contact_history_report', as: :generate_contact_history_report

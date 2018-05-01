@@ -1,36 +1,39 @@
-<div class='conatiner-fluid bg-white'>
+<div class='container-fluid bg-white'>
+  <div class='inner-container'>
+    <% if notice %>
+      <p id="notice" class='bg-white'><%= notice %></p>
+    <%end %>
+    <h2 class='text-primary-dark'>Donation Histories</h2>
 
-<h2 class='text-primary-dark'>Donation Histories</h2>
-<p id="notice" class='bg-white'><%= notice %></p>
 
-<table class='table-bordered table-hover table table-sm sortable'>
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Constituent</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Date</th>
-      <th scope="col">Method</th>
-      <th scope="col">Program</th>
+    <table class='table-bordered table-hover table table-sm sortable'>
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Constituent</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Date</th>
+          <th scope="col">Method</th>
+          <th scope="col">Program</th>
 
-    </tr>
-  </thead>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @donation_histories.each do |donation_history| %>
-      <tr>
-        <td><%= donation_history.donation_history_id %></td>
-        <td><%= donation_history.constituent.full_name %></td>
-        <td><%= donation_history.amount %></td>
-        <td><%= donation_history.date.strftime('%m/%d/%y') %></td>
-        <td><%= donation_history.payment_method %></td>
-        <td><%= donation_history.donation_program.program %> </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <% @donation_histories.each do |donation_history| %>
+          <tr>
+            <td><%= donation_history.donation_history_id %></td>
+            <td><%= donation_history.constituent.full_name %></td>
+            <td><%= donation_history.amount %></td>
+            <td><%= donation_history.date.strftime('%m/%d/%y') %></td>
+            <td><%= donation_history.payment_method %></td>
+            <td><%= donation_history.donation_program.program %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<br>
-<%= will_paginate @donation_histories, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
-
+    <br>
+    <%= will_paginate @donation_histories, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+    </div>
 </div>

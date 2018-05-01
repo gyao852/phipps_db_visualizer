@@ -1,30 +1,35 @@
 <div class = 'container-fluid bg-white'>
-  <h2 class='text-primary-dark'>Contact Histories</h2>
+  <div class='inner-container'>
+    <% if notice %>
+    <p id="notice" class='bg-white'><%= notice %></p>
+    <%end %>
+    <h2 class='text-primary-dark'>Contact Histories</h2>
 
-  <table class='table table-bordered table-hover table-sm sortable'>
-    <thead>
-      <tr>
-        
-        <th scope='col'>Constituent</th>
-        <th scope='col'>Type</th>
-        <th scope='col'>Date</th>
-        
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @contact_histories.each do |contact_history| %>
+    <table class='table table-bordered table-hover table-sm sortable'>
+      <thead>
         <tr>
           
-          <td><%= contact_history.constituent.name %></td>
-          <td><%= contact_history.contact_type %></td>
-          <td><%= contact_history.date %></td>
-
+          <th scope='col'>Constituent</th>
+          <th scope='col'>Type</th>
+          <th scope='col'>Date</th>
+          
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <br/>
-  <%= will_paginate @donation_programs, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+      </thead>
+
+      <tbody>
+        <% @contact_histories.each do |contact_history| %>
+          <tr>
+            
+            <td><%= contact_history.constituent.name %></td>
+            <td><%= contact_history.contact_type %></td>
+            <td><%= contact_history.date %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br/>
+    <%= will_paginate @donation_programs, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  </div>
 
 </div>

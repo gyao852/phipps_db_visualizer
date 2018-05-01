@@ -1,7 +1,11 @@
 <div class='container-fluid bg-white'>
+  <div class='inner-container'>
+    <% if notice %>
+      <p id="notice" class='bg-white'><%= notice %></p>
+    <%end %>
+  <h2 class='text-primary-dark'>Membership Records</h2>
+
   
-  <h3 class='text-primary-dark'>Membership Records</h2>
-  <p id="notice" class='bg-white'><%= notice %></p>
   <table class="table table-bordered table-hover table-sm">
     <thead>
       <tr>
@@ -37,4 +41,5 @@
   <br>
 
   <%= will_paginate @membership_records, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  </div>
 </div>

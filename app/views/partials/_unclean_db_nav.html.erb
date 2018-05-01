@@ -3,22 +3,44 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              All Unclean
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'All Constituents', unclean_constituents_path, class: "dropdown-item" %>
+              <%= link_to 'Individuals', index_unclean_individuals_path, class: "dropdown-item" %>
+              <%= link_to 'Households', index_unclean_households_path, class: "dropdown-item" %>
+              <%= link_to 'Organizations', index_unclean_organizations_path, class: "dropdown-item" %>
+            </div>           
+
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Invalid
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to 'All Constituents', index_invalid_constituents_path, class: "dropdown-item" %>
+              <%= link_to 'Individuals', index_invalid_individuals_path, class: "dropdown-item" %>
+              <%= link_to 'Households', index_invalid_households_path, class: "dropdown-item" %>
+              <%= link_to 'Organizations', index_invalid_organizations_path, class: "dropdown-item" %>
+            </div>
+
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Duplicates
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to 'Constituents', unclean_constituents_path, class: "dropdown-item" %>
-              <a class="dropdown-item" href="#">Individuals</a>
-              <a class="dropdown-item" href="#">Companies</a>
-              <a class="dropdown-item" href="#">Groups</a>
+              <%= link_to 'All Constituents', index_duplicate_constituents_path, class: "dropdown-item" %>
+              <%= link_to 'Individuals', index_duplicate_individuals_path, class: "dropdown-item" %>
+              <%= link_to 'Households', index_duplicate_households_path, class: "dropdown-item" %>
+              <%= link_to 'Organizations', index_duplicate_organizations_path, class: "dropdown-item" %>
             </div>
-            
 
           </li>
 
-          <li class="nav-item">
-          <%= link_to "Addresses", unclean_addresses_path, class:'nav-link' %>
-          
-          </li>
+ 
 
 
 

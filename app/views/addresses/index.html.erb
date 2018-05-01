@@ -20,7 +20,7 @@
 
   <tbody>
     <% @addresses.each do |address| %>
-      <tr>
+      <tr data-link="<%= constituent_path(address.constituent)%>">
         <td><%= address.address_id %></td>
         <td><%= link_to address.constituent.name, constituent_path(address.constituent.id) %></td>
         <td><%= address.address_1 %></td>

@@ -13,7 +13,7 @@
 
   <tbody>
     <% @constituent_membership_records.each do |constituent_membership_record| %>
-      <tr>
+      <tr data-link="<%= constituent_path(constituent_membership_record.constituent)%>">
         <td><%= constituent_membership_record.lookup_id %></td>
         <td><%= constituent_membership_record.membership_id %></td>
         <td><%= link_to 'Show', constituent_membership_record %></td>

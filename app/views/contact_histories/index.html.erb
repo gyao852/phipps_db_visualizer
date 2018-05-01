@@ -18,7 +18,7 @@
 
       <tbody>
         <% @contact_histories.each do |contact_history| %>
-          <tr>
+          <tr data-link="<%= constituent_path(contact_history.constituent)%>">
             
             <td><%= contact_history.constituent.name %></td>
             <td><%= contact_history.contact_type %></td>

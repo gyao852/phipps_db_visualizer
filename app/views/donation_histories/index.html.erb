@@ -21,7 +21,7 @@
 
       <tbody>
         <% @donation_histories.each do |donation_history| %>
-          <tr>
+          <tr data-link="<%= constituent_path(donation_history.constituent)%>">
             <td><%= donation_history.donation_history_id %></td>
             <td><%= donation_history.constituent.full_name %></td>
             <td><%= donation_history.amount %></td>

@@ -34,17 +34,19 @@ class Event < ApplicationRecord
     end
     return count
   end
-  def generate_attendance_report
-    filename = 'reports/attendance-report' + self.event_id + '.csv'
-    CSV.open(filename, 'wb') do |csv|
+
+  def self.generate_attendance_report(selected_event_id)
+    puts selected_event_id
+    result = CSV.generate do |csv|
       csv << ["Date", "Event"]
-      csv << [self.start_date_time, self.event_name]
+      csv << [Event.find_by(event_id:selected_event_id.to_s).start_date_time, Event.find_by(event_id:selected_event_id.to_s).event_name]
       csv << ["Constituent", "Email", "RSVP", "Attendance"]
-      relevant_ce = ConstituentEvent.where(event_id:self.event_id)
+      relevant_ce = ConstituentEvent.where(event_id: selected_event_id)
       relevant_ce.each do |ce|
         csv << [ce.constituent.name, ce.constituent.email_id, ce.status, ce.attend]
       end
     end
+    return result
   end
 
   # def self.generate_event_report(start_date, end_date)

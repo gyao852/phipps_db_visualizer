@@ -13,7 +13,7 @@
 import csv
 import pandas as pd
 import re
-import numpy as np3
+import numpy as np
 
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
@@ -333,7 +333,7 @@ def clean_phone(v):
     else:
         number_only = re.match(r'[\d]{3}[\s . , /]?[\d]{3}[\s . , /]?[\d]{4}[, / . \s]?', cpnum)
         if number_only is not None:
-            cpnum = number_only[0].replace(' ','').replace('/','').replace(',','').replace('.','')
+            cpnum = number_only.group(0)[0].replace(' ','').replace('/','').replace(',','').replace('.','')
             return "("+cpnum[:3]+")"+" "+cpnum[3:6]+"-"+cpnum[6:11]
         else:
             return "INVALID"

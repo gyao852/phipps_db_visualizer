@@ -2,7 +2,7 @@
 <h4 class="card-header">Unclean Constituent Information</h4>
 <div class='card-body'>
   <ul class='list-group list-group-flush'>
-    <li class="list-group-item">    
+    <li class="list-group-item">
       <strong>Name:</strong>
       <%= @unclean_constituent.name %>
     </li>
@@ -70,7 +70,7 @@
         <%= @unclean_constituent.dob %>
       <% end %>
     </li>
-    
+
     <li class="list-group-item">
         <strong>Do not email:</strong>
         <%= @unclean_constituent.do_not_email.nil? ? 'N/A' : @unclean_constituent.do_not_email %>
@@ -82,10 +82,10 @@
     </li>
 
     <li class="list-group-item">
-        <strong>Phone Incomplete Names:</strong>
+        <strong>Incomplete Name:</strong>
         <%= @unclean_constituent.incomplete_names  %>
     </li>
-    
+
     <li class="list-group-item">
         <strong>Invalid Email: </strong>
         <%= @unclean_constituent.invalid_emails%>
@@ -105,7 +105,7 @@
         <strong>Duplicate:</strong>
         <%= @unclean_constituent.duplicate %>
     </li>
-    
+
     <li class="list-group-item">
         <strong>Duplicate IDs: </strong>
         <%= @unclean_constituent.duplicate_lookup_ids.nil? ? 'N/A' : @unclean_constituent.duplicate_lookup_ids %>
@@ -115,8 +115,8 @@
   </ul>
 
 
-  
+
   </div>
 
-  
+
 </div>

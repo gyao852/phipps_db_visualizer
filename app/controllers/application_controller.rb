@@ -16,4 +16,11 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, alert: 'You need to log in to view this page.' if current_user.nil?
   end
 
+  def search
+    @nav_status = 'db'
+    @q = "%#{params[:query]}%"
+    @result_constituents = Constituent.where("name LIKE ? or lookup_id LIKE ? or last_group LIKE ? or email_id LIKE ? or phone LIKE ?",
+      @q, @q, @q, @q, @q).paginate(:page => params[:page], :per_page => 30)
+  end
+
 end

@@ -891,7 +891,7 @@ final_duplicate = ccdf.copy()
 
 final_duplicate['duplicate_lookup_ids'] = ''
 for key in duplicate_names:
-    final_duplicate.loc[final_duplicate['lookup_id'] == key, 'duplicate_lookup_ids'] = ', '.join(duplicate_names[key])
+    final_duplicate.loc[final_duplicate['lookup_id'] == key, 'duplicate_lookup_ids'] = '.'.join(duplicate_names[key])
 final_duplicate = final_duplicate[final_duplicate['duplicate_lookup_ids'] !='']
 final_duplicate = final_duplicate.drop_duplicates('lookup_id')
 final_duplicate.drop(final_duplicate.iloc[:,17:-1], axis=1,inplace=True)

@@ -14,9 +14,9 @@ import csv
 import pandas as pd
 import re
 import numpy as np
-
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
+from pandas_schema import Column, Schema
+# from fuzzywuzzy import fuzz
+# from fuzzywuzzy import process
 
 # ### Read CSV files
 
@@ -333,7 +333,8 @@ def clean_phone(v):
     else:
         number_only = re.match(r'[\d]{3}[\s . , /]?[\d]{3}[\s . , /]?[\d]{4}[, / . \s]?', cpnum)
         if number_only is not None:
-            cpnum = number_only.group(0)[0].replace(' ','').replace('/','').replace(',','').replace('.','')
+            cpnum = number_only.group(0).replace(' ','').replace('/','').replace(',','').replace('.','')
+            #cpnum = number_only[0].replace(' ','').replace('/','').replace(',','').replace('.','')
             return "("+cpnum[:3]+")"+" "+cpnum[3:6]+"-"+cpnum[6:11]
         else:
             return "INVALID"
@@ -944,7 +945,7 @@ columns = ['lookup_id','address_1','city','state','zip','country',
            'membership_level','membership_level_type']
 incomplete_invalid = incomplete_invalid[columns]
 columns = ['lookup_id','address_1','city','state','zip','country',
-           'address_type', 'date_added', 'invalid_addresses_1', 'invalid_cities', 'invalid_states',
+           'address_type', 'date_added', 'invalid_address_1', 'invalid_cities', 'invalid_states',
            'invalid_countries','invalid_zips', 'suffix','title', 'name', 'last_group', 'email_id','phone',
            'dob','do_not_email','duplicate','constituent_type','phone_notes', 'incomplete_names',
            'invalid_emails', 'invalid_phones', 'no_contact','duplicate_lookup_ids', 'membership_id',
@@ -952,7 +953,7 @@ columns = ['lookup_id','address_1','city','state','zip','country',
 incomplete_invalid.columns = columns
 incomplete_invalid_address = incomplete_invalid.copy()
 incomplete_invalid_address.drop(incomplete_invalid_address.iloc[:,13:],axis=1,inplace=True)
-incomplete_invalid_address['invalid_addresses_1'] = incomplete_invalid_address['invalid_addresses_1'].fillna(value=False)
+incomplete_invalid_address['invalid_address_1'] = incomplete_invalid_address['invalid_address_1'].fillna(value=False)
 incomplete_invalid_address['invalid_cities'] = incomplete_invalid_address['invalid_cities'].fillna(value=False)
 incomplete_invalid_address['invalid_states'] = incomplete_invalid_address['invalid_states'].fillna(value=False)
 incomplete_invalid_address['invalid_countries'] = incomplete_invalid_address['invalid_countries'].fillna(value=False)

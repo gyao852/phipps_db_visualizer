@@ -23,11 +23,7 @@ class Import < ApplicationRecord
 
 
 def save_cmuteamconstituentsexport_csv_file
-	puts ("In Import.rb save_cmuteamconstituentsexport_csv_file")
-	puts ("Creating this file in public directory")
 	CSV.open("#{Rails.root}/public/CMU Team Constituents Export.csv", "wb") do |csv|
-		puts ("Opening the following file to import")
-		puts (cmuteamconstituentsexport_file)
 		CSV.foreach(cmuteamconstituentsexport_file, headers: false,
 			encoding: "bom|utf-8") do |row|
 					csv << row

@@ -4,7 +4,7 @@ class CleanWorker
 
   def perform()
     puts "Sidekiq is running the cleaning script."
-    `python public/cleaning_script.py`
+    `python3 public/cleaning_script.py`
     puts "Sidekiq is finished with the cleaning script."
   end
 

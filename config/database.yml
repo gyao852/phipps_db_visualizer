@@ -23,6 +23,6 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: db/production
+  database: datamanager
   pool: 5
   timeout: 5000

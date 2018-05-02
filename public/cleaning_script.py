@@ -13,7 +13,7 @@
 import csv
 import pandas as pd
 import re
-import numpy as np3
+import numpy as np
 
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
@@ -61,7 +61,7 @@ duplicate_records = pd.DataFrame() # ZIP code not abiding to US/Canadian format
 
 
 # ## 1) Setting up initial database for constituent, address, and membership
-
+print ("Reached line 64, entered python.")
 # In[903]:
 
 
@@ -333,7 +333,7 @@ def clean_phone(v):
     else:
         number_only = re.match(r'[\d]{3}[\s . , /]?[\d]{3}[\s . , /]?[\d]{4}[, / . \s]?', cpnum)
         if number_only is not None:
-            cpnum = number_only[0].replace(' ','').replace('/','').replace(',','').replace('.','')
+            cpnum = number_only.group(0)[0].replace(' ','').replace('/','').replace(',','').replace('.','')
             return "("+cpnum[:3]+")"+" "+cpnum[3:6]+"-"+cpnum[6:11]
         else:
             return "INVALID"
@@ -741,7 +741,7 @@ donation_program['program'] = donation_program['program'].str.strip().str.lstrip
 # ### 5) Reporting potential dupliates
 
 # In[927]:
-
+print ("Reached line 744, just before duplicate algorithm.")
 
 # Needed imports:
 from Levenshtein import *
@@ -882,7 +882,7 @@ for key in duplicate_names:
 
 # In[929]:
 
-
+print ("Reached line 885, just after duplicate algorithm.")
 # Creating a df that houses all duplicates
 final_duplicate = ccdf.copy()
 
@@ -970,7 +970,7 @@ incomplete_invalid_constituent['no_contact'] = incomplete_invalid_constituent['n
 incomplete_invalid_constituent['duplicate'] = incomplete_invalid_constituent['duplicate'].fillna(value=False)
 incomplete_invalid_constituent['duplicate_lookup_ids'] = incomplete_invalid_constituent['duplicate_lookup_ids'].fillna(value='')
 
-
+print ("Reached line 973, just before exports.")
 # ### 5) Exporting into final databases for ERD
 
 # In[930]:
@@ -986,3 +986,5 @@ constituent_event.to_csv('public/'+'constituent_event.csv', index=False)
 event.to_csv('public/'+'event.csv', index=False)
 incomplete_invalid_address.to_csv('public/'+'incomplete_invalid_address.csv', index=False)
 incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.csv', index=False)
+
+print ("Reached line 990, just after exports.")

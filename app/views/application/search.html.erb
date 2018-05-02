@@ -1,0 +1,16 @@
+
+
+<div class="container-fluid  bg-white">
+
+    <div class='inner-container'>
+
+    <% if notice %>
+        <p id="notice" class='bg-white'><%= notice %></p>
+    <%end %>
+
+    <h2  class="text-primary-dark">Search Results</h2>
+
+
+        <%= @result_constituents.all.map{|x| x.name} %>
+    </div>
+</div>

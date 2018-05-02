@@ -11,6 +11,10 @@ class ConstituentsController < ApplicationController
     @constituents = Constituent.all.paginate(:page => params[:page], :per_page => 30)
   end
 
+  def search
+    @q = "%#{params[:query]}"
+  end
+
   def index_individuals
     @nav_status = 'db'
     @constituents = Constituent.individuals.paginate(:page => params[:page], :per_page => 30)

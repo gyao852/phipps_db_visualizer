@@ -25,13 +25,13 @@ from pandas_schema import Column, Schema
 
 # Read csv files and place into dataframes
 # Constituent Records + Membership Records
-cdf = pd.read_csv('public/CMU Team Constituents Export.csv',dtype="str",na_filter=False)
+cdf = pd.read_csv('public/CMU Team Constituents Export.csv',dtype="str",na_filter='')
 # Donation Records
-ddf = pd.read_csv('public/CMU Team Donations Export.csv',dtype="str",na_filter=False)
+ddf = pd.read_csv('public/CMU Team Donations Export.csv',dtype="str",na_filter='')
 # Event + Event Attendance Records
-edf = pd.read_csv('public/CMU Team Event Attendance Export.csv',dtype="str",na_filter=False)
+edf = pd.read_csv('public/CMU Team Event Attendance Export.csv',dtype="str",na_filter='')
 # Contact History Records
-chdf = pd.read_csv('public/CMU Team Contact History Export.csv',dtype="str",na_filter=False)
+chdf = pd.read_csv('public/CMU Team Contact History Export.csv',dtype="str",na_filter='')
 
 # ### Additional Dataframes (Global variables)
 
@@ -412,7 +412,7 @@ ccdf['dob'] = ccdf['dob'].apply(clean_Date)
 # Cleans up dates
 def clean_dne(v):
     if (v==''):
-        v = False
+        v = ''
     return v
 ccdf['email_id'] = ccdf['email_id'].apply(clean_dne)
 
@@ -953,22 +953,22 @@ columns = ['lookup_id','address_1','city','state','zip','country',
 incomplete_invalid.columns = columns
 incomplete_invalid_address = incomplete_invalid.copy()
 incomplete_invalid_address.drop(incomplete_invalid_address.iloc[:,13:],axis=1,inplace=True)
-incomplete_invalid_address['invalid_address_1'] = incomplete_invalid_address['invalid_address_1'].fillna(value=False)
-incomplete_invalid_address['invalid_cities'] = incomplete_invalid_address['invalid_cities'].fillna(value=False)
-incomplete_invalid_address['invalid_states'] = incomplete_invalid_address['invalid_states'].fillna(value=False)
-incomplete_invalid_address['invalid_countries'] = incomplete_invalid_address['invalid_countries'].fillna(value=False)
-incomplete_invalid_address['invalid_zips'] = incomplete_invalid_address['invalid_zips'].fillna(value=False)
+incomplete_invalid_address['invalid_address_1'] = incomplete_invalid_address['invalid_address_1'].fillna(value='')
+incomplete_invalid_address['invalid_cities'] = incomplete_invalid_address['invalid_cities'].fillna(value='')
+incomplete_invalid_address['invalid_states'] = incomplete_invalid_address['invalid_states'].fillna(value='')
+incomplete_invalid_address['invalid_countries'] = incomplete_invalid_address['invalid_countries'].fillna(value='')
+incomplete_invalid_address['invalid_zips'] = incomplete_invalid_address['invalid_zips'].fillna(value='')
 
 
 
 incomplete_invalid_constituent = incomplete_invalid.copy()
 incomplete_invalid_constituent.drop(incomplete_invalid_constituent.iloc[:,29:],axis=1,inplace=True)
 incomplete_invalid_constituent.drop(incomplete_invalid_constituent.iloc[:,1:13],axis=1,inplace=True)
-incomplete_invalid_constituent['incomplete_names'] = incomplete_invalid_constituent['incomplete_names'].fillna(value=False)
-incomplete_invalid_constituent['invalid_emails'] = incomplete_invalid_constituent['invalid_emails'].fillna(value=False)
-incomplete_invalid_constituent['invalid_phones'] = incomplete_invalid_constituent['invalid_phones'].fillna(value=False)
-incomplete_invalid_constituent['no_contact'] = incomplete_invalid_constituent['no_contact'].fillna(value=False)
-incomplete_invalid_constituent['duplicate'] = incomplete_invalid_constituent['duplicate'].fillna(value=False)
+incomplete_invalid_constituent['incomplete_names'] = incomplete_invalid_constituent['incomplete_names'].fillna(value='')
+incomplete_invalid_constituent['invalid_emails'] = incomplete_invalid_constituent['invalid_emails'].fillna(value='')
+incomplete_invalid_constituent['invalid_phones'] = incomplete_invalid_constituent['invalid_phones'].fillna(value='')
+incomplete_invalid_constituent['no_contact'] = incomplete_invalid_constituent['no_contact'].fillna(value='')
+incomplete_invalid_constituent['duplicate'] = incomplete_invalid_constituent['duplicate'].fillna(value='')
 incomplete_invalid_constituent['duplicate_lookup_ids'] = incomplete_invalid_constituent['duplicate_lookup_ids'].fillna(value='')
 
 print ("Reached line 973, just before exports.")

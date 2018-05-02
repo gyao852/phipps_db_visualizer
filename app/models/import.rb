@@ -76,7 +76,25 @@ end
 
 	def import_uncleanconstituent_csv_data
 		CSV.foreach("#{Rails.root}/public/incomplete_invalid_constituent.csv", headers:true) do |row|
-      		create_uncleanconstituent(row)
+					if (row[9]==nil)
+						row[9] = false
+					end
+					if (row[12]==nil)
+						row[12] = false
+					end
+					if (row[13]==nil)
+						row[13] = false
+					end
+					if (row[14]==nil)
+						row[14] = false
+					end
+					if (row[15]==nil)
+						row[15] = false
+					end
+					if (row[16]==nil)
+						row[16] = {}
+					end
+					create_uncleanconstituent(row)
     	end
     	@unclean_constituent_lookup_id = UncleanConstituent.pluck(:lookup_id)
 	end
@@ -94,7 +112,22 @@ end
 
 	def import_uncleanaddress_csv_data
 		CSV.foreach("#{Rails.root}/public/incomplete_invalid_address.csv", headers:true) do |row|
-      		create_uncleanaddress(row)
+			if (row[12]==nil)
+				row[12] = false
+			end
+			if (row[13]==nil)
+				row[13] = false
+			end
+			if (row[14]==nil)
+				row[14] = false
+			end
+			if (row[15]==nil)
+				row[15] = false
+			end
+			if (row[16]==nil)
+				row[16] = false
+			end
+					create_uncleanaddress(row)
     	end
 	end
 

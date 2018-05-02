@@ -154,7 +154,7 @@ class HomeController < ApplicationController
 
     # Methods to functional reports
     def generate_donation_report
-        report Constituent.generate_donations_report(params[:date])
+        report = Constituent.generate_donations_report(params[:date])
         send_data report, :filename => "donations_report", :type => "text/csv"
     end
 
@@ -165,9 +165,8 @@ class HomeController < ApplicationController
     end
 
     def generate_attendance_report
-        @event = Event.find_by(event_id: params[:events][:ids])   
-        report = @event.generate_attendance_report
-        send_data report, :filename => "event_attendance_report", :type => "text/csv"
+       report  = Event.generate_attendance_report(params[:events][:ids]) 
+       send_data report, :filename => "attendance_report", :type => "text/csv"
     end
         
 

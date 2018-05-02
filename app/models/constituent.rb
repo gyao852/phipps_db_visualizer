@@ -64,11 +64,19 @@ class Constituent < ApplicationRecord
   # generates report of constituents who have not donated after a certain date and most recent doantions they made
   def self.generate_donations_report(date)
     d = Date.parse(date)
-    filename = 'reports/donation-history-report-before-'+date+".csv"
-    donations = Constituent.last_donation_before(d)
+    sql = "Select constituents.lookup_id, constituents.name, max(donation_histories.date), donation_histories.amount
+           From constituents
+           Join donation_histories
+           On constituents.lookup_id = donation_histories.lookup_id
+           where donation_histories.date IS NOT NULL and donation_histories.date < '#{d}'
+           Group by constituents.lookup_id, donation_histories.amount, constituents.name,donation_histories.date
+           Order by date;"
+    donations  = ActiveRecord::Base.connection.execute(sql)
+    
     result = CSV.generate do |csv|
       csv << ["Constituent", "Email", "Last Donation Date", "Last Donation Amount"]
-      donations.each do |row|
+      donations.each_row do |row|
+        puts row
         csv << row
       end
     end
@@ -95,6 +103,14 @@ class Constituent < ApplicationRecord
 
   def self.generate_contact_history_report(date)
     d = Date.parse(date)
+    sql = "Select constituents.lookup_id, constituents.name, max(contact_histories.), contact_histories.
+           From constituents
+           Join contact_histories
+           On constituents.lookup_id = contact_histories.lookup_id
+           where donation_histories.date IS NOT NULL and donation_histories.date < '#{d}'
+           Group by constituents.lookup_id, donation_histories.amount, constituents.name,donation_histories.date
+           Order by date;"
+    donations  = ActiveRecord::Base.connection.execute(sql)
     to_contact = Constituent.last_contacted_before(d)
     result = CSV.generate do |csv|
       csv << ["Constituent", "Email", "Do Not Email"]

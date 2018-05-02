@@ -1,9 +1,9 @@
 require 'bundler/capistrano'
 
-server '139.59.187.53', :web, :app, :db, primary: true # 
+server '139.59.187.53', :web, :app, :db, primary: true #
 set :application, "phipps_db_visualizer"
 set :user, 'phipps'
-set :group, 'admin' # Should this be admin?
+set :group, 'admin'
 set :deploy_to, "/var/www/phipps_application/phipps_db_visualizer/"
 
 set :scm, 'git'
@@ -13,10 +13,6 @@ set :repository,  "git@github.com:gyao852/phipps_db_visualizer.git"
 set :branch, 'master'
 
 set :user_sudo, false
-
-# whenever configuration (for cron jobs)
-# require 'whenever/capistrano'
-# set :whenever_command, 'bundle exec whenever'
 
 # share public/uploads
 set :shared_children, shared_children + %w{public/uploads}
@@ -30,6 +26,14 @@ ssh_options[:forward_agent] = true
 # keep only the last 5 releases
 after 'deploy', 'deploy:cleanup'
 after 'deploy:restart', 'deploy:cleanup'
+
+
+namespace :sidekiq do
+  task :start do
+    run "cd #{current_path} && bundle exec sidekiq -c 10 -e production -L log/sidekiq.log -d"
+    p capture("ps aux | grep sidekiq | awk '{print $2}' | sed -n 1p").strip!
+  end
+end
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do

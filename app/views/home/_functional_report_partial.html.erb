@@ -6,7 +6,7 @@
         <div class='card-body'>
             <p>Generate email list of constituents who have not donated since the selected date</p>
             <%= form_tag generate_donation_report_path, remote:false, method: "get" do %>
-                <%= date_field_tag 'date',:required => true, id:"donation-report-datepicker"%>
+                <%= date_field_tag 'date', id:"donation-report-datepicker"%>
                 <%= submit_tag 'Generate', class:'btn btn-primary'%>
             <% end %>
 

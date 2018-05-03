@@ -60,7 +60,11 @@ class Constituent < ApplicationRecord
   
   # generates report of constituents who have not donated after a certain date and most recent doantions they made
   def self.generate_donations_report(date)
-    d = Date.parse(date)
+    if date ==  ""
+      d = Date.today
+    else
+      d = Date.parse(date)
+    end
     sql = "Select constituents.lookup_id, constituents.name, max(donation_histories.date) over (partition by constituents.lookup_id) as max_date
            From constituents
            Join donation_histories
@@ -106,7 +110,11 @@ class Constituent < ApplicationRecord
   end
 
   def self.generate_contact_history_report(date)
-    d = Date.parse(date)
+    if date ==  ""
+      d = Date.today
+    else
+      d = Date.parse(date)
+    end
     sql = "Select constituents.lookup_id, constituents.email_id, constituents.do_not_email, max(contact_histories.date) over (partition by constituents.lookup_id) as max_date
            From constituents
            Join contact_histories

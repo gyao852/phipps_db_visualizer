@@ -1,1 +1,5 @@
+<%= content_tag :table do %>
+    <%= content_tag :th, sort_link(@q, :name) %>
+  <% end %>
+
 <%= render :partial => 'index_structure', locals: {constituents: @constituents, table_name: 'All Constituents'} %>

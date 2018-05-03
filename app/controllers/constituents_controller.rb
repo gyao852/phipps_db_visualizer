@@ -9,21 +9,33 @@ class ConstituentsController < ApplicationController
   def index
     @nav_status = 'db'
     @constituents = Constituent.all.paginate(:page => params[:page], :per_page => 30)
+    @q = Constituent.ransack(params[:q])
+    @result = @q.result(distinct: true)
+  end
+
+  def search
+    @q = "%#{params[:query]}"
   end
 
   def index_individuals
     @nav_status = 'db'
     @constituents = Constituent.individuals.paginate(:page => params[:page], :per_page => 30)
+    @q = Constituent.ransack(params[:q])
+    @result = @q.result(distinct: true)
   end
 
   def index_households
     @nav_status = 'db'
     @constituents = Constituent.households.paginate(:page => params[:page], :per_page => 30)
+    @q = Constituent.ransack(params[:q])
+    @result = @q.result(distinct: true)
   end
 
   def index_organizations
     @nav_status = 'db'
     @constituents = Constituent.organizations.paginate(:page => params[:page], :per_page => 30)
+    @q = Constituent.ransack(params[:q])
+    @result = @q.result(distinct: true)
   end
 
   # GET /constituents/1

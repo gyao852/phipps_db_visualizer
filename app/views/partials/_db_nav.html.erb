@@ -37,10 +37,18 @@
 
           <li class= 'nav-item'>
             <%= link_to 'Contact', contact_histories_path, class: 'nav-link' %>
+            
           </li>
 
 
         </ul>
-
+        <%= form_tag(search_all_path, {class:"form-inline my-2 my-lg-0"}) do %>
+          <input class="form-control mr-sm-2" type="search text" placeholder="Search" name="query" aria-label="Search">
+          <%= submit_tag "Search", :class => "btn btn-primary my-2 my-sm-0", :type => 'submit' %>
+        <% end %>
+        
+      
+        
+     
       </div>
 </nav>

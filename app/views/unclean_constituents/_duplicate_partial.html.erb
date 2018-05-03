@@ -1,0 +1,35 @@
+<div class='card bg-white show-constituent-addresses'>
+    <h4 class="card-header">Duplicates</h4>
+    <div class="card-body">
+    <% if @unclean_constituent.duplicate_lookup_ids.nil? || @unclean_constituent.duplicate_lookup_ids.empty?  %>
+        No duplicates detected.
+    <% else %>
+        <table class='table table-sm table-bordered table-hover sortable '>
+        <thead>
+            <tr>
+            <th scope='col'>Lookup Id</th>
+            <th scope='col'>Name</th>
+            <th scope='col'>Last/Group</th>
+            <th scope='col'>Phone</th>
+            <th scope='col'>Email</th>
+            <th scope='col'>Type</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @unclean_constituent.duplicate_lookup_ids.each do |d| %>
+                <% c = UncleanConstituent.find_by(lookup_id: d) %>
+                <tr data-link="<%= unclean_constituent_path(c) %>">
+                    <td><%= c.lookup_id %></td>
+                    <td><%= c.name %></td>
+                    <td><%= c.last_group %></td>
+                    <td><%= c.phone %></td>
+                    <td><%= c.email_id %></td>
+                    <td><%= c.constituent_type %> </td>
+                </tr>
+            <% end %>
+        </tbody>
+        </table>
+    <% end %>
+    </div>
+</div>

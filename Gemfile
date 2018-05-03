@@ -27,7 +27,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-
+gem 'ransack'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 gem 'bootstrap', '~> 4.0.0'

@@ -159,6 +159,9 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
 
+  get 'search_constituents' => 'constituents#search', as: :search_constituents
+  post 'search' => 'application#search', as: :search_all
+
   # Set the root url
   root :to => 'home#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -14,9 +14,9 @@ import csv
 import pandas as pd
 import re
 import numpy as np
-
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
+from pandas_schema import Column, Schema
+# from fuzzywuzzy import fuzz
+# from fuzzywuzzy import process
 
 # ### Read CSV files
 
@@ -25,13 +25,13 @@ from fuzzywuzzy import process
 
 # Read csv files and place into dataframes
 # Constituent Records + Membership Records
-cdf = pd.read_csv('public/CMU Team Constituents Export.csv',dtype="str",na_filter=False)
+cdf = pd.read_csv('public/CMU Team Constituents Export.csv',dtype="str",na_filter='')
 # Donation Records
-ddf = pd.read_csv('public/CMU Team Donations Export.csv',dtype="str",na_filter=False)
+ddf = pd.read_csv('public/CMU Team Donations Export.csv',dtype="str",na_filter='')
 # Event + Event Attendance Records
-edf = pd.read_csv('public/CMU Team Event Attendance Export.csv',dtype="str",na_filter=False)
+edf = pd.read_csv('public/CMU Team Event Attendance Export.csv',dtype="str",na_filter='')
 # Contact History Records
-chdf = pd.read_csv('public/CMU Team Contact History Export.csv',dtype="str",na_filter=False)
+chdf = pd.read_csv('public/CMU Team Contact History Export.csv',dtype="str",na_filter='')
 
 # ### Additional Dataframes (Global variables)
 
@@ -61,7 +61,7 @@ duplicate_records = pd.DataFrame() # ZIP code not abiding to US/Canadian format
 
 
 # ## 1) Setting up initial database for constituent, address, and membership
-
+print ("Reached line 64, entered python.")
 # In[903]:
 
 
@@ -333,7 +333,8 @@ def clean_phone(v):
     else:
         number_only = re.match(r'[\d]{3}[\s . , /]?[\d]{3}[\s . , /]?[\d]{4}[, / . \s]?', cpnum)
         if number_only is not None:
-            cpnum = number_only.group(0)[0].replace(' ','').replace('/','').replace(',','').replace('.','')
+            cpnum = number_only.group(0).replace(' ','').replace('/','').replace(',','').replace('.','')
+            #cpnum = number_only[0].replace(' ','').replace('/','').replace(',','').replace('.','')
             return "("+cpnum[:3]+")"+" "+cpnum[3:6]+"-"+cpnum[6:11]
         else:
             return "INVALID"
@@ -411,7 +412,7 @@ ccdf['dob'] = ccdf['dob'].apply(clean_Date)
 # Cleans up dates
 def clean_dne(v):
     if (v==''):
-        v = False
+        v = ''
     return v
 ccdf['email_id'] = ccdf['email_id'].apply(clean_dne)
 
@@ -741,7 +742,7 @@ donation_program['program'] = donation_program['program'].str.strip().str.lstrip
 # ### 5) Reporting potential dupliates
 
 # In[927]:
-
+print ("Reached line 744, just before duplicate algorithm.")
 
 # Needed imports:
 from Levenshtein import *
@@ -882,7 +883,7 @@ for key in duplicate_names:
 
 # In[929]:
 
-
+print ("Reached line 885, just after duplicate algorithm.")
 # Creating a df that houses all duplicates
 final_duplicate = ccdf.copy()
 
@@ -944,7 +945,7 @@ columns = ['lookup_id','address_1','city','state','zip','country',
            'membership_level','membership_level_type']
 incomplete_invalid = incomplete_invalid[columns]
 columns = ['lookup_id','address_1','city','state','zip','country',
-           'address_type', 'date_added', 'invalid_addresses_1', 'invalid_cities', 'invalid_states',
+           'address_type', 'date_added', 'invalid_address_1', 'invalid_cities', 'invalid_states',
            'invalid_countries','invalid_zips', 'suffix','title', 'name', 'last_group', 'email_id','phone',
            'dob','do_not_email','duplicate','constituent_type','phone_notes', 'incomplete_names',
            'invalid_emails', 'invalid_phones', 'no_contact','duplicate_lookup_ids', 'membership_id',
@@ -952,25 +953,25 @@ columns = ['lookup_id','address_1','city','state','zip','country',
 incomplete_invalid.columns = columns
 incomplete_invalid_address = incomplete_invalid.copy()
 incomplete_invalid_address.drop(incomplete_invalid_address.iloc[:,13:],axis=1,inplace=True)
-incomplete_invalid_address['invalid_addresses_1'] = incomplete_invalid_address['invalid_addresses_1'].fillna(value=False)
-incomplete_invalid_address['invalid_cities'] = incomplete_invalid_address['invalid_cities'].fillna(value=False)
-incomplete_invalid_address['invalid_states'] = incomplete_invalid_address['invalid_states'].fillna(value=False)
-incomplete_invalid_address['invalid_countries'] = incomplete_invalid_address['invalid_countries'].fillna(value=False)
-incomplete_invalid_address['invalid_zips'] = incomplete_invalid_address['invalid_zips'].fillna(value=False)
+incomplete_invalid_address['invalid_address_1'] = incomplete_invalid_address['invalid_address_1'].fillna(value='')
+incomplete_invalid_address['invalid_cities'] = incomplete_invalid_address['invalid_cities'].fillna(value='')
+incomplete_invalid_address['invalid_states'] = incomplete_invalid_address['invalid_states'].fillna(value='')
+incomplete_invalid_address['invalid_countries'] = incomplete_invalid_address['invalid_countries'].fillna(value='')
+incomplete_invalid_address['invalid_zips'] = incomplete_invalid_address['invalid_zips'].fillna(value='')
 
 
 
 incomplete_invalid_constituent = incomplete_invalid.copy()
 incomplete_invalid_constituent.drop(incomplete_invalid_constituent.iloc[:,29:],axis=1,inplace=True)
 incomplete_invalid_constituent.drop(incomplete_invalid_constituent.iloc[:,1:13],axis=1,inplace=True)
-incomplete_invalid_constituent['incomplete_names'] = incomplete_invalid_constituent['incomplete_names'].fillna(value=False)
-incomplete_invalid_constituent['invalid_emails'] = incomplete_invalid_constituent['invalid_emails'].fillna(value=False)
-incomplete_invalid_constituent['invalid_phones'] = incomplete_invalid_constituent['invalid_phones'].fillna(value=False)
-incomplete_invalid_constituent['no_contact'] = incomplete_invalid_constituent['no_contact'].fillna(value=False)
-incomplete_invalid_constituent['duplicate'] = incomplete_invalid_constituent['duplicate'].fillna(value=False)
+incomplete_invalid_constituent['incomplete_names'] = incomplete_invalid_constituent['incomplete_names'].fillna(value='')
+incomplete_invalid_constituent['invalid_emails'] = incomplete_invalid_constituent['invalid_emails'].fillna(value='')
+incomplete_invalid_constituent['invalid_phones'] = incomplete_invalid_constituent['invalid_phones'].fillna(value='')
+incomplete_invalid_constituent['no_contact'] = incomplete_invalid_constituent['no_contact'].fillna(value='')
+incomplete_invalid_constituent['duplicate'] = incomplete_invalid_constituent['duplicate'].fillna(value='')
 incomplete_invalid_constituent['duplicate_lookup_ids'] = incomplete_invalid_constituent['duplicate_lookup_ids'].fillna(value='')
 
-
+print ("Reached line 973, just before exports.")
 # ### 5) Exporting into final databases for ERD
 
 # In[930]:
@@ -986,3 +987,5 @@ constituent_event.to_csv('public/'+'constituent_event.csv', index=False)
 event.to_csv('public/'+'event.csv', index=False)
 incomplete_invalid_address.to_csv('public/'+'incomplete_invalid_address.csv', index=False)
 incomplete_invalid_constituent.to_csv('public/'+'incomplete_invalid_constituent.csv', index=False)
+
+print ("Reached line 990, just after exports.")

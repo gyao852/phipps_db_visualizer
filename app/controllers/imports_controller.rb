@@ -27,27 +27,10 @@ class ImportsController < ApplicationController
           if File.exist?("#{Rails.root}/public/cmuTeamDonationProgramExport.csv")
             File.delete("#{Rails.root}/public/cmuTeamDonationProgramExport.csv")
           end
-          if File.exist?("#{Rails.root}/public/constituentsfile.csv")
-      			File.delete("#{Rails.root}/public/constituentsfile.csv")
-      		end
-          if File.exist?("#{Rails.root}/public/addressesfile.csv")
-            File.delete("#{Rails.root}/public/addressesfile.csv")
-          end
           MovingWorker.perform_async(params[:cmuteamconstituentsexport].path,
             params[:cmuteameventattendanceexport].path,
             params[:cmuteamcommunicationhistoryexport].path,
             params[:cmuteamdonationexport].path)
-
-
-          # importer = Import.new(params[:cmuteamconstituentsexport],
-          #   params[:cmuteameventattendanceexport],
-          #   params[:cmuteamcommunicationhistoryexport],
-          #   params[:cmuteamdonationexport])
-          #
-          # importer.save_cmuteamconstituentsexport_csv_file
-          # importer.save_cmuteamdonationsexport_csv_file
-          # importer.save_cmuteamcontacthistoryexport_csv_file
-          # importer.save_cmuteameventattendanceexport_csv_file
           redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
     	end
   	end

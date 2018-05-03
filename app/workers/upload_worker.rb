@@ -36,6 +36,42 @@ class UploadWorker
     #importer.import_donationhistory_csv_data
     #importer.import_membershiprecord_csv_data
     #importer.import_constituentmembershiprecord_csv_data
+
+
+    if File.exist?("#{Rails.root}/public/constituent.csv")
+        File.delete("#{Rails.root}/public/constituent.csv")
+    end
+    if File.exist?("#{Rails.root}/public/membership_record.csv")
+        File.delete("#{Rails.root}/public/membership_record.csv")
+    end
+    if File.exist?("#{Rails.root}/public/incomplete_invalid_constituent.csv")
+        File.delete("#{Rails.root}/public/incomplete_invalid_constituent.csv")
+    end
+    if File.exist?("#{Rails.root}/public/incomplete_invalid_address.csv")
+        File.delete("#{Rails.root}/public/incomplete_invalid_address.csv")
+    end
+    if File.exist?("#{Rails.root}/public/event.csv")
+        File.delete("#{Rails.root}/public/event.csv")
+    end
+    if File.exist?("#{Rails.root}/public/donation_program.csv")
+        File.delete("#{Rails.root}/public/donation_program.csv")
+    end
+    if File.exist?("#{Rails.root}/public/donation_history.csv")
+        File.delete("#{Rails.root}/public/donation_history.csv")
+    end
+    if File.exist?("#{Rails.root}/public/contact_history.csv")
+        File.delete("#{Rails.root}/public/contact_history.csv")
+    end
+    if File.exist?("#{Rails.root}/public/constituent_membership_record.csv")
+        File.delete("#{Rails.root}/public/constituent_membership_record.csv")
+    end
+    if File.exist?("#{Rails.root}/public/constituent_event.csv")
+        File.delete("#{Rails.root}/public/constituent_event.csv")
+    end
+    if File.exist?("#{Rails.root}/public/address.csv")
+        File.delete("#{Rails.root}/public/address.csv")
+    end
+         
     puts "Sidekiq is finished uploading to Rails Postgres Database"
   end
 

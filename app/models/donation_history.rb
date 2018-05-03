@@ -35,10 +35,6 @@ class DonationHistory < ApplicationRecord
 
   def self.import(file)
     CSV.foreach(file.path, headers:true) do |row|
-      # amount = row[3].to_i
-      # row[3]=amount
-      # date_string=row[4]
-      # row[4]=Date.strptime(date_string, '%m/%d/%Y')
       if row[1] != nil
         DonationHistory.create! row.to_hash
       end

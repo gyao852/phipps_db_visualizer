@@ -96,61 +96,61 @@ class HomeController < ApplicationController
     # Methods to generate unclean address reports
     def generate_invalid_zips_addresses_report
         report = UncleanAddress.generate_invalid_zips
-        send_data report, :filename => "Invalid_zip_report", :type => "text/csv"
+        send_data report, :filename => "Invalid_zip_report.csv", :type => "text/csv"
         redirect_to reports_path
 
     end
 
     def generate_invalid_addresses_1_report
         report = UncleanAddress.generate_invalid_address_1
-        send_data report, :filename => "Invalid_street_report", :type => "text/csv"
+        send_data report, :filename => "Invalid_street_report.csv", :type => "text/csv"
     end
 
     def generate_invalid_state_addresses_report
         report = UncleanAddress.generate_invalid_states
-        send_data report, :filename => "Invalid_state_report", :type => "text/csv"
+        send_data report, :filename => "Invalid_state_report.csv", :type => "text/csv"
     end
 
     def generate_invalid_city_addresses_report
         report = UncleanAddress.generate_invalid_cities
-        send_data report, :filename => "Invalid_city_report", :type => "text/csv"
+        send_data report, :filename => "Invalid_city_report.csv", :type => "text/csv"
     end
 
     def generate_invalid_country_addresses_report
         report =UncleanAddress.generate_invalid_countries
-        send_data report, :filename => "Invalid_country_report", :type => "text/csv"
+        send_data report, :filename => "Invalid_country_report.csv", :type => "text/csv"
     end
 
     # Methods to generate unclean constituent reports
     def generate_invalid_constituents_report
         report = UncleanConstituent.generate_all_invalid
-        send_data report, :filename => "Invalid_constituent_report", :type => "text/csv"
+        send_data report, :filename => "Invalid_constituent_report.csv", :type => "text/csv"
     end
 
 
     def generate_no_contact_constituents_report
         report = UncleanConstituent.generate_no_contact
-        send_data report, :filename => "Invalid_no_contact_report", :type => "text/csv"
+        send_data report, :filename => "Invalid_no_contact_report.csv", :type => "text/csv"
     end
 
     def generate_invalid_phone_constituents_report
         report = UncleanConstituent.generate_invalid_phones
-        send_data report, :filename => "Invalid_phone_report", :type => "text/csv"
+        send_data report, :filename => "Invalid_phone_report.csv", :type => "text/csv"
     end
 
     def generate_invalid_email_constituents_report
         report = UncleanConstituent.generate_invalid_emails
-        send_data report, :filename => "Invalid_email_report", :type => "text/csv"
+        send_data report, :filename => "Invalid_email_report.csv", :type => "text/csv"
     end
 
     def generate_incomplete_name_constituents_report
         report = UncleanConstituent.generate_incomplete_names
-        send_data report, :filename => "Invalid_name_report", :type => "text/csv"
+        send_data report, :filename => "Invalid_name_report.csv", :type => "text/csv"
     end
 
     def generate_duplicate_constituents_report
         report = UncleanConstituent.generate_duplicates
-        send_data report, :filename => "duplicate_report", :type => "text/csv"
+        send_data report, :filename => "duplicate_report.csv", :type => "text/csv"
     end
 
     # Methods to functional reports
@@ -167,7 +167,7 @@ class HomeController < ApplicationController
 
     def generate_attendance_report
        report  = Event.generate_attendance_report(params[:events][:ids]) 
-       send_data report, :filename => "attendance_report", :type => "text/csv"
+       send_data report, :filename => "attendance_report.csv", :type => "text/csv"
     end
         
 

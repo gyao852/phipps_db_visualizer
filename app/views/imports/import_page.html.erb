@@ -14,19 +14,19 @@
 
         <div class='card bg-white import-card mr-auto'>
             <div class='card-header'>
-                <h4>Constituents</h4>
+                <h4>CMU Team Constituents Export</h4>
             </div>
             <div class='card-body'>
-                <%= file_field_tag :cmuteamconstituentsexport, class: 'btn'%>
+                <%= file_field_tag :cmuteamconstituentsexport,:required => true, class: 'btn'%>
              </div>
          </div>
 
          <div class= 'card bg-white import-card mr-auto'>
             <div class='card-header'>
-                <h4>Donations</h4>
+                <h4>CMU Team Donations Export</h4>
             </div>
             <div class='card-body'>
-                <%= file_field_tag :cmuteamdonationexport, class: 'btn'%>
+                <%= file_field_tag :cmuteamdonationexport,:required => true, class: 'btn'%>
             </div>
         </div>
 </div>
@@ -35,26 +35,26 @@
         
         <div class= 'card bg-white import-card mr-auto'>
             <div class='card-header'>
-                <h4>Commmunication</h4>
+                <h4>CMU Team Contact History Export</h4>
             </div>
             <div class='card-body'>
-                <%= file_field_tag :cmuteamcommunicationhistoryexport, class: 'btn'%>
+                <%= file_field_tag :cmuteamcommunicationhistoryexport,:required => true, class: 'btn'%>
             </div>
         </div>
 
         <div class= 'card bg-white import-card mr-auto'>
             <div class='card-header'>
-                <h4>Attendance</h4>
+                <h4>CMU Team Constituents Event Export</h4>
             </div>
             
             <div class='card-body'>
-                <%= file_field_tag :cmuteameventattendanceexport%>
+                <%= file_field_tag :cmuteameventattendanceexport,:required => true, class: 'btn'%>
             </div>
         </div>
 </div>
 </br>
 <div class='d-flex'>      
-        <%= submit_tag "ImportFiles", class: 'btn btn-primary'%>
+        <%= submit_tag "Import Files", class: 'btn btn-primary'%>
     <% end %>
     <div>
         <%= form_tag importdata_imports_path, method: :post do %>

@@ -156,13 +156,13 @@ class HomeController < ApplicationController
     # Methods to functional reports
     def generate_donation_report
         report = Constituent.generate_donations_report(params[:date])
-        send_data report, :filename => "donations_report", :type => "text/csv"
+        send_data report, :filename => "donations_report.csv", :type => "text/csv"
     end
 
 
     def generate_contact_history_report
         report = Constituent.generate_contact_history_report(params[:date])
-        send_data report, :filename => "contact_history_report", :type => "text/csv"
+        send_data report, :filename => "contact_history_report.csv", :type => "text/csv"
     end
 
     def generate_attendance_report

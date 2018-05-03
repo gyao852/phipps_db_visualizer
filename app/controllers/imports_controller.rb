@@ -54,8 +54,6 @@ class ImportsController < ApplicationController
 
 	def importdata
       UploadWorker.perform_async()
-
-
   		redirect_to constituents_path, notice: "Constituents Added Successfully through CSV"
 	end
 end

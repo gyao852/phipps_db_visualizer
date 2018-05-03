@@ -18,7 +18,18 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
+$('document').ready(function() {
 
+    setTimeout(function() {
+    $('.alert-success').fadeOut('fast');
+    }, 2000);
+    setTimeout(function() {
+        $('#if_button').click(function() {
+            var winref = window.open('http://139.59.187.53/sidekiq', 'sideKiqTerminal', '', true)
+            if(winref.location.href === 'about:blank') {
+                winref.location.href = 'http://139.59.187.53/sidekiq';
+            }
+      });
+    }, 2000);
 
-
-
+});

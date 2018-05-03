@@ -7,11 +7,11 @@
 </nav>
 <div class='container-fluid'>
     <div class='inner-container'>
-
+      <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
 <%= form_tag importfile_imports_path, multipart: true do %>
 <div class='d-flex card-group'>
-    
-
         <div class='card bg-white import-card mr-auto'>
             <div class='card-header'>
                 <h4>Constituents</h4>
@@ -32,7 +32,7 @@
 </div>
 
 <div class='d-flex card-group'>
-        
+
         <div class= 'card bg-white import-card mr-auto'>
             <div class='card-header'>
                 <h4>Commmunication</h4>
@@ -46,19 +46,19 @@
             <div class='card-header'>
                 <h4>Attendance</h4>
             </div>
-            
+
             <div class='card-body'>
                 <%= file_field_tag :cmuteameventattendanceexport%>
             </div>
         </div>
 </div>
 </br>
-<div class='d-flex'>      
-        <%= submit_tag "ImportFiles", class: 'btn btn-primary'%>
+<div class='d-flex'>
+        <%= submit_tag "Import Files", class: 'btn btn-primary', id: 'if_button', 'data-toggle' => 'modal', 'data-target' => '#exampleModal'%>
     <% end %>
     <div>
         <%= form_tag importdata_imports_path, method: :post do %>
-              <%= submit_tag 'Update Data', class: 'btn btn-primary', 'data-toggle' =>'modal', 'data-target' => '#exampleModal' %>
+              <%= submit_tag 'Update Data', class: 'btn btn-primary', id: 'ud_button','data-toggle' =>'modal', 'data-target' => '#exampleModal' %>
 		<% end %>
     </div>
 
@@ -66,7 +66,7 @@
 
 <!-- Modal -->
 <div class="modal fade bd-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-dialog-centered" modal-sm" role="document">
+  <div class="modal-dialog modal-sm modal-dialog-centered" modal-sm role="document">
     <div class="modal-content">
       <div class="modal-body">
         <div class='loader-wrapper'>
@@ -76,7 +76,7 @@
         <br/>
         <h5 class='text-center'>Loading...</h5>
       </div>
-      
+
     </div>
   </div>
 </div>

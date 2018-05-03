@@ -74,7 +74,7 @@ class Constituent < ApplicationRecord
                                                            On constituents.lookup_id = donation_histories.lookup_id
                                                            where donation_histories.date IS NOT NULL and donation_histories.date>'#{d}'
                                                            Group by constituents.lookup_id, donation_histories.amount)
-            Order by donation_histories.date;"
+            Order by constituents.lookup_id;"
     donations  = ActiveRecord::Base.connection.execute(sql)
     
     result = CSV.generate do |csv|
@@ -117,7 +117,7 @@ class Constituent < ApplicationRecord
                                                On constituents.lookup_id = contact_histories.lookup_id
                                                where contact_histories.date IS NOT NULL and contact_histories.date>'#{d}'
                                                Group by constituents.lookup_id) and constituents.email_id IS NOT NULL and contact_histories.date IS NOT NULL
-            Order By contact_histories.date;"
+            Order by constituents.lookup_id;"
     to_contact  = ActiveRecord::Base.connection.execute(sql)
     result = CSV.generate do |csv|
       csv << ["Constituent", "Email", "Do Not Email", "date"]

@@ -144,14 +144,18 @@ class UncleanConstituent < ApplicationRecord
 	def self.generate_duplicates
 		filename = 'reports/duplicate-constituents-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
 		d = UncleanConstituent.duplicate_scope
+		printed=[]
 		result = CSV.generate do |csv|
 			csv << ['LookupID', 'Name', 'Duplicate_Lookup_Ids']
 			toAppend = []
 			d.each do |row|
-				toAppend[0] = row.lookup_id
-				toAppend[1] = row.name
-				toAppend[2] = row.duplicate_lookup_ids
-				csv << toAppend
+				unless (printed.include?row.lookup_id)
+					printed << row.duplicate_lookup_ids
+					toAppend[0] = row.lookup_id
+					toAppend[1] = row.name
+					toAppend[2] = row.duplicate_lookup_ids
+					csv << toAppend
+				end
 			end
 		end
 		return result

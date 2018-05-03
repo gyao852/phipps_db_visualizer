@@ -12,7 +12,7 @@
  *
   *= require bootstrap-datepicker
  */
- 
+
  // Custom bootstrap variables must be set or imported *before* bootstrap.
 
 $green-5: #003A1D;
@@ -87,7 +87,7 @@ html, body {
 
 .inner-container {
     padding: 2rem;
-   
+
 
 
 }
@@ -96,7 +96,7 @@ html, body {
     padding-right: 0px !important;
     margin-right: 0px !important;
 
-   
+
 }
 
 .top-nav {
@@ -112,7 +112,7 @@ html, body {
 
 
 
-.card{ 
+.card{
     box-shadow:2px 4px 6px 0 rgba(69,77,72,0.1), 2px 4px 6px 0 rgba(69,77,72,0.1);
 }
 
@@ -181,7 +181,7 @@ i.md-40 {
     height: 100%;
     position: fixed;
     z-index: 20;
-    
+
 }
 
 #loader {
@@ -200,7 +200,7 @@ i.md-40 {
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
   }
-  
+
   @-webkit-keyframes spin {
     0% { -webkit-transform: rotate(0deg); }
     100% { -webkit-transform: rotate(360deg); }
@@ -270,8 +270,8 @@ i.md-40 {
     padding: 10px !important;
 }
 
-/* Changing the arrow position to bottom center position, 
-   translateX(50%) works with right: 50% 
+/* Changing the arrow position to bottom center position,
+   translateX(50%) works with right: 50%
    to accurately  center the arrow */
 #sidebar.active a[aria-expanded="false"]::before, #sidebar.active a[aria-expanded="true"]::before {
     top: auto;
@@ -288,7 +288,7 @@ i.md-40 {
 }
 
 // .navbar-brand {
-  
+
 //     transform: translateX(-50%);
 //     left: 50%;
 //     position: relative;
@@ -310,13 +310,13 @@ i.md-40 {
 
 .donationChartWrapper {
     width: 50rem;
-    
+
 }
 #donationChart svg{
   margin: 3px;
 }
 
-#lineChart {    
+#lineChart {
 }
 
 #barChart {
@@ -327,14 +327,14 @@ i.md-40 {
    font-size: 12pt;
    font-family: Verdana;
    fill: white; //svg specific - instead of color
-   font-weight: bold;	
-  		} 
+   font-weight: bold;
+  		}
 
 /*for line chart*/
 .axis path, .axis line {
     fill: none;
     stroke: black;
-    shape-rendering: crispEdges; //The shape-rendering property is an SVG attribute, used here to make sure our axis and its tick mark lines are pixel-perfect. 
+    shape-rendering: crispEdges; //The shape-rendering property is an SVG attribute, used here to make sure our axis and its tick mark lines are pixel-perfect.
 }
 
 .line {
@@ -348,7 +348,7 @@ i.md-40 {
   /*stroke: steelblue;*/
   stroke-width: 1.5px;
   }
-				
+
 
 .axis text {
     font-family: Verdana;
@@ -357,15 +357,15 @@ i.md-40 {
 
 .title {
 	 font-family: Verdana;
-    font-size: 15px;	
-		
+    font-size: 15px;
+
 }
 
 .xAxis {
     font-family: verdana;
     font-size: 11px;
     fill: black;
-}  
+}
 
 .yAxis {
     font-family: verdana;
@@ -377,18 +377,18 @@ i.md-40 {
     width: 45%;
 }
 
-  
+
 table {
 	border-collapse:collapse;
-	border: 0px;	
-	font-family: Verdana;	
+	border: 0px;
+	font-family: Verdana;
 	color: #5C5558;
 	font-size: 12px;
-	text-align: right;			
+	text-align: right;
 }
 
 td {
-	padding-left: 10px;		
+	padding-left: 10px;
 }
 
 #lineChartTitle1 {
@@ -407,5 +407,8 @@ td {
 	font-weight: bold;
 	/*font-style: italic;*/
 }
- @import "bootstrap";
 
+#ud_button {
+  margin-left: 20%
+}
+ @import "bootstrap";

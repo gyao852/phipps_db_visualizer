@@ -55,9 +55,7 @@
 </br>
 <div class='d-flex'>
         <%= submit_tag "Import Files", class: 'btn btn-primary', id: 'if_button', 'data-toggle' => 'modal', 'data-target' => '#exampleModal'%>
-<div class='d-flex'>
-        <%= submit_tag "Import Files", class: 'btn btn-primary'%>
-    <% end %>
+        <% end %>
     <div>
         <%= form_tag importdata_imports_path, method: :post do %>
               <%= submit_tag 'Update Data', class: 'btn btn-primary', id: 'ud_button','data-toggle' =>'modal', 'data-target' => '#exampleModal' %>

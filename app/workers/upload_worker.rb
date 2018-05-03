@@ -72,6 +72,8 @@ class UploadWorker
         File.delete("#{Rails.root}/public/address.csv")
     end
          
+
+
     puts "Sidekiq is finished uploading to Rails Postgres Database"
   end
 

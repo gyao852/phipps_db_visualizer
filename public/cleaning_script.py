@@ -14,9 +14,6 @@ import csv
 import pandas as pd
 import re
 import numpy as np
-from pandas_schema import Column, Schema
-# from fuzzywuzzy import fuzz
-# from fuzzywuzzy import process
 
 # ### Read CSV files
 

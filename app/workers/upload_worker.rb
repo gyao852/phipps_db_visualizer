@@ -5,7 +5,7 @@ class UploadWorker
   def perform()
 
     # Drop old postgres database
-    puts "Sidekiq is the deleting old database."
+    puts "Sidekiq is deleting the old database."
     Constituent.delete_all
     UncleanConstituent.delete_all
     UncleanAddress.delete_all
@@ -29,8 +29,8 @@ class UploadWorker
     # Upload new database
     puts "Sidekiq is uploading to the Postgres Database."
     importer = Import.new()
-    # importer.import_constituent_csv_data
-    # importer.import_uncleanconstituent_csv_data
+    importer.import_constituent_csv_data
+    importer.import_uncleanconstituent_csv_data
     # importer.import_address_csv_data
     # importer.import_contacthistory_csv_data
     # importer.import_event_csv_data
@@ -40,7 +40,7 @@ class UploadWorker
     # importer.import_donationhistory_csv_data
     # importer.import_membershiprecord_csv_data
     # importer.import_constituentmembershiprecord_csv_data
-    puts "Sidekiq is uploading to the Postgres Database."
+    puts "Sidekiq is finished uploading to the Postgres Database."
   end
 
 end

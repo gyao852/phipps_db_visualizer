@@ -27,21 +27,23 @@ class ImportsController < ApplicationController
             params[:cmuteameventattendanceexport].path,
             params[:cmuteamcommunicationhistoryexport].path,
             params[:cmuteamdonationexport].path)
-          # importer = Import.new(params[:cmuteamconstituentsexport],
-          #   params[:cmuteameventattendanceexport],
-          #   params[:cmuteamcommunicationhistoryexport],
-          #   params[:cmuteamdonationexport])
-          #
+          # importer = Import.new(params[:cmuteamconstituentsexport].path,
+          #   params[:cmuteameventattendanceexport].path,
+          #   params[:cmuteamcommunicationhistoryexport].path,
+          #   params[:cmuteamdonationexport].path)
+          # # added .path here isntead of import model
           # importer.save_cmuteamconstituentsexport_csv_file
           # importer.save_cmuteamdonationsexport_csv_file
           # importer.save_cmuteamcontacthistoryexport_csv_file
           # importer.save_cmuteameventattendanceexport_csv_file
-          redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
+            flash[:success] = "Cleaning the imported data. This will take a few minutes."
+          redirect_to import_page_path
     	end
   	end
 
 	def importdata
+      flash[:success] = "Updating database with new clean data! This will take some time..."
       UploadWorker.perform_async()
-  		redirect_to constituents_path, notice: "Constituents Added Successfully through CSV"
+  		redirect_to import_page_path
 	end
 end

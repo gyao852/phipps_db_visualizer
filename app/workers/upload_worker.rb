@@ -31,15 +31,15 @@ class UploadWorker
     importer = Import.new()
     importer.import_constituent_csv_data
     importer.import_uncleanconstituent_csv_data
-    # importer.import_address_csv_data
-    # importer.import_contacthistory_csv_data
-    # importer.import_event_csv_data
-    # importer.import_constituentevent_csv_data
-    # importer.import_uncleanaddress_csv_data
-    # importer.import_donationprogram_csv_data
-    # importer.import_donationhistory_csv_data
-    # importer.import_membershiprecord_csv_data
-    # importer.import_constituentmembershiprecord_csv_data
+    importer.import_address_csv_data
+    importer.import_contacthistory_csv_data
+    importer.import_event_csv_data
+    importer.import_constituentevent_csv_data
+    importer.import_uncleanaddress_csv_data
+    importer.import_donationprogram_csv_data
+    importer.import_donationhistory_csv_data
+    importer.import_membershiprecord_csv_data
+    importer.import_constituentmembershiprecord_csv_data
     puts "Sidekiq is finished uploading to the Postgres Database."
   end
 

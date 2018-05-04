@@ -94,7 +94,7 @@ end
 					if (row[15]==nil)
 						row[15] = false
 					end
-					if (row[16]==nil)
+					if (row[16]==nil || row[16]=='')
 						row[16] = {}
 					else
 						row[16] = row[16].split(".")
@@ -117,21 +117,24 @@ end
 
 	def import_uncleanaddress_csv_data
 		CSV.foreach("#{Rails.root}/public/incomplete_invalid_address.csv", headers:true) do |row|
-			if (row[12]==nil)
-				row[12] = false
-			end
-			if (row[13]==nil)
-				row[13] = false
-			end
-			if (row[14]==nil)
-				row[14] = false
-			end
-			if (row[15]==nil)
-				row[15] = false
-			end
-			if (row[16]==nil)
-				row[16] = false
-			end
+			# This gives an uncessary error;
+			# TODO: Ask Minnie to create extra cards for this in unclean show
+			# Fix cleaning script as most are not working properly, with flags not triggering
+			# if (row[12]==nil)
+			# 	row[12] = false
+			# end
+			# if (row[13]==nil)
+			# 	row[13] = false
+			# end
+			# if (row[14]==nil)
+			# 	row[14] = false
+			# end
+			# if (row[15]==nil)
+			# 	row[15] = false
+			# end
+			# if (row[16]==nil)
+			# 	row[16] = false
+			# end
 					create_uncleanaddress(row)
     	end
 	end
@@ -195,12 +198,6 @@ end
 
 	def import_donationprogram_csv_data
 		CSV.foreach("#{Rails.root}/public/donation_program.csv", headers:true) do |row|
-					if (row[6]==nil)
-						row[6] = false
-					end
-					if (row[7]==nil)
-						row[7] = false
-					end
       		create_donationprogram(row)
       		create_uncleandonationprogram(row)
     	end

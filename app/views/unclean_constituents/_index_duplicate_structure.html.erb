@@ -1,0 +1,46 @@
+
+<div class="container-fluid bg-white">
+<div class='inner-container'>
+    <% if notice %>
+    <p id="notice" class='bg-white'><%= notice %></p>
+    <%end %>
+
+    
+    <h2  class="text-primary-dark"><%= title %></h2>
+
+    <% if unclean_constituents.empty? %>
+         <p>Table is empty at this time.</p>
+    <% else %>
+
+
+        <table class="table table-bordered table-hover table-sm sortable">
+        <thead>
+            <tr>
+            <th scope="col">LookupID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last/Group Name</th>
+            <th scope='col'>Duplicate</th>
+            <th scope='col'>Duplicate IDs</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <% unclean_constituents.each do |constituent| %>
+            <tr data-link="<%= unclean_constituent_path(constituent)%>">
+                <td><%= constituent.lookup_id %></td>
+                <td><%= constituent.name %></td>
+                <td><%= constituent.last_group %></td>
+                <td><%= constituent.duplicate %></td>
+                <td><%= constituent.duplicate_lookup_ids %>
+            
+            </tr>
+            <% end %>
+        </tbody>
+        </table>
+
+        <br>
+        <%= will_paginate unclean_constituents, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+        <% end %>
+</div>
+</div>

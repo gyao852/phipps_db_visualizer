@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 20180428060631) do
     t.text "error"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "invalid_addresses_1"
+    t.boolean "invalid_address_1"
     t.boolean "invalid_cities"
     t.boolean "invalid_states"
     t.boolean "invalid_countries"

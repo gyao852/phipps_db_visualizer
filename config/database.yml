@@ -7,7 +7,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: db/development
-  pool: 5
+  pool: 25
   timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
@@ -17,12 +17,12 @@ test:
   adapter: postgresql
   encoding: unicode
   database: db/development_test
-  pool: 5
+  pool: 25
   timeout: 5000
 
 production:
   adapter: postgresql
   encoding: unicode
   database: datamanager
-  pool: 5
+  pool: 25
   timeout: 5000

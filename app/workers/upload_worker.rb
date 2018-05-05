@@ -3,7 +3,10 @@ class UploadWorker
   sidekiq_options retry: false
 
   def perform()
-    puts "Sidekiq is deleting old database."
+
+
+    # Drop old postgres database
+    puts "Sidekiq is deleting the old database."
     Constituent.delete_all
     UncleanConstituent.delete_all
     UncleanAddress.delete_all
@@ -36,6 +39,7 @@ class UploadWorker
     importer.import_donationhistory_csv_data
     importer.import_membershiprecord_csv_data
     importer.import_constituentmembershiprecord_csv_data
+
 
 
     if File.exist?("#{Rails.root}/public/constituent.csv")
@@ -72,9 +76,8 @@ class UploadWorker
         File.delete("#{Rails.root}/public/address.csv")
     end
          
+    puts "Sidekiq is finished uploading to the Postgres Database."
 
-
-    puts "Sidekiq is finished uploading to Rails Postgres Database"
   end
 
 end

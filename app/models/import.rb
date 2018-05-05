@@ -69,6 +69,9 @@ end
 #############################################################
 	def import_constituent_csv_data
 		CSV.foreach("#{Rails.root}/public/constituent.csv", headers:true) do |row|
+					if (row[8]==nil)
+						row[8] = false
+					end
       		create_constituent(row)
     	end
 		@constituent_lookup_id = Constituent.pluck(:lookup_id)
@@ -91,8 +94,10 @@ end
 					if (row[15]==nil)
 						row[15] = false
 					end
-					if (row[16]==nil)
+					if (row[16]==nil || row[16]=='')
 						row[16] = {}
+					else
+						row[16] = row[16].split(".")
 					end
 					create_uncleanconstituent(row)
     	end
@@ -112,21 +117,24 @@ end
 
 	def import_uncleanaddress_csv_data
 		CSV.foreach("#{Rails.root}/public/incomplete_invalid_address.csv", headers:true) do |row|
-			if (row[12]==nil)
-				row[12] = false
-			end
-			if (row[13]==nil)
-				row[13] = false
-			end
-			if (row[14]==nil)
-				row[14] = false
-			end
-			if (row[15]==nil)
-				row[15] = false
-			end
-			if (row[16]==nil)
-				row[16] = false
-			end
+			# This gives an uncessary error;
+			# TODO: Ask Minnie to create extra cards for this in unclean show
+			# Fix cleaning script as most are not working properly, with flags not triggering
+			# if (row[12]==nil)
+			# 	row[12] = false
+			# end
+			# if (row[13]==nil)
+			# 	row[13] = false
+			# end
+			# if (row[14]==nil)
+			# 	row[14] = false
+			# end
+			# if (row[15]==nil)
+			# 	row[15] = false
+			# end
+			# if (row[16]==nil)
+			# 	row[16] = false
+			# end
 					create_uncleanaddress(row)
     	end
 	end
@@ -175,8 +183,14 @@ end
 		CSV.foreach("#{Rails.root}/public/constituent_event.csv", headers:true) do |row|
       		lookup_check = row[0].to_s
 			if @unclean_constituent_lookup_id.include?(lookup_check)
+				if (row[3]==nil)
+					row[3] = false
+				end
 				create_uncleanconstituentevent(row)
 			else
+				if (row[3]==nil)
+					row[3] = false
+				end
 				create_constituentevent(row)
 			end
     	end
@@ -193,6 +207,12 @@ end
 		CSV.foreach("#{Rails.root}/public/donation_history.csv", headers:true) do |row|
       		lookup_check = row[2].to_s
 			if @unclean_constituent_lookup_id.include?(lookup_check)
+				if (row[6]==nil)
+					row[6] = false
+				end
+				if (row[7]==nil)
+					row[7] = false
+				end
 				create_uncleandonationhistory(row)
 			elsif @constituent_lookup_id.include?(lookup_check)
 				create_donationhistory(row)

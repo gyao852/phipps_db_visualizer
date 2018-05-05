@@ -6,21 +6,23 @@
   </div>
 </nav>
 <div class='container-fluid'>
-    
+  <div class='d-flex'>
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+  </div>
+
         <div class='d-flex'>
 
             <%= render :partial => 'partials/d3' %>
             <%= render :partial => 'partials/upcoming_events'%>
-                
+
 
         </div>
 
         <div class='d-flex'>
-            <%= render :partial => 'partials/progress_bars'%>    
+            <%= render :partial => 'partials/progress_bars'%>
         </div>
-   
+
 
 </div>
-
-
-

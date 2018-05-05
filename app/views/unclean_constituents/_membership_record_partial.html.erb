@@ -18,10 +18,10 @@
             </thead>
 
             <tbody>
-              <% @constituent.constituent_membership_records.each do |cmr| %>
+              <% @unclean_constituent.unclean_constituent_membership_records.each do |cmr| %>
                 <tr>
                   <td><%= cmr.unclean_membership_record.membership_scheme %></td>
-                  <td><%= cmr.unclean_membership_recordmembership_record.membership_level %></td>
+                  <td><%= cmr.unclean_membership_record.membership_level %></td>
                   <td><%= cmr.unclean_membership_record.membership_level_type %></td>
                   <td><%= cmr.unclean_membership_record.membership_status %></td>
                   <td><%= cmr.unclean_membership_record.start_date.nil? ? 'N/A': cmr.unclean_membership_record.start_date.strftime('%m/%d/%y') %></td>

@@ -161,6 +161,7 @@ Rails.application.routes.draw do
 
   get 'search_constituents' => 'constituents#search', as: :search_constituents
   post 'search' => 'application#search', as: :search_all
+  get 'search' => 'application#search', as: :search_results
 
   # Set the root url
   root :to => 'home#home'

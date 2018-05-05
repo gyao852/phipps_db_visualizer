@@ -4,6 +4,7 @@ class UploadWorker
 
   def perform()
 
+
     # Drop old postgres database
     puts "Sidekiq is deleting the old database."
     Constituent.delete_all
@@ -24,10 +25,8 @@ class UploadWorker
     UncleanDonationHistory.delete_all
     ConstituentMembershipRecord.delete_all
     MembershipRecord.delete_all
-    puts "Sidekiq is finished deleting the old database."
-
-    # Upload new database
-    puts "Sidekiq is uploading to the Postgres Database."
+    puts "Sidekiq is finished deleting old database."
+    puts "Sidekiq is uploading to Rails Postgres Database."
     importer = Import.new()
     importer.import_constituent_csv_data
     importer.import_uncleanconstituent_csv_data
@@ -40,6 +39,7 @@ class UploadWorker
     importer.import_donationhistory_csv_data
     importer.import_membershiprecord_csv_data
     importer.import_constituentmembershiprecord_csv_data
+
     puts "Sidekiq is finished uploading to the Postgres Database."
 
     if File.exist?("#{Rails.root}/public/constituent.csv")
@@ -75,6 +75,9 @@ class UploadWorker
     if File.exist?("#{Rails.root}/public/address.csv")
         File.delete("#{Rails.root}/public/address.csv")
     end
+
+
+
   end
 
 end

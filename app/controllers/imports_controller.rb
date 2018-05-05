@@ -3,8 +3,8 @@ class ImportsController < ApplicationController
 	def importfile
 
     	if params[:cmuteameventattendanceexport].nil? || params[:cmuteamdonationexport].nil? || params[:cmuteamconstituentsexport].nil? || params[:cmuteamcommunicationhistoryexport].nil?
-          # `python public/cleaning_script.py`
-      	   redirect_to import_page_path, notice: "Please upload a csv file."
+      	redirect_to import_page_path, notice: "Please upload a csv file."
+
     	else
 
       		if File.exist?("#{Rails.root}/public/CMU Team Constituents Export.csv")
@@ -23,6 +23,7 @@ class ImportsController < ApplicationController
             File.delete("#{Rails.root}/public/CMU Team Contact History Export.csv")
           end
 
+
           ImportWorker.perform_async(params[:cmuteamconstituentsexport].path,
             params[:cmuteameventattendanceexport].path,
             params[:cmuteamcommunicationhistoryexport].path,
@@ -38,6 +39,7 @@ class ImportsController < ApplicationController
           # importer.save_cmuteameventattendanceexport_csv_file
             flash[:success] = "Cleaning the imported data. This will take a few minutes."
           redirect_to import_page_path
+
     	end
   	end
 

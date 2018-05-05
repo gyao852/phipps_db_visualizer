@@ -163,6 +163,13 @@ Rails.application.routes.draw do
   post 'search' => 'application#search', as: :search_all
   get 'search' => 'application#search', as: :search_results
 
+  get 'search_uncleanconstituents' => 'unclean_constituents#search_unclean', as: :search_uncleanconstituents
+  post 'search_unclean' => 'application#search_unclean', as: :search_unclean_all
+  get 'search_unclean' => 'application#search_unclean', as: :search_unclean_results
+
+
+
+
   # Set the root url
   root :to => 'home#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

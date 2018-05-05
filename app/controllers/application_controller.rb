@@ -23,4 +23,11 @@ class ApplicationController < ActionController::Base
       @q, @q, @q, @q, @q).paginate(:page => params[:page], :per_page => 30)
   end
 
+  def search_unclean
+    @nav_status = 'review'
+    @q = "%#{params[:query]}%"
+    @result_unclean_constituents = UncleanConstituent.where("name LIKE ? or lookup_id LIKE ? or last_group LIKE ? or email_id LIKE ? or phone LIKE ?",
+      @q, @q, @q, @q, @q).paginate(:page => params[:page], :per_page => 30)
+  end
+
 end

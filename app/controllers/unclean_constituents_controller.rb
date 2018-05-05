@@ -7,7 +7,11 @@ class UncleanConstituentsController < ApplicationController
     @nav_status = 'review'
     @unclean_constituents = UncleanConstituent.all.paginate(:page => params[:page], :per_page => 30)
     @invalid = UncleanConstituent.invalid
-    
+
+  end
+
+	def search_unclean
+    @q = "%#{params[:query]}"
   end
 
   def index_invalid_emails
@@ -55,7 +59,7 @@ class UncleanConstituentsController < ApplicationController
     @nav_status = 'review'
     @unclean_constituents = UncleanConstituent.all.invalid.organizations.paginate(:page => params[:page], :per_page => 30)
   end
-  
+
   def invalid_households
     @nav_status = 'review'
     @unclean_constituents = UncleanConstituent.all.invalid.households.paginate(:page => params[:page], :per_page => 30)
@@ -75,7 +79,7 @@ class UncleanConstituentsController < ApplicationController
     @nav_status = 'review'
     @unclean_constituents = UncleanConstituent.all.duplicates.households.paginate(:page => params[:page], :per_page => 30)
   end
-  
+
   def duplicate_organizations
     @nav_status = 'review'
     @unclean_constituents = UncleanConstituent.all.duplicates.organizations.paginate(:page => params[:page], :per_page => 30)

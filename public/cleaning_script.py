@@ -955,7 +955,7 @@ incomplete_invalid_address['invalid_cities'] = incomplete_invalid_address['inval
 incomplete_invalid_address['invalid_states'] = incomplete_invalid_address['invalid_states'].fillna(value='')
 incomplete_invalid_address['invalid_countries'] = incomplete_invalid_address['invalid_countries'].fillna(value='')
 incomplete_invalid_address['invalid_zips'] = incomplete_invalid_address['invalid_zips'].fillna(value='')
-
+incomplete_invalid_address['date_added'] = incomplete_invalid_address['date_added'].apply(clean_Date)
 
 
 incomplete_invalid_constituent = incomplete_invalid.copy()

@@ -11,13 +11,13 @@ class ImportWorker
     importer.save_cmuteamdonationsexport_csv_file
     importer.save_cmuteamcontacthistoryexport_csv_file
     importer.save_cmuteameventattendanceexport_csv_file
+    puts "Sidekiq is finished importing the data."
 
     # Cleaning data
     puts "Sidekiq is running the cleaning script."
     `python3 public/cleaning_script.py`
     puts "Sidekiq is finished with the cleaning script."
     puts "Sidekiq is removing the original public csv files."
-
     # Removing original public files
     if File.exist?("#{Rails.root}/public/CMU Team Constituents Export.csv")
       File.delete("#{Rails.root}/public/CMU Team Constituents Export.csv")

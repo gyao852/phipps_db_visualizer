@@ -22,10 +22,10 @@ $('document').ready(function() {
 
     setTimeout(function() {
     $('.alert-success').fadeOut('fast');
-    }, 2000);
+  }, 3000);
     setTimeout(function() {
-    $('.alert-info').fadeOut('fast');
-    }, 2000);
+    $('.alert-danger').fadeOut('fast');
+  }, 3000);
     setTimeout(function() {
         $('#if_button').click(function() {
             var winref = window.open('http://139.59.187.53/sidekiq', 'sideKiqTerminal', '', true)
@@ -33,6 +33,6 @@ $('document').ready(function() {
                 winref.location.href = 'http://139.59.187.53/sidekiq';
             }
       });
-    }, 2000);
+    }, 4000);
 
 });

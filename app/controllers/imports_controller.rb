@@ -22,26 +22,23 @@ class ImportsController < ApplicationController
           if File.exist?("#{Rails.root}/public/CMU Team Contact History Export.csv")
             File.delete("#{Rails.root}/public/CMU Team Contact History Export.csv")
           end
-          if File.exist?("#{Rails.root}/public/cmuTeamEventExport.csv")
-            File.delete("#{Rails.root}/public/cmuTeamEventExport.csv")
-          end
-          if File.exist?("#{Rails.root}/public/cmuTeamDonationProgramExport.csv")
-            File.delete("#{Rails.root}/public/cmuTeamDonationProgramExport.csv")
-          end
-          # `python3 public/cleaning_script.py`
-           importer = Import.new(params[:cmuteamconstituentsexport].path,
-             params[:cmuteameventattendanceexport].path,
-             params[:cmuteamcommunicationhistoryexport].path,
-             params[:cmuteamdonationexport].path)
-           importer.save_cmuteamconstituentsexport_csv_file
-           importer.save_cmuteamdonationsexport_csv_file
-           importer.save_cmuteamcontacthistoryexport_csv_file
-           importer.save_cmuteameventattendanceexport_csv_file
-          # MovingWorker.perform_async(params[:cmuteamconstituentsexport].path,
+
+
+          ImportWorker.perform_async(params[:cmuteamconstituentsexport].path,
+            params[:cmuteameventattendanceexport].path,
+            params[:cmuteamcommunicationhistoryexport].path,
+            params[:cmuteamdonationexport].path)
+          # importer = Import.new(params[:cmuteamconstituentsexport].path,
           #   params[:cmuteameventattendanceexport].path,
           #   params[:cmuteamcommunicationhistoryexport].path,
           #   params[:cmuteamdonationexport].path)
-          redirect_to import_page_path, notice: "Constituents Added Successfully through CSV"
+          # # added .path here isntead of import model
+          # importer.save_cmuteamconstituentsexport_csv_file
+          # importer.save_cmuteamdonationsexport_csv_file
+          # importer.save_cmuteamcontacthistoryexport_csv_file
+          # importer.save_cmuteameventattendanceexport_csv_file
+            flash[:success] = "Cleaning the imported data. This will take a few minutes."
+          redirect_to import_page_path
 
     	end
   	end
@@ -50,6 +47,5 @@ class ImportsController < ApplicationController
       flash[:success] = "Updating database with new clean data! This will take some time..."
       UploadWorker.perform_async()
   		redirect_to import_page_path
-
 	end
 end

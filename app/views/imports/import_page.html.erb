@@ -17,7 +17,7 @@
                 <h4>CMU Team Constituents Export</h4>
             </div>
             <div class='card-body'>
-                <%= file_field_tag :cmuteamconstituentsexport,:required => true, class: 'btn'%>
+                <%= file_field_tag :cmuteamconstituentsexport, class: 'btn'%>
              </div>
          </div>
 
@@ -26,7 +26,7 @@
                 <h4>CMU Team Donations Export</h4>
             </div>
             <div class='card-body'>
-                <%= file_field_tag :cmuteamdonationexport,:required => true, class: 'btn'%>
+                <%= file_field_tag :cmuteamdonationexport, class: 'btn'%>
             </div>
         </div>
 </div>
@@ -38,7 +38,7 @@
                 <h4>CMU Team Contact History Export</h4>
             </div>
             <div class='card-body'>
-                <%= file_field_tag :cmuteamcommunicationhistoryexport,:required => true, class: 'btn'%>
+                <%= file_field_tag :cmuteamcommunicationhistoryexport, class: 'btn'%>
             </div>
         </div>
 
@@ -48,13 +48,13 @@
             </div>
 
             <div class='card-body'>
-                <%= file_field_tag :cmuteameventattendanceexport,:required => true, class: 'btn'%>
+                <%= file_field_tag :cmuteameventattendanceexport,class: 'btn'%>
             </div>
         </div>
 </div>
 </br>
 <div class='d-flex'>
-        <%= submit_tag "Import Files", class: 'btn btn-primary', id: 'if_button', 'data-toggle' => 'modal', 'data-target' => '#exampleModal'%>
+        <%= submit_tag "Import Files", class: 'btn btn-primary', id: 'if_button', 'data-toggle' =>'modal', 'data-target' => '#exampleModal'%>
         <% end %>
     <div>
         <%= form_tag importdata_imports_path, method: :post do %>

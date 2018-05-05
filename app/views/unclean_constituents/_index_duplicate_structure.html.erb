@@ -5,7 +5,7 @@
     <p id="notice" class='bg-white'><%= notice %></p>
     <%end %>
 
-    
+
     <h2  class="text-primary-dark"><%= title %></h2>
 
     <% if unclean_constituents.empty? %>
@@ -32,8 +32,8 @@
                 <td><%= constituent.name %></td>
                 <td><%= constituent.last_group %></td>
                 <td><%= constituent.duplicate %></td>
-                <td><%= constituent.duplicate_lookup_ids %>
-            
+                <td><%= constituent.duplicate_lookup_ids.join(",").sub('.',' ')%></td>
+
             </tr>
             <% end %>
         </tbody>

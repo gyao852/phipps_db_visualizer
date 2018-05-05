@@ -117,9 +117,6 @@ end
 
 	def import_uncleanaddress_csv_data
 		CSV.foreach("#{Rails.root}/public/incomplete_invalid_address.csv", headers:true) do |row|
-			# This gives an uncessary error;
-			# TODO: Ask Minnie to create extra cards for this in unclean show
-			# Fix cleaning script as most are not working properly, with flags not triggering
 			# if (row[12]==nil)
 			# 	row[12] = false
 			# end

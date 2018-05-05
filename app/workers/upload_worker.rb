@@ -28,20 +28,31 @@ class UploadWorker
     puts "Sidekiq is finished deleting old database."
     puts "Sidekiq is uploading to Rails Postgres Database."
     importer = Import.new()
+    puts "Sidekiq is importing constituent."
     importer.import_constituent_csv_data
+    puts "Sidekiq finished uploading constituent, now uploading unclean constituent."
     importer.import_uncleanconstituent_csv_data
+    puts "Sidekiq finished uploading unclean constituent, now uploading address."
     importer.import_address_csv_data
+    puts "Sidekiq finished uploading address, now uploading contact history."
     importer.import_contacthistory_csv_data
+    puts "Sidekiq finished uploading contact history, now uploading event."
     importer.import_event_csv_data
+    puts "Sidekiq finished uploading event, now uploading constituent event."
     importer.import_constituentevent_csv_data
+    puts "Sidekiq finished uploading constituent event, now uploading unclean address."
     importer.import_uncleanaddress_csv_data
+    puts "Sidekiq finished uploading unclean address, now uploading donation program."
     importer.import_donationprogram_csv_data
+    puts "Sidekiq finished uploading donation program, now uploading donation history."
     importer.import_donationhistory_csv_data
+    puts "Sidekiq finished uploading donation history, now uploading membership."
     importer.import_membershiprecord_csv_data
+    puts "Sidekiq finished uploading membership, now uploading constituent membership."
     importer.import_constituentmembershiprecord_csv_data
+    puts "Sidekiq is finished uploading to the Postgres Database."
 
-
-
+    puts "Sidekiq is removing the public csv files generated."
     if File.exist?("#{Rails.root}/public/constituent.csv")
         File.delete("#{Rails.root}/public/constituent.csv")
     end
@@ -75,8 +86,7 @@ class UploadWorker
     if File.exist?("#{Rails.root}/public/address.csv")
         File.delete("#{Rails.root}/public/address.csv")
     end
-         
-    puts "Sidekiq is finished uploading to the Postgres Database."
+    puts "Sidekiq is finished removing the public csv files generated."
 
   end
 

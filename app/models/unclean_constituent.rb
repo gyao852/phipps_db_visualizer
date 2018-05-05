@@ -150,13 +150,13 @@ class UncleanConstituent < ApplicationRecord
 			toAppend = []
 			d.each do |row|
 				unless row.duplicate_lookup_ids.nil? or (printed.include?row.lookup_id)
-					# check_string = row.duplicate_lookup_ids
-					# check_string[0]=""
-					# check_string[1]=""
-					# check_array = check_string.split(",")
-					# check_array.each do |elem|
-					# 	printed << elem
-					# end
+					check_string = row.duplicate_lookup_ids
+					check_string[0]=""
+					check_string[1]=""
+					check_array = check_string.split(",")
+					check_array.each do |elem|
+						printed << elem
+					end
 					toAppend[0] = row.lookup_id
 					toAppend[1] = row.name
 					toAppend[2] = row.duplicate_lookup_ids

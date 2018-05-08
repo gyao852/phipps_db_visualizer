@@ -91,7 +91,7 @@ function dsPieChart(){
                .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
                .attr("d", arc)     //this creates the actual SVG path using the associated data (pie) with the arc drawing function
 					.append("svg:title") //mouseover title showing the figures
-				   .text(function(d) { return d.data.category + ": " + "$" + d.data.sum + " (" + formatAsPercentage(d.data.measure) + ")"; });			
+				   .text(function(d) { return d.data.category + ": " + "$" + d.data.sum.toFixed(2) + " (" + formatAsPercentage(d.data.measure) + ")"; });			
 
         d3.selectAll("g.slice").selectAll("path").transition()
 			    .duration(750)

@@ -108,12 +108,12 @@ function dsPieChart(){
 	      .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
 	      //.text(function(d) { return formatAsPercentage(d.value); })
 	      .text(function(d) { 
-			if (d.data.category=="Childrens' Programs") {return "CP";}
+			if (d.data.category=="Palm Court Restoration") {return "PCF";}
 			else if (d.data.category == "Commemorative Certificates") {return "CC";}
-			else if(d.data.category=="Annual Appeal"){return "AA";}
+			else if(d.data.category=="Phipps Fund"){return "PF";}
 			else if(d.data.category=="Memorials & Honoraria"){return "M&H";}
-			else if(d.data.category == "Sustained Giving") { return "SG";}
-		    else if (d.data.category =="Discovery Garden") {return "DG";}
+			else if(d.data.category == "Welcome Center Donations") { return "WCD";}
+		    else if (d.data.category =="Discovery Garden Bricks") {return "DGB";}
 			else { return "Other"}
 
 			})

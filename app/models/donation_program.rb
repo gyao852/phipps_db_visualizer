@@ -24,9 +24,19 @@ class DonationProgram < ApplicationRecord
   def self.for_other_programs
     return DonationProgram.all - DonationProgram.for_program("Annual Appeal") - 
       DonationProgram.for_program("Commemorative Certificates") -
-      DonationProgram.for_program("Discovery Garden") -
+      DonationProgram.for_program("Discovery Garden Bricks") -
       DonationProgram.for_program("Sustained Giving") -
-      DonationProgram.for_program("Childrens' Programs")
+      DonationProgram.for_program("Children's Programs") - 
+      DonationProgram.for_program("Memorials & Honoraria") -
+      DonationProgram.for_program("Palm Court Restoration") -
+      DonationProgram.for_program("Welcome Center Donations")
+  end
+
+  def self.for_phipps_fund
+    return DonationProgram.for_program("Annual Appeal") + 
+      DonationProgram.for_program("Children's Programs") + 
+      DonationProgram.for_program("Sustained Giving") +
+      DonationProgram.for_program("Commemorative Certificates")
   end
 
   def self.check_giving_level(amount)
@@ -58,6 +68,8 @@ class DonationProgram < ApplicationRecord
           "1000-2499"=>0, "2500-4999"=>0, "5000-9999"=>0,">10000"=>0}
     if program == "Other"
       relevant_programs = DonationProgram.for_other_programs
+    elsif program == "Phipps Fund"
+      relevant_programs = DonationProgram.for_phipps_fund
     else
       relevant_programs = DonationProgram.for_program(program)
     end

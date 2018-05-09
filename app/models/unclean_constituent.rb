@@ -83,6 +83,7 @@ class UncleanConstituent < ApplicationRecord
 				toAppend[0] = row.lookup_id
 				toAppend[1] = row.name
 				toAppend[2] = row.last_group
+				csv << toAppend
 			end
 		end
 		
@@ -100,6 +101,7 @@ class UncleanConstituent < ApplicationRecord
 				toAppend[1] = row.name
 				toAppend[2] = row.email_id
 				toAppend[3] = row.phone
+				csv << toAppend
 			end
 		end
 		

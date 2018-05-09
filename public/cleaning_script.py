@@ -380,13 +380,13 @@ def clean_Date(v):
             date[1] = "01"
         if len(date[1]) == 1:
             date[1] = "0" + date[1]
+        # Assuming the format of the year is yy instead of yyyy,
+        # this will default with yy -> 20yy unless yy is greater than 2020
         if len(date[2])==2:
             if int(date[2])>20:
                 date[2] = "19"+str(date[2])
             else:
                 date[2] = "20"+str(date[2])
-        if len(date[2])==1 or len(date[2])==3:
-            return ''
         return str(date[2]+"/"+date[0]+"/"+date[1])
     else:
         return ''
@@ -408,10 +408,13 @@ ccdf['dob'] = ccdf['dob'].apply(clean_Date)
 
 # Cleans up dates
 def clean_dne(v):
+    if (v=='False' or v == False):
+        return ''
     if (v==''):
-        v = ''
-    return v
-ccdf['email_id'] = ccdf['email_id'].apply(clean_dne)
+        return v
+    else:
+        return 'True'
+ccdf['do_not_email'] = ccdf['do_not_email'].apply(clean_dne)
 
 
 # #### Amount

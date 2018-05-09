@@ -2,9 +2,9 @@ class UncleanAddress < ApplicationRecord
 	self.primary_key = 'address_id'
     belongs_to :unclean_constituent, :foreign_key => :lookup_id
 
-    scope :invalid_zip_scope, -> {where(invalid_zips: true)}  
+    scope :invalid_zip_scope, -> {where(invalid_zips: true)}
     scope :invalid_state_scope, -> {where(invalid_states: true)}
-    scope :invalid_address_1_scope, -> {where(invalid_addresses_1: true)}
+    scope :invalid_address_1_scope, -> {where(invalid_address_1: true)}
     scope :invalid_city_scope, ->{where(invalid_cities: true)}
     scope :invalid_country_scope, -> {where(invalid_countries: true)}
 
@@ -74,7 +74,7 @@ class UncleanAddress < ApplicationRecord
         end
     	return result
     end
-    
+
     def self.generate_invalid_countries
         filename = 'reports/invalid-country-address-report-'+DateTime.current.strftime("%m%d%Y%H%M%S")+'.csv'
     	ic = UncleanAddress.invalid_country_scope

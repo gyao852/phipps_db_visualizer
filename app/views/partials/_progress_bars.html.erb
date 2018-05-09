@@ -7,7 +7,7 @@
             <div class="progress-element">
                 <div class="total-progress progress"></div>
                 <div>
-                <p class='text-right'> $<%=@donation_sum_fYear %> / $<%=@currentGoal.goal %> </p>
+                <p class='text-right'> <%=number_to_currency(@donation_sum_fYear)%> / $<%=@currentGoal.goal%> </p>
                 </div>
             </div>
         <% else %>

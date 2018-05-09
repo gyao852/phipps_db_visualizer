@@ -30,15 +30,15 @@ class HomeController < ApplicationController
         
 
 
-        @cp = DonationProgram.sum_and_count_level("Childrens' Programs")
-        @aa = DonationProgram.sum_and_count_level("Annual Appeal")
-        @cc = DonationProgram.sum_and_count_level("Commemorative Certificates")
-        @dgb= DonationProgram.sum_and_count_level("Discovery Garden")
+        @pcr = DonationProgram.sum_and_count_level("Palm Court Restoration")
+        @wcd = DonationProgram.sum_and_count_level("Welcome Center Donations")
+        @pf = DonationProgram.sum_and_count_level("Phipps Fund")
+        @dgb= DonationProgram.sum_and_count_level("Discovery Garden Bricks")
         @mh = DonationProgram.sum_and_count_level("Memorials & Honoraria")
         @other = DonationProgram.sum_and_count_level("Other")
 
 
-        @donations_by_program = [@cp, @cc, @dgb, @mh, @aa, @other]
+        @donations_by_program = [@pcr, @wcd, @pf, @dgb, @mh, @other]
 
         @pie_chart_data_set = []
         @bar_chart_data_set = []
